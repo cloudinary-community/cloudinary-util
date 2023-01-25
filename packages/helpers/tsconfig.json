@@ -1,0 +1,5 @@
+{
+  "extends": "@cloudinary-util/tsconfig/base.json",
+  "include": ["."],
+  "exclude": ["dist", "build", "node_modules"]
+}
