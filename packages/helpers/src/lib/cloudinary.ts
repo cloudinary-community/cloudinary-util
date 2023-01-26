@@ -1,11 +1,3 @@
-const regexWithTransformations = /(https?)\:\/\/(res.cloudinary.com)\/([^\/]+)\/(image|video|raw)\/(upload|authenticated)\/(.*)\/(v[0-9]+)\/(.+)(?:\.[a-z]{3})?/;
-const regexWithoutTransformations = /(https?)\:\/\/(res.cloudinary.com)\/([^\/]+)\/(image|video|raw)\/(upload|authenticated)\/(v[0-9]+)\/(.+)(?:\.[a-z]{3})?/;
-
-const regexTransformations = new RegExp(
-  "(https?)://(res.cloudinary.com)/([^/]+)/(image|video|raw)/(upload|authenticated)/(.*)/(v[0-9]+)/(.+)(?:.[a-z]{3})?",
-  "gi"
-);
-
 /**
  * Retrieves the public id of a cloudiary image url. If no url is recognized it returns the parameter it self.
  * If it's recognized that is a url and it's not possible to get the public id, it warns the user.
@@ -21,7 +13,8 @@ export function getPublicId(src: string): string {
   }
 
   if ( src.includes('res.cloudinary.com') ) {
-
+    const regexWithTransformations = /(https?)\:\/\/(res.cloudinary.com)\/([^\/]+)\/(image|video|raw)\/(upload|authenticated)\/(.*)\/(v[0-9]+)\/(.+)(?:\.[a-z]{3})?/
+    const regexWithoutTransformations = /(https?)\:\/\/(res.cloudinary.com)\/([^\/]+)\/(image|video|raw)\/(upload|authenticated)\/(v[0-9]+)\/(.+)(?:\.[a-z]{3})?/
 
     const withTransformations = src.match(regexWithTransformations)
     const withoutTransformations = src.match(regexWithoutTransformations)
@@ -53,7 +46,11 @@ export function getTransformations(src: string, preserveTransformations: boolean
   }
 
   if (src.includes("res.cloudinary.com") && preserveTransformations) {
-    const groups = regexTransformations.exec(src);
+    const regex = new RegExp(
+      "(https?)://(res.cloudinary.com)/([^/]+)/(image|video|raw)/(upload|authenticated)/(.*)/(v[0-9]+)/(.+)(?:.[a-z]{3})?",
+      "gi"
+    );
+    const groups = regex.exec(src);
     const transformationStr = groups?.slice(1).find((i) => i.includes("_"));
 
     if (transformationStr) {

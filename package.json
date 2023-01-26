@@ -8,7 +8,7 @@
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "changeset": "changeset",
     "prepublishOnly": "cp ../README.md . && yarn build",
-    "release": "turbo run build --filter=docs^... && pnpm run -r semantic-release"
+    "release": "turbo run build --filter=docs^... && turbo run semantic-release"
   },
   "devDependencies": {
     "@changesets/cli": "^2.22.0",
