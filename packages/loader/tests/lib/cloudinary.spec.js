@@ -1,4 +1,4 @@
-import { constructCloudinaryUrl, createPlaceholderUrl } from '../../src/lib/cloudinary';
+import { constructCloudinaryUrl } from '../../src/lib/cloudinary';
 
 // Mock console.warn() so we can see when it's called
 global.console = {
@@ -70,49 +70,6 @@ describe('Cloudinary', () => {
       // Only match the analytics version (A) and the ID as the rest is determined
       // dynamically by SDK and Next.js version
       expect(url).toContain(`?_a=A${sdkCode}`);
-    });
-  });
-
-  describe('createPlaceholderUrl', () => {
-    it('should create a placeholder URL with default settings', () => {
-      const cloudName = 'customtestcloud';
-      const url = createPlaceholderUrl({
-        src: 'turtle',
-        config: {
-          cloud: {
-            cloudName
-          }
-        }
-      });
-      expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/upload/c_limit,w_100/f_auto/q_1/turtle`);
-    });
-
-    it('should create a placeholder URL in grayscale', () => {
-      const cloudName = 'customtestcloud';
-      const url = createPlaceholderUrl({
-        src: 'turtle',
-        placeholder: 'grayscale',
-        config: {
-          cloud: {
-            cloudName
-          }
-        }
-      });
-      expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/upload/c_limit,w_100/e_grayscale/f_auto/q_1/turtle`);
-    });
-
-    it('should create a placeholder URL with a color', () => {
-      const cloudName = 'customtestcloud';
-      const url = createPlaceholderUrl({
-        src: 'turtle',
-        placeholder: 'color:blueviolet',
-        config: {
-          cloud: {
-            cloudName
-          }
-        }
-      });
-      expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/upload/c_limit,w_100/e_grayscale/e_colorize:60,co_blueviolet/f_auto/q_1/turtle`);
     });
   });
 })
