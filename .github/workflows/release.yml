@@ -24,7 +24,7 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm run -r test
+      - run: pnpm test
 
   release:
     name: Release
