@@ -24,6 +24,7 @@
     "@semantic-release/changelog": "^6.0.2",
     "@semantic-release/git": "^10.0.1",
     "@types/jest": "^29.4.0",
+    "@types/node": "^17.0.12",
     "babel-jest": "^29.4.0",
     "eslint": "^7.32.0",
     "eslint-config-cloudinary-util": "workspace:*",
@@ -38,7 +39,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@cloudinary/url-gen": "^1.8.7",
-    "@cloudinary-util/helpers": "workspace:*"
+    "@cloudinary-util/helpers": "workspace:*",
+    "@cloudinary/url-gen": "^1.8.7"
   }
 }
