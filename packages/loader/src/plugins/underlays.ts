@@ -69,7 +69,9 @@ export function plugin(props: PluginSettings) {
     // Gemeral options
 
     (Object.keys(options) as Array<keyof typeof options>).forEach(key => {
+      // @ts-expect-error
       if ( !qualifiersPrimary[key] ) return;
+      // @ts-expect-error
       const { qualifier } = qualifiersPrimary[key];
       primary.push(`${qualifier}_${options[key]}`);
     });
@@ -88,8 +90,10 @@ export function plugin(props: PluginSettings) {
 
     if ( hasPosition ) {
       (Object.keys(position) as Array<keyof typeof position>).forEach(key => {
+        // @ts-expect-error
         if ( !qualifiersPosition[key] ) return;
 
+        // @ts-expect-error
         const { qualifier } = qualifiersPosition[key];
 
         applied.push(`${qualifier}_${position[key]}`);
@@ -99,8 +103,10 @@ export function plugin(props: PluginSettings) {
     // Positioning
 
     flags.forEach(key => {
+      // @ts-expect-error
       if ( !qualifiersFlags[key] ) return;
 
+      // @ts-expect-error
       const { qualifier, prefix } = qualifiersFlags[key];
 
       primary.push(`${prefix}_${qualifier}`);

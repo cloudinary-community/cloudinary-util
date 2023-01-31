@@ -32,7 +32,9 @@ export function plugin(props: PluginSettings) {
   }
 
   if ( typeof text === 'string' ) {
+
     applyOverlay({
+      // @ts-expect-error
       text: {
         ...DEFAULT_TEXT_OPTIONS,
         text
@@ -52,20 +54,20 @@ export function plugin(props: PluginSettings) {
    */
 
   interface ApplyOverlaySettingsText {
-    color: string;
-    fontFamily: string;
-    fontSize: string;
-    fontWeight: string;
-    text: string;
+    color?: string;
+    fontFamily?: string;
+    fontSize?: string;
+    fontWeight?: string;
+    text?: string;
   }
 
   interface ApplyOverlaySettings {
-    appliedEffects: Array<object>
-    effects: Array<object>;
-    position: string;
-    publicId: string;
-    text: string | ApplyOverlaySettingsText;
-    url: string;
+    appliedEffects?: Array<object>
+    effects?: Array<object>;
+    position?: string;
+    publicId?: string;
+    text?: string | ApplyOverlaySettingsText;
+    url?: string;
   }
 
   function applyOverlay({ publicId, url, position, text, effects: layerEffects = [], appliedEffects = [], ...options }: ApplyOverlaySettings) {
@@ -162,6 +164,7 @@ export function plugin(props: PluginSettings) {
 
     if ( hasText ) {
       if ( typeof text === 'string' ) {
+        // @ts-expect-error
         text = {
           ...DEFAULT_TEXT_OPTIONS,
           text
@@ -171,22 +174,30 @@ export function plugin(props: PluginSettings) {
 
       const textTransformations: Array<string> = [];
 
-      (Object.keys(text) as Array<keyof typeof text>).forEach(key => {
-        if ( !qualifiersText[key] ) return;
+      if ( typeof text === 'object' ) {
+        (Object.keys(text) as Array<keyof typeof text>).forEach(key => {
+          // @ts-expect-error
+          if ( !qualifiersText[key] ) return;
 
-        const { qualifier, location } = qualifiersText[key];
+          // @ts-expect-error
+          const { qualifier, location } = qualifiersText[key];
 
-        if ( location === 'primary' ) {
-          primary.push(`${qualifier}_${text[key]}`);
-        } else if ( qualifier === 'self' ) {
-          textTransformations.push(key);
-        } else if ( qualifier ) {
-          textTransformations.push(`${qualifier}_${text[key]}`);
-        } else {
-          textTransformations.push(text[key]);
-        }
-      });
+          if ( location === 'primary' ) {
+            // @ts-expect-error
+            primary.push(`${qualifier}_${text[key]}`);
+          } else if ( qualifier === 'self' ) {
+            textTransformations.push(key);
+          } else if ( qualifier ) {
+            // @ts-expect-error
+            textTransformations.push(`${qualifier}_${text[key]}`);
+          } else {
+            // @ts-expect-error
+            textTransformations.push(text[key]);
+          }
+        });
+      }
 
+      // @ts-expect-error
       layerTransformation = `${layerTransformation}:${textTransformations.join('_')}:${text.text}`
     }
 
@@ -194,8 +205,10 @@ export function plugin(props: PluginSettings) {
 
     if ( hasPosition ) {
       Object.keys(position).forEach(key => {
+        // @ts-expect-error
         if ( !qualifiersPosition[key] ) return;
 
+        // @ts-expect-error
         const { qualifier } = qualifiersPosition[key];
 
         const transformation = constructTransformation({

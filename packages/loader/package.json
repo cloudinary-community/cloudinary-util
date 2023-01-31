@@ -1,5 +1,5 @@
 {
-  "name": "@cloudinary-util/helpers",
+  "name": "@cloudinary-util/loader",
   "version": "1.0.0",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
