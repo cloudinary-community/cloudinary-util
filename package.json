@@ -9,7 +9,7 @@
     "changeset": "changeset",
     "prepublishOnly": "cp ../README.md . && yarn build",
     "release": "turbo run build --filter=docs^... && pnpm run -r semantic-release",
-    "test": "turbo run test"
+    "test": "turbo run build && turbo run test"
   },
   "devDependencies": {
     "@changesets/cli": "^2.22.0",
