@@ -1,5 +1,10 @@
 {
   "extends": "@cloudinary-util/tsconfig/node14.json",
   "include": ["."],
-  "exclude": ["dist", "build", "node_modules"]
+  "exclude": ["dist", "build", "node_modules"],
+  "compilerOptions": {
+    "types": [
+      "node"
+    ]
+  }
 }
