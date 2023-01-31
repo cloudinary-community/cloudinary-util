@@ -6,13 +6,11 @@
     "lint": "turbo run lint",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
-    "changeset": "changeset",
     "prepublishOnly": "cp ../README.md . && yarn build",
     "release": "turbo run build --filter=docs^... && pnpm run -r semantic-release",
     "test": "turbo run build && turbo run test"
   },
   "devDependencies": {
-    "@changesets/cli": "^2.22.0",
     "eslint": "^7.32.0",
     "eslint-config-cloudinary-util": "workspace:*",
     "prettier": "^2.5.1",
