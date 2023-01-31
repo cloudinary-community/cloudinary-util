@@ -40,10 +40,7 @@ importers:
       typescript: 4.9.3
 
   packages/cloudinary-util-tsconfig:
-    specifiers:
-      '@types/node': ^17.0.12
-    dependencies:
-      '@types/node': 17.0.45
+    specifiers: {}
 
   packages/eslint-config-cloudinary-util:
     specifiers:
@@ -2421,6 +2418,7 @@ packages:
 
   /@types/node/17.0.45:
     resolution: {integrity: sha512-w+tIMs3rq2afQdsPJlODhoUEKzFP1ayaoyl1CcnwtIlsVe7K7bA1NGm4s3PraqTLlXnbIN84zuBlxBWo1u9BLw==}
+    dev: true
 
   /@types/normalize-package-data/2.4.1:
     resolution: {integrity: sha512-Gj7cI7z+98M282Tqmp2K5EIsoouUEzbBJhQQzDE3jSIRk6r9gsz0oUokqIUR4u1R3dMHo0pDHM7sNOHyhulypw==}
