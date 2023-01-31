@@ -14,7 +14,10 @@
     "noUnusedParameters": false,
     "preserveWatchOutput": true,
     "skipLibCheck": true,
-    "strict": true
+    "strict": true,
+    "lib": [
+      "DOM"
+    ]
   },
   "exclude": ["node_modules"]
 }
