@@ -1,5 +1,5 @@
 {
-  "extends": "@cloudinary-util/tsconfig/base.json",
+  "extends": "@cloudinary-util/tsconfig/node14.json",
   "include": ["."],
   "exclude": ["dist", "build", "node_modules"]
 }
