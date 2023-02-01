@@ -4,7 +4,7 @@
 
 interface ConstructTransformationSettings {
   prefix?: string;
-  qualifier?: string;
+  qualifier?: string | boolean;
   value?: string | boolean;
 }
 

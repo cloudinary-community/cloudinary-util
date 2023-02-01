@@ -1,4 +1,4 @@
-import { encodeBase64 } from '@cloudinary-util/helpers';
+import { encodeBase64, objectHasKey } from '@cloudinary-util/helpers';
 
 import { PluginSettings } from '../types/plugins';
 
@@ -34,7 +34,6 @@ export function plugin(props: PluginSettings) {
   if ( typeof text === 'string' ) {
 
     applyOverlay({
-      // @ts-expect-error
       text: {
         ...DEFAULT_TEXT_OPTIONS,
         text
@@ -56,7 +55,7 @@ export function plugin(props: PluginSettings) {
   interface ApplyOverlaySettingsText {
     color?: string;
     fontFamily?: string;
-    fontSize?: string;
+    fontSize?: number;
     fontWeight?: string;
     text?: string;
   }
@@ -103,7 +102,7 @@ export function plugin(props: PluginSettings) {
     // Gemeral options
 
     (Object.keys(options) as Array<keyof typeof options>).forEach(key => {
-      if ( !qualifiersPrimary[key] ) return;
+      if ( !objectHasKey(qualifiersPrimary, key) ) return;
 
       const { qualifier } = qualifiersPrimary[key];
 
@@ -158,28 +157,22 @@ export function plugin(props: PluginSettings) {
       });
     });
 
-
-
     // Text styling
 
     if ( hasText ) {
       if ( typeof text === 'string' ) {
-        // @ts-expect-error
         text = {
           ...DEFAULT_TEXT_OPTIONS,
           text
         }
       }
 
-
       const textTransformations: Array<string> = [];
 
       if ( typeof text === 'object' ) {
-        (Object.keys(text) as Array<keyof typeof text>).forEach(key => {
-          // @ts-expect-error
-          if ( !qualifiersText[key] ) return;
+        (Object.keys(text) as Array<keyof typeof text>).forEach((key) => {
+          if ( !objectHasKey(qualifiersText, key) ) return;
 
-          // @ts-expect-error
           const { qualifier, location } = qualifiersText[key];
 
           if ( location === 'primary' ) {
@@ -197,18 +190,15 @@ export function plugin(props: PluginSettings) {
         });
       }
 
-      // @ts-expect-error
-      layerTransformation = `${layerTransformation}:${textTransformations.join('_')}:${text.text}`
+      layerTransformation = `${layerTransformation}:${textTransformations.join('_')}:${text?.text || ''}`
     }
 
     // Positioning
 
     if ( hasPosition ) {
       Object.keys(position).forEach(key => {
-        // @ts-expect-error
-        if ( !qualifiersPosition[key] ) return;
+        if ( !objectHasKey(qualifiersPosition, key) ) return;
 
-        // @ts-expect-error
         const { qualifier } = qualifiersPosition[key];
 
         const transformation = constructTransformation({

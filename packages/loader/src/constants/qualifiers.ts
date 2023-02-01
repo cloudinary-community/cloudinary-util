@@ -1,6 +1,10 @@
-// aspectRatio
+interface Qualifier {
+  location?: string;
+  prefix?: string;
+  qualifier?: string | boolean;
+}
 
-export const primary = {
+export const primary: Record<string, Qualifier> = {
   aspectRatio: {
     qualifier: 'ar'
   },
@@ -16,9 +20,9 @@ export const primary = {
   width: {
     qualifier: 'w'
   },
-};
+} as const;
 
-export const position = {
+export const position: Record<string, Qualifier> = {
   angle: {
     qualifier: 'a'
   },
@@ -31,9 +35,9 @@ export const position = {
   y: {
     qualifier: 'y'
   },
-}
+} as const;
 
-export const text = {
+export const text: Record<string, Qualifier> = {
   alignment: {
     qualifier: 'alignment'
   },
@@ -66,9 +70,9 @@ export const text = {
   textDecoration: {
     qualifier: false
   }
-}
+} as const;
 
-export const effects = {
+export const effects: Record<string, Qualifier> = {
   art: {
     prefix: 'e',
     qualifier: 'art',
@@ -249,12 +253,12 @@ export const effects = {
     prefix: 'e',
     qualifier: 'vignette',
   },
-}
+} as const;
 
-export const flags = {
+export const flags: Record<string, Qualifier> = {
   relative: {
     prefix: 'fl',
     qualifier: 'relative',
     location: 'primary'
   }
-}
+} as const;

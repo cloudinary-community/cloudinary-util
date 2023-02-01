@@ -1,3 +1,5 @@
+import { objectHasKey } from '@cloudinary-util/helpers';
+
 import { PluginSettings } from '../types/plugins';
 
 import {
@@ -69,9 +71,7 @@ export function plugin(props: PluginSettings) {
     // Gemeral options
 
     (Object.keys(options) as Array<keyof typeof options>).forEach(key => {
-      // @ts-expect-error
-      if ( !qualifiersPrimary[key] ) return;
-      // @ts-expect-error
+      if ( !objectHasKey(qualifiersPrimary, key) ) return;
       const { qualifier } = qualifiersPrimary[key];
       primary.push(`${qualifier}_${options[key]}`);
     });
@@ -80,7 +80,7 @@ export function plugin(props: PluginSettings) {
 
     layerEffects.forEach(effect => {
       (Object.keys(effect) as Array<keyof typeof effect>).forEach(key => {
-        if ( !qualifiersPrimary[key] ) return;
+        if ( !objectHasKey(qualifiersPrimary, key) ) return;
         const { qualifier } = qualifiersPrimary[key];
         primary.push(`${qualifier}_${effect[key]}`);
       });
@@ -90,12 +90,8 @@ export function plugin(props: PluginSettings) {
 
     if ( hasPosition ) {
       (Object.keys(position) as Array<keyof typeof position>).forEach(key => {
-        // @ts-expect-error
-        if ( !qualifiersPosition[key] ) return;
-
-        // @ts-expect-error
-        const { qualifier } = qualifiersPosition[key];
-
+        if ( !objectHasKey(qualifiersPosition, key) ) return;
+        const { qualifier } = qualifiersPosition[key as string];
         applied.push(`${qualifier}_${position[key]}`);
       });
     }
@@ -103,12 +99,8 @@ export function plugin(props: PluginSettings) {
     // Positioning
 
     flags.forEach(key => {
-      // @ts-expect-error
-      if ( !qualifiersFlags[key] ) return;
-
-      // @ts-expect-error
+      if ( !objectHasKey(qualifiersFlags, key) ) return;
       const { qualifier, prefix } = qualifiersFlags[key];
-
       primary.push(`${prefix}_${qualifier}`);
     });
 

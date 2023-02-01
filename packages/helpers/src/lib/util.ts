@@ -11,3 +11,11 @@ export function encodeBase64(value: any) {
     return Buffer.from(value).toString('base64');
   }
 }
+
+/**
+ * objectHasKey
+ */
+
+export function objectHasKey<T>(obj: T, key: PropertyKey): key is keyof T {
+  return Object.prototype.hasOwnProperty.call(obj, key);
+}
