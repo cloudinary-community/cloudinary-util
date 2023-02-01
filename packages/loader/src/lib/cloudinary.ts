@@ -68,7 +68,16 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
     throw Error(`Failed to construct Cloudinary URL: Missing source (src) in options`);
   }
 
-  const publicId = getPublicId(options.src);
+  let publicId;
+
+  // If the src starts with https, try to parse the URL to grab the ID dynamically
+  // otherwise fall back to the src which should be a public ID
+
+  if ( options.src.startsWith('https://') ) {
+    publicId = getPublicId(options.src);
+  } else {
+    publicId = options.src;
+  }
 
   const cldImage = cld.image(publicId);
 
