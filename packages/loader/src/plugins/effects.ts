@@ -45,4 +45,6 @@ export function plugin(props: PluginSettings) {
       });
     })
   }
+
+  return {};
 }

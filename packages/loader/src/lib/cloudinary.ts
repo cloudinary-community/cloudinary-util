@@ -34,15 +34,30 @@ export const transformationPlugins = [
 
 let cld: any;
 
+/**
+ * constructCloudinaryUrl
+ * @description Builds a full Cloudinary URL using transformation plugins specified by options
+ */
+
 interface ConstructUrlProps {
   options: ImageOptions;
   config?: ICloudinaryConfigurations;
   analytics?: IAnalyticsOptions;
 }
 
-/**
- * constructCloudinaryUrl
- */
+interface PluginOptionsResize {
+  width?: string | number;
+}
+
+interface PluginOptions {
+  format?: string;
+  resize?: PluginOptionsResize;
+  width?: string | number;
+}
+
+interface PluginResults {
+  options?: PluginOptions;
+}
 
 export function constructCloudinaryUrl({ options, config, analytics }: ConstructUrlProps): string {
   if ( !cld ) {
@@ -58,11 +73,12 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
   const cldImage = cld.image(publicId);
 
   transformationPlugins.forEach(({ plugin }) => {
-    // @ts-ignore
-    const { options: pluginOptions } = plugin({
+    const results: PluginResults = plugin({
       cldImage,
       options
-    }) || {};
+    });
+
+    const { options: pluginOptions } = results || { options: undefined };
 
     if ( pluginOptions?.format && options ) {
       options.format = pluginOptions.format;

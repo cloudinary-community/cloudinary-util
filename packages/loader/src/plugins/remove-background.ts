@@ -8,4 +8,5 @@ export function plugin(props: PluginSettings) {
   if ( removeBackground ) {
     cldImage.effect('e_background_removal');
   }
+  return {};
 }

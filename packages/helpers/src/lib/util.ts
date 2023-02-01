@@ -1,5 +1,6 @@
 /**
  * encodeBase64
+ * @description Universally returns a base64 encoded string
  */
 
 export function encodeBase64(value: any) {
@@ -14,6 +15,7 @@ export function encodeBase64(value: any) {
 
 /**
  * objectHasKey
+ * @description Helper function to check if a key exists on an object
  */
 
 export function objectHasKey<T>(obj: T, key: PropertyKey): key is keyof T {

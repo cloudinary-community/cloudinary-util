@@ -120,4 +120,6 @@ export function plugin(props: PluginSettings) {
 
     cldImage.addTransformation(layerTransformation);
   }
+
+  return {};
 }

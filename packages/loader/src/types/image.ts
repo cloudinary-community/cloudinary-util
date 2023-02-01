@@ -1,6 +1,6 @@
 export interface ImageOptionsResize {
   crop?: string;
-  width?: number;
+  width?: number | string;
 }
 export interface ImageOptionsZoomPan {
   loop: string | boolean;

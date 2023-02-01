@@ -13,4 +13,6 @@ export function plugin(props: PluginSettings) {
   transformations.forEach(transformation => {
     cldImage.addTransformation(`t_${transformation}`);
   });
+
+  return {};
 }

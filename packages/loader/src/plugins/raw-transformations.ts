@@ -9,4 +9,6 @@ export function plugin(props: PluginSettings) {
   rawTransformations.forEach(transformation => {
     cldImage.addTransformation(transformation);
   });
+
+  return {};
 }

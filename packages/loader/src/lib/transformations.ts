@@ -1,5 +1,6 @@
 /**
  * constructTransformation
+ * @description Constructs a transformation string to append to a URL
  */
 
 interface ConstructTransformationSettings {
