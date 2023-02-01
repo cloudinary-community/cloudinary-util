@@ -54,7 +54,8 @@
         ]
       }
     ],
-    "@semantic-release/github"
+    "@semantic-release/github",
+    "semantic-release-pnpm"
   ],
   "extends": "semantic-release-monorepo"
 }
