@@ -1,3 +1,10 @@
+# [@cloudinary-util/helpers-v1.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/helpers-v1.1.0...@cloudinary-util/helpers-v1.2.0) (2023-02-01)
+
+
+### Features
+
+* semantic release pnpm ([7c2e4a9](https://github.com/colbyfayock/cloudinary-util/commit/7c2e4a9333a58f722d3a3b2690c8ed2ae09ee7fb))
+
 # [@cloudinary-util/helpers-v1.1.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/helpers-v1.0.1...@cloudinary-util/helpers-v1.1.0) (2023-02-01)
 
 
