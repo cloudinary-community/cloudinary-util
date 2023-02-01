@@ -96,6 +96,33 @@ describe('Cloudinary', () => {
         version,
       });
     });
+
+    // TODO: currently only grabs the last transformation string
+    // it('should parse a video Cloudinary URL with multiple transformation strings', () => {
+    //   const assetType = 'video';
+    //   const cloudName = 'test-cloud';
+    //   const deliveryType = 'upload';
+    //   const format = '.mp4';
+    //   const host = 'res.cloudinary.com';
+    //   const id = 'assets/images/animals/turtle';
+    //   const signature = undefined;
+    //   const transformations = ['f_auto,q_auto', 'c_limit,w_960'];
+    //   const version = 'v1234';
+
+    //   const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/${version}/${id}${format}`;
+
+    //   expect(parseUrl(src)).toMatchObject({
+    //     assetType,
+    //     cloudName,
+    //     deliveryType,
+    //     format,
+    //     host,
+    //     id,
+    //     signature,
+    //     transformations,
+    //     version,
+    //   });
+    // });
   });
 
   describe('getPublicId', () => {
