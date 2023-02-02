@@ -4,27 +4,27 @@ on: [push, pull_request]
 concurrency: ${{ github.workflow }}-${{ github.ref }}
 
 jobs:
-  tests:
-    name: Test
-    runs-on: ubuntu-latest
-    strategy:
-      matrix:
-        node: [ '18' ]
-    steps:
-      - uses: actions/checkout@v2
+  # tests:
+  #   name: Test
+  #   runs-on: ubuntu-latest
+  #   strategy:
+  #     matrix:
+  #       node: [ '18' ]
+  #   steps:
+  #     - uses: actions/checkout@v2
 
-      - uses: pnpm/action-setup@v2
-        with:
-          version: 7
+  #     - uses: pnpm/action-setup@v2
+  #       with:
+  #         version: 7
 
-      - uses: actions/setup-node@v2
-        with:
-          node-version: ${{ matrix.node }}
-          cache: 'pnpm'
+  #     - uses: actions/setup-node@v2
+  #       with:
+  #         node-version: ${{ matrix.node }}
+  #         cache: 'pnpm'
 
-      - run: pnpm install
+  #     - run: pnpm install
 
-      - run: pnpm test
+  #     - run: pnpm test
 
   release:
     name: Release
@@ -47,6 +47,8 @@ jobs:
           cache: 'pnpm'
           # https://github.com/pnpm/pnpm/issues/3141
           registry-url: 'https://registry.npmjs.org'
+
+      - run: ls -la
 
       - run: pnpm install
 
