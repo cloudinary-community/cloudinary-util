@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v1.1.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v1.1.0...@cloudinary-util/util-v1.1.1) (2023-02-02)
+
+
+### Bug Fixes
+
+* forcing patch ([87b274d](https://github.com/colbyfayock/cloudinary-util/commit/87b274da38b05d36a38b9af0002a8670610ebad3))
+
 # [@cloudinary-util/util-v1.1.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v1.0.0...@cloudinary-util/util-v1.1.0) (2023-02-02)
 
 
