@@ -3,5 +3,5 @@
 ## 🚀 Getting Started
 
 ```
-npm install @cloudinary-util/loader
+npm install @cloudinary-util/url-loader
 ```

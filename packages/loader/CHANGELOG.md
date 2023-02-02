@@ -1,4 +1,4 @@
-# @cloudinary-util/loader-v1.0.0 (2023-02-02)
+# @cloudinary-util/url-loader-v1.0.0 (2023-02-02)
 
 
 ### Features
@@ -14,7 +14,7 @@
 * test ([#3](https://github.com/colbyfayock/cloudinary-util/issues/3)) ([4fdbbc6](https://github.com/colbyfayock/cloudinary-util/commit/4fdbbc6ebb0226071d62e0b807477413dc38491a))
 * updating doc notes of helpers ([18d30be](https://github.com/colbyfayock/cloudinary-util/commit/18d30be8594952cac5f58df69fb17622dd9cb75b))
 
-# @cloudinary-util/loader-v1.0.0 (2023-02-02)
+# @cloudinary-util/url-loader-v1.0.0 (2023-02-02)
 
 
 ### Features
@@ -30,7 +30,7 @@
 * test ([#3](https://github.com/colbyfayock/cloudinary-util/issues/3)) ([4fdbbc6](https://github.com/colbyfayock/cloudinary-util/commit/4fdbbc6ebb0226071d62e0b807477413dc38491a))
 * updating doc notes of helpers ([18d30be](https://github.com/colbyfayock/cloudinary-util/commit/18d30be8594952cac5f58df69fb17622dd9cb75b))
 
-# @cloudinary-util/loader-v1.0.0 (2023-02-02)
+# @cloudinary-util/url-loader-v1.0.0 (2023-02-02)
 
 
 ### Features
@@ -45,7 +45,7 @@
 * temporary pnpm semantic release package ([1562d0b](https://github.com/colbyfayock/cloudinary-util/commit/1562d0b31be4d544e41ccd10275cee6cd75426c7))
 * updating doc notes of helpers ([18d30be](https://github.com/colbyfayock/cloudinary-util/commit/18d30be8594952cac5f58df69fb17622dd9cb75b))
 
-# [@cloudinary-util/loader-v1.4.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/loader-v1.3.0...@cloudinary-util/loader-v1.4.0) (2023-02-02)
+# [@cloudinary-util/url-loader-v1.4.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.3.0...@cloudinary-util/url-loader-v1.4.0) (2023-02-02)
 
 
 ### Features
@@ -53,14 +53,14 @@
 * docs ([91b8c53](https://github.com/colbyfayock/cloudinary-util/commit/91b8c53d46dd0fddfd86fb69f581f1d9e08f3d99))
 * forcing version ([0c51f50](https://github.com/colbyfayock/cloudinary-util/commit/0c51f500d02c369550fc06bd330dfa88904c573a))
 
-# [@cloudinary-util/loader-v1.3.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/loader-v1.2.0...@cloudinary-util/loader-v1.3.0) (2023-02-02)
+# [@cloudinary-util/url-loader-v1.3.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.0...@cloudinary-util/url-loader-v1.3.0) (2023-02-02)
 
 
 ### Features
 
 * docs ([91b8c53](https://github.com/colbyfayock/cloudinary-util/commit/91b8c53d46dd0fddfd86fb69f581f1d9e08f3d99))
 
-# [@cloudinary-util/loader-v1.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/loader-v1.1.0...@cloudinary-util/loader-v1.2.0) (2023-02-02)
+# [@cloudinary-util/url-loader-v1.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.1.0...@cloudinary-util/url-loader-v1.2.0) (2023-02-02)
 
 
 ### Features
@@ -70,7 +70,7 @@
 * semantic release pnpm ([7c2e4a9](https://github.com/colbyfayock/cloudinary-util/commit/7c2e4a9333a58f722d3a3b2690c8ed2ae09ee7fb))
 * temporary pnpm semantic release package ([1562d0b](https://github.com/colbyfayock/cloudinary-util/commit/1562d0b31be4d544e41ccd10275cee6cd75426c7))
 
-# [@cloudinary-util/loader-v1.1.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/loader-v1.0.0...@cloudinary-util/loader-v1.1.0) (2023-02-02)
+# [@cloudinary-util/url-loader-v1.1.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.0.0...@cloudinary-util/url-loader-v1.1.0) (2023-02-02)
 
 
 ### Features
@@ -79,7 +79,7 @@
 * semantic release pnpm ([7c2e4a9](https://github.com/colbyfayock/cloudinary-util/commit/7c2e4a9333a58f722d3a3b2690c8ed2ae09ee7fb))
 * temporary pnpm semantic release package ([1562d0b](https://github.com/colbyfayock/cloudinary-util/commit/1562d0b31be4d544e41ccd10275cee6cd75426c7))
 
-# @cloudinary-util/loader-v1.0.0 (2023-02-01)
+# @cloudinary-util/url-loader-v1.0.0 (2023-02-01)
 
 
 ### Features
