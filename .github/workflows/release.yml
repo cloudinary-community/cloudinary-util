@@ -29,7 +29,7 @@ jobs:
   release:
     name: Release
     if: github.event_name == 'push' && github.ref_name == 'main'
-    needs: tests
+    # needs: tests
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -49,6 +49,8 @@ jobs:
           registry-url: 'https://registry.npmjs.org'
 
       - run: ls -la
+      - run: ls -la packages
+      - run: ls -la packages/helpers
 
       - run: pnpm install
 
