@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v1.2.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.2...@cloudinary-util/url-loader-v1.2.3) (2023-02-02)
+
+
+### Bug Fixes
+
+* exposing transformationPlugins ([53fee61](https://github.com/colbyfayock/cloudinary-util/commit/53fee61b794016f4f7918da43942618be3417819))
+
 # [@cloudinary-util/url-loader-v1.2.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.1...@cloudinary-util/url-loader-v1.2.2) (2023-02-02)
 
 
