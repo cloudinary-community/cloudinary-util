@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v1.2.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.1...@cloudinary-util/url-loader-v1.2.2) (2023-02-02)
+
+
+### Bug Fixes
+
+* forcing patch ([87b274d](https://github.com/colbyfayock/cloudinary-util/commit/87b274da38b05d36a38b9af0002a8670610ebad3))
+
 # [@cloudinary-util/url-loader-v1.2.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.0...@cloudinary-util/url-loader-v1.2.1) (2023-02-02)
 
 
