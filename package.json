@@ -7,7 +7,7 @@
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "prepublishOnly": "cp ../README.md . && yarn build",
-    "release": "turbo run build --filter=docs^... && turbo run semantic-release",
+    "release": "turbo run build --filter=docs^... && turbo run semantic-release --concurrency=1",
     "test": "turbo run build && turbo run test"
   },
   "devDependencies": {
