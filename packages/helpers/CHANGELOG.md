@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v1.1.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v1.0.0...@cloudinary-util/util-v1.1.0) (2023-02-02)
+
+
+### Features
+
+* debug ([27351b5](https://github.com/colbyfayock/cloudinary-util/commit/27351b573af607f08ab5dcfc18d3fab484b992b0))
+
 # @cloudinary-util/util-v1.0.0 (2023-02-02)
 
 
