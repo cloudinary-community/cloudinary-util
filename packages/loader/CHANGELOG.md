@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v1.1.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.0.0...@cloudinary-util/url-loader-v1.1.0) (2023-02-02)
+
+
+### Features
+
+* debug ([c1f432a](https://github.com/colbyfayock/cloudinary-util/commit/c1f432a528cd5a1a6dd3c073b98f737a452211d5))
+
 # @cloudinary-util/url-loader-v1.0.0 (2023-02-02)
 
 
