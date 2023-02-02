@@ -47,7 +47,9 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
+          node-version-file: '.nvmrc'
           cache: 'pnpm'
+          registry-url: 'https://npm.pkg.github.com'
 
       - run: pnpm install
 
