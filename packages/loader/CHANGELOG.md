@@ -1,3 +1,11 @@
+# [@cloudinary-util/loader-v1.4.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/loader-v1.3.0...@cloudinary-util/loader-v1.4.0) (2023-02-02)
+
+
+### Features
+
+* docs ([91b8c53](https://github.com/colbyfayock/cloudinary-util/commit/91b8c53d46dd0fddfd86fb69f581f1d9e08f3d99))
+* forcing version ([0c51f50](https://github.com/colbyfayock/cloudinary-util/commit/0c51f500d02c369550fc06bd330dfa88904c573a))
+
 # [@cloudinary-util/loader-v1.3.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/loader-v1.2.0...@cloudinary-util/loader-v1.3.0) (2023-02-02)
 
 
