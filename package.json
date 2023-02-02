@@ -13,8 +13,8 @@
   "devDependencies": {
     "eslint": "^7.32.0",
     "eslint-config-cloudinary-util": "workspace:*",
-    "prettier": "^2.5.1",
-    "turbo": "latest"
+    "prettier": "^2.8.3",
+    "turbo": "^1.7.2"
   },
   "packageManager": "pnpm@7.15.0"
 }
