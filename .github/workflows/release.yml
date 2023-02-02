@@ -51,4 +51,4 @@ jobs:
 
       - run: pnpm install
 
-        run: pnpm release
+      - run: pnpm release
