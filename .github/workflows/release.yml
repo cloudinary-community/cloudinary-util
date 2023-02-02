@@ -48,11 +48,9 @@ jobs:
           # https://github.com/pnpm/pnpm/issues/3141
           registry-url: 'https://registry.npmjs.org'
 
-      - run: ls -la
-      - run: ls -la packages
-      - run: ls -la packages/helpers
-
       - run: pnpm install
+
+      - run: ls -la packages/helpers
 
       - run: pnpm release
         env:
