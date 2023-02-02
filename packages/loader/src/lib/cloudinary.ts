@@ -1,5 +1,5 @@
 import { Cloudinary } from '@cloudinary/url-gen';
-import { getPublicId } from '@cloudinary-util/helpers';
+import { getPublicId } from '@cloudinary-util/util';
 
 import * as croppingPlugin from '../plugins/cropping';
 import * as effectsPlugin from '../plugins/effects';

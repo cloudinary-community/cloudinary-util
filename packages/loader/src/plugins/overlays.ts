@@ -1,4 +1,4 @@
-import { encodeBase64, objectHasKey } from '@cloudinary-util/helpers';
+import { encodeBase64, objectHasKey } from '@cloudinary-util/util';
 
 import { PluginSettings } from '../types/plugins';
 

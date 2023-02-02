@@ -1,6 +1,6 @@
 {
   "name": "@cloudinary-util/loader",
-  "version": "1.4.0",
+  "version": "0.0.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -40,7 +40,7 @@
     "access": "public"
   },
   "dependencies": {
-    "@cloudinary-util/helpers": "workspace:*",
+    "@cloudinary-util/util": "workspace:*",
     "@cloudinary/url-gen": "^1.8.7"
   }
 }

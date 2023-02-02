@@ -94,8 +94,8 @@ importers:
     specifiers:
       '@babel/core': ^7.20.12
       '@babel/preset-env': ^7.20.2
-      '@cloudinary-util/helpers': workspace:*
       '@cloudinary-util/tsconfig': workspace:*
+      '@cloudinary-util/util': workspace:*
       '@cloudinary/url-gen': ^1.8.7
       '@colbyfayock/semantic-release-pnpm': ^1.0.7
       '@semantic-release/changelog': ^6.0.2
@@ -112,7 +112,7 @@ importers:
       tsup: ^5.10.1
       typescript: ^4.5.3
     dependencies:
-      '@cloudinary-util/helpers': link:../helpers
+      '@cloudinary-util/util': link:../helpers
       '@cloudinary/url-gen': 1.8.7
     devDependencies:
       '@babel/core': 7.20.12

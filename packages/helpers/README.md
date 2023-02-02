@@ -3,5 +3,5 @@
 ## 🚀 Getting Started
 
 ```
-npm install @cloudinary-util/helpers
+npm install @cloudinary-util/util
 ```

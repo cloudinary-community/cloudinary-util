@@ -1,4 +1,4 @@
-import { objectHasKey } from '@cloudinary-util/helpers';
+import { objectHasKey } from '@cloudinary-util/util';
 
 import { PluginSettings } from '../types/plugins';
 
