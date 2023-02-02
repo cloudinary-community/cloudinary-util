@@ -71,11 +71,16 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
   let publicId;
 
   // If the src starts with https, try to parse the URL to grab the ID dynamically
-  // otherwise fall back to the src which should be a public ID
+  // otherwise fall back to the src which should be a public ID or a remote URL
+  // which will work when using the delivery type of fetch
 
   if ( options.src.startsWith('https://') ) {
-    publicId = getPublicId(options.src);
-  } else {
+    try {
+      publicId = getPublicId(options.src);
+    } catch(e) {}
+  }
+
+  if ( !publicId ) {
     publicId = options.src;
   }
 

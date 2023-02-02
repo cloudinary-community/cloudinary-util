@@ -30,6 +30,26 @@ describe('Cloudinary', () => {
       expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/upload/c_limit,w_100/f_auto/q_auto/turtle`);
     });
 
+    it('should create a Cloudinary URL with a remote source', () => {
+      const cloudName = 'customtestcloud';
+      const deliveryType = 'fetch';
+      const src = 'https://upload.wikimedia.org/wikipedia/commons/4/44/Jelly_cc11.jpg';
+      const url = constructCloudinaryUrl({
+        options: {
+          src,
+          width: 100,
+          height: 100,
+          deliveryType
+        },
+        config: {
+          cloud: {
+            cloudName
+          }
+        }
+      });
+      expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/f_auto/q_auto/${src}`);
+    });
+
     it('should create a Cloudinary URL with custom quality and format options', () => {
       const format = 'png';
       const quality = 75;
