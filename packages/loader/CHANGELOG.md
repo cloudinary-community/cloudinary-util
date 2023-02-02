@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v1.2.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.0...@cloudinary-util/url-loader-v1.2.1) (2023-02-02)
+
+
+### Bug Fixes
+
+* passing in a remote source is valid when using delivery type of fetch ([41f075e](https://github.com/colbyfayock/cloudinary-util/commit/41f075ecb4291a903abec8dc6c6918f6b7a825c9))
+
 # [@cloudinary-util/url-loader-v1.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.1.0...@cloudinary-util/url-loader-v1.2.0) (2023-02-02)
 
 
