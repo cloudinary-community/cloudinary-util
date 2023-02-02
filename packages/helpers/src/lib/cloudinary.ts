@@ -45,7 +45,7 @@ export function parseUrl(src: string): ParseUrl | undefined {
  * getPublicId
  * @description Retrieves the public id of a cloudiary image url. If no url is recognized it returns the parameter it self.
  * If it's recognized that is a url and it's not possible to get the public id, it warns the user.
- * @param {string} src The cloudiary url or public id.
+ * @param {string} src: The cloudiary url or public id.
  */
 
 export function getPublicId(src: string): string | undefined {
@@ -57,8 +57,8 @@ export function getPublicId(src: string): string | undefined {
 /**
  * getTransformations
  * @description Retrieves the transformations added to a cloudiary image url. If no transformation is recognized it returns an empty array.
- * @param {string} The cloudiary url
- * @return {boolean} Preserve the existing transformations when parsing
+ * @param {string} src: The cloudiary url
+ * @param {boolean} preserveTransformations: Preserve the existing transformations when parsing
  */
 
 export function getTransformations(src: string, preserveTransformations: boolean) {
