@@ -57,7 +57,7 @@ importers:
       '@babel/core': ^7.20.12
       '@babel/preset-env': ^7.20.2
       '@cloudinary-util/tsconfig': workspace:*
-      '@colbyfayock/semantic-release-pnpm': ^1.0.4
+      '@colbyfayock/semantic-release-pnpm': ^1.0.5
       '@semantic-release/changelog': ^6.0.2
       '@semantic-release/git': ^10.0.1
       '@types/jest': ^29.4.0
@@ -75,7 +75,7 @@ importers:
       '@babel/core': 7.20.12
       '@babel/preset-env': 7.20.2_@babel+core@7.20.12
       '@cloudinary-util/tsconfig': link:../cloudinary-util-tsconfig
-      '@colbyfayock/semantic-release-pnpm': 1.0.4_semantic-release@20.1.0
+      '@colbyfayock/semantic-release-pnpm': 1.0.5_semantic-release@20.1.0
       '@semantic-release/changelog': 6.0.2_semantic-release@20.1.0
       '@semantic-release/git': 10.0.1_semantic-release@20.1.0
       '@types/jest': 29.4.0
@@ -97,7 +97,7 @@ importers:
       '@cloudinary-util/helpers': workspace:*
       '@cloudinary-util/tsconfig': workspace:*
       '@cloudinary/url-gen': ^1.8.7
-      '@colbyfayock/semantic-release-pnpm': ^1.0.4
+      '@colbyfayock/semantic-release-pnpm': ^1.0.5
       '@semantic-release/changelog': ^6.0.2
       '@semantic-release/git': ^10.0.1
       '@types/jest': ^29.4.0
@@ -118,7 +118,7 @@ importers:
       '@babel/core': 7.20.12
       '@babel/preset-env': 7.20.2_@babel+core@7.20.12
       '@cloudinary-util/tsconfig': link:../cloudinary-util-tsconfig
-      '@colbyfayock/semantic-release-pnpm': 1.0.4_semantic-release@20.1.0
+      '@colbyfayock/semantic-release-pnpm': 1.0.5_semantic-release@20.1.0
       '@semantic-release/changelog': 6.0.2_semantic-release@20.1.0
       '@semantic-release/git': 10.0.1_semantic-release@20.1.0
       '@types/jest': 29.4.0
@@ -1351,8 +1351,8 @@ packages:
       '@cloudinary/transformation-builder-sdk': 1.2.0
     dev: false
 
-  /@colbyfayock/semantic-release-pnpm/1.0.4_semantic-release@20.1.0:
-    resolution: {integrity: sha512-KvEH2w5gsGv3w3glitWKV0HkfVnLBAs54m/AnC/nDzOOkys/Yaca7AzJMrpPZwJfSogAcgxTBfLvU3GxcRTY4Q==}
+  /@colbyfayock/semantic-release-pnpm/1.0.5_semantic-release@20.1.0:
+    resolution: {integrity: sha512-DkHARgEkkMCEKUCJpbE1/5R4RW5YOahVAA1CyMpjXWIhaMcJDK1MvEyx8ze6ssUtBduQtwuJ1I4GnmBhO92NEA==}
     engines: {node: '>=16 || ^14.17'}
     peerDependencies:
       semantic-release: '>=19.0.0'
