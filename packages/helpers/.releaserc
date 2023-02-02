@@ -39,12 +39,7 @@
         "changelogFile": "CHANGELOG.md"
       }
     ],
-    [
-      "@colbyfayock/semantic-release-pnpm",
-      {
-        "pkgRoot": "."
-      }
-    ],
+    "@colbyfayock/semantic-release-pnpm",
     [
       "@semantic-release/git",
       {

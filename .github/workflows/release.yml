@@ -34,6 +34,9 @@ jobs:
     strategy:
       matrix:
         node: [ '18' ]
+    env:
+      GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
     steps:
       - uses: actions/checkout@v2
 
@@ -48,7 +51,4 @@ jobs:
 
       - run: pnpm install
 
-      - env:
-          GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-          NPM_TOKEN: ${{ secrets.NPM_TOKEN }}
         run: pnpm release
