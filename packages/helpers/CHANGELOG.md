@@ -1,3 +1,10 @@
+# [@cloudinary-util/helpers-v1.3.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/helpers-v1.2.0...@cloudinary-util/helpers-v1.3.0) (2023-02-01)
+
+
+### Features
+
+* fixing semantic release settings, adding parse url and tests ([693bd5a](https://github.com/colbyfayock/cloudinary-util/commit/693bd5a75bd41d584fad31eea62c47c2f2dc8639))
+
 # [@cloudinary-util/helpers-v1.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/helpers-v1.1.0...@cloudinary-util/helpers-v1.2.0) (2023-02-01)
 
 
