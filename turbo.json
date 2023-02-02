@@ -17,6 +17,7 @@
     },
     "clean": {
       "cache": false
-    }
+    },
+    "semantic-release": {}
   }
 }
