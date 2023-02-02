@@ -1,3 +1,10 @@
+# [@cloudinary-util/helpers-v1.8.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/helpers-v1.7.0...@cloudinary-util/helpers-v1.8.0) (2023-02-02)
+
+
+### Features
+
+* forcing version ([0c51f50](https://github.com/colbyfayock/cloudinary-util/commit/0c51f500d02c369550fc06bd330dfa88904c573a))
+
 # [@cloudinary-util/helpers-v1.6.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/helpers-v1.5.0...@cloudinary-util/helpers-v1.6.0) (2023-02-02)
 
 
