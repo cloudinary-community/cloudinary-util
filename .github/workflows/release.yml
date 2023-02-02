@@ -50,8 +50,6 @@ jobs:
 
       - run: pnpm install
 
-      - run: ls -la packages/helpers
-
       - run: pnpm release
         env:
           GH_TOKEN: ${{ secrets.GITHUB_TOKEN }}
