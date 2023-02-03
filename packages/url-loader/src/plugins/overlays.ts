@@ -170,24 +170,21 @@ export function plugin(props: PluginSettings) {
       const textTransformations: Array<string> = [];
 
       if ( typeof text === 'object' ) {
-        (Object.keys(text) as Array<keyof typeof text>).forEach((key) => {
-          if ( !objectHasKey(qualifiersText, key) ) return;
+        for (const key of Object.keys(text) as Array<keyof typeof text>) {
+          if ( !objectHasKey(qualifiersText, key) ) continue;
 
           const { qualifier, location } = qualifiersText[key];
 
           if ( location === 'primary' ) {
-            // @ts-expect-error
             primary.push(`${qualifier}_${text[key]}`);
           } else if ( qualifier === 'self' ) {
             textTransformations.push(key);
           } else if ( qualifier ) {
-            // @ts-expect-error
             textTransformations.push(`${qualifier}_${text[key]}`);
           } else {
-            // @ts-expect-error
-            textTransformations.push(text[key]);
+            textTransformations.push(text[key] as string);
           }
-        });
+        }
       }
 
       layerTransformation = `${layerTransformation}:${textTransformations.join('_')}:${text?.text || ''}`
