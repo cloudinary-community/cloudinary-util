@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v1.2.5](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.4...@cloudinary-util/url-loader-v1.2.5) (2023-02-03)
+
+
+### Bug Fixes
+
+* moving directories to match package names ([8e9d75b](https://github.com/colbyfayock/cloudinary-util/commit/8e9d75b386058eae11e58d070c9bf3f173f889e5))
+
 # [@cloudinary-util/url-loader-v1.2.4](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.3...@cloudinary-util/url-loader-v1.2.4) (2023-02-03)
 
 
