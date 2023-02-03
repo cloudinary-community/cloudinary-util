@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v1.2.6](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.5...@cloudinary-util/url-loader-v1.2.6) (2023-02-03)
+
+
+### Bug Fixes
+
+* resolving ts error on overlay ([18ada3a](https://github.com/colbyfayock/cloudinary-util/commit/18ada3ab485a6ae6974f00e3ea72284c4edd9d99))
+
 # [@cloudinary-util/url-loader-v1.2.5](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.4...@cloudinary-util/url-loader-v1.2.5) (2023-02-03)
 
 
