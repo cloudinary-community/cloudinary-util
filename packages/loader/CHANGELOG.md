@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v1.2.4](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.3...@cloudinary-util/url-loader-v1.2.4) (2023-02-03)
+
+
+### Bug Fixes
+
+* prevents NaN as width when not set ([4a5106f](https://github.com/colbyfayock/cloudinary-util/commit/4a5106ff42469dcda17fbd5d8fe1ff32f6c9b798))
+
 # [@cloudinary-util/url-loader-v1.2.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.2...@cloudinary-util/url-loader-v1.2.3) (2023-02-02)
 
 
