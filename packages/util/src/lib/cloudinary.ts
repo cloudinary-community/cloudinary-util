@@ -1,6 +1,5 @@
 const REGEX_VERSION = /\/v\d+\//;
 const REGEX_URL = /https?:\/\/(?<host>[^\/]+)\/(?<cloudName>[^\/]+)\/(?<assetType>image|video|raw)\/(?<deliveryType>upload|fetch|private|authenticated|sprite|facebook|twitter|youtube|vimeo)\/?(?<signature>s\-\-[a-zA-Z0-9]+\-\-)?\/?(?<transformations>(?:[^_\/]+_[^,\/]+,?)*\/)+(?<version>v\d+|\w{1,2})\/(?<id>[^\.^\s]+)(?<format>\.[a-zA-Z0-9]+$)?$/;
-const REGEX_TRANSFORMATIONS = /(https?):\/\/(res.cloudinary.com)\/([^\/]+)\/(image|video|raw)\/(upload|authenticated)\/(.*)\/(v[0-9]+)\/(.+)(?:.[a-z]{3})?/;
 
 /**
  * parseUrl
@@ -56,26 +55,11 @@ export function getPublicId(src: string): string | undefined {
 
 /**
  * getTransformations
- * @description Retrieves the transformations added to a cloudiary image url. If no transformation is recognized it returns an empty array.
+ * @description Retrieves the transformations added to a Cloudinary image url. If no transformation is recognized it returns an empty array.
  * @param {string} src: The cloudiary url
- * @param {boolean} preserveTransformations: Preserve the existing transformations when parsing
  */
 
-export function getTransformations(src: string, preserveTransformations: boolean) {
-  if ( typeof src !== 'string' ) {
-    throw new Error(`Invalid src of type ${typeof src}`);
-  }
-
-  if ( src.includes('res.cloudinary.com') && preserveTransformations ) {
-    const groups = REGEX_TRANSFORMATIONS.exec(src);
-    const transformationStr = groups?.slice(1).find((i) => i.includes("_"));
-
-    if (transformationStr) {
-      return transformationStr.split(",").join("/").split("/");
-    } else {
-      return [];
-    }
-  }
-
-  return [];
+export function getTransformations(src: string) {
+  const { transformations = [] } = parseUrl(src) || {};
+  return transformations.map(t => t.split(','));
 }
