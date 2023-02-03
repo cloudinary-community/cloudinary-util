@@ -6,6 +6,8 @@
 
 ######
 
+<a href="https://github.com/colbyfayock/cloudinary-util/blob/main/LICENSE"><img alt="GitHub" src="https://img.shields.io/github/license/colbyfayock/cloudinary-util?label=License&style=flat-square"></a>
+
 # Cloudinary Util
 
 Libraries intended to help plugin or integration developers have an easier time working with [Cloudinary](https://cloudinary.com/).
