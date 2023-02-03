@@ -14,7 +14,9 @@ npm install @cloudinary-util/url-loader
 
 * Import the dependency:
 
+```
 import { constructCloudinaryUrl } from '@cloudinary-util/url-loader';
+```
 
 * Create a Cloudinary URL:
 
