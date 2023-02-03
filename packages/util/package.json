@@ -1,6 +1,6 @@
 {
-  "name": "@cloudinary-util/url-loader",
-  "version": "1.2.4",
+  "name": "@cloudinary-util/util",
+  "version": "1.1.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -14,7 +14,7 @@
     "dev": "tsup src/index.ts --format esm,cjs --watch --dts",
     "lint": "TIMING=1 eslint \"src/**/*.ts*\"",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
-    "prepublishOnly": "cd ../../ && pnpm build && cd packages/loader",
+    "prepublishOnly": "cd ../../ && pnpm build && cd packages/util",
     "semantic-release": "semantic-release --branches main",
     "test": "jest"
   },
@@ -39,9 +39,5 @@
   },
   "publishConfig": {
     "access": "public"
-  },
-  "dependencies": {
-    "@cloudinary-util/util": "workspace:*",
-    "@cloudinary/url-gen": "^1.8.7"
   }
 }

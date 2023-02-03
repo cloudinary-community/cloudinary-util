@@ -6,8 +6,8 @@ Libraries intended to help plugin or integration developers have an easier time 
 
 Learn what tools are available and how to install them:
 
-* [Helpers](https://github.com/colbyfayock/cloudinary-util/tree/main/packages/helpers)
-* [Loader](https://github.com/colbyfayock/cloudinary-util/tree/main/packages/loader)
+* [URL Loader](https://github.com/colbyfayock/cloudinary-util/tree/main/packages/url-loader)
+* [Util](https://github.com/colbyfayock/cloudinary-util/tree/main/packages/util)
 
 ## 🧰 Working with Cloudinary Util
 
