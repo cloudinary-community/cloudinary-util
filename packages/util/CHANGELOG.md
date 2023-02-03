@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v1.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v1.1.2...@cloudinary-util/util-v1.2.0) (2023-02-03)
+
+
+### Features
+
+* getTransformations to use parseUrl and normalize syntax for returned transformations for consistency ([c2328be](https://github.com/colbyfayock/cloudinary-util/commit/c2328be3255cedb23f5b5c935994fc2ba28d4844))
+
 # [@cloudinary-util/util-v1.1.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v1.1.1...@cloudinary-util/util-v1.1.2) (2023-02-03)
 
 
