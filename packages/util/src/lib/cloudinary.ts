@@ -1,5 +1,5 @@
 const REGEX_VERSION = /\/v\d+\//;
-const REGEX_URL = /https?:\/\/(?<host>[^\/]+)\/(?<cloudName>[^\/]+)\/(?<assetType>image|video|raw)\/(?<deliveryType>upload|fetch|private|authenticated|sprite|facebook|twitter|youtube|vimeo)\/?(?<signature>s\-\-[a-zA-Z0-9]+\-\-)?\/?(?<transformations>(?:[^_\/]+_[^,\/]+,?)*\/)+(?<version>v\d+|\w{1,2})\/(?<id>[^\.^\s]+)(?<format>\.[a-zA-Z0-9]+$)?$/;
+const REGEX_URL = /https?:\/\/(?<host>[^\/]+)\/(?<cloudName>[^\/]+)\/(?<assetType>image|video|raw)\/(?<deliveryType>upload|fetch|private|authenticated|sprite|facebook|twitter|youtube|vimeo)\/?(?<signature>s\-\-[a-zA-Z0-9]+\-\-)?\/?(?<transformations>(?:[^_\/]+_[^,\/]+,?\/?)*\/)+(?<version>v\d+|\w{1,2})\/(?<id>[^\.^\s]+)(?<format>\.[a-zA-Z0-9]+$)?$/;
 
 /**
  * parseUrl

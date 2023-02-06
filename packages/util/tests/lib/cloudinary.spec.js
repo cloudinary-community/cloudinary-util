@@ -97,32 +97,31 @@ describe('Cloudinary', () => {
       });
     });
 
-    // TODO: currently only grabs the last transformation string
-    // it('should parse a video Cloudinary URL with multiple transformation strings', () => {
-    //   const assetType = 'video';
-    //   const cloudName = 'test-cloud';
-    //   const deliveryType = 'upload';
-    //   const format = '.mp4';
-    //   const host = 'res.cloudinary.com';
-    //   const id = 'assets/images/animals/turtle';
-    //   const signature = undefined;
-    //   const transformations = ['f_auto,q_auto', 'c_limit,w_960'];
-    //   const version = 'v1234';
+    it('should parse a video Cloudinary URL with multiple transformation strings', () => {
+      const assetType = 'video';
+      const cloudName = 'test-cloud';
+      const deliveryType = 'upload';
+      const format = '.mp4';
+      const host = 'res.cloudinary.com';
+      const id = 'assets/images/animals/turtle';
+      const signature = undefined;
+      const transformations = ['f_auto,q_auto', 'c_limit,w_960'];
+      const version = 'v1234';
 
-    //   const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/${version}/${id}${format}`;
+      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/${version}/${id}${format}`;
 
-    //   expect(parseUrl(src)).toMatchObject({
-    //     assetType,
-    //     cloudName,
-    //     deliveryType,
-    //     format,
-    //     host,
-    //     id,
-    //     signature,
-    //     transformations,
-    //     version,
-    //   });
-    // });
+      expect(parseUrl(src)).toMatchObject({
+        assetType,
+        cloudName,
+        deliveryType,
+        format,
+        host,
+        id,
+        signature,
+        transformations,
+        version,
+      });
+    });
   });
 
   describe('getPublicId', () => {
@@ -161,15 +160,14 @@ describe('Cloudinary', () => {
       expect(getTransformations(src)).toEqual(transformations);
     });
 
-    // TODO: parseUrl currently only grabs the last set of transformations- see above commented out test
-    // it('should return the transformations of a Cloudinary URL with multiple transformations and multiple sets', () => {
-    //   const transformations = [
-    //     ['c_limit', 'w_960'],
-    //     ['f_auto'],
-    //     ['q_auto'],
-    //   ];
-    //   const src = `https://res.cloudinary.com/test-cloud/image/upload/${transformations.map(t => t.join(',')).join('/')}/v1/app/images/turtle`;
-    //   expect(getTransformations(src)).toEqual(transformations);
-    // });
+    it('should return the transformations of a Cloudinary URL with multiple transformations and multiple sets', () => {
+      const transformations = [
+        ['c_limit', 'w_960'],
+        ['f_auto'],
+        ['q_auto'],
+      ];
+      const src = `https://res.cloudinary.com/test-cloud/image/upload/${transformations.map(t => t.join(',')).join('/')}/v1/app/images/turtle`;
+      expect(getTransformations(src)).toEqual(transformations);
+    });
   });
 })
