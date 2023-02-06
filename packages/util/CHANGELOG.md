@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v1.2.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v1.2.0...@cloudinary-util/util-v1.2.1) (2023-02-06)
+
+
+### Bug Fixes
+
+* updating regex to capture all transformation sets ([7387228](https://github.com/colbyfayock/cloudinary-util/commit/73872289fcdc2c668838751eade8da311462a663))
+
 # [@cloudinary-util/util-v1.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v1.1.2...@cloudinary-util/util-v1.2.0) (2023-02-03)
 
 
