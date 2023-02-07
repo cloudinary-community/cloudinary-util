@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v1.2.7](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.6...@cloudinary-util/url-loader-v1.2.7) (2023-02-07)
+
+
+### Bug Fixes
+
+* Improve Text Overlay Handling ([2c16da8](https://github.com/colbyfayock/cloudinary-util/commit/2c16da81b4ccb2f5546378f0a2632de455290c83))
+
 # [@cloudinary-util/url-loader-v1.2.6](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.5...@cloudinary-util/url-loader-v1.2.6) (2023-02-03)
 
 
