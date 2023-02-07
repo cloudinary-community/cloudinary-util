@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v1.2.8](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.7...@cloudinary-util/url-loader-v1.2.8) (2023-02-07)
+
+
+### Bug Fixes
+
+* forcing redploy of packages ([f21a720](https://github.com/colbyfayock/cloudinary-util/commit/f21a720b200d78aabffa153a45aa1f1083a42471))
+
 # [@cloudinary-util/url-loader-v1.2.7](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.6...@cloudinary-util/url-loader-v1.2.7) (2023-02-07)
 
 
