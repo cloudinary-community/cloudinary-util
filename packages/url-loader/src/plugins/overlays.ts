@@ -170,7 +170,6 @@ export function plugin(props: PluginSettings) {
       const textTransformations: Array<string> = [];
 
       if ( typeof text === 'object' ) {
-
         interface TextOption extends Qualifier {
           key: string;
           value: any;
