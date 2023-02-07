@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v1.2.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v1.2.1...@cloudinary-util/util-v1.2.2) (2023-02-07)
+
+
+### Bug Fixes
+
+* forcing redploy of packages ([f21a720](https://github.com/colbyfayock/cloudinary-util/commit/f21a720b200d78aabffa153a45aa1f1083a42471))
+
 # [@cloudinary-util/util-v1.2.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v1.2.0...@cloudinary-util/util-v1.2.1) (2023-02-06)
 
 
