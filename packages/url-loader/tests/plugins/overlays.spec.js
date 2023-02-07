@@ -118,6 +118,32 @@ describe('Plugins', () => {
 
   })
   describe('Text Overlays', () => {
+    it('should add a text overlay with basic settings', () => {
+      const cldImage = cld.image(TEST_PUBLIC_ID);
+
+      const fontFamily = 'Source Sans Pro';
+      const fontSize = 200;
+      const text = 'Next Cloudinary';
+
+      const options = {
+        overlays: [{
+          text: {
+            fontFamily,
+            fontSize,
+            text
+          }
+        }]
+      }
+
+      plugin({
+        cldImage,
+        options
+      });
+
+
+      expect(cldImage.toURL()).toContain(`l_text:${encodeURIComponent(fontFamily)}_${fontSize}:${encodeURIComponent(text)}/fl_layer_apply,fl_no_overflow/${TEST_PUBLIC_ID}`);
+    });
+
     it('should add a text overlay configured by overlay object', () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
@@ -215,6 +241,39 @@ describe('Plugins', () => {
       });
 
       expect(cldImage.toURL()).toContain(`l_text:${encodeURIComponent(fontFamily)}_${fontSize}_${fontWeight}_letter_spacing_${letterSpacing}_line_spacing_${lineSpacing}:${encodeURIComponent(text)},co_${color}/fl_layer_apply,fl_no_overflow/${TEST_PUBLIC_ID}`);
+    });
+
+    it('should add a stroke to text', () => {
+      const cldImage = cld.image(TEST_PUBLIC_ID);
+
+      const color = 'white';
+      const fontFamily = 'Source Sans Pro';
+      const fontSize = 200;
+      const fontStyle = 'italic';
+      const fontWeight = 'bold';
+      const text = 'Next Cloudinary';
+      const border = '20px_solid_blue';
+      const stroke = true;
+
+      const options = {
+        text: {
+          color,
+          fontFamily,
+          fontSize,
+          fontStyle,
+          fontWeight,
+          text,
+          border,
+          stroke
+        }
+      }
+
+      plugin({
+        cldImage,
+        options
+      });
+
+      expect(cldImage.toURL()).toContain(`l_text:${encodeURIComponent(fontFamily)}_${fontSize}_${fontWeight}_${fontStyle}_stroke:${encodeURIComponent(text)},co_${color},bo_${border}/fl_layer_apply,fl_no_overflow/${TEST_PUBLIC_ID}`);
     });
 
     it('should add a stroke to text', () => {

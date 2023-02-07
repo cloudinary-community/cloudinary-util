@@ -1,8 +1,4 @@
-interface Qualifier {
-  location?: string;
-  prefix?: string;
-  qualifier?: string | boolean;
-}
+import { Qualifier } from '../types/qualifiers';
 
 export const primary: Record<string, Qualifier> = {
   aspectRatio: {
@@ -39,7 +35,8 @@ export const position: Record<string, Qualifier> = {
 
 export const text: Record<string, Qualifier> = {
   alignment: {
-    qualifier: 'alignment'
+    qualifier: 'alignment',
+    order: 6
   },
   border: {
     qualifier: 'bo',
@@ -50,13 +47,20 @@ export const text: Record<string, Qualifier> = {
     location: 'primary'
   },
   fontFamily: {
-    qualifier: false
+    qualifier: false,
+    order: 1
   },
   fontSize: {
-    qualifier: false
+    qualifier: false,
+    order: 2
+  },
+  fontStyle: {
+    qualifier: false,
+    order: 4
   },
   fontWeight: {
-    qualifier: false
+    qualifier: false,
+    order: 3
   },
   letterSpacing: {
     qualifier: 'letter_spacing'
@@ -65,10 +69,12 @@ export const text: Record<string, Qualifier> = {
     qualifier: 'line_spacing'
   },
   stroke: {
-    qualifier: 'self'
+    qualifier: 'self',
+    order: 7
   },
   textDecoration: {
-    qualifier: false
+    qualifier: false,
+    order: 5
   }
 } as const;
 
