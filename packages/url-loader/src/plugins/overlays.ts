@@ -1,6 +1,7 @@
-import { encodeBase64, objectHasKey } from '@cloudinary-util/util';
+import { encodeBase64, objectHasKey, sortByKey } from '@cloudinary-util/util';
 
 import { PluginSettings } from '../types/plugins';
+import { Qualifier } from '../types/qualifiers';
 
 import { constructTransformation } from '../lib/transformations';
 
@@ -32,7 +33,6 @@ export function plugin(props: PluginSettings) {
   }
 
   if ( typeof text === 'string' ) {
-
     applyOverlay({
       text: {
         ...DEFAULT_TEXT_OPTIONS,
@@ -57,7 +57,7 @@ export function plugin(props: PluginSettings) {
     fontFamily?: string;
     fontSize?: number;
     fontWeight?: string;
-    text?: string;
+    text: string;
   }
 
   interface ApplyOverlaySettings {
@@ -170,24 +170,43 @@ export function plugin(props: PluginSettings) {
       const textTransformations: Array<string> = [];
 
       if ( typeof text === 'object' ) {
-        for (const key of Object.keys(text) as Array<keyof typeof text>) {
-          if ( !objectHasKey(qualifiersText, key) ) continue;
 
-          const { qualifier, location } = qualifiersText[key];
+        interface TextOption extends Qualifier {
+          key: string;
+          value: any;
+          order: number;
+        }
+
+        const textOptions: Array<TextOption> = Object.keys(text)
+          .filter(key => objectHasKey(qualifiersText, key))
+          .map(key => {
+            const value = text && objectHasKey(text, key) && text[key];
+            return {
+              ...qualifiersText[key],
+              key,
+              value,
+              order: qualifiersText[key].order || 99
+            }
+          });
+
+        const sortedTextOptions = sortByKey(textOptions, 'order');
+
+        for (const textOption of sortedTextOptions) {
+          const { key, value, qualifier, location } = textOption as TextOption;
 
           if ( location === 'primary' ) {
-            primary.push(`${qualifier}_${text[key]}`);
+            primary.push(`${qualifier}_${value}`);
           } else if ( qualifier === 'self' ) {
             textTransformations.push(key);
           } else if ( qualifier ) {
-            textTransformations.push(`${qualifier}_${text[key]}`);
+            textTransformations.push(`${qualifier}_${value}`);
           } else {
-            textTransformations.push(text[key] as string);
+            textTransformations.push(value);
           }
         }
       }
 
-      layerTransformation = `${layerTransformation}:${textTransformations.join('_')}:${text?.text || ''}`
+      layerTransformation = `${layerTransformation}:${textTransformations.join('_')}:${text?.text}`
     }
 
     // Positioning
