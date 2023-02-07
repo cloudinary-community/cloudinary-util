@@ -1,2 +1,2 @@
 export { constructCloudinaryUrl, transformationPlugins } from './lib/cloudinary';
-export { primary, position, text, effects } from './constants/qualifiers';
+export { effects, position, primary, text } from './constants/qualifiers';

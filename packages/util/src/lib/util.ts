@@ -28,7 +28,7 @@ export function objectHasKey<T>(obj: T, key: PropertyKey): key is keyof T {
 
 /**
  * sortByKey
- * @description Sort the given array by the object key
+ * @description Sort the given array by the key of an object
  */
 
 export function sortByKey(array: Array<object> = [], key: string, type: string = 'asc') {
