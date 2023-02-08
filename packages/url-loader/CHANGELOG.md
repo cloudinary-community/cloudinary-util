@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v1.3.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.8...@cloudinary-util/url-loader-v1.3.0) (2023-02-08)
+
+
+### Features
+
+* Update Text Styling Parameters ([#10](https://github.com/colbyfayock/cloudinary-util/issues/10)) ([cd4d5c5](https://github.com/colbyfayock/cloudinary-util/commit/cd4d5c5c6c09b33b11862ee0a087e6c987825540)), closes [#9](https://github.com/colbyfayock/cloudinary-util/issues/9)
+
 # [@cloudinary-util/url-loader-v1.2.8](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.7...@cloudinary-util/url-loader-v1.2.8) (2023-02-07)
 
 
