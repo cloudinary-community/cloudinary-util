@@ -35,8 +35,11 @@ export const position: Record<string, Qualifier> = {
 
 export const text: Record<string, Qualifier> = {
   alignment: {
-    qualifier: 'alignment',
+    qualifier: false,
     order: 6
+  },
+  antialias: {
+    qualifier: 'antialias'
   },
   border: {
     qualifier: 'bo',
@@ -61,6 +64,9 @@ export const text: Record<string, Qualifier> = {
   fontWeight: {
     qualifier: false,
     order: 3
+  },
+  hinting: {
+    qualifier: 'hinting'
   },
   letterSpacing: {
     qualifier: 'letter_spacing'
