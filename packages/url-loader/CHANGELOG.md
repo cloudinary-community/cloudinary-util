@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v1.4.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.3.0...@cloudinary-util/url-loader-v1.4.0) (2023-02-18)
+
+
+### Features
+
+* Exporting Types ([#12](https://github.com/colbyfayock/cloudinary-util/issues/12)) ([eac1a68](https://github.com/colbyfayock/cloudinary-util/commit/eac1a689b3b15233ccfe8552098d26079cc6d8e1)), closes [#11](https://github.com/colbyfayock/cloudinary-util/issues/11)
+
 # [@cloudinary-util/url-loader-v1.3.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.2.8...@cloudinary-util/url-loader-v1.3.0) (2023-02-08)
 
 
