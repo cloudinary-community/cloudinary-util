@@ -18,6 +18,7 @@ export interface ImageOptions {
   quality?: number;
   rawTransformations?: string[];
   removeBackground?: boolean;
+  sanitize?: boolean;
   resize?: ImageOptionsResize;
   src: string;
   text?: any;
@@ -29,4 +30,3 @@ export interface ImageOptions {
   zoom?: string;
   zoompan?: string | boolean | ImageOptionsZoomPan;
 }
-
