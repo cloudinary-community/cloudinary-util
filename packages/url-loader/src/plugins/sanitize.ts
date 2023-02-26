@@ -4,9 +4,15 @@ export const props = ['sanitize'];
 
 export function plugin(props: PluginSettings) {
   const { cldImage, options } = props;
-  const { sanitize = false } = options;
-  if ( sanitize ) {
-    cldImage.effect('fl_sanitize');
+  const { sanitize = true } = options;
+
+  const shouldApplySanitizer: boolean =
+    sanitize &&
+    (options.format === 'svg' || cldImage.publicID.endsWith('.svg'));
+
+  if (shouldApplySanitizer) {
+    return cldImage.effect('fl_sanitize');
   }
+
   return {};
 }
