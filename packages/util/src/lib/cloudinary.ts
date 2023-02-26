@@ -15,6 +15,7 @@ interface ParseUrl {
   id?: string;
   signature?: string;
   transformations?: Array<string>;
+  query?: object;
   version?: string;
 }
 
@@ -29,11 +30,26 @@ export function parseUrl(src: string): ParseUrl | undefined {
     throw new Error(`Invalid src: Does not include version (Ex: /v1234/)`);
   }
 
-  const results = src.match(REGEX_URL);
+  const [baseUrl, queryString] = src.split('?');
+
+  const results = baseUrl.match(REGEX_URL);
 
   const parts = {
     ...results?.groups,
-    transformations: results?.groups?.transformations.split('/').filter(t => !!t)
+    transformations: results?.groups?.transformations.split('/').filter(t => !!t),
+    queryParams: {}
+  }
+
+  if ( queryString ) {
+    interface QueryParams {
+      [key: string]: string | undefined;
+    }
+
+    parts.queryParams = queryString.split('&').reduce((prev: QueryParams, curr: string) => {
+      const [key, value] = curr.split('=');
+      prev[key] = value;
+      return prev;
+    }, {});
   }
 
   return parts;
