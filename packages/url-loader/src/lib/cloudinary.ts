@@ -101,7 +101,7 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
   (Object.keys(parsedOptions) as Array<keyof typeof parsedOptions>).forEach((key) => {
     if ( objectHasKey(options, key) ) return;
     options[key] = parsedOptions[key];
-  })
+  });
 
   // Begin creating a new Cloudinary image instance and configure
 
@@ -131,14 +131,11 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
     cldImage.effect(`c_${crop},w_${width}`);
   }
 
-  cldImage
-    .setDeliveryType(options?.deliveryType || 'upload')
-    .format(options?.format || 'auto')
-    .delivery(`q_${options?.quality || 'auto'}`)
-
-
-
-  return cldImage.toURL({
+  return cldImage
+          .setDeliveryType(options?.deliveryType || 'upload')
+          .format(options?.format || 'auto')
+          .delivery(`q_${options?.quality || 'auto'}`)
+          .toURL({
             trackedAnalytics: analytics
           });
 }
