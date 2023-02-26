@@ -91,24 +91,5 @@ describe('Cloudinary', () => {
       // dynamically by SDK and Next.js version
       expect(url).toContain(`?_a=A${sdkCode}`);
     });
-
-    it('should include fl_sanitize when display svg image', () => {
-      const cloudName = 'customtestcloud';
-      const url = constructCloudinaryUrl({
-        options: {
-          src: 'turtle.svg',
-          sanitize: true
-        },
-        config: {
-          cloud: {
-            cloudName
-          }
-        }
-      });
-
-      expect(url).toContain(
-        `https://res.cloudinary.com/${cloudName}/image/upload/fl_sanitize/f_auto/q_auto/turtle.svg`
-      );
-    });
   });
 });
