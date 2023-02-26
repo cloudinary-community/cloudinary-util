@@ -122,6 +122,38 @@ describe('Cloudinary', () => {
         version,
       });
     });
+
+    it('should parse a Cloudinary URL with query parameters', () => {
+      const assetType = 'video';
+      const cloudName = 'test-cloud';
+      const deliveryType = 'upload';
+      const format = '.mp4';
+      const host = 'res.cloudinary.com';
+      const id = 'assets/images/animals/turtle';
+      const signature = undefined;
+      const transformations = ['f_auto,q_auto'];
+      const version = 'v1234';
+      const queryParams = {
+        _i: 'AA',
+        _a: 'AVAADAN0'
+      }
+
+      const queryString = Object.keys(queryParams).map(key => `${key}=${queryParams[key]}`).join('&');
+      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/${version}/${id}${format}?${queryString}`;
+
+      expect(parseUrl(src)).toMatchObject({
+        assetType,
+        cloudName,
+        deliveryType,
+        format,
+        host,
+        id,
+        signature,
+        transformations,
+        version,
+        queryParams
+      });
+    });
   });
 
   describe('getPublicId', () => {
