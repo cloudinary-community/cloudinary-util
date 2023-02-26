@@ -1,5 +1,5 @@
 import { Cloudinary } from '@cloudinary/url-gen';
-import { parseUrl, ParseUrl } from '@cloudinary-util/util';
+import { parseUrl, ParseUrl, objectHasKey } from '@cloudinary-util/util';
 import ICloudinaryConfigurations from '@cloudinary/url-gen/config/interfaces/Config/ICloudinaryConfigurations';
 import { IAnalyticsOptions } from '@cloudinary/url-gen/sdkAnalytics/interfaces/IAnalyticsOptions';
 
@@ -13,9 +13,6 @@ import * as seoPlugin from '../plugins/seo';
 import * as underlaysPlugin from '../plugins/underlays';
 import * as versionPlugin from '../plugins/version';
 import * as zoompanPlugin from '../plugins/zoompan';
-
-import { objectHasKey } from '@cloudinary-util/util';
-import { assetTypes } from '../constants/url';
 
 import { ImageOptions } from '../types/image';
 
