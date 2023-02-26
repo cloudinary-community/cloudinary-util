@@ -28,9 +28,9 @@ describe('Cloudinary', () => {
       const publicId = 'turtle';
       const signature = 's--abc12345--';
       const transformations = ['c_limit,w_960'];
-      const version = 'v1234';
+      const version = 1234;
 
-      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${signature}/${transformations.join('/')}/${version}/${publicId}${format}`;
+      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${signature}/${transformations.join('/')}/v${version}/${publicId}${format}`;
 
       expect(parseUrl(src)).toMatchObject({
         assetType,
@@ -54,9 +54,9 @@ describe('Cloudinary', () => {
       const publicId = 'images/turtle';
       const signature = undefined;
       const transformations = ['c_limit,w_960'];
-      const version = 'v1234';
+      const version = 1234;
 
-      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/${version}/${publicId}`;
+      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/v${version}/${publicId}`;
 
       expect(parseUrl(src)).toMatchObject({
         assetType,
@@ -80,9 +80,9 @@ describe('Cloudinary', () => {
       const publicId = 'assets/images/animals/turtle';
       const signature = undefined;
       const transformations = ['c_limit,w_960'];
-      const version = 'v1234';
+      const version = 1234;
 
-      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/${version}/${publicId}${format}`;
+      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/v${version}/${publicId}${format}`;
 
       expect(parseUrl(src)).toMatchObject({
         assetType,
@@ -106,9 +106,9 @@ describe('Cloudinary', () => {
       const publicId = 'assets/images/animals/turtle';
       const signature = undefined;
       const transformations = ['f_auto,q_auto', 'c_limit,w_960'];
-      const version = 'v1234';
+      const version = 1234;
 
-      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/${version}/${publicId}${format}`;
+      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/v${version}/${publicId}${format}`;
 
       expect(parseUrl(src)).toMatchObject({
         assetType,
@@ -132,14 +132,14 @@ describe('Cloudinary', () => {
       const publicId = 'assets/images/animals/turtle';
       const signature = undefined;
       const transformations = ['f_auto,q_auto'];
-      const version = 'v1234';
+      const version = 1234;
       const queryParams = {
         _i: 'AA',
         _a: 'AVAADAN0'
       }
 
       const queryString = Object.keys(queryParams).map(key => `${key}=${queryParams[key]}`).join('&');
-      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/${version}/${publicId}${format}?${queryString}`;
+      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/v${version}/${publicId}${format}?${queryString}`;
 
       expect(parseUrl(src)).toMatchObject({
         assetType,
@@ -165,9 +165,9 @@ describe('Cloudinary', () => {
       const seoSuffix = 'cool-turtles';
       const signature = undefined;
       const transformations = ['f_auto,q_auto'];
-      const version = 'v1234';
+      const version = 1234;
 
-      const src = `https://${host}/${cloudName}/${assetType}/${transformations.join('/')}/${version}/${publicId}/${seoSuffix}${format}`;
+      const src = `https://${host}/${cloudName}/${assetType}/${transformations.join('/')}/v${version}/${publicId}/${seoSuffix}${format}`;
 
       expect(parseUrl(src)).toMatchObject({
         assetType,

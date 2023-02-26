@@ -26,7 +26,7 @@ export interface ImageOptions {
   transformations?: Array<string>;
   underlay?: string;
   underlays?: Array<any>;
-  version?: string;
+  version?: number | string;
   width?: string | number;
   widthResize?: string;
   zoom?: string;

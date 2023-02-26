@@ -19,7 +19,7 @@ export interface ParseUrl {
   seoSuffix?: string;
   transformations?: Array<string>;
   queryParams?: object;
-  version?: string;
+  version?: number;
 }
 
 export function parseUrl(src: string): ParseUrl | undefined {
@@ -43,6 +43,7 @@ export function parseUrl(src: string): ParseUrl | undefined {
     seoSuffix: undefined,
     transformations: transformations || [],
     queryParams: {},
+    version: results?.groups?.version ? parseInt(results.groups.version.replace('v', '')) : undefined
   }
 
   if ( queryString ) {

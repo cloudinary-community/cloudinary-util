@@ -170,7 +170,7 @@ describe('Cloudinary', () => {
 
     it('should add a custom version to a URL', () => {
       const cloudName = 'customtestcloud';
-      const version = '1029384756';
+      const version = 1029384756;
 
       const url = constructCloudinaryUrl({
         options: {
