@@ -6,7 +6,7 @@ const REGEX_URL = /https?:\/\/(?<host>[^\/]+)\/(?<cloudName>[^\/]+)\/(?<assetTyp
  * @description
  */
 
-interface ParseUrl {
+export interface ParseUrl {
   assetType?: string;
   cloudName?: string;
   deliveryType?: string;
@@ -15,7 +15,7 @@ interface ParseUrl {
   id?: string;
   signature?: string;
   transformations?: Array<string>;
-  query?: object;
+  queryParams?: object;
   version?: string;
 }
 
