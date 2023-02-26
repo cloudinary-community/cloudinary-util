@@ -168,6 +168,12 @@ describe('Cloudinary', () => {
       const src = `https://res.cloudinary.com/test-cloud/image/upload/c_limit,w_960/f_auto/q_auto/v1/${publicId}`;
       expect(getPublicId(src)).toBe(publicId);
     });
+
+    it('should return the public ID of a Cloudinary URL using SEO Suffixes', () => {
+      const publicId = 'ecommerce-with-nextjs-and-stripe/ecommerce-with-nextjs-and-stripe';
+      const src = `https://res.cloudinary.com/test-cloud/images/f_auto,q_auto/v1654624121/${publicId}.jpg?_i=AA`;
+      expect(getPublicId(src)).toBe(publicId);
+    });
   });
 
   describe('getTransformations', () => {
