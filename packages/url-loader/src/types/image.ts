@@ -8,6 +8,7 @@ export interface ImageOptionsZoomPan {
 }
 
 export interface ImageOptions {
+  assetType?: string;
   crop?: string;
   deliveryType?: string;
   effects?: Array<any>;
@@ -20,11 +21,13 @@ export interface ImageOptions {
   removeBackground?: boolean;
   sanitize?: boolean;
   resize?: ImageOptionsResize;
+  seoSuffix?: string;
   src: string;
   text?: any;
   transformations?: Array<string>;
   underlay?: string;
   underlays?: Array<any>;
+  version?: number | string;
   width?: string | number;
   widthResize?: string;
   zoom?: string;

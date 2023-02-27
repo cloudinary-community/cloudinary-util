@@ -1,3 +1,17 @@
+# [@cloudinary-util/util-v2.0.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v1.2.3...@cloudinary-util/util-v2.0.0) (2023-02-27)
+
+
+### Features
+
+* Parse SEO URLs & SEO Suffix ([#19](https://github.com/colbyfayock/cloudinary-util/issues/19)) ([acd1959](https://github.com/colbyfayock/cloudinary-util/commit/acd1959b0c8fa4d49e40e90c6bcd0a23bc0699a2)), closes [#18](https://github.com/colbyfayock/cloudinary-util/issues/18)
+
+# [@cloudinary-util/util-v1.2.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v1.2.2...@cloudinary-util/util-v1.2.3) (2023-02-26)
+
+
+### Bug Fixes
+
+* Fixes Query Param Breaking Parsing ([#16](https://github.com/colbyfayock/cloudinary-util/issues/16)) ([5b823bc](https://github.com/colbyfayock/cloudinary-util/commit/5b823bc945ef9cd400b7ef8de7dfe5e782294d27)), closes [#15](https://github.com/colbyfayock/cloudinary-util/issues/15)
+
 # [@cloudinary-util/util-v1.2.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v1.2.1...@cloudinary-util/util-v1.2.2) (2023-02-07)
 
 
