@@ -209,4 +209,4 @@ describe('Cloudinary', () => {
       expect(url).toContain(`?_a=A${sdkCode}`);
     });
   });
-})
+});
