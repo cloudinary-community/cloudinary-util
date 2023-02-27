@@ -11,7 +11,7 @@ export function plugin(props: PluginSettings) {
     (options.format === 'svg' || cldImage.publicID.endsWith('.svg'));
 
   if (shouldApplySanitizer) {
-    return cldImage.effect('fl_sanitize');
+    cldImage.effect('fl_sanitize');
   }
 
   return {};
