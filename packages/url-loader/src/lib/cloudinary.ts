@@ -5,6 +5,7 @@ import { IAnalyticsOptions } from '@cloudinary/url-gen/sdkAnalytics/interfaces/I
 
 import * as croppingPlugin from '../plugins/cropping';
 import * as effectsPlugin from '../plugins/effects';
+import * as sanitizePlugin from '../plugins/sanitize';
 import * as overlaysPlugin from '../plugins/overlays';
 import * as namedTransformationsPlugin from '../plugins/named-transformations';
 import * as rawTransformationsPlugin from '../plugins/raw-transformations';
@@ -23,6 +24,7 @@ export const transformationPlugins = [
   croppingPlugin,
   effectsPlugin,
   overlaysPlugin,
+  sanitizePlugin,
   namedTransformationsPlugin,
   seoPlugin,
   underlaysPlugin,
