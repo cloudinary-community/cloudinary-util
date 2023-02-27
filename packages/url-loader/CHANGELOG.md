@@ -1,3 +1,12 @@
+# [@cloudinary-util/url-loader-v2.0.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.4.1...@cloudinary-util/url-loader-v2.0.0) (2023-02-27)
+
+
+### Features
+
+* Parse SEO URLs & SEO Suffix ([#19](https://github.com/colbyfayock/cloudinary-util/issues/19)) ([acd1959](https://github.com/colbyfayock/cloudinary-util/commit/acd1959b0c8fa4d49e40e90c6bcd0a23bc0699a2)), closes [#18](https://github.com/colbyfayock/cloudinary-util/issues/18)
+* Sanitize Test ([#23](https://github.com/colbyfayock/cloudinary-util/issues/23)) ([8ee4eb2](https://github.com/colbyfayock/cloudinary-util/commit/8ee4eb23b89173c20dc04c0c248d66ffab8c64ea))
+* sanitizer on the SVG image ([#14](https://github.com/colbyfayock/cloudinary-util/issues/14)) ([6a52c6c](https://github.com/colbyfayock/cloudinary-util/commit/6a52c6c60b1019a72cf11aa2800f4d1e3ac86af8)), closes [#13](https://github.com/colbyfayock/cloudinary-util/issues/13)
+
 # [@cloudinary-util/url-loader-v1.4.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.4.0...@cloudinary-util/url-loader-v1.4.1) (2023-02-26)
 
 
