@@ -15,6 +15,15 @@
         "code",
         "doc"
       ]
+    },
+    {
+      "login": "kitravee",
+      "name": "Trong",
+      "avatar_url": "https://avatars.githubusercontent.com/u/50334192?v=4",
+      "profile": "https://github.com/kitravee",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
