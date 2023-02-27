@@ -1,6 +1,6 @@
 import { Cloudinary } from '@cloudinary/url-gen';
 
-import * as sanitizePlugin from '../../../src/plugins/sanitize';
+import * as sanitizePlugin from '../../src/plugins/sanitize';
 
 const { plugin } = sanitizePlugin
 
@@ -10,18 +10,7 @@ const cld = new Cloudinary({
   }
 });
 
-// Mock console.warn() so we can see when it's called
-global.console = {
-  ...global.console,
-  warn: jest.fn()
-};
-
-describe('Cloudinary Sinitize', () => {
-  afterEach(() => {
-    // Clears the state of console.warn, in case multiple tests want to monitor it
-    jest.restoreAllMocks();
-  });
-
+describe('Cloudinary Sanitize', () => {
   describe('constructCloudinaryUrl', () => {
     it('should include fl_sanitize when display image source name end with svg', () => {
       const src = 'turtle.svg';
