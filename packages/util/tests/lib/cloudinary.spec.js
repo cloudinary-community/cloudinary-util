@@ -25,12 +25,12 @@ describe('Cloudinary', () => {
       const deliveryType = 'upload';
       const format = '.jpg';
       const host = 'res.cloudinary.com';
-      const id = 'turtle';
+      const publicId = 'turtle';
       const signature = 's--abc12345--';
       const transformations = ['c_limit,w_960'];
-      const version = 'v1234';
+      const version = 1234;
 
-      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${signature}/${transformations.join('/')}/${version}/${id}${format}`;
+      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${signature}/${transformations.join('/')}/v${version}/${publicId}${format}`;
 
       expect(parseUrl(src)).toMatchObject({
         assetType,
@@ -38,7 +38,7 @@ describe('Cloudinary', () => {
         deliveryType,
         format,
         host,
-        id,
+        publicId,
         signature,
         transformations,
         version,
@@ -51,12 +51,12 @@ describe('Cloudinary', () => {
       const deliveryType = 'fetch';
       const format = undefined;
       const host = 'res.cloudinary.com';
-      const id = 'images/turtle';
+      const publicId = 'images/turtle';
       const signature = undefined;
       const transformations = ['c_limit,w_960'];
-      const version = 'v1234';
+      const version = 1234;
 
-      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/${version}/${id}`;
+      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/v${version}/${publicId}`;
 
       expect(parseUrl(src)).toMatchObject({
         assetType,
@@ -64,7 +64,7 @@ describe('Cloudinary', () => {
         deliveryType,
         format,
         host,
-        id,
+        publicId,
         signature,
         transformations,
         version,
@@ -77,12 +77,12 @@ describe('Cloudinary', () => {
       const deliveryType = 'upload';
       const format = '.mp4';
       const host = 'res.cloudinary.com';
-      const id = 'assets/images/animals/turtle';
+      const publicId = 'assets/images/animals/turtle';
       const signature = undefined;
       const transformations = ['c_limit,w_960'];
-      const version = 'v1234';
+      const version = 1234;
 
-      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/${version}/${id}${format}`;
+      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/v${version}/${publicId}${format}`;
 
       expect(parseUrl(src)).toMatchObject({
         assetType,
@@ -90,7 +90,7 @@ describe('Cloudinary', () => {
         deliveryType,
         format,
         host,
-        id,
+        publicId,
         signature,
         transformations,
         version,
@@ -103,12 +103,12 @@ describe('Cloudinary', () => {
       const deliveryType = 'upload';
       const format = '.mp4';
       const host = 'res.cloudinary.com';
-      const id = 'assets/images/animals/turtle';
+      const publicId = 'assets/images/animals/turtle';
       const signature = undefined;
       const transformations = ['f_auto,q_auto', 'c_limit,w_960'];
-      const version = 'v1234';
+      const version = 1234;
 
-      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/${version}/${id}${format}`;
+      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/v${version}/${publicId}${format}`;
 
       expect(parseUrl(src)).toMatchObject({
         assetType,
@@ -116,7 +116,7 @@ describe('Cloudinary', () => {
         deliveryType,
         format,
         host,
-        id,
+        publicId,
         signature,
         transformations,
         version,
@@ -129,17 +129,17 @@ describe('Cloudinary', () => {
       const deliveryType = 'upload';
       const format = '.mp4';
       const host = 'res.cloudinary.com';
-      const id = 'assets/images/animals/turtle';
+      const publicId = 'assets/images/animals/turtle';
       const signature = undefined;
       const transformations = ['f_auto,q_auto'];
-      const version = 'v1234';
+      const version = 1234;
       const queryParams = {
         _i: 'AA',
         _a: 'AVAADAN0'
       }
 
       const queryString = Object.keys(queryParams).map(key => `${key}=${queryParams[key]}`).join('&');
-      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/${version}/${id}${format}?${queryString}`;
+      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${transformations.join('/')}/v${version}/${publicId}${format}?${queryString}`;
 
       expect(parseUrl(src)).toMatchObject({
         assetType,
@@ -147,11 +147,39 @@ describe('Cloudinary', () => {
         deliveryType,
         format,
         host,
-        id,
+        publicId,
         signature,
         transformations,
         version,
         queryParams
+      });
+    });
+
+    it('should parse a Cloudinary URL with SEO suffix', () => {
+      const assetType = 'videos';
+      const cloudName = 'test-cloud';
+      const deliveryType = undefined;
+      const format = '.mp4';
+      const host = 'res.cloudinary.com';
+      const publicId = 'assets/images/animals/turtle';
+      const seoSuffix = 'cool-turtles';
+      const signature = undefined;
+      const transformations = ['f_auto,q_auto'];
+      const version = 1234;
+
+      const src = `https://${host}/${cloudName}/${assetType}/${transformations.join('/')}/v${version}/${publicId}/${seoSuffix}${format}`;
+
+      expect(parseUrl(src)).toMatchObject({
+        assetType,
+        cloudName,
+        deliveryType,
+        format,
+        host,
+        publicId,
+        seoSuffix,
+        signature,
+        transformations,
+        version,
       });
     });
   });
@@ -166,6 +194,13 @@ describe('Cloudinary', () => {
     it('should return the public ID of a Cloudinary URL', () => {
       const publicId = 'turtle';
       const src = `https://res.cloudinary.com/test-cloud/image/upload/c_limit,w_960/f_auto/q_auto/v1/${publicId}`;
+      expect(getPublicId(src)).toBe(publicId);
+    });
+
+    it('should return the public ID of a Cloudinary URL using SEO Suffixes', () => {
+      const publicId = 'ecommerce-with-nextjs-and-stripe';
+      const seoSuffix = 'my-seo-suffix'
+      const src = `https://res.cloudinary.com/test-cloud/images/f_auto,q_auto/v1654624121/${publicId}/${seoSuffix}.jpg?_i=AA`;
       expect(getPublicId(src)).toBe(publicId);
     });
   });

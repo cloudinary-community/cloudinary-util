@@ -1,5 +1,7 @@
 import { Cloudinary } from '@cloudinary/url-gen';
-import { getPublicId } from '@cloudinary-util/util';
+import { parseUrl, ParseUrl, objectHasKey } from '@cloudinary-util/util';
+import ICloudinaryConfigurations from '@cloudinary/url-gen/config/interfaces/Config/ICloudinaryConfigurations';
+import { IAnalyticsOptions } from '@cloudinary/url-gen/sdkAnalytics/interfaces/IAnalyticsOptions';
 
 import * as croppingPlugin from '../plugins/cropping';
 import * as effectsPlugin from '../plugins/effects';
@@ -7,13 +9,12 @@ import * as overlaysPlugin from '../plugins/overlays';
 import * as namedTransformationsPlugin from '../plugins/named-transformations';
 import * as rawTransformationsPlugin from '../plugins/raw-transformations';
 import * as removeBackgroundPlugin from '../plugins/remove-background';
+import * as seoPlugin from '../plugins/seo';
 import * as underlaysPlugin from '../plugins/underlays';
+import * as versionPlugin from '../plugins/version';
 import * as zoompanPlugin from '../plugins/zoompan';
 
 import { ImageOptions } from '../types/image';
-
-import ICloudinaryConfigurations from '@cloudinary/url-gen/config/interfaces/Config/ICloudinaryConfigurations';
-import { IAnalyticsOptions } from '@cloudinary/url-gen/sdkAnalytics/interfaces/IAnalyticsOptions';
 
 export const transformationPlugins = [
   // Background Removal must always come first
@@ -23,7 +24,9 @@ export const transformationPlugins = [
   effectsPlugin,
   overlaysPlugin,
   namedTransformationsPlugin,
+  seoPlugin,
   underlaysPlugin,
+  versionPlugin,
   zoompanPlugin,
 
   // Raw transformations needs to be last simply to make sure
@@ -68,6 +71,11 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
     throw Error(`Failed to construct Cloudinary URL: Missing source (src) in options`);
   }
 
+  const parsedOptions: Pick<ParseUrl, 'seoSuffix' | 'version'> = {
+    seoSuffix: undefined,
+    version: undefined,
+  };
+
   let publicId;
 
   // If the src starts with https, try to parse the URL to grab the ID dynamically
@@ -76,13 +84,26 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
 
   if ( options.src.startsWith('https://') ) {
     try {
-      publicId = getPublicId(options.src);
+      const parts = parseUrl(options.src);
+      publicId = parts?.publicId;
+      parsedOptions.seoSuffix = parts?.seoSuffix;
+      parsedOptions.version = parts?.version;
     } catch(e) {}
   }
 
   if ( !publicId ) {
     publicId = options.src;
   }
+
+  // Take all the parsed URL parts and apply them to the options configuration
+  // if there isn't an existing override
+
+  (Object.keys(parsedOptions) as Array<keyof typeof parsedOptions>).forEach((key) => {
+    if ( objectHasKey(options, key) ) return;
+    options[key] = parsedOptions[key];
+  });
+
+  // Begin creating a new Cloudinary image instance and configure
 
   const cldImage = cld.image(publicId);
 

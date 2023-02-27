@@ -1,5 +1,7 @@
 const REGEX_VERSION = /\/v\d+\//;
-const REGEX_URL = /https?:\/\/(?<host>[^\/]+)\/(?<cloudName>[^\/]+)\/(?<assetType>image|video|raw)\/(?<deliveryType>upload|fetch|private|authenticated|sprite|facebook|twitter|youtube|vimeo)\/?(?<signature>s\-\-[a-zA-Z0-9]+\-\-)?\/?(?<transformations>(?:[^_\/]+_[^,\/]+,?\/?)*\/)+(?<version>v\d+|\w{1,2})\/(?<id>[^\.^\s]+)(?<format>\.[a-zA-Z0-9]+$)?$/;
+const REGEX_URL = /https?:\/\/(?<host>[^\/]+)\/(?<cloudName>[^\/]+)\/(?<assetType>image|images|video|videos|raw|files)\/(?<deliveryType>upload|fetch|private|authenticated|sprite|facebook|twitter|youtube|vimeo)?\/?(?<signature>s\-\-[a-zA-Z0-9]+\-\-)?\/?(?<transformations>(?:[^_\/]+_[^,\/]+,?\/?)*\/)*(?<version>v\d+|\w{1,2})\/(?<publicId>[^\.^\s]+)(?<format>\.[a-zA-Z0-9]+$)?$/;
+const ASSET_TYPES_SEO = ['images', 'videos', 'files'];
+
 
 /**
  * parseUrl
@@ -12,11 +14,12 @@ export interface ParseUrl {
   deliveryType?: string;
   format?: string;
   host?: string;
-  id?: string;
+  publicId?: string;
   signature?: string;
+  seoSuffix?: string;
   transformations?: Array<string>;
   queryParams?: object;
-  version?: string;
+  version?: number;
 }
 
 export function parseUrl(src: string): ParseUrl | undefined {
@@ -33,11 +36,14 @@ export function parseUrl(src: string): ParseUrl | undefined {
   const [baseUrl, queryString] = src.split('?');
 
   const results = baseUrl.match(REGEX_URL);
+  const transformations = results?.groups?.transformations?.split('/').filter(t => !!t);
 
-  const parts = {
+  const parts: ParseUrl = {
     ...results?.groups,
-    transformations: results?.groups?.transformations.split('/').filter(t => !!t),
-    queryParams: {}
+    seoSuffix: undefined,
+    transformations: transformations || [],
+    queryParams: {},
+    version: results?.groups?.version ? parseInt(results.groups.version.replace('v', '')) : undefined
   }
 
   if ( queryString ) {
@@ -52,6 +58,12 @@ export function parseUrl(src: string): ParseUrl | undefined {
     }, {});
   }
 
+  if ( parts.assetType && ASSET_TYPES_SEO.includes(parts.assetType) ) {
+    const publicIdParts = parts.publicId?.split('/') || [];
+    parts.seoSuffix = publicIdParts.pop();
+    parts.publicId = publicIdParts.join('/');
+  }
+
   return parts;
 }
 
@@ -64,8 +76,8 @@ export function parseUrl(src: string): ParseUrl | undefined {
  */
 
 export function getPublicId(src: string): string | undefined {
-  const { id } = parseUrl(src) || {};
-  return id;
+  const { publicId } = parseUrl(src) || {};
+  return publicId;
 }
 
 
