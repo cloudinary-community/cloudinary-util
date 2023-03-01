@@ -29,7 +29,7 @@ export interface ImageOptions {
   underlays?: Array<any>;
   version?: number | string;
   width?: string | number;
-  widthResize?: string;
+  widthResize?: string | number;
   zoom?: string;
   zoompan?: string | boolean | ImageOptionsZoomPan;
 }

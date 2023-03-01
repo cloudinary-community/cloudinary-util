@@ -54,4 +54,45 @@ describe('Cropping plugin', () => {
     plugin({ cldImage, options });
     expect(cldImage.toURL()).toContain(`image/upload/${TEST_PUBLIC_ID}`);
   });
+
+  it('should return resize override with original size in URL if resize is smaller than width', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      width: 900,
+      widthResize: 600
+    };
+
+    const { options: pluginOptions } = plugin({ cldImage, options });
+
+    expect(cldImage.toURL()).toContain(`image/upload/c_limit,w_${options.width}/${TEST_PUBLIC_ID}`);
+    expect(pluginOptions).toMatchObject({
+      width: options.widthResize
+    })
+  });
+
+  it('should not return resize override with original size in URL if resize is larger than width', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      width: 900,
+      widthResize: 1200
+    };
+
+    const { options: pluginOptions } = plugin({ cldImage, options });
+
+    expect(cldImage.toURL()).toContain(`image/upload/c_limit,w_${options.width}/${TEST_PUBLIC_ID}`);
+    expect(pluginOptions).toMatchObject({})
+  });
+
+  it('should not return resize override with original size in URL if resize is the same as width', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      width: 900,
+      widthResize: 900
+    };
+
+    const { options: pluginOptions } = plugin({ cldImage, options });
+
+    expect(cldImage.toURL()).toContain(`image/upload/c_limit,w_${options.width}/${TEST_PUBLIC_ID}`);
+    expect(pluginOptions).toMatchObject({})
+  });
 });
