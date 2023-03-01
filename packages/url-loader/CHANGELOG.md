@@ -1,3 +1,13 @@
+# [@cloudinary-util/url-loader-v3.0.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v2.0.0...@cloudinary-util/url-loader-v3.0.0) (2023-03-01)
+
+
+* Fixes Raw Transformations Conflicting with Base Resize (#25) ([3d62816](https://github.com/colbyfayock/cloudinary-util/commit/3d62816bf71b12fc46caab510a179faed68ce31a)), closes [#25](https://github.com/colbyfayock/cloudinary-util/issues/25) [#24](https://github.com/colbyfayock/cloudinary-util/issues/24)
+
+
+### BREAKING CHANGES
+
+* this changes where the rawTransformations property gets applied in the transformation chain to avoid conflicting with transformations performed by 3rd party tooling.
+
 # [@cloudinary-util/url-loader-v2.0.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v1.4.1...@cloudinary-util/url-loader-v2.0.0) (2023-02-27)
 
 
