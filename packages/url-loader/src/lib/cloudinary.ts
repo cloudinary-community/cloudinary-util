@@ -19,7 +19,14 @@ import { ImageOptions } from '../types/image';
 
 export const transformationPlugins = [
   // Background Removal must always come first
+
   removeBackgroundPlugin,
+
+  // Raw transformations should always come before
+  // other arguments to avoid conflicting with
+  // added options via the component
+
+  rawTransformationsPlugin,
 
   croppingPlugin,
   effectsPlugin,
@@ -30,11 +37,6 @@ export const transformationPlugins = [
   underlaysPlugin,
   versionPlugin,
   zoompanPlugin,
-
-  // Raw transformations needs to be last simply to make sure
-  // it's always expected to applied the same way
-
-  rawTransformationsPlugin
 ];
 
 let cld: any;
@@ -127,6 +129,9 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
       };
     }
   });
+
+  // We want to perform any resizing at the end of the end of the transformation
+  // sets to allow consistent use of positioning / sizing, especially responsively
 
   if ( options?.resize ) {
     const { width, crop = 'scale' } = options.resize;

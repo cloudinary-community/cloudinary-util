@@ -7,5 +7,5 @@ export interface PluginSettings {
 
 export interface PluginOverrides {
   format?: string;
-  width?: string;
+  width?: number;
 }
