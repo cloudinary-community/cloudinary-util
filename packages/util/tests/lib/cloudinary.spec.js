@@ -182,6 +182,34 @@ describe('Cloudinary', () => {
         version,
       });
     });
+
+    it('should parse a Cloudinary URL with a . in the public ID', () => {
+      const assetType = 'images';
+      const cloudName = 'test-cloud';
+      const deliveryType = undefined;
+      const format = '.png';
+      const host = 'res.cloudinary.com';
+      const publicId = 'sticker-keepdevweird-2.5in-holographic';
+      const seoSuffix = 'sticker-keepdevweird-2.5in-holographic';
+      const signature = undefined;
+      const transformations = ['f_auto,q_auto'];
+      const version = 1234;
+
+      const src = `https://${host}/${cloudName}/${assetType}/${transformations.join('/')}/v${version}/${publicId}/${seoSuffix}${format}`;
+
+      expect(parseUrl(src)).toMatchObject({
+        assetType,
+        cloudName,
+        deliveryType,
+        format,
+        host,
+        publicId,
+        seoSuffix,
+        signature,
+        transformations,
+        version,
+      });
+    });
   });
 
   describe('getPublicId', () => {
