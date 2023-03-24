@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.0.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.0.0...@cloudinary-util/url-loader-v3.0.1) (2023-03-24)
+
+
+### Bug Fixes
+
+* Warn about SEO Prefix and not set when delivery type is fetch ([#29](https://github.com/colbyfayock/cloudinary-util/issues/29)) ([bc848dd](https://github.com/colbyfayock/cloudinary-util/commit/bc848dddb3af54872b42a183a0b91d9156451c2d)), closes [#28](https://github.com/colbyfayock/cloudinary-util/issues/28)
+
 # [@cloudinary-util/url-loader-v3.0.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v2.0.0...@cloudinary-util/url-loader-v3.0.0) (2023-03-01)
 
 
