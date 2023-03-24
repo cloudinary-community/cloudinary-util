@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v2.0.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.0.0...@cloudinary-util/util-v2.0.1) (2023-03-24)
+
+
+### Bug Fixes
+
+* Adds support for . in public ID ([#27](https://github.com/colbyfayock/cloudinary-util/issues/27)) ([fbc490c](https://github.com/colbyfayock/cloudinary-util/commit/fbc490c2176fc049aeeef62352a20de82abdfd04)), closes [#26](https://github.com/colbyfayock/cloudinary-util/issues/26)
+
 # [@cloudinary-util/util-v2.0.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v1.2.3...@cloudinary-util/util-v2.0.0) (2023-02-27)
 
 
