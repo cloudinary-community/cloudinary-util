@@ -140,14 +140,16 @@ describe('Cloudinary', () => {
         const cloudName = 'customtestcloud';
         const assetType = 'images';
         const publicId = 'myimage/my-image';
+        const width = 1234;
+        const height = 1234;
 
-        const src = `https://res.cloudinary.com/${cloudName}/${assetType}/c_limit,w_100/f_auto/q_auto/v1234/${publicId}?_a=A`;
+        const src = `https://res.cloudinary.com/${cloudName}/${assetType}/c_limit,w_${width}/f_auto/q_auto/v1234/${publicId}?_a=A`;
 
         const url = constructCloudinaryUrl({
           options: {
             src,
-            width: 100,
-            height: 100,
+            width,
+            height,
           },
           config: {
             cloud: {
@@ -157,6 +159,35 @@ describe('Cloudinary', () => {
         });
 
         expect(url).toContain(src);
+      });
+
+      it('should create a NON-SEO prefixed Cloudinary URL from a Cloudinary source with SEO prefixes when delivery type is fetch', () => {
+        const cloudName = 'customtestcloud';
+        const assetType = 'images';
+        const publicId = 'colby-hug';
+        const seoSuffix = 'colby-hug';
+        const format = '.jpg';
+        const width = 1234;
+        const height = 1234;
+
+        const src = `https://res.cloudinary.com/${cloudName}/${assetType}/c_limit,w_${width}/f_auto/q_auto/v1234/${publicId}/${seoSuffix}${format}?_i=A`;
+        const exepectedSrc = `https://res.cloudinary.com/${cloudName}/image/fetch/c_limit,w_${width}/f_auto/q_auto/v1234/${publicId}?_a=A`
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            width,
+            height,
+            deliveryType: 'fetch'
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+
+        expect(url).toContain(exepectedSrc);
       });
 
       it('should create a Cloudinary URL from a Cloudinary source with SEO prefixes and overriding', () => {
