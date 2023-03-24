@@ -9,7 +9,11 @@ export function plugin(props: PluginSettings) {
   const { seoSuffix } = options;
 
   if ( typeof seoSuffix === 'string' ) {
-    cldImage.setSuffix(seoSuffix);
+    if ( options.deliveryType === 'fetch' ) {
+      console.warn('SEO suffix is not supported with a delivery type of fetch')
+    } else {
+      cldImage.setSuffix(seoSuffix);
+    }
   }
 
   return {};
