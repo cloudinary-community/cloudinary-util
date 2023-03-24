@@ -1,5 +1,6 @@
 const REGEX_VERSION = /\/v\d+\//;
-const REGEX_URL = /https?:\/\/(?<host>[^\/]+)\/(?<cloudName>[^\/]+)\/(?<assetType>image|images|video|videos|raw|files)\/(?<deliveryType>upload|fetch|private|authenticated|sprite|facebook|twitter|youtube|vimeo)?\/?(?<signature>s\-\-[a-zA-Z0-9]+\-\-)?\/?(?<transformations>(?:[^_\/]+_[^,\/]+,?\/?)*\/)*(?<version>v\d+|\w{1,2})\/(?<publicId>[^\.^\s]+)(?<format>\.[a-zA-Z0-9]+$)?$/;
+const REGEX_FORMAT = /\.(ai|avif|gif|png|webp|bmp|bw|djvu|dng|ps|ept|eps|eps3|fbx|flif|gif|glb|gltf|heif|heic|ico|indd|jpg|jpe|jpeg|jp2|wdp|jxr|hdp|obj|pdf|ply|png|psd|arw|cr2|svg|tga|tif|tiff|u3ma|usdz|webp|3g2|3gp|avi|flv|m3u8|ts|m2ts|mts|mov|mkv|mp4|mpeg|mpd|mxf|ogv|webm|wmv)$/i
+const REGEX_URL = /https?:\/\/(?<host>[^\/]+)\/(?<cloudName>[^\/]+)\/(?<assetType>image|images|video|videos|raw|files)\/(?<deliveryType>upload|fetch|private|authenticated|sprite|facebook|twitter|youtube|vimeo)?\/?(?<signature>s\-\-[a-zA-Z0-9]+\-\-)?\/?(?<transformations>(?:[^_\/]+_[^,\/]+,?\/?)*\/)*(?<version>v\d+|\w{1,2})\/(?<publicId>[^\s]+)$/;
 const ASSET_TYPES_SEO = ['images', 'videos', 'files'];
 
 
@@ -33,13 +34,25 @@ export function parseUrl(src: string): ParseUrl | undefined {
     throw new Error(`Invalid src: Does not include version (Ex: /v1234/)`);
   }
 
-  const [baseUrl, queryString] = src.split('?');
+  const [baseUrlWithExtension, queryString] = src.split('?');
+
+  const formatMatches = baseUrlWithExtension.match(REGEX_FORMAT);
+
+  let baseUrl = baseUrlWithExtension;
+  let format;
+
+  if ( formatMatches !== null ) {
+    format = `${formatMatches[0]}`;
+    baseUrl = baseUrlWithExtension.replace(new RegExp(`${format}$`), '');
+  }
 
   const results = baseUrl.match(REGEX_URL);
+
   const transformations = results?.groups?.transformations?.split('/').filter(t => !!t);
 
   const parts: ParseUrl = {
     ...results?.groups,
+    format,
     seoSuffix: undefined,
     transformations: transformations || [],
     queryParams: {},
