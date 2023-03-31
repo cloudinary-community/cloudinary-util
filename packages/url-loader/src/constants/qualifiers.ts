@@ -209,6 +209,9 @@ export const effects: Record<string, Qualifier> = {
     prefix: 'e',
     qualifier: 'pixelate_region',
   },
+  radius: {
+    qualifier: 'r',
+  },
   redeye: {
     prefix: 'e',
     qualifier: 'redeye',
