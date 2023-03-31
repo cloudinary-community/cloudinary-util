@@ -38,6 +38,7 @@ describe('Plugins', () => {
     const gradientFade = true;
     const opacity = '50';
     const cartoonify = '50';
+    const radius = '150';
 
     const options = {
       effects: [
@@ -47,7 +48,8 @@ describe('Plugins', () => {
         },
         {
           gradientFade,
-          cartoonify
+          cartoonify,
+          radius
         }
       ]
     }
@@ -57,6 +59,6 @@ describe('Plugins', () => {
       options
     });
 
-    expect(cldImage.toURL()).toContain(`o_${opacity},e_shear:${shear}/e_cartoonify:${cartoonify},e_gradient_fade`);
+    expect(cldImage.toURL()).toContain(`/o_${opacity},e_shear:${shear}/e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}/`);
   });
 });
