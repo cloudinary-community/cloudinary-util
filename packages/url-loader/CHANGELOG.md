@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.1.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.0.1...@cloudinary-util/url-loader-v3.1.0) (2023-03-31)
+
+
+### Features
+
+* Adding Radius ([#31](https://github.com/colbyfayock/cloudinary-util/issues/31)) ([4c26478](https://github.com/colbyfayock/cloudinary-util/commit/4c264786ca153894c11fc8b4da2d74ec020eb7bd)), closes [#30](https://github.com/colbyfayock/cloudinary-util/issues/30)
+
 # [@cloudinary-util/url-loader-v3.0.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.0.0...@cloudinary-util/url-loader-v3.0.1) (2023-03-24)
 
 
