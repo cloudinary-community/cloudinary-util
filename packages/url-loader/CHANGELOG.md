@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.1.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.1.0...@cloudinary-util/url-loader-v3.1.1) (2023-04-03)
+
+
+### Bug Fixes
+
+* Exporting Analytics, Config, and other constructCloudinaryUrl props types ([#33](https://github.com/colbyfayock/cloudinary-util/issues/33)) ([719b7ce](https://github.com/colbyfayock/cloudinary-util/commit/719b7cec176e8851858e6aad84e7509bb0be5b56)), closes [#32](https://github.com/colbyfayock/cloudinary-util/issues/32)
+
 # [@cloudinary-util/url-loader-v3.1.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.0.1...@cloudinary-util/url-loader-v3.1.0) (2023-03-31)
 
 
