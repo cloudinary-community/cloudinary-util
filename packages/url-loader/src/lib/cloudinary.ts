@@ -1,7 +1,5 @@
 import { Cloudinary } from '@cloudinary/url-gen';
 import { parseUrl, ParseUrl, objectHasKey } from '@cloudinary-util/util';
-import ICloudinaryConfigurations from '@cloudinary/url-gen/config/interfaces/Config/ICloudinaryConfigurations';
-import { IAnalyticsOptions } from '@cloudinary/url-gen/sdkAnalytics/interfaces/IAnalyticsOptions';
 
 import * as croppingPlugin from '../plugins/cropping';
 import * as effectsPlugin from '../plugins/effects';
@@ -16,6 +14,8 @@ import * as versionPlugin from '../plugins/version';
 import * as zoompanPlugin from '../plugins/zoompan';
 
 import { ImageOptions } from '../types/image';
+import { AnalyticsOptions } from '../types/analytics';
+import { ConfigOptions } from '../types/config';
 
 export const transformationPlugins = [
   // Background Removal must always come first
@@ -46,23 +46,23 @@ let cld: any;
  * @description Builds a full Cloudinary URL using transformation plugins specified by options
  */
 
-interface ConstructUrlProps {
+export interface ConstructUrlProps {
   options: ImageOptions;
-  config?: ICloudinaryConfigurations;
-  analytics?: IAnalyticsOptions;
+  config?: ConfigOptions;
+  analytics?: AnalyticsOptions;
 }
 
-interface PluginOptionsResize {
+export interface PluginOptionsResize {
   width?: string | number;
 }
 
-interface PluginOptions {
+export interface PluginOptions {
   format?: string;
   resize?: PluginOptionsResize;
   width?: string | number;
 }
 
-interface PluginResults {
+export interface PluginResults {
   options?: PluginOptions;
 }
 
