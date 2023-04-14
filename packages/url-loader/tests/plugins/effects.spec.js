@@ -61,4 +61,29 @@ describe('Plugins', () => {
 
     expect(cldImage.toURL()).toContain(`/o_${opacity},e_shear:${shear}/e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}/`);
   });
+
+  it('should colorize with a hex color value', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+
+    const color = '#ff00ff';
+    const colorExpected = 'rgb:ff00ff';
+    const colorize = 50;
+
+
+    const options = {
+      effects: [
+        {
+          color,
+          colorize
+        },
+      ]
+    }
+
+    plugin({
+      cldImage,
+      options
+    });
+
+    expect(cldImage.toURL()).toContain(`/co_${colorExpected},e_colorize:${colorize}/`);
+  });
 });
