@@ -1,3 +1,5 @@
+import { QualiferConverters } from "../types/qualifiers";
+
 /**
  * constructTransformation
  * @description Constructs a transformation string to append to a URL
@@ -8,24 +10,32 @@ interface ConstructTransformationSettings {
   prefix?: string;
   qualifier?: string | boolean;
   value?: string | boolean;
+  converters?: Array<QualiferConverters>;
 }
 
-export function constructTransformation({ prefix, qualifier, value }: ConstructTransformationSettings) {
+export function constructTransformation({ prefix, qualifier, value, converters }: ConstructTransformationSettings) {
   let transformation = '';
 
   if ( prefix ) {
     transformation = `${prefix}_`;
   }
 
-  if ( value === true || value === 'true' ) {
+  let transformationValue = value;
+
+  converters?.forEach(({ test, convert }) => {
+    if ( !test(transformationValue) ) return;
+    transformationValue = convert(transformationValue);
+  })
+
+  if ( transformationValue === true || transformationValue === 'true' ) {
     return `${transformation}${qualifier}`;
   }
 
-  if ( typeof value === 'string' || typeof value === 'number' ) {
+  if ( typeof transformationValue === 'string' || typeof transformationValue === 'number' ) {
     if ( prefix ) {
-      return `${transformation}${qualifier}:${value}`;
+      return `${transformation}${qualifier}:${transformationValue}`;
     } else {
-      return `${qualifier}_${value}`;
+      return `${qualifier}_${transformationValue}`;
     }
   }
 }

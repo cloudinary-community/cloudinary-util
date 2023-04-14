@@ -316,5 +316,53 @@ describe('Plugins', () => {
 
       expect(cldImage.toURL()).toContain(`l_text:${encodeURIComponent(fontFamily)}_${fontSize}_${fontWeight}_stroke:${encodeURIComponent(text)},co_${color},bo_${border}/fl_layer_apply,fl_no_overflow/${TEST_PUBLIC_ID}`);
     });
+
+    it('should add text with special characters', () => {
+      const cldImage = cld.image(TEST_PUBLIC_ID);
+
+      const color = 'white';
+      const fontFamily = 'Source Sans Pro';
+      const text = 'Ne xt/Cloud.in,ary';
+      const expectedText = 'Ne%20xt%252FCloud%252Ein%252Cary';
+
+      const options = {
+        text: {
+          color,
+          fontFamily,
+          text,
+        }
+      }
+
+      plugin({
+        cldImage,
+        options
+      });
+
+      expect(cldImage.toURL()).toContain(`l_text:${encodeURIComponent(fontFamily)}_200_bold:${expectedText},co_${color}/fl_layer_apply,fl_no_overflow/${TEST_PUBLIC_ID}`);
+    });
+
+    it('should replace color with #asdf with rgb:', () => {
+      const cldImage = cld.image(TEST_PUBLIC_ID);
+
+      const color = '#ff00ff';
+      const expectedColor = 'rgb:ff00ff';
+      const fontFamily = 'Source Sans Pro';
+      const text = 'Next Cloudinary';
+
+      const options = {
+        text: {
+          color,
+          fontFamily,
+          text,
+        }
+      }
+
+      plugin({
+        cldImage,
+        options
+      });
+
+      expect(cldImage.toURL()).toContain(`l_text:${encodeURIComponent(fontFamily)}_200_bold:${encodeURIComponent(text)},co_${expectedColor}/fl_layer_apply,fl_no_overflow/${TEST_PUBLIC_ID}`);
+    });
   });
 });

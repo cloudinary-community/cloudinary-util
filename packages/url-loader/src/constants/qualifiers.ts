@@ -1,4 +1,12 @@
 import { Qualifier } from '../types/qualifiers';
+import { testColorIsHex, convertColorHexToRgb } from '../lib/colors';
+
+const convertersColors = [
+  {
+    test: testColorIsHex,
+    convert: convertColorHexToRgb
+  }
+]
 
 export const primary: Record<string, Qualifier> = {
   aspectRatio: {
@@ -47,7 +55,8 @@ export const text: Record<string, Qualifier> = {
   },
   color: {
     qualifier: 'co',
-    location: 'primary'
+    location: 'primary',
+    converters: convertersColors
   },
   fontFamily: {
     qualifier: false,
@@ -141,6 +150,7 @@ export const effects: Record<string, Qualifier> = {
   },
   color: {
     qualifier: 'co',
+    converters: convertersColors
   },
   colorize: {
     prefix: 'e',

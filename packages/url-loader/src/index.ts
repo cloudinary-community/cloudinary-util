@@ -7,4 +7,4 @@ export type { ImageOptionsResize, ImageOptionsZoomPan, ImageOptions } from './ty
 export type { AnalyticsOptions } from './types/analytics';
 export type { ConfigOptions } from './types/config';
 export type { PluginSettings, PluginOverrides } from './types/plugins';
-export type { Qualifier } from './types/qualifiers';
+export type { Qualifier, QualiferConverters } from './types/qualifiers';

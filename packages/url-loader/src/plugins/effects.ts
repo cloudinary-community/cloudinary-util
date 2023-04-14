@@ -37,11 +37,12 @@ export function plugin(props: PluginSettings) {
 
   function constructTransformationString({ effects, options }: ConstructTransformationStringSettings) {
     return (Object.keys(effects) as Array<keyof typeof effects>).map(key => {
-      const { prefix, qualifier } = effects[key];
+      const { prefix, qualifier, converters } = effects[key];
       return constructTransformation({
         qualifier,
         prefix,
-        value: options?.[key]
+        value: options?.[key],
+        converters
       });
     })
   }

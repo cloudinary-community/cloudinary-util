@@ -104,11 +104,12 @@ export function plugin(props: PluginSettings) {
     (Object.keys(options) as Array<keyof typeof options>).forEach(key => {
       if ( !objectHasKey(qualifiersPrimary, key) ) return;
 
-      const { qualifier } = qualifiersPrimary[key];
+      const { qualifier, converters } = qualifiersPrimary[key];
 
       const transformation = constructTransformation({
         qualifier,
-        value: options[key]
+        value: options[key],
+        converters
       });
 
       if ( transformation ) {
@@ -123,12 +124,13 @@ export function plugin(props: PluginSettings) {
 
     layerEffects.forEach(effect => {
       (Object.keys(effect) as Array<keyof typeof effect>).forEach(key => {
-        const { qualifier, prefix } = qualifiersPrimary[key] || qualifiersEffects[key] || {};
+        const { qualifier, prefix, converters } = qualifiersPrimary[key] || qualifiersEffects[key] || {};
 
         const transformation = constructTransformation({
           qualifier,
           prefix,
-          value: effect[key]
+          value: effect[key],
+          converters
         });
 
         if ( transformation ) {
@@ -143,12 +145,13 @@ export function plugin(props: PluginSettings) {
 
     appliedEffects.forEach(effect => {
       (Object.keys(effect) as Array<keyof typeof effect>).forEach(key => {
-        const { qualifier, prefix } = qualifiersPrimary[key] || qualifiersEffects[key] || {};
+        const { qualifier, prefix, converters } = qualifiersPrimary[key] || qualifiersEffects[key] || {};
 
         const transformation = constructTransformation({
           qualifier,
           prefix,
-          value: effect[key]
+          value: effect[key],
+          converters
         });
 
         if ( transformation ) {
@@ -191,21 +194,41 @@ export function plugin(props: PluginSettings) {
         const sortedTextOptions = sortByKey(textOptions, 'order');
 
         for (const textOption of sortedTextOptions) {
-          const { key, value, qualifier, location } = textOption as TextOption;
+          const { key, value, qualifier, location, converters } = textOption as TextOption;
+          let textValue = value;
+
+          converters?.forEach(({ test, convert }) => {
+            if ( !test(value) ) return;
+            textValue = convert(value);
+          })
 
           if ( location === 'primary' ) {
-            primary.push(`${qualifier}_${value}`);
+            primary.push(`${qualifier}_${textValue}`);
           } else if ( qualifier === 'self' ) {
             textTransformations.push(key);
           } else if ( qualifier ) {
-            textTransformations.push(`${qualifier}_${value}`);
+            textTransformations.push(`${qualifier}_${textValue}`);
           } else {
-            textTransformations.push(value);
+            textTransformations.push(textValue);
           }
         }
       }
 
-      layerTransformation = `${layerTransformation}:${textTransformations.join('_')}:${text?.text}`
+      const specialCharacters: Record<string, string> = {
+        '.': '%2E',
+        ',': '%2C',
+        '/': '%2F',
+      }
+
+      let layerText = text?.text || '';
+
+      if ( typeof layerText === 'string' ) {
+        (Object.keys(specialCharacters) as Array<keyof typeof specialCharacters>)?.forEach((character: string) => {
+          layerText = layerText?.replace(character, specialCharacters[character]);
+        })
+      }
+
+      layerTransformation = `${layerTransformation}:${textTransformations.join('_')}:${layerText}`;
     }
 
     // Positioning
@@ -214,11 +237,12 @@ export function plugin(props: PluginSettings) {
       Object.keys(position).forEach(key => {
         if ( !objectHasKey(qualifiersPosition, key) ) return;
 
-        const { qualifier } = qualifiersPosition[key];
+        const { qualifier, converters } = qualifiersPosition[key];
 
         const transformation = constructTransformation({
           qualifier,
-          value: position[key]
+          value: position[key],
+          converters
         });
 
         if ( transformation ) {
