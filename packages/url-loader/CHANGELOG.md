@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.1.1...@cloudinary-util/url-loader-v3.2.0) (2023-04-14)
+
+
+### Features
+
+* Color converter, ,./ encoding ([#35](https://github.com/colbyfayock/cloudinary-util/issues/35)) ([10e4ad4](https://github.com/colbyfayock/cloudinary-util/commit/10e4ad46a2d561b6d6a1baec3f9eac40d7b2d0a2)), closes [#34](https://github.com/colbyfayock/cloudinary-util/issues/34)
+
 # [@cloudinary-util/url-loader-v3.1.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.1.0...@cloudinary-util/url-loader-v3.1.1) (2023-04-03)
 
 
