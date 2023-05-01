@@ -4,9 +4,10 @@ import { effects as qualifiersEffects } from '../constants/qualifiers';
 import { constructTransformation } from '../lib/transformations';
 
 export const props = [...Object.keys(qualifiersEffects), 'effects'];
+export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 export function plugin(props: PluginSettings) {
-  const { cldImage, options } = props;
+  const { cldAsset, options } = props;
 
   // Handle any top-level effect props
 
@@ -15,7 +16,7 @@ export function plugin(props: PluginSettings) {
     options
   })
 
-  transformationStrings.filter(t => !!t).forEach(transformation => cldImage.effect(transformation));;
+  transformationStrings.filter(t => !!t).forEach(transformation => cldAsset.effect(transformation));;
 
   // If we're passing in an effects prop explicitly, treat it as an array of
   // effects that we need to process
@@ -26,7 +27,7 @@ export function plugin(props: PluginSettings) {
         effects: qualifiersEffects,
         options: effectsSet
       }).filter(t => !!t).join(',');
-      cldImage.effect(transformationString);
+      cldAsset.effect(transformationString);
     });
   }
 

@@ -1,7 +1,7 @@
 import { ImageOptions } from './image';
 
 export interface PluginSettings {
-  cldImage: any;
+  cldAsset: any;
   options: ImageOptions;
 }
 

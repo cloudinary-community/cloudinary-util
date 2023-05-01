@@ -75,6 +75,10 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
     throw Error(`Failed to construct Cloudinary URL: Missing source (src) in options`);
   }
 
+  if ( !options?.assetType ) {
+    options.assetType = 'image';
+  }
+
   const parsedOptions: Pick<ParseUrl, 'seoSuffix' | 'version'> = {
     seoSuffix: undefined,
     version: undefined,
@@ -109,11 +113,34 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
 
   // Begin creating a new Cloudinary image instance and configure
 
-  const cldImage = cld.image(publicId);
+  let cldAsset: any = undefined;
 
-  transformationPlugins.forEach(({ plugin }) => {
+  if ( ['image', 'images'].includes(options.assetType) ) {
+    cldAsset = cld.image(publicId);
+  } else if ( ['video', 'videos'].includes(options.assetType) ) {
+    cldAsset = cld.video(publicId);
+  }
+
+  if ( typeof cldAsset === 'undefined' ) {
+    throw new Error('Invalid asset type.');
+  }
+
+  transformationPlugins.forEach(({ plugin, assetTypes, props }) => {
+    const supportedAssetType = typeof options?.assetType !== 'undefined' && assetTypes.includes(options?.assetType);
+
+    if ( !supportedAssetType ) {
+      const optionsKeys = Object.keys(options);
+      const attemptedUse = props.map(prop => optionsKeys.includes(prop)).filter(isUsed => !!isUsed).length > 0;
+
+      if ( attemptedUse ) {
+        console.warn(`One of the following props [${props.join(', ')}] was used with an unsupported asset type [${options?.assetType}]`);
+      }
+
+      return;
+    }
+
     const results: PluginResults = plugin({
-      cldImage,
+      cldAsset,
       options
     });
 
@@ -135,10 +162,10 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
 
   if ( options?.resize ) {
     const { width, crop = 'scale' } = options.resize;
-    cldImage.effect(`c_${crop},w_${width}`);
+    cldAsset.effect(`c_${crop},w_${width}`);
   }
 
-  return cldImage
+  return cldAsset
           .setDeliveryType(options?.deliveryType || 'upload')
           .format(options?.format || 'auto')
           .delivery(`q_${options?.quality || 'auto'}`)

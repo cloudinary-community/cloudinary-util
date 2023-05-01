@@ -13,6 +13,7 @@ import {
 } from '../constants/qualifiers';
 
 export const props = ['text', 'overlays'];
+export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 export const DEFAULT_TEXT_OPTIONS = {
   color: 'black',
@@ -22,7 +23,7 @@ export const DEFAULT_TEXT_OPTIONS = {
 };
 
 export function plugin(props: PluginSettings) {
-  const { cldImage, options } = props;
+  const { cldAsset, options } = props;
   const { text, overlays = [] } = options;
 
   const type = 'overlay';
@@ -267,7 +268,7 @@ export function plugin(props: PluginSettings) {
 
     // Finally add it to the image
 
-    cldImage.addTransformation(layerTransformation);
+    cldAsset.addTransformation(layerTransformation);
   }
 
   return {};

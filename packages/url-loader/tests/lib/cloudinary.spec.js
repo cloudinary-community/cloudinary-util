@@ -14,7 +14,7 @@ describe('Cloudinary', () => {
 
   describe('constructCloudinaryUrl', () => {
 
-    it('should create a Cloudinary URL', () => {
+    it('should create a Cloudinary image URL', () => {
       const cloudName = 'customtestcloud';
       const url = constructCloudinaryUrl({
         options: {
@@ -29,6 +29,25 @@ describe('Cloudinary', () => {
         }
       });
       expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/upload/c_limit,w_100/f_auto/q_auto/turtle`);
+    });
+
+    it('should create a Cloudinary video URL', () => {
+      const cloudName = 'customtestcloud';
+      const assetType = 'video';
+      const url = constructCloudinaryUrl({
+        options: {
+          assetType,
+          src: 'turtle',
+          width: 100,
+          height: 100
+        },
+        config: {
+          cloud: {
+            cloudName
+          }
+        }
+      });
+      expect(url).toContain(`https://res.cloudinary.com/${cloudName}/${assetType}/upload/c_limit,w_100/f_auto/q_auto/turtle`);
     });
 
     /* Optimization */
@@ -289,6 +308,32 @@ describe('Cloudinary', () => {
           }
         });
         expect(url).toContain(`image/upload/${rawTransformations.join('/')}/f_auto/q_auto/${src}`);
+      });
+
+    })
+
+    /* General Plugins */
+
+    describe('Plugins', () => {
+
+      it('should not apply an image-only plugin to a video asset', () => {
+        const cloudName = 'customtestcloud';
+        const assetType = 'video';
+        const src = 'turtle';
+        const zoompan = 'loop';
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            assetType,
+            zoompan
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`${assetType}/upload/f_auto/q_auto/${src}`);
       });
 
     })

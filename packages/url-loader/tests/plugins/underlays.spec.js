@@ -32,7 +32,7 @@ describe('Plugins', () => {
       }
 
       plugin({
-        cldImage,
+        cldAsset: cldImage,
         options
       });
 
@@ -52,7 +52,7 @@ describe('Plugins', () => {
       }
 
       plugin({
-        cldImage,
+        cldAsset: cldImage,
         options
       });
 

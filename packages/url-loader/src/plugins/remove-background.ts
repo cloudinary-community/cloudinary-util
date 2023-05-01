@@ -1,12 +1,13 @@
 import { PluginSettings } from '../types/plugins';
 
 export const props = ['removeBackground'];
+export const assetTypes = ['image', 'images'];
 
 export function plugin(props: PluginSettings) {
-  const { cldImage, options } = props;
+  const { cldAsset, options } = props;
   const { removeBackground = false } = options;
   if ( removeBackground ) {
-    cldImage.effect('e_background_removal');
+    cldAsset.effect('e_background_removal');
   }
   return {};
 }

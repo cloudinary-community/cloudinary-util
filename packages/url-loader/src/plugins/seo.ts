@@ -1,18 +1,17 @@
 import { PluginSettings } from '../types/plugins';
 
-export const props = [
-  'seoSuffix'
-];
+export const props = ['seoSuffix'];
+export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 export function plugin(props: PluginSettings) {
-  const { cldImage, options } = props;
+  const { cldAsset, options } = props;
   const { seoSuffix } = options;
 
   if ( typeof seoSuffix === 'string' ) {
     if ( options.deliveryType === 'fetch' ) {
       console.warn('SEO suffix is not supported with a delivery type of fetch')
     } else {
-      cldImage.setSuffix(seoSuffix);
+      cldAsset.setSuffix(seoSuffix);
     }
   }
 

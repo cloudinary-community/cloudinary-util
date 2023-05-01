@@ -9,9 +9,10 @@ import {
 } from '../constants/qualifiers';
 
 export const props = ['underlay', 'underlays'];
+export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 export function plugin(props: PluginSettings) {
-  const { cldImage, options } = props;
+  const { cldAsset, options } = props;
   const { underlay, underlays = [] } = options;
 
   const typeQualifier = 'u';
@@ -118,7 +119,7 @@ export function plugin(props: PluginSettings) {
 
     // Finally add it to the image
 
-    cldImage.addTransformation(layerTransformation);
+    cldAsset.addTransformation(layerTransformation);
   }
 
   return {};
