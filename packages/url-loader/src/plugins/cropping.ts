@@ -20,7 +20,7 @@ export function normalizeNumberParameter(param: number | string | undefined) {
 }
 
 export function plugin(props: PluginSettings) {
-  const { cldImage, options } = props;
+  const { cldAsset, options } = props;
 
   const {
     width: defaultWidth,
@@ -85,7 +85,7 @@ export function plugin(props: PluginSettings) {
 
   // Finally apply the constructed transformation string to the image instance
 
-  cldImage.effect(transformationString);
+  cldAsset.effect(transformationString);
 
   // If we have a resize width that's smaller than the user-defined width, we want to give the
   // ability to perform a final resize on the image without impacting any of the effects like text

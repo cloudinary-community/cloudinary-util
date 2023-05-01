@@ -3,7 +3,7 @@ import { PluginSettings, PluginOverrides } from '../types/plugins';
 export const props = ['zoompan'];
 
 export function plugin(props: PluginSettings) {
-  const { cldImage, options } = props;
+  const { cldAsset, options } = props;
   const { zoompan = false } = options;
 
   const overrides: PluginOverrides = {
@@ -11,13 +11,13 @@ export function plugin(props: PluginSettings) {
   };
 
   if ( zoompan === true ) {
-    cldImage.effect('e_zoompan');
+    cldAsset.effect('e_zoompan');
   } else if ( typeof zoompan === 'string' ) {
     if ( zoompan === 'loop' ) {
-      cldImage.effect('e_zoompan');
-      cldImage.effect('e_loop');
+      cldAsset.effect('e_zoompan');
+      cldAsset.effect('e_loop');
     } else {
-      cldImage.effect(`e_zoompan:${zoompan}`);
+      cldAsset.effect(`e_zoompan:${zoompan}`);
     }
   } else if ( typeof zoompan === 'object' ) {
     let zoompanEffect = 'e_zoompan';
@@ -26,7 +26,7 @@ export function plugin(props: PluginSettings) {
       zoompanEffect = `${zoompanEffect}${zoompan.options}`;
     }
 
-    cldImage.effect(zoompanEffect);
+    cldAsset.effect(zoompanEffect);
 
     let loopEffect;
 
@@ -37,7 +37,7 @@ export function plugin(props: PluginSettings) {
     }
 
     if ( loopEffect ) {
-      cldImage.effect(loopEffect);
+      cldAsset.effect(loopEffect);
     }
   }
 

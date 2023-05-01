@@ -21,7 +21,7 @@ describe('Cropping plugin', () => {
       crop: 'crop',
       gravity: 'auto'
     };
-    plugin({ cldImage, options });
+    plugin({ cldAsset: cldImage, options });
     expect(cldImage.toURL()).toContain(`c_${options.crop},w_${options.width},h_${options.height},g_${options.gravity}/${TEST_PUBLIC_ID}`);
   });
 
@@ -32,7 +32,7 @@ describe('Cropping plugin', () => {
       height: 100,
       crop: 'fill'
     };
-    plugin({ cldImage, options });
+    plugin({ cldAsset: cldImage, options });
     expect(cldImage.toURL()).toContain(`c_${options.crop},w_${options.width},h_${options.height},g_auto/${TEST_PUBLIC_ID}`);
   });
 
@@ -44,14 +44,14 @@ describe('Cropping plugin', () => {
       crop: 'fill',
       zoom: 0.5
     };
-    plugin({ cldImage, options });
+    plugin({ cldAsset: cldImage, options });
     expect(cldImage.toURL()).toContain(`c_${options.crop},w_${options.width},h_${options.height},g_auto,z_${options.zoom}/${TEST_PUBLIC_ID}`);
   });
 
   it('should not include a width if not set', () => {
     const cldImage = cld.image(TEST_PUBLIC_ID);
     const options = {};
-    plugin({ cldImage, options });
+    plugin({ cldAsset: cldImage, options });
     expect(cldImage.toURL()).toContain(`image/upload/${TEST_PUBLIC_ID}`);
   });
 
@@ -62,7 +62,7 @@ describe('Cropping plugin', () => {
       widthResize: 600
     };
 
-    const { options: pluginOptions } = plugin({ cldImage, options });
+    const { options: pluginOptions } = plugin({ cldAsset: cldImage, options });
 
     expect(cldImage.toURL()).toContain(`image/upload/c_limit,w_${options.width}/${TEST_PUBLIC_ID}`);
     expect(pluginOptions).toMatchObject({
@@ -77,7 +77,7 @@ describe('Cropping plugin', () => {
       widthResize: 1200
     };
 
-    const { options: pluginOptions } = plugin({ cldImage, options });
+    const { options: pluginOptions } = plugin({ cldAsset: cldImage, options });
 
     expect(cldImage.toURL()).toContain(`image/upload/c_limit,w_${options.width}/${TEST_PUBLIC_ID}`);
     expect(pluginOptions).toMatchObject({})
@@ -90,7 +90,7 @@ describe('Cropping plugin', () => {
       widthResize: 900
     };
 
-    const { options: pluginOptions } = plugin({ cldImage, options });
+    const { options: pluginOptions } = plugin({ cldAsset: cldImage, options });
 
     expect(cldImage.toURL()).toContain(`image/upload/c_limit,w_${options.width}/${TEST_PUBLIC_ID}`);
     expect(pluginOptions).toMatchObject({})

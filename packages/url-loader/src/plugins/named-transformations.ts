@@ -3,7 +3,7 @@ import { PluginSettings } from '../types/plugins';
 export const props = ['transformations'];
 
 export function plugin(props: PluginSettings) {
-  const { cldImage, options } = props;
+  const { cldAsset, options } = props;
   let { transformations = [] } = options;
 
   if ( !Array.isArray(transformations) ) {
@@ -11,7 +11,7 @@ export function plugin(props: PluginSettings) {
   }
 
   transformations.forEach(transformation => {
-    cldImage.addTransformation(`t_${transformation}`);
+    cldAsset.addTransformation(`t_${transformation}`);
   });
 
   return {};

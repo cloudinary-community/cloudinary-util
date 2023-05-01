@@ -15,7 +15,7 @@ describe('Cloudinary Sanitize', () => {
     it('should include fl_sanitize when display image source name end with svg', () => {
       const src = 'turtle.svg';
       const cldImage = cld.image(src);
-      plugin({ cldImage, options: {
+      plugin({ cldAsset: cldImage, options: {
         src
       } });
       expect(cldImage.toURL()).toContain(`image/upload/fl_sanitize/turtle.svg`);
@@ -24,7 +24,7 @@ describe('Cloudinary Sanitize', () => {
     it('should include fl_sanitize and f_svg when display format is svg', () => {
       const src = 'turtle';
       const cldImage = cld.image(src);
-      plugin({ cldImage, options: {
+      plugin({ cldAsset: cldImage, options: {
         format: 'svg',
         src
       } });
@@ -34,7 +34,7 @@ describe('Cloudinary Sanitize', () => {
     it('should include fl_sanitize and f_svg when display format svg image', () => {
       const src = 'turtle.svg';
       const cldImage = cld.image(src);
-      plugin({ cldImage, options: {
+      plugin({ cldAsset: cldImage, options: {
         format: 'svg',
         src
       } });
@@ -44,7 +44,7 @@ describe('Cloudinary Sanitize', () => {
     it('should not include fl_sanitize when set option sanitize to false', () => {
       const src = 'turtle.svg';
       const cldImage = cld.image(src);
-      plugin({ cldImage, options: {
+      plugin({ cldAsset: cldImage, options: {
         sanitize: false,
         src
       } });
@@ -54,7 +54,7 @@ describe('Cloudinary Sanitize', () => {
     it('should not include fl_sanitize when display other image', () => {
       const src = 'turtle';
       const cldImage = cld.image(src);
-      plugin({ cldImage, options: {
+      plugin({ cldAsset: cldImage, options: {
         src
       } });
       expect(cldImage.toURL()).toContain(`image/upload/turtle`);
