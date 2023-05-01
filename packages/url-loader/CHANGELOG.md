@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.3.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.2.0...@cloudinary-util/url-loader-v3.3.0) (2023-05-01)
+
+
+### Features
+
+* constructCloudinaryUrl Video Support ([#36](https://github.com/colbyfayock/cloudinary-util/issues/36)) ([ca06530](https://github.com/colbyfayock/cloudinary-util/commit/ca06530c77b31c2318f188b03e29f2f872d61daa)), closes [#6](https://github.com/colbyfayock/cloudinary-util/issues/6)
+
 # [@cloudinary-util/url-loader-v3.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.1.1...@cloudinary-util/url-loader-v3.2.0) (2023-04-14)
 
 
