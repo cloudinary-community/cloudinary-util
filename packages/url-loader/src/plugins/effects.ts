@@ -4,6 +4,7 @@ import { effects as qualifiersEffects } from '../constants/qualifiers';
 import { constructTransformation } from '../lib/transformations';
 
 export const props = [...Object.keys(qualifiersEffects), 'effects'];
+export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 export function plugin(props: PluginSettings) {
   const { cldAsset, options } = props;

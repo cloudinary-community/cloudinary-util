@@ -125,7 +125,20 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
     throw new Error('Invalid asset type.');
   }
 
-  transformationPlugins.forEach(({ plugin }) => {
+  transformationPlugins.forEach(({ plugin, assetTypes, props }) => {
+    const supportedAssetType = typeof options?.assetType !== 'undefined' && assetTypes.includes(options?.assetType);
+
+    if ( !supportedAssetType ) {
+      const optionsKeys = Object.keys(options);
+      const attemptedUse = props.map(prop => optionsKeys.includes(prop)).filter(isUsed => !!isUsed).length > 0;
+
+      if ( attemptedUse ) {
+        console.warn(`One of the following props [${props.join(', ')}] was used with an unsupported asset type [${options?.assetType}]`);
+      }
+
+      return;
+    }
+
     const results: PluginResults = plugin({
       cldAsset,
       options

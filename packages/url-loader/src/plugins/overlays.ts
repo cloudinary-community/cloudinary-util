@@ -13,6 +13,7 @@ import {
 } from '../constants/qualifiers';
 
 export const props = ['text', 'overlays'];
+export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 export const DEFAULT_TEXT_OPTIONS = {
   color: 'black',

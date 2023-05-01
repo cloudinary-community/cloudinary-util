@@ -9,6 +9,7 @@ import {
 } from '../constants/qualifiers';
 
 export const props = ['underlay', 'underlays'];
+export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 export function plugin(props: PluginSettings) {
   const { cldAsset, options } = props;

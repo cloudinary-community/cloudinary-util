@@ -1,6 +1,7 @@
 import { PluginSettings } from '../types/plugins';
 
 export const props = ['sanitize'];
+export const assetTypes = ['image', 'images'];
 
 export function plugin(props: PluginSettings) {
   const { cldAsset, options } = props;

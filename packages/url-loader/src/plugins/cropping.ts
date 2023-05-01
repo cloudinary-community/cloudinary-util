@@ -8,6 +8,7 @@ export const props = [
   'gravity',
   'zoom'
 ];
+export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 /**
  * normalizeNumberParameter

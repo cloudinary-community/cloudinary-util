@@ -312,6 +312,32 @@ describe('Cloudinary', () => {
 
     })
 
+    /* General Plugins */
+
+    describe('Plugins', () => {
+
+      it('should not apply an image-only plugin to a video asset', () => {
+        const cloudName = 'customtestcloud';
+        const assetType = 'video';
+        const src = 'turtle';
+        const zoompan = 'loop';
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            assetType,
+            zoompan
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`${assetType}/upload/f_auto/q_auto/${src}`);
+      });
+
+    })
+
 
   });
 });
