@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.4.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.3.0...@cloudinary-util/url-loader-v3.4.0) (2023-05-02)
+
+
+### Features
+
+* Qualifier - Trim ([#38](https://github.com/colbyfayock/cloudinary-util/issues/38)) ([014c997](https://github.com/colbyfayock/cloudinary-util/commit/014c9977e5fab797c68465bc26347b7b3a3e1e57)), closes [#37](https://github.com/colbyfayock/cloudinary-util/issues/37)
+
 # [@cloudinary-util/url-loader-v3.3.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.2.0...@cloudinary-util/url-loader-v3.3.0) (2023-05-01)
 
 
