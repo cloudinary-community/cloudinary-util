@@ -262,6 +262,10 @@ export const effects: Record<string, Qualifier> = {
     prefix: 'e',
     qualifier: 'tint',
   },
+  trim: {
+    prefix: 'e',
+    qualifier: 'trim',
+  },
   unsharpMask: {
     prefix: 'e',
     qualifier: 'unsharp_mask',
