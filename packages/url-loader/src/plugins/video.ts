@@ -5,7 +5,7 @@ import { PluginSettings } from '../types/plugins';
 import { video as qualifiersVideo } from '../constants/qualifiers';
 import { constructTransformation } from '../lib/transformations';
 
-export const props = [...Object.keys(qualifiersVideo), 'effects'];
+export const props = [...Object.keys(qualifiersVideo)];
 export const assetTypes = ['video', 'videos'];
 
 export function plugin(props: PluginSettings) {
