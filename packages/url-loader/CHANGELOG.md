@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.5.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.4.0...@cloudinary-util/url-loader-v3.5.0) (2023-05-03)
+
+
+### Features
+
+* Video Types, Streaming Profile ([#40](https://github.com/colbyfayock/cloudinary-util/issues/40)) ([a43155c](https://github.com/colbyfayock/cloudinary-util/commit/a43155c49375f38424e1de8635bba2889182fc09)), closes [#39](https://github.com/colbyfayock/cloudinary-util/issues/39)
+
 # [@cloudinary-util/url-loader-v3.4.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.3.0...@cloudinary-util/url-loader-v3.4.0) (2023-05-02)
 
 
