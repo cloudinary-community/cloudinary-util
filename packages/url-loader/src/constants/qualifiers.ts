@@ -291,3 +291,10 @@ export const flags: Record<string, Qualifier> = {
     location: 'primary'
   }
 } as const;
+
+export const video: Record<string, Qualifier> = {
+  streamingProfile: {
+    qualifier: 'sp',
+    location: 'primary'
+  }
+} as const;

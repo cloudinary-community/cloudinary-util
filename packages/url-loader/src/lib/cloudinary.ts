@@ -11,6 +11,7 @@ import * as removeBackgroundPlugin from '../plugins/remove-background';
 import * as seoPlugin from '../plugins/seo';
 import * as underlaysPlugin from '../plugins/underlays';
 import * as versionPlugin from '../plugins/version';
+import * as videoPlugin from '../plugins/video';
 import * as zoompanPlugin from '../plugins/zoompan';
 
 import { ImageOptions } from '../types/image';
@@ -36,6 +37,7 @@ export const transformationPlugins = [
   seoPlugin,
   underlaysPlugin,
   versionPlugin,
+  videoPlugin,
   zoompanPlugin,
 ];
 
