@@ -81,6 +81,17 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
     options.assetType = 'image';
   }
 
+  const propsCheck: Array<string> = [];
+
+  transformationPlugins.forEach(({ props = [] }) => {
+    props.forEach(prop => {
+      if ( propsCheck.includes(prop) ) {
+        throw new Error(`Option ${prop} already exists!`);
+      }
+      propsCheck.push(prop);
+    });
+  })
+
   const parsedOptions: Pick<ParseUrl, 'seoSuffix' | 'version'> = {
     seoSuffix: undefined,
     version: undefined,

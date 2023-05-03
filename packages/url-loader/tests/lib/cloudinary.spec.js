@@ -338,6 +338,42 @@ describe('Cloudinary', () => {
 
     })
 
+    /* Effects */
+
+    it('should apply effects by array', () => {
+      const cloudName = 'customtestcloud';
+        const assetType = 'video';
+        const src = 'turtle';
+        const shear = '40:0';
+        const gradientFade = true;
+        const opacity = '50';
+        const cartoonify = '50';
+        const radius = '150';
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            assetType,
+            effects: [
+              {
+                shear,
+                opacity,
+              },
+              {
+                gradientFade,
+                cartoonify,
+                radius
+              }
+            ]
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`${assetType}/upload/o_${opacity},e_shear:${shear}/e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}/f_auto/q_auto/${src}`);
+    });
+
 
   });
 });
