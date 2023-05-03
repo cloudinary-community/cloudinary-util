@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.5.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.5.0...@cloudinary-util/url-loader-v3.5.1) (2023-05-03)
+
+
+### Bug Fixes
+
+* Duplicate Props Does Not Throw Error - Effects Exists Twice ([#42](https://github.com/colbyfayock/cloudinary-util/issues/42)) ([7f7c2bf](https://github.com/colbyfayock/cloudinary-util/commit/7f7c2bf71254a51d5b8ee8ed691879d3fc348ab9)), closes [#41](https://github.com/colbyfayock/cloudinary-util/issues/41)
+
 # [@cloudinary-util/url-loader-v3.5.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.4.0...@cloudinary-util/url-loader-v3.5.0) (2023-05-03)
 
 
