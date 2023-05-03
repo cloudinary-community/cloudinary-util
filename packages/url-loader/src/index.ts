@@ -3,7 +3,10 @@ export type { ConstructUrlProps, PluginOptionsResize, PluginOptions, PluginResul
 
 export { effects, position, primary, text } from './constants/qualifiers';
 
+export type { AssetOptionsResize, AssetOptions } from './types/asset';
 export type { ImageOptionsResize, ImageOptionsZoomPan, ImageOptions } from './types/image';
+export type { VideoOptionsResize, VideoOptions } from './types/video';
+
 export type { AnalyticsOptions } from './types/analytics';
 export type { ConfigOptions } from './types/config';
 export type { PluginSettings, PluginOverrides } from './types/plugins';
