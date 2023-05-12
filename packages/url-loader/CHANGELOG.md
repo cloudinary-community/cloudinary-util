@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.6.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.6.0...@cloudinary-util/url-loader-v3.6.1) (2023-05-12)
+
+
+### Bug Fixes
+
+* adding flags to plugin list ([1ef8bb4](https://github.com/colbyfayock/cloudinary-util/commit/1ef8bb468da2f5410f16d4771baa6609615cfe47))
+
 # [@cloudinary-util/url-loader-v3.6.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.5.1...@cloudinary-util/url-loader-v3.6.0) (2023-05-12)
 
 
