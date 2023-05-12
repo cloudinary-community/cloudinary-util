@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.6.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.5.1...@cloudinary-util/url-loader-v3.6.0) (2023-05-12)
+
+
+### Features
+
+* Flags ([#44](https://github.com/colbyfayock/cloudinary-util/issues/44)) ([57f9a4a](https://github.com/colbyfayock/cloudinary-util/commit/57f9a4a7f12abbaa0f893661409deda706a79288)), closes [#43](https://github.com/colbyfayock/cloudinary-util/issues/43)
+
 # [@cloudinary-util/url-loader-v3.5.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.5.0...@cloudinary-util/url-loader-v3.5.1) (2023-05-03)
 
 
