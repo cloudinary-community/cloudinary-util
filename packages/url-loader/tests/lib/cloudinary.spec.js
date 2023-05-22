@@ -106,7 +106,7 @@ describe('Cloudinary', () => {
         const deliveryType = 'fetch';
         const publicId = 'myimage';
 
-        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/f_auto/q_auto/v1234/${publicId}?_a=A`;
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/f_auto/q_auto/v1234/${publicId}?_a=B`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -136,7 +136,7 @@ describe('Cloudinary', () => {
         const publicId = 'myimage';
         const seoSuffix = 'test-image';
 
-        const src = `https://res.cloudinary.com/${cloudName}/images/c_limit,w_100/f_auto/q_auto/v1234/${publicId}/${seoSuffix}?_a=A`;
+        const src = `https://res.cloudinary.com/${cloudName}/images/c_limit,w_100/f_auto/q_auto/v1234/${publicId}/${seoSuffix}?_a=B`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -162,7 +162,7 @@ describe('Cloudinary', () => {
         const width = 1234;
         const height = 1234;
 
-        const src = `https://res.cloudinary.com/${cloudName}/${assetType}/c_limit,w_${width}/f_auto/q_auto/v1234/${publicId}?_a=A`;
+        const src = `https://res.cloudinary.com/${cloudName}/${assetType}/c_limit,w_${width}/f_auto/q_auto/v1234/${publicId}?_a=B`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -190,7 +190,7 @@ describe('Cloudinary', () => {
         const height = 1234;
 
         const src = `https://res.cloudinary.com/${cloudName}/${assetType}/c_limit,w_${width}/f_auto/q_auto/v1234/${publicId}/${seoSuffix}${format}?_i=A`;
-        const exepectedSrc = `https://res.cloudinary.com/${cloudName}/image/fetch/c_limit,w_${width}/f_auto/q_auto/v1234/${publicId}?_a=A`
+        const exepectedSrc = `https://res.cloudinary.com/${cloudName}/image/fetch/c_limit,w_${width}/f_auto/q_auto/v1234/${publicId}?_a=B`
 
         const url = constructCloudinaryUrl({
           options: {
@@ -216,7 +216,7 @@ describe('Cloudinary', () => {
         const originalSeoSuffix = 'my-image'
         const seoSuffix = 'test-image';
 
-        const src = `https://res.cloudinary.com/${cloudName}/${assetType}/c_limit,w_100/f_auto/q_auto/v1234/${publicId}/${originalSeoSuffix}?_a=A`;
+        const src = `https://res.cloudinary.com/${cloudName}/${assetType}/c_limit,w_100/f_auto/q_auto/v1234/${publicId}/${originalSeoSuffix}?_a=B`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -267,7 +267,7 @@ describe('Cloudinary', () => {
 
       it('should include an analytics ID at the end of the URL', () => {
         const cloudName = 'customtestcloud';
-        const sdkCode = 'V';
+        const expectedId = 'BBVAABDJ0';
         const url = constructCloudinaryUrl({
           options: {
             src: 'turtle',
@@ -278,12 +278,13 @@ describe('Cloudinary', () => {
             }
           },
           analytics: {
-            sdkCode
+            sdkCode: 'V',
+            sdkSemver: '1.0.0',
+            techVersion: '1.2.3',
+            product: 'B'
           }
         });
-        // Only match the analytics version (A) and the ID as the rest is determined
-        // dynamically by SDK and Next.js version
-        expect(url).toContain(`?_a=A${sdkCode}`);
+        expect(url).toContain(`?_a=${expectedId}`);
       });
 
     });
