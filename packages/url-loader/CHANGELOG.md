@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.8.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.7.0...@cloudinary-util/url-loader-v3.8.0) (2023-05-23)
+
+
+### Features
+
+* "default" turns off format and quality ([#47](https://github.com/colbyfayock/cloudinary-util/issues/47)) ([d168eb9](https://github.com/colbyfayock/cloudinary-util/commit/d168eb9e08c494334de9ac97f4b78f81c9ae46ac)), closes [#46](https://github.com/colbyfayock/cloudinary-util/issues/46)
+
 # [@cloudinary-util/url-loader-v3.7.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.6.1...@cloudinary-util/url-loader-v3.7.0) (2023-05-23)
 
 
