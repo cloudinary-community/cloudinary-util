@@ -13,7 +13,7 @@ export interface AssetOptions {
   gravity?: string;
   height?: string | number;
   overlays?: Array<any>;
-  quality?: number;
+  quality?: number | string;
   rawTransformations?: string[];
   removeBackground?: boolean;
   sanitize?: boolean;

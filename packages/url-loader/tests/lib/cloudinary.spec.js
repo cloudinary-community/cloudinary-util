@@ -75,6 +75,31 @@ describe('Cloudinary', () => {
         expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/upload/c_limit,w_100/f_${format}/q_${quality}/turtle`);
       });
 
+      it('should not include quality or format in URL', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'upload';
+        const publicId = 'myimage';
+
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/v1234/${publicId}?_a=B`;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            width: 100,
+            height: 100,
+            quality: 'default',
+            format: 'default'
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+
+        expect(url).toContain(src);
+      });
+
     });
 
     /* Delivery */
@@ -124,7 +149,6 @@ describe('Cloudinary', () => {
 
         expect(url).toContain(src);
       });
-
     })
 
     /* SEO */

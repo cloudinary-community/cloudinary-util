@@ -180,11 +180,17 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
     cldAsset.effect(`c_${crop},w_${width}`);
   }
 
-  return cldAsset
-          .setDeliveryType(options?.deliveryType || 'upload')
-          .format(options?.format || 'auto')
-          .delivery(`q_${options?.quality || 'auto'}`)
-          .toURL({
-            trackedAnalytics: analytics
-          });
+  cldAsset.setDeliveryType(options?.deliveryType || 'upload');
+
+  if ( options?.format !== 'default' ) {
+    cldAsset.format(options?.format || 'auto')
+  }
+
+  if ( options?.quality !== 'default' ) {
+    cldAsset.quality(options?.quality || 'auto')
+  }
+
+  return cldAsset.toURL({
+    trackedAnalytics: analytics
+  });
 }
