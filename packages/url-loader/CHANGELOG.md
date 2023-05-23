@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.7.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.6.1...@cloudinary-util/url-loader-v3.7.0) (2023-05-23)
+
+
+### Features
+
+* Updated Analytics ([#45](https://github.com/colbyfayock/cloudinary-util/issues/45)) ([f267ee6](https://github.com/colbyfayock/cloudinary-util/commit/f267ee6885abea015431a5b7ec4ed77b41082d5e))
+
 # [@cloudinary-util/url-loader-v3.6.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.6.0...@cloudinary-util/url-loader-v3.6.1) (2023-05-12)
 
 
