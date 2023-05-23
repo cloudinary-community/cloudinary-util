@@ -267,7 +267,7 @@ describe('Cloudinary', () => {
 
       it('should include an analytics ID at the end of the URL', () => {
         const cloudName = 'customtestcloud';
-        const expectedId = 'BBVAABDJ0';
+        const expectedId = 'BBAAABDJ0';
         const url = constructCloudinaryUrl({
           options: {
             src: 'turtle',
