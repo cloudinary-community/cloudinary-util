@@ -43,8 +43,6 @@ export const transformationPlugins = [
   zoompanPlugin,
 ];
 
-let cld: any;
-
 /**
  * constructCloudinaryUrl
  * @description Builds a full Cloudinary URL using transformation plugins specified by options
@@ -71,9 +69,7 @@ export interface PluginResults {
 }
 
 export function constructCloudinaryUrl({ options, config, analytics }: ConstructUrlProps): string {
-  if ( !cld ) {
-    cld = new Cloudinary(config);
-  }
+  const cld = new Cloudinary(config);
 
   if ( !options?.src ) {
     throw Error(`Failed to construct Cloudinary URL: Missing source (src) in options`);
