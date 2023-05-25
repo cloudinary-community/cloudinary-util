@@ -313,6 +313,31 @@ describe('Cloudinary', () => {
 
     });
 
+    /* Custom Config */
+
+    describe('analytics', () => {
+
+      it('should include an analytics ID at the end of the URL', () => {
+        const cloudName = 'customtestcloud';
+        const secureDistribution = 'spacejelly.dev';
+        const url = constructCloudinaryUrl({
+          options: {
+            src: 'turtle',
+          },
+          config: {
+            cloud: {
+              cloudName
+            },
+            url: {
+              secureDistribution
+            }
+          }
+        });
+        expect(url).toContain(`https://${secureDistribution}/${cloudName}`);
+      });
+
+    });
+
     /* Raw Transformations */
 
     describe('rawTransformations', () => {
