@@ -1,12 +1,27 @@
-import type { AssetOptions, AssetOptionsResize } from './asset';
+import { z } from 'zod';
 
-export interface ImageOptionsResize extends AssetOptionsResize {}
+import { assetOptionsSchema } from './asset';
 
-export interface ImageOptionsZoomPan {
-  loop: string | boolean;
-  options: string;
-}
+export const imageOptionsResizeSchema = assetOptionsSchema;
 
-export interface ImageOptions extends AssetOptions {
-  zoompan?: string | boolean | ImageOptionsZoomPan;
-}
+export type ImageOptionsResize = z.infer<typeof imageOptionsResizeSchema>;
+
+export const imageOptionsZoomPanSchema = z.object({
+  loop: z.union([
+    z.string(),
+    z.boolean()
+  ]),
+  options: z.string()
+})
+
+export type ImageOptionsZoomPan = z.infer<typeof imageOptionsZoomPanSchema>;
+
+export const imageOptionsSchema = assetOptionsSchema.extend({
+  zoompan: z.union([
+    z.string(),
+    z.boolean(),
+    imageOptionsZoomPanSchema
+  ]).optional()
+})
+
+export type ImageOptions = z.infer<typeof imageOptionsSchema>;

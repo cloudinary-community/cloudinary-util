@@ -1,0 +1,1 @@
+export { imageOptionsSchema } from './types/image';
