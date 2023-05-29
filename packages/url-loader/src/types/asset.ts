@@ -11,8 +11,19 @@ export const assetOptionsResizeSchema = z.object({
 export type AssetOptionsResize = z.infer<typeof assetOptionsResizeSchema>;
 
 export const assetOptionsSchema = z.object({
-  assetType: z.string().optional(),
-  crop: z.string().optional(),
+  assetType: z.string()
+    .optional()
+    .default('image')
+    .describe(JSON.stringify({
+      text: 'The type of asset to deliver.',
+      url: 'https://cloudinary.com/documentation/image_transformations#transformation_url_structure'
+    })),
+  crop: z.string()
+    .optional()
+    .describe(JSON.stringify({
+      text: 'Mode to use when cropping an asset.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#c_crop_resize'
+    })),
   deliveryType: z.string().optional(),
   effects: z.array(z.any()).optional(),
   flags: z.union([
@@ -30,7 +41,9 @@ export const assetOptionsSchema = z.object({
   resize: assetOptionsResizeSchema.optional(),
   seoSuffix: z.string().optional(),
   src: z.string(),
-  text: z.any().optional(),
+  text: z.string().optional().describe(JSON.stringify({
+    text: 'Text to be overlaid on asset'
+  })),
   transformations: z.array(z.string()).optional(),
   underlay: z.string().optional(),
   underlays: z.array(z.any()).optional(),
