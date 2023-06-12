@@ -12,18 +12,18 @@ export type AssetOptionsResize = z.infer<typeof assetOptionsResizeSchema>;
 
 export const assetOptionsSchema = z.object({
   assetType: z.string()
-    .optional()
     .default('image')
     .describe(JSON.stringify({
       text: 'The type of asset to deliver.',
       url: 'https://cloudinary.com/documentation/image_transformations#transformation_url_structure'
-    })),
+    }))
+    .optional(),
   crop: z.string()
-    .optional()
     .describe(JSON.stringify({
       text: 'Mode to use when cropping an asset.',
       url: 'https://cloudinary.com/documentation/transformation_reference#c_crop_resize'
-    })),
+    }))
+    .optional(),
   deliveryType: z.string().optional(),
   effects: z.array(z.any()).optional(),
   flags: z.union([
