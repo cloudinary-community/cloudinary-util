@@ -1,0 +1,75 @@
+import { imageOptionsSchema } from '@cloudinary-util/url-loader/dist/schema';
+import { zodToJsonSchema } from 'zod-to-json-schema';
+
+
+# Image
+
+export const Test = ({ schema }) => {
+  const { properties, required } = schema.definitions.imageOptions;
+
+  const formattedProperties = Object.entries(properties).map(([name, configuration]) => {
+    const { type, anyOf, default: defaultValue } = configuration;
+
+    let types = type || [];
+
+    if ( types && !Array.isArray(types) ) {
+      types = [types];
+    }
+
+    if ( anyOf ) {
+      anyOf.filter(({ type }) => !!type ).forEach(ao => {
+        types.push(ao.type);
+      })
+    }
+
+    const description = configuration.description && JSON.parse(configuration.description);
+    const { text, url } = description || {};
+
+    return {
+      name,
+      required: required.includes(name),
+      types,
+      defaultValue,
+      description: text,
+      link: url && {
+        label: 'More Info',
+        url,
+      }
+    }
+  })
+
+  return (
+    <>
+      <table>
+        <thead>
+          <tr>
+            <td><strong>Property</strong></td>
+            <td><strong>Required</strong></td>
+            <td><strong>Types</strong></td>
+            <td><strong>Default</strong></td>
+            <td><strong>Description</strong></td>
+            <td></td>
+          </tr>
+        </thead>
+        <tbody>
+        {formattedProperties.map(({ name, required, types, defaultValue, description, link }) => {
+          return (
+            <tr key={name}>
+              <td>{ name }</td>
+              <td>{ required && 'Yes' }</td>
+              <td>{ types && types.join(' | ') }</td>
+              <td>{ defaultValue }</td>
+              <td>{ description }</td>
+              <td>
+                {link && <a href={link.url}>{ link.label }</a>}
+              </td>
+            </tr>
+          )
+        })}
+        </tbody>
+      </table>
+    </>
+  )
+}
+
+<Test schema={zodToJsonSchema(imageOptionsSchema, 'imageOptions')} />
