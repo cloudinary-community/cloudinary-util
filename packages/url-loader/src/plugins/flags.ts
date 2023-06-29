@@ -1,15 +1,34 @@
+import { z } from 'zod';
+
 import { PluginSettings } from '../types/plugins';
 
+import { constructPluginSchema } from '../lib/plugins';
 import { flags as qualifiersFlags } from '../constants/qualifiers';
 
-export const props = ['flags'];
-export const assetTypes = ['image', 'images', 'video', 'videos'];
+const pluginProps = [
+  {
+    name: 'flags',
+    type: z.union([
+      z.array(z.string()),
+      z.record(z.string(), z.string())
+    ]).optional(),
+    assetTypes: ['image', 'images', 'video', 'videos']
+  }
+];
+
+const pluginPropsSchema = constructPluginSchema(pluginProps);
+
+export const props = pluginProps.map(({ name }) => name);
+export const assetTypes = Array.from(new Set(pluginProps.flatMap(({ assetTypes }) => assetTypes)));
 
 const supportedFlags = Object.entries(qualifiersFlags).map(([_, { qualifier }]) => qualifier);
 
 export function plugin(props: PluginSettings) {
   const { cldAsset, options } = props;
   const { flags = [] } = options;
+
+  const test = pluginPropsSchema.parse(options);
+  console.log('test', test)
 
   // First iteration of adding flags follows the same pattern
   // as the top level option from Cloudinary URL Gen SDK where

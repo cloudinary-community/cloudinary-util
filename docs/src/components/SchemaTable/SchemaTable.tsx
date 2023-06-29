@@ -1,20 +1,19 @@
-import { imageOptionsSchema } from '@cloudinary-util/url-loader/dist/schema';
-import { zodToJsonSchema } from 'zod-to-json-schema';
+import styles from './SchemaTable.module.scss';
 
+interface Configuration {
+  anyOf: Array<{ type: string; }>;
+  default: string;
+  description?: string;
+  type: string;
+}
 
-# Image
+export const SchemaTable = ({ schema, schemaKey }) => {
+  const { properties, required } = schema.definitions[schemaKey];
 
-export const Test = ({ schema }) => {
-  const { properties, required } = schema.definitions.imageOptions;
-
-  const formattedProperties = Object.entries(properties).map(([name, configuration]) => {
+  const formattedProperties = Object.entries(properties).map(([name, configuration]: [string, Configuration]) => {
     const { type, anyOf, default: defaultValue } = configuration;
 
-    let types = type || [];
-
-    if ( types && !Array.isArray(types) ) {
-      types = [types];
-    }
+    const types = Array.isArray(type) ? type : [type];
 
     if ( anyOf ) {
       anyOf.filter(({ type }) => !!type ).forEach(ao => {
@@ -22,7 +21,7 @@ export const Test = ({ schema }) => {
       })
     }
 
-    const description = configuration.description && JSON.parse(configuration.description);
+    const description = configuration?.description && JSON.parse(configuration.description);
     const { text, url } = description || {};
 
     return {
@@ -44,8 +43,8 @@ export const Test = ({ schema }) => {
         <thead>
           <tr>
             <td><strong>Property</strong></td>
-            <td><strong>Required</strong></td>
             <td><strong>Types</strong></td>
+            <td><strong>Required</strong></td>
             <td><strong>Default</strong></td>
             <td><strong>Description</strong></td>
             <td></td>
@@ -56,12 +55,12 @@ export const Test = ({ schema }) => {
           return (
             <tr key={name}>
               <td>{ name }</td>
-              <td>{ required && 'Yes' }</td>
               <td>{ types && types.join(' | ') }</td>
-              <td>{ defaultValue }</td>
+              <td>{ required ? 'Yes' : '-' }</td>
+              <td>{ defaultValue || '-' }</td>
               <td>{ description }</td>
               <td>
-                {link && <a href={link.url}>{ link.label }</a>}
+                {link && <a href={link.url} className={styles.propertyLink}>{ link.label }</a>}
               </td>
             </tr>
           )
@@ -72,4 +71,4 @@ export const Test = ({ schema }) => {
   )
 }
 
-<Test schema={zodToJsonSchema(imageOptionsSchema, 'imageOptions')} />
+export default SchemaTable;

@@ -19,38 +19,140 @@ export const assetOptionsSchema = z.object({
     }))
     .optional(),
   crop: z.string()
+    .default('scale')
     .describe(JSON.stringify({
       text: 'Mode to use when cropping an asset.',
       url: 'https://cloudinary.com/documentation/transformation_reference#c_crop_resize'
     }))
     .optional(),
-  deliveryType: z.string().optional(),
-  effects: z.array(z.any()).optional(),
-  flags: z.union([
-    z.array(z.string()),
-    z.any()
-  ]).optional(),
-  format: z.string().optional(),
-  gravity: z.string().optional(),
-  height: z.union([z.string(), z.number()]).optional(),
-  overlays: z.array(z.any()).optional(),
-  quality: z.union([z.number(), z.string()]).optional(),
-  rawTransformations: z.array(z.string()).optional(),
-  removeBackground: z.boolean().optional(),
-  sanitize: z.boolean().optional(),
-  resize: assetOptionsResizeSchema.optional(),
-  seoSuffix: z.string().optional(),
-  src: z.string(),
-  text: z.string().optional().describe(JSON.stringify({
-    text: 'Text to be overlaid on asset'
-  })),
-  transformations: z.array(z.string()).optional(),
-  underlay: z.string().optional(),
-  underlays: z.array(z.any()).optional(),
-  version: z.union([z.number(), z.string()]).optional(),
-  width: z.union([z.string(), z.number()]).optional(),
-  widthResize: z.union([z.string(), z.number()]).optional(),
-  zoom: z.string().optional()
+  deliveryType: z.string()
+    .default('upload')
+    .describe(JSON.stringify({
+      text: 'Delivery method of the asset.',
+      url: 'https://cloudinary.com/documentation/image_transformations#delivery_types'
+    }))
+    .optional(),
+  effects: z.array(z.any())
+    .describe(JSON.stringify({
+      text: 'Array of objects specifying transformations to be applied to asset.'
+    })).optional(),
+  flags: z.union([ z.array(z.string()), z.any() ])
+    .describe(JSON.stringify({
+      text: 'Alters the regular behavior of another transformation or the overall delivery behavior.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#fl_flag'
+    }))
+    .optional(),
+  format: z.string()
+    .default('auto')
+    .describe(JSON.stringify({
+      text: 'Converts (if necessary) and delivers an asset in the specified format.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#f_format'
+    }))
+    .optional(),
+  gravity: z.string()
+    .default('auto')
+    .describe(JSON.stringify({
+      text: 'Determines which part of an asset to focus on. Note: Default of auto is applied for supported crop modes only.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#g_gravity'
+    }))
+    .optional(),
+  height: z.union([z.string(), z.number()])
+    .describe(JSON.stringify({
+      text: 'Height of the given asset.'
+    }))
+    .optional(),
+  overlays: z.array(z.any())
+    .describe(JSON.stringify({
+      text: 'Image or text layers that are applied on top of the base image.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#l_layer'
+    }))
+    .optional(),
+  quality: z.union([z.number(), z.string()])
+    .default('auto')
+    .describe(JSON.stringify({
+      text: 'Quality of the delivered asset',
+      url: 'https://cloudinary.com/documentation/transformation_reference#q_quality'
+    }))
+    .optional(),
+  rawTransformations: z.array(z.string())
+    .describe(JSON.stringify({
+      text: 'Array of URL transformation parameters to apply to an asset.',
+      url: 'https://cloudinary.com/documentation/transformation_reference'
+    }))
+    .optional(),
+  removeBackground: z.boolean()
+    .describe(JSON.stringify({
+      text: 'Removes the background of an image using the Cloudinary AI Background Removal Add-On (Required).',
+      url: 'https://cloudinary.com/documentation/cloudinary_ai_background_removal_addon'
+    }))
+    .optional(),
+  sanitize: z.boolean()
+    .describe(JSON.stringify({
+      text: 'Runs a sanitizer on SVG images.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#fl_sanitize'
+    }))
+    .optional(),
+  resize: assetOptionsResizeSchema
+    .describe(JSON.stringify({
+      text: '',
+      url: ''
+    }))
+    .optional(),
+  seoSuffix: z.string()
+    .describe(JSON.stringify({
+      text: 'Configures the URL to include an SEO-friendly suffix in the URL',
+      url: 'https://cloudinary.com/documentation/advanced_url_delivery_options#seo_friendly_media_asset_urls'
+    }))
+    .optional(),
+  src: z.string()
+    .describe(JSON.stringify({
+        text: 'Cloudinary Public ID or versioned Cloudinary URL (/v1234/)'
+      })),
+  text: z.string()
+    .describe(JSON.stringify({
+      text: 'Text to be overlaid on asset.',
+      url: 'https://cloudinary.com/documentation/image_transformations#transformation_url_structure'
+    })).optional(),
+  transformations: z.array(z.string())
+    .describe(JSON.stringify({
+      text: 'Named transformations to apply to asset.',
+      url: 'https://cloudinary.com/documentation/image_transformations#named_transformations'
+    }))
+    .optional(),
+  underlay: z.string()
+    .describe(JSON.stringify({
+      text: 'Public ID of image that is applied under the base image.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#l_layer'
+    }))
+    .optional(),
+  underlays: z.array(z.any())
+    .describe(JSON.stringify({
+      text: 'Image layers that are applied under the base image.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#l_layer'
+    }))
+    .optional(),
+  version: z.union([z.number(), z.string()])
+    .describe(JSON.stringify({
+      text: 'Custom version number to apply to asset URL.',
+      url: 'https://cloudinary.com/documentation/advanced_url_delivery_options#asset_versions'
+    }))
+    .optional(),
+  width: z.union([z.string(), z.number()])
+    .describe(JSON.stringify({
+      text: 'Width of the given asset.',
+    }))
+    .optional(),
+  widthResize: z.union([z.string(), z.number()])
+    .describe(JSON.stringify({
+      text: 'Width to resize the asset after all transformations are applied. Useful for responsive resizing.',
+    }))
+    .optional(),
+  zoom: z.string()
+    .describe(JSON.stringify({
+      text: 'Controls how close to crop to the detected coordinates when using face-detection, custom-coordinate, or object-specific gravity.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#z_zoom'
+    }))
+    .optional()
 })
 
 export type AssetOptions = z.infer<typeof assetOptionsSchema>;

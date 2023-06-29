@@ -1,0 +1,11 @@
+import { assetOptionsSchema } from '@cloudinary-util/url-loader/dist/schema';
+import { zodToJsonSchema } from 'zod-to-json-schema';
+
+import SchemaTable from '../../components/SchemaTable';
+
+
+# AssetOptions
+
+## Properties
+
+<SchemaTable schema={zodToJsonSchema(assetOptionsSchema, 'assetOptions')} schemaKey="assetOptions" />
