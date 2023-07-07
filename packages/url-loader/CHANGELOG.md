@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.8.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.8.1...@cloudinary-util/url-loader-v3.8.2) (2023-07-07)
+
+
+### Bug Fixes
+
+* HTTP Parsing, Color Functions ([#55](https://github.com/colbyfayock/cloudinary-util/issues/55)) ([4a20874](https://github.com/colbyfayock/cloudinary-util/commit/4a20874a4f052563e32a01ecbf3c088d0e7dded1)), closes [#54](https://github.com/colbyfayock/cloudinary-util/issues/54)
+
 # [@cloudinary-util/url-loader-v3.8.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.8.0...@cloudinary-util/url-loader-v3.8.1) (2023-05-25)
 
 
