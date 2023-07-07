@@ -210,6 +210,26 @@ describe('Cloudinary', () => {
         version,
       });
     });
+
+    it('should parse a non-HTTPS Cloudinary URL', () => {
+      const assetType = 'image';
+      const cloudName = 'test-cloud';
+      const deliveryType = 'upload';
+      const host = 'res.cloudinary.com';
+      const publicId = 'turtle';
+      const version = 1234;
+
+      const src = `http://${host}/${cloudName}/${assetType}/${deliveryType}/v${version}/${publicId}`;
+
+      expect(parseUrl(src)).toMatchObject({
+        assetType,
+        cloudName,
+        deliveryType,
+        host,
+        publicId,
+        version,
+      })
+    });
   });
 
   describe('getPublicId', () => {
