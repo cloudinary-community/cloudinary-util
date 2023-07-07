@@ -71,7 +71,7 @@ export interface PluginResults {
 export function constructCloudinaryUrl({ options, config, analytics }: ConstructUrlProps): string {
   const cld = new Cloudinary(config);
 
-  if ( !options?.src ) {
+  if ( typeof options?.src !== 'string' ) {
     throw Error(`Failed to construct Cloudinary URL: Missing source (src) in options`);
   }
 
@@ -101,7 +101,7 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
   // otherwise fall back to the src which should be a public ID or a remote URL
   // which will work when using the delivery type of fetch
 
-  if ( options.src.startsWith('https://') ) {
+  if ( typeof options.src === 'string' && /^https?:\/\//.test(options.src) ) {
     try {
       const parts = parseUrl(options.src);
       publicId = parts?.publicId;
