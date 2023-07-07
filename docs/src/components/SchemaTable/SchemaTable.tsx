@@ -1,3 +1,4 @@
+import { Table, Tr, Td } from 'nextra/components';
 import styles from './SchemaTable.module.scss';
 
 interface Configuration {
@@ -9,7 +10,7 @@ interface Configuration {
 
 export const SchemaTable = ({ schema, schemaKey }) => {
   const { properties, required } = schema.definitions[schemaKey];
-
+console.log('schema', schema)
   const formattedProperties = Object.entries(properties).map(([name, configuration]: [string, Configuration]) => {
     const { type, anyOf, default: defaultValue } = configuration;
 
@@ -39,34 +40,34 @@ export const SchemaTable = ({ schema, schemaKey }) => {
 
   return (
     <>
-      <table>
+      <Table>
         <thead>
-          <tr>
-            <td><strong>Property</strong></td>
-            <td><strong>Types</strong></td>
-            <td><strong>Required</strong></td>
-            <td><strong>Default</strong></td>
-            <td><strong>Description</strong></td>
-            <td></td>
-          </tr>
+          <Tr>
+            <Td><strong>Property</strong></Td>
+            <Td><strong>Types</strong></Td>
+            <Td><strong>Required</strong></Td>
+            <Td><strong>Default</strong></Td>
+            <Td><strong>Description</strong></Td>
+            <Td></Td>
+          </Tr>
         </thead>
         <tbody>
         {formattedProperties.map(({ name, required, types, defaultValue, description, link }) => {
           return (
-            <tr key={name}>
-              <td>{ name }</td>
-              <td>{ types && types.join(' | ') }</td>
-              <td>{ required ? 'Yes' : '-' }</td>
-              <td>{ defaultValue || '-' }</td>
-              <td>{ description }</td>
-              <td>
+            <Tr key={name}>
+              <Td>{ name }</Td>
+              <Td>{ types && types.join(' | ') }</Td>
+              <Td>{ required ? 'Yes' : '-' }</Td>
+              <Td>{ defaultValue || '-' }</Td>
+              <Td>{ description }</Td>
+              <Td>
                 {link && <a href={link.url} className={styles.propertyLink}>{ link.label }</a>}
-              </td>
-            </tr>
+              </Td>
+            </Tr>
           )
         })}
         </tbody>
-      </table>
+      </Table>
     </>
   )
 }

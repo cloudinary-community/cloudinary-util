@@ -1,3 +1,4 @@
+import { z } from 'zod';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { parseUrl, ParseUrl, objectHasKey } from '@cloudinary-util/util';
 
@@ -15,9 +16,9 @@ import * as versionPlugin from '../plugins/version';
 import * as videoPlugin from '../plugins/video';
 import * as zoompanPlugin from '../plugins/zoompan';
 
-import { ImageOptions } from '../types/image';
-import { AnalyticsOptions } from '../types/analytics';
-import { ConfigOptions } from '../types/config';
+import { ImageOptions, imageOptionsSchema } from '../types/image';
+import { AnalyticsOptions, analyticsOptionsSchema } from '../types/analytics';
+import { ConfigOptions, configOptionsSchema } from '../types/config';
 
 export const transformationPlugins = [
   // Background Removal must always come first
@@ -48,11 +49,13 @@ export const transformationPlugins = [
  * @description Builds a full Cloudinary URL using transformation plugins specified by options
  */
 
-export interface ConstructUrlProps {
-  options: ImageOptions;
-  config?: ConfigOptions;
-  analytics?: AnalyticsOptions;
-}
+export const constructUrlPropsSchema = z.object({
+  config: configOptionsSchema.optional(),
+  options: imageOptionsSchema,
+  analytics: analyticsOptionsSchema.optional(),
+})
+
+export type ConstructUrlProps = z.infer<typeof constructUrlPropsSchema>;
 
 export interface PluginOptionsResize {
   width?: string | number;
