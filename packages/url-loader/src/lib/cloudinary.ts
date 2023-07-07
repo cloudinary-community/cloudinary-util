@@ -4,6 +4,7 @@ import { parseUrl, ParseUrl, objectHasKey } from '@cloudinary-util/util';
 import * as croppingPlugin from '../plugins/cropping';
 import * as effectsPlugin from '../plugins/effects';
 import * as flagsPlugin from '../plugins/flags';
+import * as fillBackgroundPlugin from '../plugins/fill-background';
 import * as sanitizePlugin from '../plugins/sanitize';
 import * as overlaysPlugin from '../plugins/overlays';
 import * as namedTransformationsPlugin from '../plugins/named-transformations';
@@ -32,6 +33,7 @@ export const transformationPlugins = [
 
   croppingPlugin,
   effectsPlugin,
+  fillBackgroundPlugin,
   flagsPlugin,
   overlaysPlugin,
   sanitizePlugin,
