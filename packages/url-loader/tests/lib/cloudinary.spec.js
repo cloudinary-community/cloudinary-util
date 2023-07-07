@@ -149,6 +149,30 @@ describe('Cloudinary', () => {
 
         expect(url).toContain(src);
       });
+
+      it('should create a Cloudinary URL from a non-HTTPS Cloudinary source', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'fetch';
+        const publicId = 'myimage';
+
+        const src = `res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/f_auto/q_auto/v1234/${publicId}?_a=B`;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: `http://${src}`,
+            width: 100,
+            height: 100,
+            deliveryType
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+
+        expect(url).toContain(`https://${src}`);
+      });
     })
 
     /* SEO */
