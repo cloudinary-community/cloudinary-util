@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v2.1.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.0.1...@cloudinary-util/util-v2.1.0) (2023-07-07)
+
+
+### Features
+
+* adding color functions to util, adding http:// parsing test ([b65c60d](https://github.com/colbyfayock/cloudinary-util/commit/b65c60d282a691f8c6b61a12272bf9aa7ec69d41))
+
 # [@cloudinary-util/util-v2.0.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.0.0...@cloudinary-util/util-v2.0.1) (2023-03-24)
 
 
