@@ -77,6 +77,14 @@ export function parseUrl(src: string): ParseUrl | undefined {
     parts.publicId = publicIdParts.join('/');
   }
 
+  // The URL Gen SDK which this library relies on will re-encode the public ID. To avoid issues where
+  // someone is already passing in a URL or ID that's been encoded programmatically, first decode
+  // the public ID, which should theoretically be harmless since it ends up getting encoded
+
+  if ( parts.publicId ) {
+    parts.publicId = decodeURIComponent(parts.publicId);
+  }
+
   return parts;
 }
 
