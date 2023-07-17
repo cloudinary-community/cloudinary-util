@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v2.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.1.0...@cloudinary-util/util-v2.2.0) (2023-07-17)
+
+
+### Features
+
+* Adding -_ and 32-length support for signature ([#61](https://github.com/colbyfayock/cloudinary-util/issues/61)) ([cafe2ca](https://github.com/colbyfayock/cloudinary-util/commit/cafe2ca07f98ac48db2199398a1cf83f37ef4df4)), closes [#58](https://github.com/colbyfayock/cloudinary-util/issues/58)
+
 # [@cloudinary-util/util-v2.1.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.0.1...@cloudinary-util/util-v2.1.0) (2023-07-07)
 
 
