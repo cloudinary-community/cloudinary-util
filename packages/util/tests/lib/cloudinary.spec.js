@@ -71,6 +71,58 @@ describe('Cloudinary', () => {
       });
     });
 
+    it('should parse a Cloudinary URL with a signature that has special characters', () => {
+      const assetType = 'image';
+      const cloudName = 'test-cloud';
+      const deliveryType = 'fetch';
+      const format = undefined;
+      const host = 'res.cloudinary.com';
+      const publicId = 'images/turtle';
+      const signature = 's--abc-_123--';
+      const transformations = ['c_limit,w_960'];
+      const version = 1234;
+
+      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${signature}/${transformations.join('/')}/v${version}/${publicId}`;
+
+      expect(parseUrl(src)).toMatchObject({
+        assetType,
+        cloudName,
+        deliveryType,
+        format,
+        host,
+        publicId,
+        signature,
+        transformations,
+        version,
+      });
+    });
+
+    it('should parse a Cloudinary URL with a signature that has 32 characters', () => {
+      const assetType = 'image';
+      const cloudName = 'test-cloud';
+      const deliveryType = 'fetch';
+      const format = undefined;
+      const host = 'res.cloudinary.com';
+      const publicId = 'images/turtle';
+      const signature = 's--abcdefghij0123456789abcde01234_---';
+      const transformations = ['c_limit,w_960'];
+      const version = 1234;
+
+      const src = `https://${host}/${cloudName}/${assetType}/${deliveryType}/${signature}/${transformations.join('/')}/v${version}/${publicId}`;
+
+      expect(parseUrl(src)).toMatchObject({
+        assetType,
+        cloudName,
+        deliveryType,
+        format,
+        host,
+        publicId,
+        signature,
+        transformations,
+        version,
+      });
+    });
+
     it('should parse a video Cloudinary URL with deeply nested folders', () => {
       const assetType = 'video';
       const cloudName = 'test-cloud';
