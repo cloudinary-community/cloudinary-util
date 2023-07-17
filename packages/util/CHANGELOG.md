@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v2.2.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.2.0...@cloudinary-util/util-v2.2.1) (2023-07-17)
+
+
+### Bug Fixes
+
+* Decode Public ID to avoid double encoding ([#60](https://github.com/colbyfayock/cloudinary-util/issues/60)) ([c4c6bad](https://github.com/colbyfayock/cloudinary-util/commit/c4c6badb4b16be0df3c23545ff76dc9ce49b789a)), closes [#59](https://github.com/colbyfayock/cloudinary-util/issues/59)
+
 # [@cloudinary-util/util-v2.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.1.0...@cloudinary-util/util-v2.2.0) (2023-07-17)
 
 
