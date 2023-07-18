@@ -149,6 +149,52 @@ describe('Cloudinary', () => {
 
         expect(url).toContain(src);
       });
+
+      it('should create a Cloudinary URL from a non-HTTPS Cloudinary source', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'fetch';
+        const publicId = 'myimage';
+
+        const src = `res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/f_auto/q_auto/v1234/${publicId}?_a=B`;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: `http://${src}`,
+            width: 100,
+            height: 100,
+            deliveryType
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+
+        expect(url).toContain(`https://${src}`);
+      });
+
+      it('should create a Cloudinary URL from a Cloudinary source with existing URL encoding', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'upload';
+        const publicId = 'my%20pug%20v2';
+
+        const src = `res.cloudinary.com/${cloudName}/image/${deliveryType}/f_auto/q_auto/v1234/${publicId}?_a=B`;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: `http://${src}`,
+            deliveryType
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+
+        expect(url).toContain(`https://${src}`);
+      });
     })
 
     /* SEO */

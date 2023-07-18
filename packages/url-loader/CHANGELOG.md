@@ -1,3 +1,24 @@
+# [@cloudinary-util/url-loader-v3.9.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.9.0...@cloudinary-util/url-loader-v3.9.1) (2023-07-17)
+
+
+### Bug Fixes
+
+* Decode Public ID to avoid double encoding ([#60](https://github.com/colbyfayock/cloudinary-util/issues/60)) ([c4c6bad](https://github.com/colbyfayock/cloudinary-util/commit/c4c6badb4b16be0df3c23545ff76dc9ce49b789a)), closes [#59](https://github.com/colbyfayock/cloudinary-util/issues/59)
+
+# [@cloudinary-util/url-loader-v3.9.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.8.2...@cloudinary-util/url-loader-v3.9.0) (2023-07-10)
+
+
+### Features
+
+* Generative Fill ([#57](https://github.com/colbyfayock/cloudinary-util/issues/57)) ([f3059fc](https://github.com/colbyfayock/cloudinary-util/commit/f3059fcc7fc9c50ed570c1e61d4f771381b49efb)), closes [#56](https://github.com/colbyfayock/cloudinary-util/issues/56)
+
+# [@cloudinary-util/url-loader-v3.8.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.8.1...@cloudinary-util/url-loader-v3.8.2) (2023-07-07)
+
+
+### Bug Fixes
+
+* HTTP Parsing, Color Functions ([#55](https://github.com/colbyfayock/cloudinary-util/issues/55)) ([4a20874](https://github.com/colbyfayock/cloudinary-util/commit/4a20874a4f052563e32a01ecbf3c088d0e7dded1)), closes [#54](https://github.com/colbyfayock/cloudinary-util/issues/54)
+
 # [@cloudinary-util/url-loader-v3.8.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.8.0...@cloudinary-util/url-loader-v3.8.1) (2023-05-25)
 
 

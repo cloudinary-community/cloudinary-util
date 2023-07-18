@@ -5,6 +5,7 @@ import { parseUrl, ParseUrl, objectHasKey } from '@cloudinary-util/util';
 import * as croppingPlugin from '../plugins/cropping';
 import * as effectsPlugin from '../plugins/effects';
 import * as flagsPlugin from '../plugins/flags';
+import * as fillBackgroundPlugin from '../plugins/fill-background';
 import * as sanitizePlugin from '../plugins/sanitize';
 import * as overlaysPlugin from '../plugins/overlays';
 import * as namedTransformationsPlugin from '../plugins/named-transformations';
@@ -33,6 +34,7 @@ export const transformationPlugins = [
 
   croppingPlugin,
   effectsPlugin,
+  fillBackgroundPlugin,
   flagsPlugin,
   overlaysPlugin,
   sanitizePlugin,
@@ -74,7 +76,7 @@ export interface PluginResults {
 export function constructCloudinaryUrl({ options, config, analytics }: ConstructUrlProps): string {
   const cld = new Cloudinary(config);
 
-  if ( !options?.src ) {
+  if ( typeof options?.src !== 'string' ) {
     throw Error(`Failed to construct Cloudinary URL: Missing source (src) in options`);
   }
 
@@ -104,7 +106,7 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
   // otherwise fall back to the src which should be a public ID or a remote URL
   // which will work when using the delivery type of fetch
 
-  if ( options.src.startsWith('https://') ) {
+  if ( typeof options.src === 'string' && /^https?:\/\//.test(options.src) ) {
     try {
       const parts = parseUrl(options.src);
       publicId = parts?.publicId;

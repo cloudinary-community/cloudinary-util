@@ -1,6 +1,6 @@
 {
   "name": "@cloudinary-util/util",
-  "version": "2.0.1",
+  "version": "2.2.1",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",

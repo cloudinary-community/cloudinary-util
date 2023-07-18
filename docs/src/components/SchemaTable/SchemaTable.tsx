@@ -1,4 +1,7 @@
 import { Table, Tr, Td } from 'nextra/components';
+
+import { sortByKey } from '../../lib/util';
+
 import styles from './SchemaTable.module.scss';
 
 interface Configuration {
@@ -8,9 +11,21 @@ interface Configuration {
   type: string;
 }
 
+interface Property {
+  name: string;
+  required: boolean;
+  types: Array<string>;
+  defaultValue?: string;
+  description?: string;
+  link?: {
+    label: string;
+    url: string;
+  }
+}
+
 export const SchemaTable = ({ schema, schemaKey }) => {
   const { properties, required } = schema.definitions[schemaKey];
-console.log('schema', schema)
+
   const formattedProperties = Object.entries(properties).map(([name, configuration]: [string, Configuration]) => {
     const { type, anyOf, default: defaultValue } = configuration;
 
@@ -25,7 +40,7 @@ console.log('schema', schema)
     const description = configuration?.description && JSON.parse(configuration.description);
     const { text, url } = description || {};
 
-    return {
+    const property: Property = {
       name,
       required: required.includes(name),
       types,
@@ -36,7 +51,11 @@ console.log('schema', schema)
         url,
       }
     }
+
+    return property;
   })
+
+  const sortedProperties = sortByKey(formattedProperties, 'name');
 
   return (
     <>
@@ -52,7 +71,7 @@ console.log('schema', schema)
           </Tr>
         </thead>
         <tbody>
-        {formattedProperties.map(({ name, required, types, defaultValue, description, link }) => {
+        {sortedProperties.map(({ name, required, types, defaultValue, description, link }: Property) => {
           return (
             <Tr key={name}>
               <Td>{ name }</Td>

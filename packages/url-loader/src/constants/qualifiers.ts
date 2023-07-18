@@ -1,5 +1,5 @@
 import { Qualifier } from '../types/qualifiers';
-import { testColorIsHex, convertColorHexToRgb } from '../lib/colors';
+import { testColorIsHex, convertColorHexToRgb } from '@cloudinary-util/util';
 
 const convertersColors = [
   {

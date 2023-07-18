@@ -1,3 +1,24 @@
+# [@cloudinary-util/util-v2.2.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.2.0...@cloudinary-util/util-v2.2.1) (2023-07-17)
+
+
+### Bug Fixes
+
+* Decode Public ID to avoid double encoding ([#60](https://github.com/colbyfayock/cloudinary-util/issues/60)) ([c4c6bad](https://github.com/colbyfayock/cloudinary-util/commit/c4c6badb4b16be0df3c23545ff76dc9ce49b789a)), closes [#59](https://github.com/colbyfayock/cloudinary-util/issues/59)
+
+# [@cloudinary-util/util-v2.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.1.0...@cloudinary-util/util-v2.2.0) (2023-07-17)
+
+
+### Features
+
+* Adding -_ and 32-length support for signature ([#61](https://github.com/colbyfayock/cloudinary-util/issues/61)) ([cafe2ca](https://github.com/colbyfayock/cloudinary-util/commit/cafe2ca07f98ac48db2199398a1cf83f37ef4df4)), closes [#58](https://github.com/colbyfayock/cloudinary-util/issues/58)
+
+# [@cloudinary-util/util-v2.1.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.0.1...@cloudinary-util/util-v2.1.0) (2023-07-07)
+
+
+### Features
+
+* adding color functions to util, adding http:// parsing test ([b65c60d](https://github.com/colbyfayock/cloudinary-util/commit/b65c60d282a691f8c6b61a12272bf9aa7ec69d41))
+
 # [@cloudinary-util/util-v2.0.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.0.0...@cloudinary-util/util-v2.0.1) (2023-03-24)
 
 
