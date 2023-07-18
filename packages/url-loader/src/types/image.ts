@@ -2,6 +2,8 @@ import { z } from 'zod';
 
 import { assetOptionsSchema } from './asset';
 
+// Fill Background
+
 export const imageOptionsFillBackgroundSchema = z.object({
   crop: z.string().optional(),
   gravity: z.string().optional(),
@@ -10,9 +12,13 @@ export const imageOptionsFillBackgroundSchema = z.object({
 
 export type ImageOptionsFillBackground = z.infer<typeof imageOptionsFillBackgroundSchema>;
 
+// Resize
+
 export const imageOptionsResizeSchema = assetOptionsSchema;
 
 export type ImageOptionsResize = z.infer<typeof imageOptionsResizeSchema>;
+
+// ZoomPan
 
 export const imageOptionsZoomPanSchema = z.object({
   loop: z.union([ z.string(), z.boolean() ]),
@@ -21,7 +27,8 @@ export const imageOptionsZoomPanSchema = z.object({
 
 export type ImageOptionsZoomPan = z.infer<typeof imageOptionsZoomPanSchema>;
 
-// ImageOptionsFillBackground
+// Image Options
+
 export const imageOptionsSchema = assetOptionsSchema.extend({
   fillBackground: z.union([
       z.boolean(),

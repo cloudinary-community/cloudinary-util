@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+// Resize
+
 export const assetOptionsResizeSchema = z.object({
   crop: z.string().optional(),
   width: z.union([
@@ -9,6 +11,8 @@ export const assetOptionsResizeSchema = z.object({
 })
 
 export type AssetOptionsResize = z.infer<typeof assetOptionsResizeSchema>;
+
+// Asset Options
 
 export const assetOptionsSchema = z.object({
   assetType: z.string()

@@ -17,9 +17,9 @@ import * as versionPlugin from '../plugins/version';
 import * as videoPlugin from '../plugins/video';
 import * as zoompanPlugin from '../plugins/zoompan';
 
-import { ImageOptions, imageOptionsSchema } from '../types/image';
-import { AnalyticsOptions, analyticsOptionsSchema } from '../types/analytics';
-import { ConfigOptions, configOptionsSchema } from '../types/config';
+import { imageOptionsSchema } from '../types/image';
+import { analyticsOptionsSchema } from '../types/analytics';
+import { configOptionsSchema } from '../types/config';
 
 export const transformationPlugins = [
   // Background Removal must always come first
@@ -52,9 +52,21 @@ export const transformationPlugins = [
  */
 
 export const constructUrlPropsSchema = z.object({
-  config: configOptionsSchema.optional(),
-  options: imageOptionsSchema,
-  analytics: analyticsOptionsSchema.optional(),
+  analytics: analyticsOptionsSchema
+    .describe(JSON.stringify({
+      text: 'Tech, dependency, and feature identifiers for tracking SDK usage.'
+    }))
+    .optional(),
+  config: configOptionsSchema
+    .describe(JSON.stringify({
+      text: 'Configuration parameters for environment and Cloudinary account.',
+      url: 'https://cloudinary.com/documentation/cloudinary_sdks#configuration_parameters'
+    }))
+    .optional(),
+  options: imageOptionsSchema
+    .describe(JSON.stringify({
+      text: 'Asset options that define delivery URL including public ID and transformations.'
+    })),
 })
 
 export type ConstructUrlProps = z.infer<typeof constructUrlPropsSchema>;

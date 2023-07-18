@@ -2,9 +2,13 @@ import { z } from 'zod';
 
 import { assetOptionsSchema } from './asset';
 
+// Resize
+
 export const videoOptionsResizeSchema = assetOptionsSchema;
 
 export type VideoOptionsResize = z.infer<typeof videoOptionsResizeSchema>;
+
+// Video Options
 
 export const videoOptionsSchema = assetOptionsSchema.extend({
   streamingProfile: z.string()

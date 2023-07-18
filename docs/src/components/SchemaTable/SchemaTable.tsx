@@ -72,10 +72,11 @@ export const SchemaTable = ({ schema, schemaKey }) => {
         </thead>
         <tbody>
         {sortedProperties.map(({ name, required, types, defaultValue, description, link }: Property) => {
+          console.log('types', types)
           return (
             <Tr key={name}>
               <Td>{ name }</Td>
-              <Td>{ types && types.join(' | ') }</Td>
+              <Td>{ types && types.filter(v => !!v).length > 0 ? types.join(' | ') : '-' }</Td>
               <Td>{ required ? 'Yes' : '-' }</Td>
               <Td>{ defaultValue || '-' }</Td>
               <Td>{ description }</Td>
