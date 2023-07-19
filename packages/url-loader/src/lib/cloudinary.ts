@@ -54,18 +54,21 @@ export const transformationPlugins = [
 export const constructUrlPropsSchema = z.object({
   analytics: analyticsOptionsSchema
     .describe(JSON.stringify({
-      text: 'Tech, dependency, and feature identifiers for tracking SDK usage.'
+      text: 'Tech, dependency, and feature identifiers for tracking SDK usage.',
+      path: '/analyticsoptions'
     }))
     .optional(),
   config: configOptionsSchema
     .describe(JSON.stringify({
       text: 'Configuration parameters for environment and Cloudinary account.',
-      url: 'https://cloudinary.com/documentation/cloudinary_sdks#configuration_parameters'
+      url: 'https://cloudinary.com/documentation/cloudinary_sdks#configuration_parameters',
+      path: '/analyticsoptions'
     }))
     .optional(),
   options: imageOptionsSchema
     .describe(JSON.stringify({
-      text: 'Asset options that define delivery URL including public ID and transformations.'
+      text: 'Asset options (Image or Video) that define delivery URL including public ID and transformations.',
+      path: '/assetoptions'
     })),
 })
 
