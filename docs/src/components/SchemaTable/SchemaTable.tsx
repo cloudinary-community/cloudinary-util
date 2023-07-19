@@ -1,3 +1,4 @@
+import Link from 'next/link';
 import { Table, Tr, Td } from 'nextra/components';
 
 import { sortByKey } from '../../lib/util';
@@ -20,7 +21,8 @@ interface Property {
   link?: {
     label: string;
     url: string;
-  }
+  };
+  path?: string;
 }
 
 export const SchemaTable = ({ schema, schemaKey }) => {
@@ -38,10 +40,11 @@ export const SchemaTable = ({ schema, schemaKey }) => {
     }
 
     const description = configuration?.description && JSON.parse(configuration.description);
-    const { text, url } = description || {};
+    const { path, text, url } = description || {};
 
     const property: Property = {
       name,
+      path,
       required: required.includes(name),
       types,
       defaultValue,
@@ -49,7 +52,7 @@ export const SchemaTable = ({ schema, schemaKey }) => {
       link: url && {
         label: 'More Info',
         url,
-      }
+      },
     }
 
     return property;
@@ -59,7 +62,7 @@ export const SchemaTable = ({ schema, schemaKey }) => {
 
   return (
     <>
-      <Table>
+      <Table className={styles.schemaTable}>
         <thead>
           <Tr>
             <Td><strong>Property</strong></Td>
@@ -71,17 +74,21 @@ export const SchemaTable = ({ schema, schemaKey }) => {
           </Tr>
         </thead>
         <tbody>
-        {sortedProperties.map(({ name, required, types, defaultValue, description, link }: Property) => {
-          console.log('types', types)
+        {sortedProperties.map(({ name, required, types, defaultValue, description, link, path }: Property) => {
           return (
             <Tr key={name}>
-              <Td>{ name }</Td>
+              <Td>
+                { path && (
+                  <Link href={path}>{ name }</Link>
+                )}
+                { !path && name }
+              </Td>
               <Td>{ types && types.filter(v => !!v).length > 0 ? types.join(' | ') : '-' }</Td>
               <Td>{ required ? 'Yes' : '-' }</Td>
               <Td>{ defaultValue || '-' }</Td>
               <Td>{ description }</Td>
               <Td>
-                {link && <a href={link.url} className={styles.propertyLink}>{ link.label }</a>}
+                {link && <a href={link.url}>{ link.label }</a>}
               </Td>
             </Tr>
           )
