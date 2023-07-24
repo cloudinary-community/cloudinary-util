@@ -42,6 +42,6 @@
   },
   "dependencies": {
     "@cloudinary-util/util": "workspace:*",
-    "@cloudinary/url-gen": "^1.10.1"
+    "@cloudinary/url-gen": "^1.10.2"
   }
 }
