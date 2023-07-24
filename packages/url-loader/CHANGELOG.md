@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.10.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.9.1...@cloudinary-util/url-loader-v3.10.0) (2023-07-24)
+
+
+### Features
+
+* upgrading url gen package in URL Loader ([505f1d9](https://github.com/colbyfayock/cloudinary-util/commit/505f1d98ee12dca00344d45bccec9a488046a885))
+
 # [@cloudinary-util/url-loader-v3.9.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.9.0...@cloudinary-util/url-loader-v3.9.1) (2023-07-17)
 
 
