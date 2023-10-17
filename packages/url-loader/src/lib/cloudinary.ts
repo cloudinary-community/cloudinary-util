@@ -180,6 +180,14 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
 
   cldAsset.setDeliveryType(options?.deliveryType || 'upload');
 
+  if ( options?.dpr ) {
+    let dpr = options.dpr;
+    if ( typeof dpr === 'number' ) {
+      dpr = dpr.toFixed(1);
+    }
+    cldAsset.addTransformation(`dpr_${dpr}`)
+  }
+
   if ( options?.format !== 'default' ) {
     cldAsset.format(options?.format || 'auto')
   }

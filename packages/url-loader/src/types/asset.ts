@@ -7,6 +7,7 @@ export interface AssetOptions {
   assetType?: string;
   crop?: string;
   deliveryType?: string;
+  dpr?: number | string;
   effects?: Array<any>;
   flags?: Array<string> | object;
   format?: string;

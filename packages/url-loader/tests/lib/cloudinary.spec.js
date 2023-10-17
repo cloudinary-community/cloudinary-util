@@ -52,7 +52,7 @@ describe('Cloudinary', () => {
 
     /* Optimization */
 
-    describe('format, quality', () => {
+    describe('format, quality, dpr', () => {
 
       it('should create a Cloudinary URL with custom quality and format options', () => {
         const format = 'png';
@@ -89,6 +89,80 @@ describe('Cloudinary', () => {
             height: 100,
             quality: 'default',
             format: 'default'
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+
+        expect(url).toContain(src);
+      });
+
+      it('should include custom DPR as a string', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'upload';
+        const publicId = 'myimage';
+        const dpr = '2.0';
+
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr}/f_auto/q_auto/${publicId}?_a=B`;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: publicId,
+            width: 100,
+            height: 100,
+            dpr
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+
+        expect(url).toContain(src);
+      });
+
+      it('should include custom DPR as number', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'upload';
+        const publicId = 'myimage';
+        const dpr = 2;
+
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr.toFixed(1)}/f_auto/q_auto/${publicId}?_a=B`;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: publicId,
+            width: 100,
+            height: 100,
+            dpr
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+
+        expect(url).toContain(src);
+      });
+      it('should include DPR auto', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'upload';
+        const publicId = 'myimage';
+        const dpr = 'auto';
+
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr}/f_auto/q_auto/${publicId}?_a=B`;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: publicId,
+            width: 100,
+            height: 100,
+            dpr
           },
           config: {
             cloud: {
