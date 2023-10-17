@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.11.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.10.0...@cloudinary-util/url-loader-v3.11.0) (2023-10-17)
+
+
+### Features
+
+* DPR  ([#77](https://github.com/colbyfayock/cloudinary-util/issues/77)) ([7bcee8d](https://github.com/colbyfayock/cloudinary-util/commit/7bcee8dd788933acae92857513c901d745d92aa1)), closes [#76](https://github.com/colbyfayock/cloudinary-util/issues/76)
+
 # [@cloudinary-util/url-loader-v3.10.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.9.1...@cloudinary-util/url-loader-v3.10.0) (2023-07-24)
 
 
