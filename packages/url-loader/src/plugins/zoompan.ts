@@ -4,9 +4,9 @@ import { PluginSettings, PluginOverrides } from '../types/plugins';
 export const props = ['zoompan'];
 export const assetTypes = ['image', 'images'];
 
-export function plugin(props: PluginSettings) {
+export function plugin(props: PluginSettings<ImageOptions>) {
   const { cldAsset, options } = props;
-  const { zoompan = false } = options as ImageOptions; // why do i need to cast it here?
+  const { zoompan = false } = options;
 
   const overrides: PluginOverrides = {
     format: undefined

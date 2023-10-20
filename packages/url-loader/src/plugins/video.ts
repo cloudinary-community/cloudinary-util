@@ -1,5 +1,6 @@
 import { objectHasKey } from '@cloudinary-util/util';
 
+import { VideoOptions } from '../types/video';
 import { PluginSettings } from '../types/plugins';
 
 import { video as qualifiersVideo } from '../constants/qualifiers';
@@ -8,7 +9,7 @@ import { constructTransformation } from '../lib/transformations';
 export const props = [...Object.keys(qualifiersVideo)];
 export const assetTypes = ['video', 'videos'];
 
-export function plugin(props: PluginSettings) {
+export function plugin(props: PluginSettings<VideoOptions>) {
   const { cldAsset, options } = props;
 
   (Object.keys(options) as Array<keyof typeof options>).forEach(key => {

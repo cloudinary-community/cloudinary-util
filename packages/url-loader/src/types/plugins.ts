@@ -2,9 +2,11 @@ import { AssetOptions } from './asset';
 import { ImageOptions } from './image';
 import { VideoOptions } from './video';
 
-export interface PluginSettings {
+type AllOptions = AssetOptions | ImageOptions | VideoOptions;
+
+export interface PluginSettings<Options extends AllOptions = AllOptions> {
   cldAsset: any;
-  options: AssetOptions | ImageOptions | VideoOptions;
+  options: Options;
 }
 
 export interface PluginOverrides {
