@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.12.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.11.0...@cloudinary-util/url-loader-v3.12.0) (2023-10-20)
+
+
+### Features
+
+* Make PluginSettings generic ([#78](https://github.com/colbyfayock/cloudinary-util/issues/78)) ([e5dba1e](https://github.com/colbyfayock/cloudinary-util/commit/e5dba1ed2d8c7b25c6ffecaa4f453f60a2633b7f)), closes [#74](https://github.com/colbyfayock/cloudinary-util/issues/74)
+
 # [@cloudinary-util/url-loader-v3.11.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.10.0...@cloudinary-util/url-loader-v3.11.0) (2023-10-17)
 
 
