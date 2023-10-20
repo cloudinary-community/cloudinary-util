@@ -6,9 +6,9 @@ export const assetTypes = ['image', 'images'];
 
 const defaultCrop = 'pad';
 
-export function plugin(props: PluginSettings) {
+export function plugin(props: PluginSettings<ImageOptions>) {
   const { cldAsset, options } = props;
-  const { fillBackground } = options as ImageOptions; // why do i need to cast it here?;
+  const { fillBackground } = options;
 
   if ( fillBackground === true ) {
     const properties = [
