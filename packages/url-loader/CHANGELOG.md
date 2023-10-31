@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.13.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.12.0...@cloudinary-util/url-loader-v3.13.0) (2023-10-31)
+
+
+### Features
+
+* Generative Replace ([#68](https://github.com/colbyfayock/cloudinary-util/issues/68)) ([#80](https://github.com/colbyfayock/cloudinary-util/issues/80)) ([0c5e96d](https://github.com/colbyfayock/cloudinary-util/commit/0c5e96d2692f48a6f5f52cf7f3837109fdc640c0))
+
 # [@cloudinary-util/url-loader-v3.12.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.11.0...@cloudinary-util/url-loader-v3.12.0) (2023-10-20)
 
 
