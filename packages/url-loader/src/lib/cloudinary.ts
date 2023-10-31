@@ -10,6 +10,7 @@ import * as overlaysPlugin from '../plugins/overlays';
 import * as namedTransformationsPlugin from '../plugins/named-transformations';
 import * as rawTransformationsPlugin from '../plugins/raw-transformations';
 import * as removeBackgroundPlugin from '../plugins/remove-background';
+import * as generativeReplacePlugin from '../plugins/generative-replace';
 import * as seoPlugin from '../plugins/seo';
 import * as underlaysPlugin from '../plugins/underlays';
 import * as versionPlugin from '../plugins/version';
@@ -21,8 +22,9 @@ import { AnalyticsOptions } from '../types/analytics';
 import { ConfigOptions } from '../types/config';
 
 export const transformationPlugins = [
-  // Background Removal must always come first
 
+  // Background Removal and Generative Replace must always come first
+  generativeReplacePlugin,
   removeBackgroundPlugin,
 
   // Raw transformations should always come before
