@@ -20,6 +20,7 @@ export interface AssetOptions {
   sanitize?: boolean;
   resize?: AssetOptionsResize;
   seoSuffix?: string;
+  strictTransformations?: boolean;
   src: string;
   text?: any;
   transformations?: Array<string>;

@@ -13,3 +13,10 @@ export interface PluginOverrides {
   format?: string;
   width?: number;
 }
+
+export interface TransformationPlugin {
+  assetTypes: Array<string>;
+  plugin: Function;
+  props: Array<string>;
+  strict?: boolean;
+}

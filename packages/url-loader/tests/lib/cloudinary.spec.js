@@ -482,6 +482,71 @@ describe('Cloudinary', () => {
 
     })
 
+    /* Strict Transformations */
+
+    describe('strictTransformations', () => {
+
+      it('should not add any transformations when strict transformations is enabled', () => {
+        const cloudName = 'customtestcloud';
+        const src = 'turtle';
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            strictTransformations: true
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`image/upload/${src}`);
+      });
+
+      it('should add named transformations when strict transformations is enabled', () => {
+        const cloudName = 'customtestcloud';
+        const src = 'turtle';
+        const namedTransformation = 'my-transformation';
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            strictTransformations: true,
+            transformations: [namedTransformation]
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`image/upload/t_${namedTransformation}/${src}`);
+      });
+
+      it('should not add any transformations when strict transformations is enabled', () => {
+        const cloudName = 'customtestcloud';
+        const src = 'turtle';
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            strictTransformations: true,
+            removeBackground: true,
+            width: 100,
+            height: 200,
+            effects: [{
+              opacity: .5
+            }]
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`image/upload/${src}`);
+      });
+
+    })
+
     /* General Plugins */
 
     describe('Plugins', () => {

@@ -20,6 +20,7 @@ import * as zoompanPlugin from '../plugins/zoompan';
 import { ImageOptions } from '../types/image';
 import { AnalyticsOptions } from '../types/analytics';
 import { ConfigOptions } from '../types/config';
+import { TransformationPlugin } from '../types/plugins';
 
 export const transformationPlugins = [
 
@@ -140,17 +141,23 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
     throw new Error('Invalid asset type.');
   }
 
-  transformationPlugins.forEach(({ plugin, assetTypes, props }) => {
+  transformationPlugins.forEach(({ plugin, assetTypes, props, strict }: TransformationPlugin) => {
     const supportedAssetType = typeof options?.assetType !== 'undefined' && assetTypes.includes(options?.assetType);
 
-    if ( !supportedAssetType ) {
-      const optionsKeys = Object.keys(options);
-      const attemptedUse = props.map(prop => optionsKeys.includes(prop)).filter(isUsed => !!isUsed).length > 0;
+    const optionsKeys = Object.keys(options);
+    const attemptedUse = props.map(prop => optionsKeys.includes(prop)).filter(isUsed => !!isUsed).length > 0;
 
+    if ( !supportedAssetType ) {
       if ( attemptedUse ) {
         console.warn(`One of the following props [${props.join(', ')}] was used with an unsupported asset type [${options?.assetType}]`);
       }
+      return;
+    }
 
+    if ( options.strictTransformations && !strict ) {
+      if ( attemptedUse ) {
+        console.warn(`One of the following props [${props.join(', ')}] was used that is not supported with Strict Transformations.`);
+      }
       return;
     }
 
@@ -175,27 +182,34 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
   // We want to perform any resizing at the end of the end of the transformation
   // sets to allow consistent use of positioning / sizing, especially responsively
 
-  if ( options?.resize ) {
+  if ( options?.resize && !options.strictTransformations ) {
     const { width, crop = 'scale' } = options.resize;
     cldAsset.effect(`c_${crop},w_${width}`);
   }
 
   cldAsset.setDeliveryType(options?.deliveryType || 'upload');
 
-  if ( options?.dpr ) {
-    let dpr = options.dpr;
-    if ( typeof dpr === 'number' ) {
-      dpr = dpr.toFixed(1);
+  // Strict transformations requires opt-in for any transformation. If this is
+  // enabled, nothing should be added on top of the URL
+
+  if ( !options.strictTransformations ) {
+
+    if ( options?.dpr ) {
+      let dpr = options.dpr;
+      if ( typeof dpr === 'number' ) {
+        dpr = dpr.toFixed(1);
+      }
+      cldAsset.addTransformation(`dpr_${dpr}`)
     }
-    cldAsset.addTransformation(`dpr_${dpr}`)
-  }
 
-  if ( options?.format !== 'default' ) {
-    cldAsset.format(options?.format || 'auto')
-  }
+    if ( options?.format !== 'default' ) {
+      cldAsset.format(options?.format || 'auto')
+    }
 
-  if ( options?.quality !== 'default' ) {
-    cldAsset.quality(options?.quality || 'auto')
+    if ( options?.quality !== 'default' ) {
+      cldAsset.quality(options?.quality || 'auto')
+    }
+
   }
 
   return cldAsset.toURL({
