@@ -530,11 +530,14 @@ describe('Cloudinary', () => {
             src,
             strictTransformations: true,
             removeBackground: true,
-            width: 100,
-            height: 200,
             effects: [{
               opacity: .5
-            }]
+            }],
+            version: 2,
+            width: 960,
+            height: 600,
+            widthResize: 1920,
+            heightResize: 1200
           },
           config: {
             cloud: {
@@ -542,7 +545,7 @@ describe('Cloudinary', () => {
             }
           }
         });
-        expect(url).toContain(`image/upload/${src}`);
+        expect(url).toContain(`image/upload/${src}?_a=B`);
       });
 
     })

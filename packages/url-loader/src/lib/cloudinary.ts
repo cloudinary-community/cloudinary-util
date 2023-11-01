@@ -95,10 +95,7 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
     });
   })
 
-  const parsedOptions: Pick<ParseUrl, 'seoSuffix' | 'version'> = {
-    seoSuffix: undefined,
-    version: undefined,
-  };
+  const parsedOptions: Pick<ParseUrl, 'seoSuffix' | 'version'> = {};
 
   let publicId;
 
