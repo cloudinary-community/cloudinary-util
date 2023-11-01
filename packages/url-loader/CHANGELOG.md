@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.14.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.13.0...@cloudinary-util/url-loader-v3.14.0) (2023-11-01)
+
+
+### Features
+
+* Strict Transformations ([#83](https://github.com/colbyfayock/cloudinary-util/issues/83)) ([9bbe98d](https://github.com/colbyfayock/cloudinary-util/commit/9bbe98d4917cc7043399b75e714f7ec66114aa99)), closes [#82](https://github.com/colbyfayock/cloudinary-util/issues/82)
+
 # [@cloudinary-util/url-loader-v3.13.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.12.0...@cloudinary-util/url-loader-v3.13.0) (2023-10-31)
 
 
