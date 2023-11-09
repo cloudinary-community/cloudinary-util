@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.15.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.14.1...@cloudinary-util/url-loader-v3.15.0) (2023-11-09)
+
+
+### Features
+
+* Default Image ([#85](https://github.com/colbyfayock/cloudinary-util/issues/85)) ([e674d50](https://github.com/colbyfayock/cloudinary-util/commit/e674d50ea089d7f6e38285d04e10b9d5856fa129))
+
 # [@cloudinary-util/url-loader-v3.14.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.14.0...@cloudinary-util/url-loader-v3.14.1) (2023-11-01)
 
 
