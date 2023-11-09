@@ -613,5 +613,44 @@ describe('Cloudinary', () => {
     });
 
 
+    /* Kitchen Sink */
+
+    it('Kitchen Sink - Image', () => {
+      const cloudName = 'customtestcloud';
+        const assetType = 'image';
+        const src = 'turtle';
+        const shear = '40:0';
+        const gradientFade = true;
+        const opacity = '50';
+        const cartoonify = '50';
+        const radius = '150';
+        const defaultImage = 'my-image.jpg';
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            assetType,
+            defaultImage,
+            effects: [
+              {
+                shear,
+                opacity,
+              },
+              {
+                gradientFade,
+                cartoonify,
+                radius
+              }
+            ]
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`${assetType}/upload/d_${defaultImage}/o_${opacity},e_shear:${shear}/e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}/f_auto/q_auto/${src}`);
+    });
+
+
   });
 });

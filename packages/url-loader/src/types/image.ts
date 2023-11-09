@@ -20,6 +20,7 @@ export interface ImageOptionsZoomPan {
 }
 
 export interface ImageOptions extends AssetOptions {
+  defaultImage?: string;
   fillBackground?: boolean | ImageOptionsFillBackground;
   replace?: Array<string | boolean> | ImageOptionsGenerativeReplace;
   zoompan?: string | boolean | ImageOptionsZoomPan;
