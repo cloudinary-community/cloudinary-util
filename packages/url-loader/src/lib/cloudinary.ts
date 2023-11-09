@@ -2,6 +2,7 @@ import { Cloudinary } from '@cloudinary/url-gen';
 import { parseUrl, ParseUrl, objectHasKey } from '@cloudinary-util/util';
 
 import * as croppingPlugin from '../plugins/cropping';
+import * as defaultImagePlugin from '../plugins/default-image';
 import * as effectsPlugin from '../plugins/effects';
 import * as flagsPlugin from '../plugins/flags';
 import * as fillBackgroundPlugin from '../plugins/fill-background';
@@ -35,6 +36,7 @@ export const transformationPlugins = [
   rawTransformationsPlugin,
 
   croppingPlugin,
+  defaultImagePlugin,
   effectsPlugin,
   fillBackgroundPlugin,
   flagsPlugin,
