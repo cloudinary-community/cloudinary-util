@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.14.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.14.0...@cloudinary-util/url-loader-v3.14.1) (2023-11-01)
+
+
+### Bug Fixes
+
+* removing explicit undefined for seoSuffix and version to avoid warnings for keys being present ([33fe160](https://github.com/colbyfayock/cloudinary-util/commit/33fe1605eb372adf7ce2de208300d7cf5705be6b))
+
 # [@cloudinary-util/url-loader-v3.14.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.13.0...@cloudinary-util/url-loader-v3.14.0) (2023-11-01)
 
 
