@@ -2,9 +2,14 @@
   "exclude": ["node_modules"],
   "extends": "@cloudinary-util/tsconfig/nextjs.json",
   "compilerOptions": {
+    "target": "ESNext",
+    "lib": ["ESNext"],
+    "moduleResolution": "bundler",
+    "strict": true,
     "rootDir": "src",
     "outDir": "dist",
-    "incremental": true
+    "incremental": true,
+    "noImplicitAny": false, // set to true when cloudinary types are available.
   },
   "include": ["src", "next-env.d.ts"]
 }
