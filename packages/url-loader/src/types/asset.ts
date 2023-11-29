@@ -4,6 +4,7 @@ export interface AssetOptionsResize {
 }
 
 export interface AssetOptions {
+  aspectRatio?: string | number;
   assetType?: string;
   crop?: string;
   deliveryType?: string;
