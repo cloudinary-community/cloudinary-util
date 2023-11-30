@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.16.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.15.0...@cloudinary-util/url-loader-v3.16.0) (2023-11-30)
+
+
+### Features
+
+* Aspect Ratio as top level option ([#88](https://github.com/colbyfayock/cloudinary-util/issues/88)) ([de32352](https://github.com/colbyfayock/cloudinary-util/commit/de32352c34718a84326da8494aaf23ad45317bf5)), closes [#87](https://github.com/colbyfayock/cloudinary-util/issues/87)
+
 # [@cloudinary-util/url-loader-v3.15.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.14.1...@cloudinary-util/url-loader-v3.15.0) (2023-11-09)
 
 
