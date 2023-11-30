@@ -1,12 +1,14 @@
 import { PluginSettings, PluginOverrides } from '../types/plugins';
 
+const cropsAspectRatio = [ 'crop', 'fill', 'lfill', 'fill_pad', 'thumb' ];
 const cropsGravityAuto = [ 'crop', 'fill', 'lfill', 'fill_pad', 'thumb' ];
 const cropsWithZoom = ['crop', 'thumb'];
 
 export const props = [
+  'aspectRatio',
   'crop',
   'gravity',
-  'zoom'
+  'zoom',
 ];
 export const assetTypes = ['image', 'images', 'video', 'videos'];
 
@@ -24,6 +26,7 @@ export function plugin(props: PluginSettings) {
   const { cldAsset, options } = props;
 
   const {
+    aspectRatio,
     width: defaultWidth,
     height: defaultHeight,
     widthResize: defaultWidthResize,
@@ -43,10 +46,27 @@ export function plugin(props: PluginSettings) {
   let width = normalizeNumberParameter(defaultWidth);
   let widthResize = normalizeNumberParameter(defaultWidthResize);
 
+  const hasDefinedDimensions = height || width;
+  const hasValidAspectRatio = aspectRatio && cropsAspectRatio.includes(crop);
+
   let transformationString = '';
 
+  // Only apply a crop if we're defining some type of dimension attribute
+  // where the crop would make sense
+
+  if ( crop && ( hasDefinedDimensions || hasValidAspectRatio ) ) {
+    transformationString = `c_${crop}`;
+  }
+
+  // Aspect Ratio requires a crop mode to be applied so we want to make
+  // sure a valid one is included
+
+  if ( hasValidAspectRatio ) {
+    transformationString = `${transformationString},ar_${aspectRatio}`;
+  }
+
   if ( width ) {
-    transformationString = `c_${crop},w_${width}`;
+    transformationString = `${transformationString},w_${width}`;
   }
 
   // Gravity of auto only applies to certain crop types otherewise
@@ -59,7 +79,7 @@ export function plugin(props: PluginSettings) {
   // Some crop types don't need a height and will resize based
   // on the aspect ratio
 
-  if ( !['limit'].includes(crop) ) {
+  if ( !['limit'].includes(crop) && typeof height === 'number' ) {
     transformationString = `${transformationString},h_${height}`;
   }
 
