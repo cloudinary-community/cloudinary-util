@@ -691,15 +691,21 @@ describe('Cloudinary', () => {
       const cloudName = 'customtestcloud';
         const assetType = 'image';
         const src = 'turtle';
-        const shear = '40:0';
+        const width = 123;
+        const height = 321;
+        const defaultImage = 'my-image.jpg';
+
+        const cartoonify = '50';
         const gradientFade = true;
         const opacity = '50';
-        const cartoonify = '50';
         const radius = '150';
-        const defaultImage = 'my-image.jpg';
+        const shear = '40:0';
+
         const url = constructCloudinaryUrl({
           options: {
             src,
+            width,
+            height,
             assetType,
             defaultImage,
             effects: [
@@ -712,7 +718,11 @@ describe('Cloudinary', () => {
                 cartoonify,
                 radius
               }
-            ]
+            ],
+            // Note: removeBackground and restore can't actually be used together
+            // in practice, but this is simply testing that it works applies correctly
+            removeBackground: true,
+            restore: true,
           },
           config: {
             cloud: {
@@ -720,7 +730,7 @@ describe('Cloudinary', () => {
             }
           }
         });
-        expect(url).toContain(`${assetType}/upload/d_${defaultImage}/o_${opacity},e_shear:${shear}/e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}/f_auto/q_auto/${src}`);
+        expect(url).toContain(`${assetType}/upload/e_background_removal/e_gen_restore/c_limit,w_${width}/d_${defaultImage}/o_${opacity},e_shear:${shear}/e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}/f_auto/q_auto/${src}`);
     });
 
 
