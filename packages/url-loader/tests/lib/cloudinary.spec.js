@@ -176,6 +176,78 @@ describe('Cloudinary', () => {
 
     });
 
+    /* Cropping & Resizing */
+
+    describe('cropping, resizing', () => {
+
+      it('should create a Cloudinary URL with widthResize smaller than width', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'upload';
+        const publicId = 'myimage';
+        const width = 900;
+        const widthResize = 600;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: publicId,
+            width,
+            widthResize
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_${width}/c_scale,w_${widthResize}/f_auto/q_auto/${publicId}`);
+      });
+
+      it('should create a Cloudinary URL with widthResize same as width', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'upload';
+        const publicId = 'myimage';
+        const width = 900;
+        const widthResize = 900;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: publicId,
+            width,
+            widthResize
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_${width}/f_auto/q_auto/${publicId}`);
+      });
+
+      it('should create a Cloudinary URL with widthResize larger than width', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'upload';
+        const publicId = 'myimage';
+        const width = 900;
+        const widthResize = 1200;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: publicId,
+            width,
+            widthResize
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_${width}/f_auto/q_auto/${publicId}`);
+      });
+
+    });
+
     /* Delivery */
 
     describe('deliveryType', () => {
