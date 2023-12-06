@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.18.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.17.0...@cloudinary-util/url-loader-v3.18.0) (2023-12-06)
+
+
+### Features
+
+* Generative Restore ([#92](https://github.com/colbyfayock/cloudinary-util/issues/92)) ([2861bf9](https://github.com/colbyfayock/cloudinary-util/commit/2861bf909479c932d21a0be78d1fe815e803f407)), closes [#70](https://github.com/colbyfayock/cloudinary-util/issues/70)
+
 # [@cloudinary-util/url-loader-v3.17.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.16.0...@cloudinary-util/url-loader-v3.17.0) (2023-12-06)
 
 
