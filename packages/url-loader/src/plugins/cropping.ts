@@ -108,11 +108,7 @@ export function plugin(props: PluginSettings) {
 
   cldAsset.effect(transformationString);
 
-  // If we have a resize width that's smaller than the user-defined width, we want to give the
-  // ability to perform a final resize on the image without impacting any of the effects like text
-  // overlays that may depend on the size to work properly
-
-  if ( width && widthResize && widthResize < width ) {
+  if ( widthResize ) {
     overrides.width = widthResize;
   }
 

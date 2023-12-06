@@ -199,7 +199,7 @@ describe('Cloudinary', () => {
             }
           }
         });
-        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_${width}/c_scale,w_${widthResize}/f_auto/q_auto/${publicId}`);
+        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_${width}/c_limit,w_${widthResize}/f_auto/q_auto/${publicId}`);
       });
 
       it('should create a Cloudinary URL with widthResize same as width', () => {
@@ -221,7 +221,7 @@ describe('Cloudinary', () => {
             }
           }
         });
-        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_${width}/f_auto/q_auto/${publicId}`);
+        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_${width}/c_limit,w_${widthResize}/f_auto/q_auto/${publicId}`);
       });
 
       it('should create a Cloudinary URL with widthResize larger than width', () => {
@@ -243,7 +243,7 @@ describe('Cloudinary', () => {
             }
           }
         });
-        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_${width}/f_auto/q_auto/${publicId}`);
+        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_${width}/c_limit,w_${widthResize}/f_auto/q_auto/${publicId}`);
       });
 
     });

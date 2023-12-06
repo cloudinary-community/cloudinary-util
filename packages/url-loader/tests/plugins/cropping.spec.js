@@ -70,7 +70,7 @@ describe('Cropping plugin', () => {
     })
   });
 
-  it('should not return resize override with original size in URL if resize is larger than width', () => {
+  it('should return resize override with original size in URL if resize is larger than width', () => {
     const cldImage = cld.image(TEST_PUBLIC_ID);
     const options = {
       width: 900,
@@ -80,10 +80,12 @@ describe('Cropping plugin', () => {
     const { options: pluginOptions } = plugin({ cldAsset: cldImage, options });
 
     expect(cldImage.toURL()).toContain(`image/upload/c_limit,w_${options.width}/${TEST_PUBLIC_ID}`);
-    expect(pluginOptions).toMatchObject({})
+    expect(pluginOptions).toMatchObject({
+      width: options.widthResize
+    })
   });
 
-  it('should not return resize override with original size in URL if resize is the same as width', () => {
+  it('should return resize override with original size in URL if resize is the same as width', () => {
     const cldImage = cld.image(TEST_PUBLIC_ID);
     const options = {
       width: 900,
@@ -93,7 +95,9 @@ describe('Cropping plugin', () => {
     const { options: pluginOptions } = plugin({ cldAsset: cldImage, options });
 
     expect(cldImage.toURL()).toContain(`image/upload/c_limit,w_${options.width}/${TEST_PUBLIC_ID}`);
-    expect(pluginOptions).toMatchObject({})
+    expect(pluginOptions).toMatchObject({
+      width: options.widthResize
+    })
   });
 
   it('should not apply a height when crop is fill if isnt set', () => {
