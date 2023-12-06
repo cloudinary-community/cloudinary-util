@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.17.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.16.0...@cloudinary-util/url-loader-v3.17.0) (2023-12-06)
+
+
+### Features
+
+* Fixes widthResize not applying to URLs ([#90](https://github.com/colbyfayock/cloudinary-util/issues/90)) ([95331c3](https://github.com/colbyfayock/cloudinary-util/commit/95331c3c3e8902d1aa6f3d76bbdd1f83c4460481)), closes [#89](https://github.com/colbyfayock/cloudinary-util/issues/89)
+
 # [@cloudinary-util/url-loader-v3.16.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.15.0...@cloudinary-util/url-loader-v3.16.0) (2023-11-30)
 
 
