@@ -182,7 +182,7 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
   // sets to allow consistent use of positioning / sizing, especially responsively
 
   if ( options?.resize && !options.strictTransformations ) {
-    const { width, crop = 'scale' } = options.resize;
+    const { width, crop = 'limit' } = options.resize;
     cldAsset.effect(`c_${crop},w_${width}`);
   }
 
