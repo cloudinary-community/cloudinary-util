@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.20.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.19.0...@cloudinary-util/url-loader-v3.20.0) (2023-12-07)
+
+
+### Features
+
+* Generative Recolor ([#94](https://github.com/colbyfayock/cloudinary-util/issues/94)) ([08b80ba](https://github.com/colbyfayock/cloudinary-util/commit/08b80ba8caf31066f4e7c81922dfd2660910c74f)), closes [#71](https://github.com/colbyfayock/cloudinary-util/issues/71)
+
 # [@cloudinary-util/url-loader-v3.19.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.18.0...@cloudinary-util/url-loader-v3.19.0) (2023-12-07)
 
 
