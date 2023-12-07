@@ -49,7 +49,7 @@ describe("Plugins", () => {
 
       const options = {
         remove: {
-          prompt: 'apple',
+          prompt: ['apple', 'banana'],
           multiple: true,
           removeShadow: true
         }
@@ -60,7 +60,7 @@ describe("Plugins", () => {
         options,
       });
 
-      expect(cldImage.toURL()).toContain(`e_gen_remove:prompt_apple;multiple_true;remove-shadow_true`);
+      expect(cldImage.toURL()).toContain(`e_gen_remove:prompt_(apple;banana);multiple_true;remove-shadow_true`);
     });
 
     it("should remove an object with region", () => {
