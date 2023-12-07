@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.19.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.18.0...@cloudinary-util/url-loader-v3.19.0) (2023-12-07)
+
+
+### Features
+
+* Generative Remove ([#93](https://github.com/colbyfayock/cloudinary-util/issues/93)) ([2af15c4](https://github.com/colbyfayock/cloudinary-util/commit/2af15c43ce13fe5db2fe0f084faf85b1e0baf715)), closes [#69](https://github.com/colbyfayock/cloudinary-util/issues/69)
+
 # [@cloudinary-util/url-loader-v3.18.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.17.0...@cloudinary-util/url-loader-v3.18.0) (2023-12-06)
 
 
