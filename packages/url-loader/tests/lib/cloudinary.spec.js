@@ -723,6 +723,11 @@ describe('Cloudinary', () => {
             // in practice, but this is simply testing that it works applies correctly
             removeBackground: true,
             restore: true,
+            remove: {
+              prompt: 'apple',
+              multiple: true,
+              removeShadow: true
+            }
           },
           config: {
             cloud: {
@@ -730,7 +735,20 @@ describe('Cloudinary', () => {
             }
           }
         });
-        expect(url).toContain(`${assetType}/upload/e_background_removal/e_gen_restore/c_limit,w_${width}/d_${defaultImage}/o_${opacity},e_shear:${shear}/e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}/f_auto/q_auto/${src}`);
+        expect(url).toContain([
+          assetType,
+          `upload`,
+          `e_background_removal`,
+          `e_gen_remove:prompt_apple;multiple_true;remove-shadow_true`,
+          `e_gen_restore`,
+          `c_limit,w_${width}`,
+          `d_${defaultImage}`,
+          `o_${opacity},e_shear:${shear}`,
+          `e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}`,
+          `f_auto`,
+          `q_auto`,
+          src
+        ].join('/'));
     });
 
 
