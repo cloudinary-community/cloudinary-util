@@ -1,3 +1,5 @@
+import { promptArrayToString } from '../lib/transformations';
+
 import { ImageOptions } from '../types/image';
 import { PluginSettings } from '../types/plugins';
 
@@ -62,14 +64,6 @@ export function plugin(props: PluginSettings<ImageOptions>) {
   }
 
   return {};
-}
-
-/**
- * promptArrayToString
- */
-
-function promptArrayToString(promptArray: Array<string>) {
-  return `(${promptArray.join(';')})`;
 }
 
 /**

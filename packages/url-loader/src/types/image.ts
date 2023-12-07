@@ -14,6 +14,14 @@ export interface ImageOptionsGenerativeReplace {
   preserveGeometry?: boolean;
 }
 
+export type ImageOptionsRecolorPrompt = string | Array<string>;
+
+export interface ImageOptionsRecolor {
+  prompt?: ImageOptionsRecolorPrompt;
+  to?: string;
+  multiple?: boolean,
+}
+
 export type ImageOptionsRemovePrompt = string | Array<string>;
 export type ImageOptionsRemoveRegion = Array<number> | Array<Array<number>>;
 
@@ -32,6 +40,7 @@ export interface ImageOptionsZoomPan {
 export interface ImageOptions extends AssetOptions {
   defaultImage?: string;
   fillBackground?: boolean | ImageOptionsFillBackground;
+  recolor?: ImageOptionsRecolorPrompt | ImageOptionsRecolor;
   remove?: ImageOptionsRemovePrompt | ImageOptionsRemove;
   replace?: Array<string | boolean> | ImageOptionsGenerativeReplace;
   restore?: boolean;

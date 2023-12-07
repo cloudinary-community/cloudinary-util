@@ -6,14 +6,15 @@ import * as defaultImagePlugin from '../plugins/default-image';
 import * as effectsPlugin from '../plugins/effects';
 import * as flagsPlugin from '../plugins/flags';
 import * as fillBackgroundPlugin from '../plugins/fill-background';
+import * as generativeReplacePlugin from '../plugins/generative-replace';
+import * as namedTransformationsPlugin from '../plugins/named-transformations';
+import * as overlaysPlugin from '../plugins/overlays';
+import * as rawTransformationsPlugin from '../plugins/raw-transformations';
+import * as recolorPlugin from '../plugins/recolor';
 import * as removePlugin from '../plugins/remove';
+import * as removeBackgroundPlugin from '../plugins/remove-background';
 import * as restorePlugin from '../plugins/restore';
 import * as sanitizePlugin from '../plugins/sanitize';
-import * as overlaysPlugin from '../plugins/overlays';
-import * as namedTransformationsPlugin from '../plugins/named-transformations';
-import * as rawTransformationsPlugin from '../plugins/raw-transformations';
-import * as removeBackgroundPlugin from '../plugins/remove-background';
-import * as generativeReplacePlugin from '../plugins/generative-replace';
 import * as seoPlugin from '../plugins/seo';
 import * as underlaysPlugin from '../plugins/underlays';
 import * as versionPlugin from '../plugins/version';
@@ -31,8 +32,9 @@ export const transformationPlugins = [
   // thus their plugins *must* come first in the chain
 
   generativeReplacePlugin,
-  removeBackgroundPlugin,
+  recolorPlugin,
   removePlugin,
+  removeBackgroundPlugin,
   restorePlugin,
 
   // Raw transformations should always come before
