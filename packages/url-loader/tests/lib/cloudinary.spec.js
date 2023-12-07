@@ -721,13 +721,18 @@ describe('Cloudinary', () => {
             ],
             // Note: removeBackground and restore can't actually be used together
             // in practice, but this is simply testing that it works applies correctly
-            removeBackground: true,
-            restore: true,
+            recolor: {
+              prompt: 'duck',
+              to: 'blue',
+              multiple: true
+            },
             remove: {
               prompt: 'apple',
               multiple: true,
               removeShadow: true
-            }
+            },
+            removeBackground: true,
+            restore: true,
           },
           config: {
             cloud: {
@@ -738,8 +743,9 @@ describe('Cloudinary', () => {
         expect(url).toContain([
           assetType,
           `upload`,
-          `e_background_removal`,
+          'e_gen_recolor:prompt_duck;to-color_blue;multiple_true',
           `e_gen_remove:prompt_apple;multiple_true;remove-shadow_true`,
+          `e_background_removal`,
           `e_gen_restore`,
           `c_limit,w_${width}`,
           `d_${defaultImage}`,

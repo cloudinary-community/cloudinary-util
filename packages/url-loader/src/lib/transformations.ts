@@ -39,3 +39,12 @@ export function constructTransformation({ prefix, qualifier, value, converters }
     }
   }
 }
+
+
+/**
+ * promptArrayToString
+ */
+
+export function promptArrayToString(promptArray: Array<string>) {
+  return `(${promptArray.join(';')})`;
+}

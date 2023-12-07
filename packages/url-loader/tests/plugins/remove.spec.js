@@ -43,18 +43,7 @@ describe("Plugins", () => {
 
       expect(cldImage.toURL()).toContain(`e_gen_remove:prompt_(apple;banana;orange)`);
     });
-
     
-
-    // https://res.cloudinary.com/demo/image/upload/e_gen_remove:region_(x_300;y_200;w_1900;h_3500)/docs/man-skate.jpg
-    // https://res.cloudinary.com/demo/image/upload/e_gen_remove:region_((x_300;y_200;w_750;h_500);(x_1800;y_1200;w_1000;h_800))/docs/accessories-bag.jpg
-    // https://res.cloudinary.com/demo/image/upload/e_gen_remove:prompt_phone;multiple_true/docs/gadgets.jpg
-    // https://res.cloudinary.com/demo/image/upload/e_gen_remove:prompt_(keyboard;phone;mouse)/docs/gadgets
-    // https://res.cloudinary.com/demo/image/upload/e_gen_remove:prompt_the woman;remove-shadow_true/docs/woman-shadow
-    // https://res.cloudinary.com/demo/image/upload/e_gen_remove:prompt_text/docs/display
-    // https://res.cloudinary.com/demo/image/upload/e_gen_remove:prompt_text:the big england flag/docs/britain
-
-
     it("should remove an object with object configuration", () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 

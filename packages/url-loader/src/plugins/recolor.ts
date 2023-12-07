@@ -1,0 +1,59 @@
+import { promptArrayToString } from '../lib/transformations';
+
+import { ImageOptions } from '../types/image';
+import { PluginSettings } from '../types/plugins';
+
+export const props = ['recolor'];
+export const assetTypes = ['image', 'images'];
+
+export function plugin(props: PluginSettings<ImageOptions>) {
+  const { cldAsset, options } = props;
+  const { recolor } = options;
+
+  const recolorOptions: Record<string, string | undefined> = {
+    prompt: undefined,
+    'to-color': undefined,
+    multiple: undefined,
+  };
+
+
+  if ( Array.isArray(recolor) ) {
+    if ( Array.isArray(recolor[0]) ) {
+      recolorOptions.prompt = promptArrayToString(recolor[0]);
+    } else {
+      recolorOptions.prompt = recolor[0]
+    }
+
+    if ( typeof recolor[1] === 'string' ) {
+      recolorOptions['to-color'] = recolor[1];
+    }
+  } else if ( typeof recolor === 'object' ) {
+    
+    // Allow the prompt to still be available as either a string or an array
+    
+    if ( typeof recolor.prompt === 'string' ) {
+      recolorOptions.prompt = recolor.prompt
+    } else if ( Array.isArray(recolor.prompt) ) {
+      recolorOptions.prompt = promptArrayToString(recolor.prompt);
+    }
+
+    if ( typeof recolor.to === 'string' ) {
+      recolorOptions['to-color'] = recolor.to;
+    }
+
+    if ( recolor.multiple === true ) {
+      recolorOptions.multiple = `true`;
+    }
+  }
+
+  const transformation = Object.entries(recolorOptions)
+    .filter(([, value]) => !!value)
+    .map(([key, value]) => `${key}_${value}`)
+    .join(';')
+
+  if ( transformation ) {
+    cldAsset.addTransformation(`e_gen_recolor:${transformation}`);
+  }
+
+  return {};
+}
