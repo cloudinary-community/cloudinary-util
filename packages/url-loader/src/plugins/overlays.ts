@@ -7,6 +7,7 @@ import { constructTransformation } from '../lib/transformations';
 
 import {
   effects as qualifiersEffects,
+  flags as qualifiersFlags,
   position as qualifiersPosition,
   primary as qualifiersPrimary,
   text as qualifiersText,
@@ -21,6 +22,8 @@ export const DEFAULT_TEXT_OPTIONS = {
   fontSize: 200,
   fontWeight: 'bold',
 };
+
+const supportedFlags = Object.entries(qualifiersFlags).map(([_, { qualifier }]) => qualifier);
 
 export function plugin(props: PluginSettings) {
   const { cldAsset, options } = props;
@@ -62,15 +65,17 @@ export function plugin(props: PluginSettings) {
   }
 
   interface ApplyOverlaySettings {
-    appliedEffects?: Array<object>
+    appliedEffects?: Array<object>;
     effects?: Array<object>;
+    appliedFlags?: Array<string>;
+    flags?: Array<string>;
     position?: string;
     publicId?: string;
     text?: string | ApplyOverlaySettingsText;
     url?: string;
   }
 
-  function applyOverlay({ publicId, url, position, text, effects: layerEffects = [], appliedEffects = [], ...options }: ApplyOverlaySettings) {
+  function applyOverlay({ publicId, url, position, text, effects: layerEffects = [], appliedEffects = [], flags: layerFlags = [], appliedFlags = [], ...options }: ApplyOverlaySettings) {
     const hasPublicId = typeof publicId === 'string';
     const hasUrl = typeof url === 'string';
     const hasText = typeof text === 'object' || typeof text === 'string';
@@ -159,6 +164,22 @@ export function plugin(props: PluginSettings) {
           applied.push(transformation);
         }
       });
+    });
+
+    // Layer Flags
+    // Add flags to the primary layer transformation segment
+
+    layerFlags.forEach(flag => {
+      if ( !supportedFlags.includes(flag) ) return;
+      primary.push(`fl_${flag}`);
+    });
+
+    // Applied Flags
+    // Add flags to the fl_layer_apply transformation segment
+
+    appliedFlags.forEach(flag => {
+      if ( !supportedFlags.includes(flag) ) return;
+      applied.push(`fl_${flag}`);
     });
 
     // Text styling
