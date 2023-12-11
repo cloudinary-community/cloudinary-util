@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.22.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.21.1...@cloudinary-util/url-loader-v3.22.0) (2023-12-11)
+
+
+### Features
+
+* Adds positional qualifiers to effects and appliedEffects ([#105](https://github.com/colbyfayock/cloudinary-util/issues/105)) ([a5a5de4](https://github.com/colbyfayock/cloudinary-util/commit/a5a5de4f65b9827d85219080565f7b635cafb7e5)), closes [#104](https://github.com/colbyfayock/cloudinary-util/issues/104)
+
 # [@cloudinary-util/url-loader-v3.21.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.21.0...@cloudinary-util/url-loader-v3.21.1) (2023-12-11)
 
 
