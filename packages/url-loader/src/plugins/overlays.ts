@@ -130,7 +130,7 @@ export function plugin(props: PluginSettings) {
 
     layerEffects.forEach(effect => {
       (Object.keys(effect) as Array<keyof typeof effect>).forEach(key => {
-        const effectQualifier = qualifiersPrimary[key] || qualifiersEffects[key];
+        const effectQualifier = qualifiersPrimary[key] || qualifiersEffects[key] || qualifiersPosition[key];
 
         // If the qualifier isn't defined, it means it doesnt exist
 
@@ -157,7 +157,7 @@ export function plugin(props: PluginSettings) {
 
     appliedEffects.forEach(effect => {
       (Object.keys(effect) as Array<keyof typeof effect>).forEach(key => {
-        const effectQualifier = qualifiersPrimary[key] || qualifiersEffects[key];
+        const effectQualifier = qualifiersPrimary[key] || qualifiersEffects[key] || qualifiersPosition[key];
 
         // If the qualifier isn't defined, it means it doesnt exist
 

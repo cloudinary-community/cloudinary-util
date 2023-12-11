@@ -701,6 +701,12 @@ describe('Cloudinary', () => {
         const radius = '150';
         const shear = '40:0';
 
+        const overlaySrc = src;
+        const overlayColor = 'blue';
+        const overlayShadow = 100;
+        const overlayX = 0;
+        const overlayY = 0;
+
         const url = constructCloudinaryUrl({
           options: {
             src,
@@ -717,6 +723,27 @@ describe('Cloudinary', () => {
                 gradientFade,
                 cartoonify,
                 radius
+              }
+            ],
+            overlays: [
+              {
+                publicId: overlaySrc,
+                effects: [
+                  {
+                    color: overlayColor,
+                    shadow: overlayShadow,
+                    x: overlayX,
+                    y: overlayY
+                  }
+                ],
+                appliedEffects: [
+                  {
+                    color: overlayColor,
+                    shadow: overlayShadow,
+                    x: overlayX,
+                    y: overlayY
+                  }
+                ],
               }
             ],
             // Note: removeBackground and restore can't actually be used together
@@ -751,6 +778,8 @@ describe('Cloudinary', () => {
           `d_${defaultImage}`,
           `o_${opacity},e_shear:${shear}`,
           `e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}`,
+          `l_${overlaySrc},co_${overlayColor},e_shadow:${overlayShadow},x_${overlayX},y_${overlayY}`,
+          `fl_layer_apply,fl_no_overflow,co_${overlayColor},e_shadow:${overlayShadow},x_${overlayX},y_${overlayY}`,
           `f_auto`,
           `q_auto`,
           src
