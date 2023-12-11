@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.21.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.21.0...@cloudinary-util/url-loader-v3.21.1) (2023-12-11)
+
+
+### Bug Fixes
+
+* Fixes undefined overlay effect qualifiers from being applied ([#103](https://github.com/colbyfayock/cloudinary-util/issues/103)) ([564d6ee](https://github.com/colbyfayock/cloudinary-util/commit/564d6ee873cb735d727f50082a941505dc861db5)), closes [#102](https://github.com/colbyfayock/cloudinary-util/issues/102)
+
 # [@cloudinary-util/url-loader-v3.21.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.20.0...@cloudinary-util/url-loader-v3.21.0) (2023-12-08)
 
 
