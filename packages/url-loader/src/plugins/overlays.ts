@@ -130,7 +130,13 @@ export function plugin(props: PluginSettings) {
 
     layerEffects.forEach(effect => {
       (Object.keys(effect) as Array<keyof typeof effect>).forEach(key => {
-        const { qualifier, prefix, converters } = qualifiersPrimary[key] || qualifiersEffects[key] || {};
+        const effectQualifier = qualifiersPrimary[key] || qualifiersEffects[key];
+
+        // If the qualifier isn't defined, it means it doesnt exist
+
+        if ( !effectQualifier ) return;
+
+        const { qualifier, prefix, converters } = effectQualifier;
 
         const transformation = constructTransformation({
           qualifier,
@@ -151,7 +157,13 @@ export function plugin(props: PluginSettings) {
 
     appliedEffects.forEach(effect => {
       (Object.keys(effect) as Array<keyof typeof effect>).forEach(key => {
-        const { qualifier, prefix, converters } = qualifiersPrimary[key] || qualifiersEffects[key] || {};
+        const effectQualifier = qualifiersPrimary[key] || qualifiersEffects[key];
+
+        // If the qualifier isn't defined, it means it doesnt exist
+
+        if ( !effectQualifier ) return;
+
+        const { qualifier, prefix, converters } = effectQualifier;
 
         const transformation = constructTransformation({
           qualifier,
