@@ -163,6 +163,33 @@ describe('Plugins', () => {
       expect(cldImage.toURL()).toContain(`l_${publicId.replace(/\//g, ':')},w_${width}/fl_layer_apply,fl_no_overflow,${flags.map(f => `fl_${f}`).join(',')}`);
     });
 
+    it('should not apply undefined effects', () => {
+      const cldImage = cld.image(TEST_PUBLIC_ID);
+
+      const publicId = 'images/my-cool-image'
+
+      const options = {
+        overlays: [{
+          publicId,
+          effects: [{
+            colby: 'fayock',
+            space: 'jelly'
+          }],
+          appliedEffects: [{
+            colby: 'fayock',
+            space: 'jelly'
+          }]
+        }]
+      }
+
+      plugin({
+        cldAsset: cldImage,
+        options
+      });
+
+      expect(cldImage.toURL()).toContain(`/l_${publicId.replace(/\//g, ':')}/fl_layer_apply,fl_no_overflow/`);
+    });
+
   })
   describe('Text Overlays', () => {
     it('should add a text overlay with basic settings', () => {
