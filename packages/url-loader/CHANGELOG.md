@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.23.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.22.0...@cloudinary-util/url-loader-v3.23.0) (2023-12-14)
+
+
+### Features
+
+* Fixes inability to turn off URL analytics  ([#101](https://github.com/colbyfayock/cloudinary-util/issues/101)) ([c6bd741](https://github.com/colbyfayock/cloudinary-util/commit/c6bd7417a4b0ee68e3c57eeeda6cd7e9548e277c))
+
 # [@cloudinary-util/url-loader-v3.22.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.21.1...@cloudinary-util/url-loader-v3.22.0) (2023-12-11)
 
 
