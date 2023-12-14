@@ -1,3 +1,11 @@
+# [@cloudinary-util/url-loader-v3.24.0-beta.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.2...@cloudinary-util/url-loader-v3.24.0-beta.3) (2023-12-14)
+
+
+### Features
+
+* reverting npm semrelease version ([#113](https://github.com/colbyfayock/cloudinary-util/issues/113)) ([7f3c8a5](https://github.com/colbyfayock/cloudinary-util/commit/7f3c8a55cafd54fc4013e6710c779c64dc57b904))
+* trying semantic release npm ([#112](https://github.com/colbyfayock/cloudinary-util/issues/112)) ([f16e702](https://github.com/colbyfayock/cloudinary-util/commit/f16e7023a824ecae368086a3c487bcf5ad9e534c))
+
 # [@cloudinary-util/url-loader-v3.24.0-beta.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.1...@cloudinary-util/url-loader-v3.24.0-beta.2) (2023-12-14)
 
 
