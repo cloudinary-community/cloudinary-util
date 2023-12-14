@@ -43,7 +43,7 @@
   "dependencies": {
     "@cloudinary-util/util": "workspace:*",
     "@cloudinary/url-gen": "^1.10.2",
-    "@semantic-release/npm": "^11.0.2",
+    "@semantic-release/npm": "^9.0.2",
     "zod": "^3.21.4",
     "zod-to-json-schema": "^3.21.1"
   }
