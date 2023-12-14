@@ -503,13 +503,7 @@ describe('Cloudinary', () => {
         expect(url).toContain(`?_a=${expectedId}`);
       });
 
-    });
-
-    /* Custom Config */
-
-    describe('analytics', () => {
-
-      it('should include an analytics ID at the end of the URL', () => {
+      it('should include an analytics ID at the end of the URL when using a custom config', () => {
         const cloudName = 'customtestcloud';
         const secureDistribution = 'spacejelly.dev';
         const url = constructCloudinaryUrl({
@@ -526,6 +520,46 @@ describe('Cloudinary', () => {
           }
         });
         expect(url).toContain(`https://${secureDistribution}/${cloudName}`);
+      });
+
+      it('should not include an analytics ID with config.url.analytics set to false', () => {
+        const cloudName = 'customtestcloud';
+        const url = constructCloudinaryUrl({
+          options: {
+            src: 'turtle',
+          },
+          config: {
+            cloud: {
+              cloudName
+            },
+            url: {
+              analytics: false
+            }
+          },
+          analytics: {
+            sdkCode: 'A',
+            sdkSemver: '1.0.0',
+            techVersion: '1.2.3',
+            product: 'B'
+          }
+        });
+        expect(url).not.toContain(`?_a`);
+      });
+
+      it('should not include an analytics ID with analytics set to false', () => {
+        const cloudName = 'customtestcloud';
+        const url = constructCloudinaryUrl({
+          options: {
+            src: 'turtle',
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          },
+          analytics: false
+        });
+        expect(url).not.toContain(`?_a`);
       });
 
     });

@@ -66,7 +66,7 @@ export const transformationPlugins = [
 export interface ConstructUrlProps {
   options: ImageOptions;
   config?: ConfigOptions;
-  analytics?: AnalyticsOptions;
+  analytics?: AnalyticsOptions | false;
 }
 
 export interface PluginOptionsResize {
@@ -83,7 +83,17 @@ export interface PluginResults {
   options?: PluginOptions;
 }
 
-export function constructCloudinaryUrl({ options, config, analytics }: ConstructUrlProps): string {
+export function constructCloudinaryUrl({ options, config = {}, analytics }: ConstructUrlProps): string {
+  // If someone is explicitly passing in undefined for analytics via the analytics option,
+  // ensure that the URL Gen SDK option is being passed in as false as well
+
+  if ( analytics === false ) {
+    if ( typeof config?.url === 'undefined' ) {
+      config.url = {};
+    }
+    config.url.analytics = false;
+  }
+
   const cld = new Cloudinary(config);
 
   if ( typeof options?.src !== 'string' ) {
