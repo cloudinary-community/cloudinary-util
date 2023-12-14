@@ -15,7 +15,7 @@
     "lint": "TIMING=1 eslint \"src/**/*.ts*\"",
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "prepublishOnly": "cd ../../ && pnpm build && cd packages/url-loader",
-    "semantic-release": "semantic-release --branches main",
+    "semantic-release": "semantic-release",
     "test": "jest"
   },
   "devDependencies": {
