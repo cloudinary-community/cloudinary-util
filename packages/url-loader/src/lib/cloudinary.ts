@@ -1,3 +1,4 @@
+import { z } from 'zod';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { parseUrl, ParseUrl, objectHasKey } from '@cloudinary-util/util';
 
@@ -21,10 +22,13 @@ import * as versionPlugin from '../plugins/version';
 import * as videoPlugin from '../plugins/video';
 import * as zoompanPlugin from '../plugins/zoompan';
 
-import { ImageOptions } from '../types/image';
-import { AnalyticsOptions } from '../types/analytics';
-import { ConfigOptions } from '../types/config';
+
+import { imageOptionsSchema } from '../types/image';
+import { analyticsOptionsSchema } from '../types/analytics';
+import { configOptionsSchema } from '../types/config';
+
 import { TransformationPlugin } from '../types/plugins';
+
 
 export const transformationPlugins = [
 
@@ -63,11 +67,31 @@ export const transformationPlugins = [
  * @description Builds a full Cloudinary URL using transformation plugins specified by options
  */
 
-export interface ConstructUrlProps {
-  options: ImageOptions;
-  config?: ConfigOptions;
-  analytics?: AnalyticsOptions | false;
-}
+export const constructUrlPropsSchema = z.object({
+  analytics: z.union([
+    analyticsOptionsSchema,
+    z.boolean()
+  ])
+    .describe(JSON.stringify({
+      text: 'Tech, dependency, and feature identifiers for tracking SDK usage.',
+      path: '/analyticsoptions'
+    }))
+    .optional(),
+  config: configOptionsSchema
+    .describe(JSON.stringify({
+      text: 'Configuration parameters for environment and Cloudinary account.',
+      url: 'https://cloudinary.com/documentation/cloudinary_sdks#configuration_parameters',
+      path: '/analyticsoptions'
+    }))
+    .optional(),
+  options: imageOptionsSchema
+    .describe(JSON.stringify({
+      text: 'Asset options (Image or Video) that define delivery URL including public ID and transformations.',
+      path: '/assetoptions'
+    })),
+})
+
+export type ConstructUrlProps = z.infer<typeof constructUrlPropsSchema>;
 
 export interface PluginOptionsResize {
   width?: string | number;

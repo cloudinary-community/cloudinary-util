@@ -1,8 +1,23 @@
+import { z } from 'zod';
+
 import { ImageOptions } from '../types/image';
 import { PluginSettings } from '../types/plugins';
 
-export const props = ['fillBackground'];
-export const assetTypes = ['image', 'images'];
+// import { constructPluginSchema } from '../lib/plugins';
+
+const pluginProps = [
+  {
+    name: 'fillBackground',
+    type: z.boolean().optional(),
+    assetTypes: ['image', 'images']
+  }
+];
+
+// @todo
+// const pluginPropsSchema = constructPluginSchema(pluginProps);
+
+export const props = pluginProps.map(({ name }) => name);
+export const assetTypes = Array.from(new Set(pluginProps.flatMap(({ assetTypes }) => assetTypes)));
 
 const defaultCrop = 'pad';
 

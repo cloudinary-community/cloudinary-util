@@ -3,7 +3,7 @@ module.exports = {
   extends: ["cloudinary-util"],
   settings: {
     next: {
-      rootDir: ["apps/*/"],
+      rootDir: ["docs/"],
     },
   },
 };
