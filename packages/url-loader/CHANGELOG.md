@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.24.0-beta.4](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.3...@cloudinary-util/url-loader-v3.24.0-beta.4) (2023-12-14)
+
+
+### Features
+
+* updating semrel pnpm ([#114](https://github.com/colbyfayock/cloudinary-util/issues/114)) ([e82f8ea](https://github.com/colbyfayock/cloudinary-util/commit/e82f8ea0a61a387d7f593bc87ffdf6ce8d4f0048))
+
 # [@cloudinary-util/url-loader-v3.24.0-beta.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.2...@cloudinary-util/url-loader-v3.24.0-beta.3) (2023-12-14)
 
 
