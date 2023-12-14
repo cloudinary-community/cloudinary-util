@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.24.0-beta.5](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.4...@cloudinary-util/url-loader-v3.24.0-beta.5) (2023-12-14)
+
+
+### Features
+
+* reverting back to pnpm ([#115](https://github.com/colbyfayock/cloudinary-util/issues/115)) ([15a25f6](https://github.com/colbyfayock/cloudinary-util/commit/15a25f650a0988b293cb995a78bfbc10c04075d4))
+
 # [@cloudinary-util/url-loader-v3.24.0-beta.4](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.3...@cloudinary-util/url-loader-v3.24.0-beta.4) (2023-12-14)
 
 
