@@ -38,13 +38,17 @@ export function plugin(props: PluginSettings) {
 
   if ( typeof text === 'string' ) {
     applyOverlay({
-      text: Object.assign({}, DEFAULT_TEXT_OPTIONS, {
+      text: {
+        ...DEFAULT_TEXT_OPTIONS,
         text
-      })
+      }
     })
   } else if ( typeof text === 'object' ) {
     applyOverlay({
-      text: Object.assign({}, DEFAULT_TEXT_OPTIONS, text)
+      text: {
+        ...DEFAULT_TEXT_OPTIONS,
+        ...text
+      }
     })
   }
 
