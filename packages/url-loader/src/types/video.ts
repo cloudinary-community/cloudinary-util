@@ -1,22 +1,7 @@
-import { z } from 'zod';
+import type { AssetOptions, AssetOptionsResize } from './asset';
 
-import { assetOptionsSchema } from './asset';
+export interface VideoOptionsResize extends AssetOptionsResize {}
 
-// Resize
-
-export const videoOptionsResizeSchema = assetOptionsSchema;
-
-export type VideoOptionsResize = z.infer<typeof videoOptionsResizeSchema>;
-
-// Video Options
-
-export const videoOptionsSchema = assetOptionsSchema.extend({
-  streamingProfile: z.string()
-    .describe(JSON.stringify({
-      text: 'The streaming profile to apply when delivering a video using adaptive bitrate streaming.',
-      url: 'https://cloudinary.com/documentation/transformation_reference#sp_streaming_profile'
-    }))
-    .optional(),
-})
-
-export type VideoOptions = z.infer<typeof videoOptionsSchema>;
+export interface VideoOptions extends AssetOptions {
+  streamingProfile?: string;
+}
