@@ -1,3 +1,11 @@
+# [@cloudinary-util/url-loader-v3.24.0-beta.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.23.0...@cloudinary-util/url-loader-v3.24.0-beta.1) (2023-12-14)
+
+
+### Features
+
+* Auto Generate Docs with Zod ([#52](https://github.com/colbyfayock/cloudinary-util/issues/52)) ([b179bdc](https://github.com/colbyfayock/cloudinary-util/commit/b179bdcd2d06b81a09f2ebb8a6f7926319743b98)), closes [#50](https://github.com/colbyfayock/cloudinary-util/issues/50)
+* remove main only releases ([#111](https://github.com/colbyfayock/cloudinary-util/issues/111)) ([969c00b](https://github.com/colbyfayock/cloudinary-util/commit/969c00bb23241dd58460e4039646e228ba41405c))
+
 # [@cloudinary-util/url-loader-v3.23.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.22.0...@cloudinary-util/url-loader-v3.23.0) (2023-12-14)
 
 
