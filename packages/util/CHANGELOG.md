@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v2.4.0-beta.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.3.0...@cloudinary-util/util-v2.4.0-beta.1) (2023-12-14)
+
+
+### Features
+
+* release from beta ([#110](https://github.com/colbyfayock/cloudinary-util/issues/110)) ([766904b](https://github.com/colbyfayock/cloudinary-util/commit/766904b01ae2873e3d0ca9b6c25ac45dcaa57cbe))
+
 # [@cloudinary-util/util-v2.3.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.2.1...@cloudinary-util/util-v2.3.0) (2023-11-09)
 
 
