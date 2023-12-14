@@ -1,3 +1,108 @@
+# [@cloudinary-util/url-loader-v3.22.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.21.1...@cloudinary-util/url-loader-v3.22.0) (2023-12-11)
+
+
+### Features
+
+* Adds positional qualifiers to effects and appliedEffects ([#105](https://github.com/colbyfayock/cloudinary-util/issues/105)) ([a5a5de4](https://github.com/colbyfayock/cloudinary-util/commit/a5a5de4f65b9827d85219080565f7b635cafb7e5)), closes [#104](https://github.com/colbyfayock/cloudinary-util/issues/104)
+
+# [@cloudinary-util/url-loader-v3.21.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.21.0...@cloudinary-util/url-loader-v3.21.1) (2023-12-11)
+
+
+### Bug Fixes
+
+* Fixes undefined overlay effect qualifiers from being applied ([#103](https://github.com/colbyfayock/cloudinary-util/issues/103)) ([564d6ee](https://github.com/colbyfayock/cloudinary-util/commit/564d6ee873cb735d727f50082a941505dc861db5)), closes [#102](https://github.com/colbyfayock/cloudinary-util/issues/102)
+
+# [@cloudinary-util/url-loader-v3.21.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.20.0...@cloudinary-util/url-loader-v3.21.0) (2023-12-08)
+
+
+### Features
+
+* Flags in Overlays ([#99](https://github.com/colbyfayock/cloudinary-util/issues/99)) ([5a7b19d](https://github.com/colbyfayock/cloudinary-util/commit/5a7b19d3319393077274bced87f7ac73a8cd8707)), closes [#98](https://github.com/colbyfayock/cloudinary-util/issues/98)
+
+# [@cloudinary-util/url-loader-v3.20.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.19.0...@cloudinary-util/url-loader-v3.20.0) (2023-12-07)
+
+
+### Features
+
+* Generative Recolor ([#94](https://github.com/colbyfayock/cloudinary-util/issues/94)) ([08b80ba](https://github.com/colbyfayock/cloudinary-util/commit/08b80ba8caf31066f4e7c81922dfd2660910c74f)), closes [#71](https://github.com/colbyfayock/cloudinary-util/issues/71)
+
+# [@cloudinary-util/url-loader-v3.19.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.18.0...@cloudinary-util/url-loader-v3.19.0) (2023-12-07)
+
+
+### Features
+
+* Generative Remove ([#93](https://github.com/colbyfayock/cloudinary-util/issues/93)) ([2af15c4](https://github.com/colbyfayock/cloudinary-util/commit/2af15c43ce13fe5db2fe0f084faf85b1e0baf715)), closes [#69](https://github.com/colbyfayock/cloudinary-util/issues/69)
+
+# [@cloudinary-util/url-loader-v3.18.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.17.0...@cloudinary-util/url-loader-v3.18.0) (2023-12-06)
+
+
+### Features
+
+* Generative Restore ([#92](https://github.com/colbyfayock/cloudinary-util/issues/92)) ([2861bf9](https://github.com/colbyfayock/cloudinary-util/commit/2861bf909479c932d21a0be78d1fe815e803f407)), closes [#70](https://github.com/colbyfayock/cloudinary-util/issues/70)
+
+# [@cloudinary-util/url-loader-v3.17.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.16.0...@cloudinary-util/url-loader-v3.17.0) (2023-12-06)
+
+
+### Features
+
+* Fixes widthResize not applying to URLs ([#90](https://github.com/colbyfayock/cloudinary-util/issues/90)) ([95331c3](https://github.com/colbyfayock/cloudinary-util/commit/95331c3c3e8902d1aa6f3d76bbdd1f83c4460481)), closes [#89](https://github.com/colbyfayock/cloudinary-util/issues/89)
+
+# [@cloudinary-util/url-loader-v3.16.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.15.0...@cloudinary-util/url-loader-v3.16.0) (2023-11-30)
+
+
+### Features
+
+* Aspect Ratio as top level option ([#88](https://github.com/colbyfayock/cloudinary-util/issues/88)) ([de32352](https://github.com/colbyfayock/cloudinary-util/commit/de32352c34718a84326da8494aaf23ad45317bf5)), closes [#87](https://github.com/colbyfayock/cloudinary-util/issues/87)
+
+# [@cloudinary-util/url-loader-v3.15.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.14.1...@cloudinary-util/url-loader-v3.15.0) (2023-11-09)
+
+
+### Features
+
+* Default Image ([#85](https://github.com/colbyfayock/cloudinary-util/issues/85)) ([e674d50](https://github.com/colbyfayock/cloudinary-util/commit/e674d50ea089d7f6e38285d04e10b9d5856fa129))
+
+# [@cloudinary-util/url-loader-v3.14.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.14.0...@cloudinary-util/url-loader-v3.14.1) (2023-11-01)
+
+
+### Bug Fixes
+
+* removing explicit undefined for seoSuffix and version to avoid warnings for keys being present ([33fe160](https://github.com/colbyfayock/cloudinary-util/commit/33fe1605eb372adf7ce2de208300d7cf5705be6b))
+
+# [@cloudinary-util/url-loader-v3.14.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.13.0...@cloudinary-util/url-loader-v3.14.0) (2023-11-01)
+
+
+### Features
+
+* Strict Transformations ([#83](https://github.com/colbyfayock/cloudinary-util/issues/83)) ([9bbe98d](https://github.com/colbyfayock/cloudinary-util/commit/9bbe98d4917cc7043399b75e714f7ec66114aa99)), closes [#82](https://github.com/colbyfayock/cloudinary-util/issues/82)
+
+# [@cloudinary-util/url-loader-v3.13.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.12.0...@cloudinary-util/url-loader-v3.13.0) (2023-10-31)
+
+
+### Features
+
+* Generative Replace ([#68](https://github.com/colbyfayock/cloudinary-util/issues/68)) ([#80](https://github.com/colbyfayock/cloudinary-util/issues/80)) ([0c5e96d](https://github.com/colbyfayock/cloudinary-util/commit/0c5e96d2692f48a6f5f52cf7f3837109fdc640c0))
+
+# [@cloudinary-util/url-loader-v3.12.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.11.0...@cloudinary-util/url-loader-v3.12.0) (2023-10-20)
+
+
+### Features
+
+* Make PluginSettings generic ([#78](https://github.com/colbyfayock/cloudinary-util/issues/78)) ([e5dba1e](https://github.com/colbyfayock/cloudinary-util/commit/e5dba1ed2d8c7b25c6ffecaa4f453f60a2633b7f)), closes [#74](https://github.com/colbyfayock/cloudinary-util/issues/74)
+
+# [@cloudinary-util/url-loader-v3.11.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.10.0...@cloudinary-util/url-loader-v3.11.0) (2023-10-17)
+
+
+### Features
+
+* DPR  ([#77](https://github.com/colbyfayock/cloudinary-util/issues/77)) ([7bcee8d](https://github.com/colbyfayock/cloudinary-util/commit/7bcee8dd788933acae92857513c901d745d92aa1)), closes [#76](https://github.com/colbyfayock/cloudinary-util/issues/76)
+
+# [@cloudinary-util/url-loader-v3.10.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.9.1...@cloudinary-util/url-loader-v3.10.0) (2023-07-24)
+
+
+### Features
+
+* upgrading url gen package in URL Loader ([505f1d9](https://github.com/colbyfayock/cloudinary-util/commit/505f1d98ee12dca00344d45bccec9a488046a885))
+
 # [@cloudinary-util/url-loader-v3.9.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.9.0...@cloudinary-util/url-loader-v3.9.1) (2023-07-17)
 
 

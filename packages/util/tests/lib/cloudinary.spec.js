@@ -1,4 +1,4 @@
-import { parseUrl, getPublicId, getTransformations } from '../../src/lib/cloudinary';
+import { parseUrl, getPublicId, getTransformations, getFormat } from '../../src/lib/cloudinary';
 
 // Mock console.warn() so we can see when it's called
 global.console = {
@@ -335,6 +335,25 @@ describe('Cloudinary', () => {
       ];
       const src = `https://res.cloudinary.com/test-cloud/image/upload/${transformations.map(t => t.join(',')).join('/')}/v1/app/images/turtle`;
       expect(getTransformations(src)).toEqual(transformations);
+    });
+  });
+
+  describe('getFormat', () => {
+    it('should return format from Cloudinary URL', () => {
+      const src = `https://res.cloudinary.com/test-cloud/image/upload/v1/app/images/turtle.jpg`;
+      expect(getFormat(src)).toEqual('.jpg');
+    });
+    it('should return format from public ID', () => {
+      const src = `images/turtle.mp4`;
+      expect(getFormat(src)).toEqual('.mp4');
+    });
+    it('should not return format not supported format', () => {
+      const src = `images/turtle.colby`;
+      expect(getFormat(src)).toEqual(undefined);
+    });
+    it('should return undefined if no format', () => {
+      const src = `https://res.cloudinary.com/test-cloud/image/upload/v1/app/images/turtle`;
+      expect(getFormat(src)).toEqual(undefined);
     });
   });
 })

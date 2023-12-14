@@ -116,6 +116,80 @@ describe('Plugins', () => {
       expect(cldImage.toURL()).toContain(`l_${publicId.replace(/\//g, ':')},w_${width},h_${height}/fl_layer_apply,fl_no_overflow,e_screen`);
     });
 
+    it('should apply flags to an overlay', () => {
+      const cldImage = cld.image(TEST_PUBLIC_ID);
+
+      const publicId = 'images/my-cool-image'
+      const width = '1.0';
+      const flags = ['relative']
+
+      const options = {
+        overlays: [{
+          publicId,
+          width,
+          flags
+        }]
+      }
+
+      plugin({
+        cldAsset: cldImage,
+        options
+      });
+
+      expect(cldImage.toURL()).toContain(`l_${publicId.replace(/\//g, ':')},w_${width},${flags.map(f => `fl_${f}`).join(',')}/fl_layer_apply,fl_no_overflow`);
+    });
+
+    it('should apply applied flags to an overlay', () => {
+      const cldImage = cld.image(TEST_PUBLIC_ID);
+
+      const publicId = 'images/my-cool-image'
+      const width = '1.0';
+      // Not sure this makes sense in this location, but for testing purposes
+      const flags = ['sanitize']
+
+      const options = {
+        overlays: [{
+          publicId,
+          width,
+          appliedFlags: flags
+        }]
+      }
+
+      plugin({
+        cldAsset: cldImage,
+        options
+      });
+
+      expect(cldImage.toURL()).toContain(`l_${publicId.replace(/\//g, ':')},w_${width}/fl_layer_apply,fl_no_overflow,${flags.map(f => `fl_${f}`).join(',')}`);
+    });
+
+    it('should not apply undefined effects', () => {
+      const cldImage = cld.image(TEST_PUBLIC_ID);
+
+      const publicId = 'images/my-cool-image'
+
+      const options = {
+        overlays: [{
+          publicId,
+          effects: [{
+            colby: 'fayock',
+            space: 'jelly'
+          }],
+          appliedEffects: [{
+            colby: 'fayock',
+            space: 'jelly'
+          }]
+        }]
+      }
+
+      plugin({
+        cldAsset: cldImage,
+        options
+      });
+
+      expect(cldImage.toURL()).toContain(`/l_${publicId.replace(/\//g, ':')}/fl_layer_apply,fl_no_overflow/`);
+    });
+
   })
   describe('Text Overlays', () => {
     it('should add a text overlay with basic settings', () => {

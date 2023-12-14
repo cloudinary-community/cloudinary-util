@@ -5,4 +5,4 @@ import { IAnalyticsOptions } from '@cloudinary/url-gen/sdkAnalytics/interfaces/I
 
 export const analyticsOptionsSchema: z.ZodType<IAnalyticsOptions> = z.any();
 
-export type AnalyticsOptions = z.TypeOf<typeof analyticsOptionsSchema>;
+export type AnalyticsOptions = z.TypeOf<typeof analyticsOptionsSchema> | false;

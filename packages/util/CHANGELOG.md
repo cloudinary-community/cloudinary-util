@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v2.3.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.2.1...@cloudinary-util/util-v2.3.0) (2023-11-09)
+
+
+### Features
+
+* exposing getFormat from util ([7aa33a7](https://github.com/colbyfayock/cloudinary-util/commit/7aa33a778bfdf102468aebc1a883856862e52867))
+
 # [@cloudinary-util/util-v2.2.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.2.0...@cloudinary-util/util-v2.2.1) (2023-07-17)
 
 

@@ -1,5 +1,6 @@
 import { z } from 'zod';
 
+
 // Resize
 
 export const assetOptionsResizeSchema = z.object({
@@ -22,6 +23,12 @@ export const assetOptionsSchema = z.object({
       url: 'https://cloudinary.com/documentation/image_transformations#transformation_url_structure'
     }))
     .optional(),
+  aspectRatio: z.union([ z.string(), z.number() ])
+    .describe(JSON.stringify({
+      text: 'Crops or resizes the asset to a new aspect ratio.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#ar_aspect_ratio'
+    }))
+    .optional(),
   crop: z.string()
     .default('scale')
     .describe(JSON.stringify({
@@ -31,6 +38,12 @@ export const assetOptionsSchema = z.object({
     .optional(),
   deliveryType: z.string()
     .default('upload')
+    .describe(JSON.stringify({
+      text: 'Delivery method of the asset.',
+      url: 'https://cloudinary.com/documentation/image_transformations#delivery_types'
+    }))
+    .optional(),
+  dpr: z.union([ z.string(), z.number() ])
     .describe(JSON.stringify({
       text: 'Delivery method of the asset.',
       url: 'https://cloudinary.com/documentation/image_transformations#delivery_types'
@@ -112,6 +125,12 @@ export const assetOptionsSchema = z.object({
     .describe(JSON.stringify({
         text: 'Cloudinary Public ID or versioned Cloudinary URL (/v1234/)'
       })),
+  strictTransformations: z.boolean()
+    .describe(JSON.stringify({
+      text: 'Gives you the ability to have more control over what transformations are permitted to be used from your Cloudinary account.',
+      url: 'https://cloudinary.com/documentation/control_access_to_media#strict_transformations'
+    }))
+    .optional(),
   text: z.string()
     .describe(JSON.stringify({
       text: 'Text to be overlaid on asset.',

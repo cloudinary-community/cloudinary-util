@@ -52,7 +52,7 @@ describe('Cloudinary', () => {
 
     /* Optimization */
 
-    describe('format, quality', () => {
+    describe('format, quality, dpr', () => {
 
       it('should create a Cloudinary URL with custom quality and format options', () => {
         const format = 'png';
@@ -98,6 +98,152 @@ describe('Cloudinary', () => {
         });
 
         expect(url).toContain(src);
+      });
+
+      it('should include custom DPR as a string', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'upload';
+        const publicId = 'myimage';
+        const dpr = '2.0';
+
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr}/f_auto/q_auto/${publicId}?_a=B`;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: publicId,
+            width: 100,
+            height: 100,
+            dpr
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+
+        expect(url).toContain(src);
+      });
+
+      it('should include custom DPR as number', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'upload';
+        const publicId = 'myimage';
+        const dpr = 2;
+
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr.toFixed(1)}/f_auto/q_auto/${publicId}?_a=B`;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: publicId,
+            width: 100,
+            height: 100,
+            dpr
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+
+        expect(url).toContain(src);
+      });
+      it('should include DPR auto', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'upload';
+        const publicId = 'myimage';
+        const dpr = 'auto';
+
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr}/f_auto/q_auto/${publicId}?_a=B`;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: publicId,
+            width: 100,
+            height: 100,
+            dpr
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+
+        expect(url).toContain(src);
+      });
+
+    });
+
+    /* Cropping & Resizing */
+
+    describe('cropping, resizing', () => {
+
+      it('should create a Cloudinary URL with widthResize smaller than width', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'upload';
+        const publicId = 'myimage';
+        const width = 900;
+        const widthResize = 600;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: publicId,
+            width,
+            widthResize
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_${width}/c_limit,w_${widthResize}/f_auto/q_auto/${publicId}`);
+      });
+
+      it('should create a Cloudinary URL with widthResize same as width', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'upload';
+        const publicId = 'myimage';
+        const width = 900;
+        const widthResize = 900;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: publicId,
+            width,
+            widthResize
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_${width}/c_limit,w_${widthResize}/f_auto/q_auto/${publicId}`);
+      });
+
+      it('should create a Cloudinary URL with widthResize larger than width', () => {
+        const cloudName = 'customtestcloud';
+        const deliveryType = 'upload';
+        const publicId = 'myimage';
+        const width = 900;
+        const widthResize = 1200;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: publicId,
+            width,
+            widthResize
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_${width}/c_limit,w_${widthResize}/f_auto/q_auto/${publicId}`);
       });
 
     });
@@ -357,13 +503,7 @@ describe('Cloudinary', () => {
         expect(url).toContain(`?_a=${expectedId}`);
       });
 
-    });
-
-    /* Custom Config */
-
-    describe('analytics', () => {
-
-      it('should include an analytics ID at the end of the URL', () => {
+      it('should include an analytics ID at the end of the URL when using a custom config', () => {
         const cloudName = 'customtestcloud';
         const secureDistribution = 'spacejelly.dev';
         const url = constructCloudinaryUrl({
@@ -380,6 +520,46 @@ describe('Cloudinary', () => {
           }
         });
         expect(url).toContain(`https://${secureDistribution}/${cloudName}`);
+      });
+
+      it('should not include an analytics ID with config.url.analytics set to false', () => {
+        const cloudName = 'customtestcloud';
+        const url = constructCloudinaryUrl({
+          options: {
+            src: 'turtle',
+          },
+          config: {
+            cloud: {
+              cloudName
+            },
+            url: {
+              analytics: false
+            }
+          },
+          analytics: {
+            sdkCode: 'A',
+            sdkSemver: '1.0.0',
+            techVersion: '1.2.3',
+            product: 'B'
+          }
+        });
+        expect(url).not.toContain(`?_a`);
+      });
+
+      it('should not include an analytics ID with analytics set to false', () => {
+        const cloudName = 'customtestcloud';
+        const url = constructCloudinaryUrl({
+          options: {
+            src: 'turtle',
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          },
+          analytics: false
+        });
+        expect(url).not.toContain(`?_a`);
       });
 
     });
@@ -404,6 +584,74 @@ describe('Cloudinary', () => {
           }
         });
         expect(url).toContain(`image/upload/${rawTransformations.join('/')}/f_auto/q_auto/${src}`);
+      });
+
+    })
+
+    /* Strict Transformations */
+
+    describe('strictTransformations', () => {
+
+      it('should not add any transformations when strict transformations is enabled', () => {
+        const cloudName = 'customtestcloud';
+        const src = 'turtle';
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            strictTransformations: true
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`image/upload/${src}`);
+      });
+
+      it('should add named transformations when strict transformations is enabled', () => {
+        const cloudName = 'customtestcloud';
+        const src = 'turtle';
+        const namedTransformation = 'my-transformation';
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            strictTransformations: true,
+            transformations: [namedTransformation]
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`image/upload/t_${namedTransformation}/${src}`);
+      });
+
+      it('should not add any transformations when strict transformations is enabled', () => {
+        const cloudName = 'customtestcloud';
+        const src = 'turtle';
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            strictTransformations: true,
+            removeBackground: true,
+            effects: [{
+              opacity: .5
+            }],
+            version: 2,
+            width: 960,
+            height: 600,
+            widthResize: 1920,
+            heightResize: 1200
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`image/upload/${src}?_a=B`);
       });
 
     })
@@ -468,6 +716,108 @@ describe('Cloudinary', () => {
           }
         });
         expect(url).toContain(`${assetType}/upload/o_${opacity},e_shear:${shear}/e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}/f_auto/q_auto/${src}`);
+    });
+
+
+    /* Kitchen Sink */
+
+    it('Kitchen Sink - Image', () => {
+      const cloudName = 'customtestcloud';
+        const assetType = 'image';
+        const src = 'turtle';
+        const width = 123;
+        const height = 321;
+        const defaultImage = 'my-image.jpg';
+
+        const cartoonify = '50';
+        const gradientFade = true;
+        const opacity = '50';
+        const radius = '150';
+        const shear = '40:0';
+
+        const overlaySrc = src;
+        const overlayColor = 'blue';
+        const overlayShadow = 100;
+        const overlayX = 0;
+        const overlayY = 0;
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            width,
+            height,
+            assetType,
+            defaultImage,
+            effects: [
+              {
+                shear,
+                opacity,
+              },
+              {
+                gradientFade,
+                cartoonify,
+                radius
+              }
+            ],
+            overlays: [
+              {
+                publicId: overlaySrc,
+                effects: [
+                  {
+                    color: overlayColor,
+                    shadow: overlayShadow,
+                    x: overlayX,
+                    y: overlayY
+                  }
+                ],
+                appliedEffects: [
+                  {
+                    color: overlayColor,
+                    shadow: overlayShadow,
+                    x: overlayX,
+                    y: overlayY
+                  }
+                ],
+              }
+            ],
+            // Note: removeBackground and restore can't actually be used together
+            // in practice, but this is simply testing that it works applies correctly
+            recolor: {
+              prompt: 'duck',
+              to: 'blue',
+              multiple: true
+            },
+            remove: {
+              prompt: 'apple',
+              multiple: true,
+              removeShadow: true
+            },
+            removeBackground: true,
+            restore: true,
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain([
+          assetType,
+          `upload`,
+          'e_gen_recolor:prompt_duck;to-color_blue;multiple_true',
+          `e_gen_remove:prompt_apple;multiple_true;remove-shadow_true`,
+          `e_background_removal`,
+          `e_gen_restore`,
+          `c_limit,w_${width}`,
+          `d_${defaultImage}`,
+          `o_${opacity},e_shear:${shear}`,
+          `e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}`,
+          `l_${overlaySrc},co_${overlayColor},e_shadow:${overlayShadow},x_${overlayX},y_${overlayY}`,
+          `fl_layer_apply,fl_no_overflow,co_${overlayColor},e_shadow:${overlayShadow},x_${overlayX},y_${overlayY}`,
+          `f_auto`,
+          `q_auto`,
+          src
+        ].join('/'));
     });
 
 

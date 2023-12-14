@@ -24,6 +24,33 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "funbunch",
+      "name": "Shannan Bunch",
+      "avatar_url": "https://avatars.githubusercontent.com/u/3441200?v=4",
+      "profile": "http://www.bunchofideas.com",
+      "contributions": [
+        "test"
+      ]
+    },
+    {
+      "login": "Insidiae",
+      "name": "Kobe Ruado",
+      "avatar_url": "https://avatars.githubusercontent.com/u/28495550?v=4",
+      "profile": "https://github.com/Insidiae",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "michaeljolley",
+      "name": "Michael Jolley",
+      "avatar_url": "https://avatars.githubusercontent.com/u/1228996?v=4",
+      "profile": "https://baldbeardedbuilder.com/",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,
@@ -31,5 +58,6 @@
   "repoType": "github",
   "repoHost": "https://github.com",
   "projectName": "cloudinary-util",
-  "projectOwner": "colbyfayock"
+  "projectOwner": "colbyfayock",
+  "commitType": "docs"
 }

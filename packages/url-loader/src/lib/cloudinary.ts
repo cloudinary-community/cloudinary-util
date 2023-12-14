@@ -3,28 +3,43 @@ import { Cloudinary } from '@cloudinary/url-gen';
 import { parseUrl, ParseUrl, objectHasKey } from '@cloudinary-util/util';
 
 import * as croppingPlugin from '../plugins/cropping';
+import * as defaultImagePlugin from '../plugins/default-image';
 import * as effectsPlugin from '../plugins/effects';
 import * as flagsPlugin from '../plugins/flags';
 import * as fillBackgroundPlugin from '../plugins/fill-background';
-import * as sanitizePlugin from '../plugins/sanitize';
-import * as overlaysPlugin from '../plugins/overlays';
+import * as generativeReplacePlugin from '../plugins/generative-replace';
 import * as namedTransformationsPlugin from '../plugins/named-transformations';
+import * as overlaysPlugin from '../plugins/overlays';
 import * as rawTransformationsPlugin from '../plugins/raw-transformations';
+import * as recolorPlugin from '../plugins/recolor';
+import * as removePlugin from '../plugins/remove';
 import * as removeBackgroundPlugin from '../plugins/remove-background';
+import * as restorePlugin from '../plugins/restore';
+import * as sanitizePlugin from '../plugins/sanitize';
 import * as seoPlugin from '../plugins/seo';
 import * as underlaysPlugin from '../plugins/underlays';
 import * as versionPlugin from '../plugins/version';
 import * as videoPlugin from '../plugins/video';
 import * as zoompanPlugin from '../plugins/zoompan';
 
+
 import { imageOptionsSchema } from '../types/image';
 import { analyticsOptionsSchema } from '../types/analytics';
 import { configOptionsSchema } from '../types/config';
 
-export const transformationPlugins = [
-  // Background Removal must always come first
+import { TransformationPlugin } from '../types/plugins';
 
+
+export const transformationPlugins = [
+
+  // Some features *must* be the first transformation applied
+  // thus their plugins *must* come first in the chain
+
+  generativeReplacePlugin,
+  recolorPlugin,
+  removePlugin,
   removeBackgroundPlugin,
+  restorePlugin,
 
   // Raw transformations should always come before
   // other arguments to avoid conflicting with
@@ -33,6 +48,7 @@ export const transformationPlugins = [
   rawTransformationsPlugin,
 
   croppingPlugin,
+  defaultImagePlugin,
   effectsPlugin,
   fillBackgroundPlugin,
   flagsPlugin,
@@ -52,7 +68,10 @@ export const transformationPlugins = [
  */
 
 export const constructUrlPropsSchema = z.object({
-  analytics: analyticsOptionsSchema
+  analytics: z.union([
+    analyticsOptionsSchema,
+    z.boolean()
+  ])
     .describe(JSON.stringify({
       text: 'Tech, dependency, and feature identifiers for tracking SDK usage.',
       path: '/analyticsoptions'
@@ -88,7 +107,17 @@ export interface PluginResults {
   options?: PluginOptions;
 }
 
-export function constructCloudinaryUrl({ options, config, analytics }: ConstructUrlProps): string {
+export function constructCloudinaryUrl({ options, config = {}, analytics }: ConstructUrlProps): string {
+  // If someone is explicitly passing in undefined for analytics via the analytics option,
+  // ensure that the URL Gen SDK option is being passed in as false as well
+
+  if ( analytics === false ) {
+    if ( typeof config?.url === 'undefined' ) {
+      config.url = {};
+    }
+    config.url.analytics = false;
+  }
+
   const cld = new Cloudinary(config);
 
   if ( typeof options?.src !== 'string' ) {
@@ -110,10 +139,7 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
     });
   })
 
-  const parsedOptions: Pick<ParseUrl, 'seoSuffix' | 'version'> = {
-    seoSuffix: undefined,
-    version: undefined,
-  };
+  const parsedOptions: Pick<ParseUrl, 'seoSuffix' | 'version'> = {};
 
   let publicId;
 
@@ -156,17 +182,23 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
     throw new Error('Invalid asset type.');
   }
 
-  transformationPlugins.forEach(({ plugin, assetTypes, props }) => {
+  transformationPlugins.forEach(({ plugin, assetTypes, props, strict }: TransformationPlugin) => {
     const supportedAssetType = typeof options?.assetType !== 'undefined' && assetTypes.includes(options?.assetType);
 
-    if ( !supportedAssetType ) {
-      const optionsKeys = Object.keys(options);
-      const attemptedUse = props.map(prop => optionsKeys.includes(prop)).filter(isUsed => !!isUsed).length > 0;
+    const optionsKeys = Object.keys(options);
+    const attemptedUse = props.map(prop => optionsKeys.includes(prop)).filter(isUsed => !!isUsed).length > 0;
 
+    if ( !supportedAssetType ) {
       if ( attemptedUse ) {
         console.warn(`One of the following props [${props.join(', ')}] was used with an unsupported asset type [${options?.assetType}]`);
       }
+      return;
+    }
 
+    if ( options.strictTransformations && !strict ) {
+      if ( attemptedUse ) {
+        console.warn(`One of the following props [${props.join(', ')}] was used that is not supported with Strict Transformations.`);
+      }
       return;
     }
 
@@ -191,19 +223,34 @@ export function constructCloudinaryUrl({ options, config, analytics }: Construct
   // We want to perform any resizing at the end of the end of the transformation
   // sets to allow consistent use of positioning / sizing, especially responsively
 
-  if ( options?.resize ) {
-    const { width, crop = 'scale' } = options.resize;
+  if ( options?.resize && !options.strictTransformations ) {
+    const { width, crop = 'limit' } = options.resize;
     cldAsset.effect(`c_${crop},w_${width}`);
   }
 
   cldAsset.setDeliveryType(options?.deliveryType || 'upload');
 
-  if ( options?.format !== 'default' ) {
-    cldAsset.format(options?.format || 'auto')
-  }
+  // Strict transformations requires opt-in for any transformation. If this is
+  // enabled, nothing should be added on top of the URL
 
-  if ( options?.quality !== 'default' ) {
-    cldAsset.quality(options?.quality || 'auto')
+  if ( !options.strictTransformations ) {
+
+    if ( options?.dpr ) {
+      let dpr = options.dpr;
+      if ( typeof dpr === 'number' ) {
+        dpr = dpr.toFixed(1);
+      }
+      cldAsset.addTransformation(`dpr_${dpr}`)
+    }
+
+    if ( options?.format !== 'default' ) {
+      cldAsset.format(options?.format || 'auto')
+    }
+
+    if ( options?.quality !== 'default' ) {
+      cldAsset.quality(options?.quality || 'auto')
+    }
+
   }
 
   return cldAsset.toURL({

@@ -36,13 +36,11 @@ export function parseUrl(src: string): ParseUrl | undefined {
 
   const [baseUrlWithExtension, queryString] = src.split('?');
 
-  const formatMatches = baseUrlWithExtension.match(REGEX_FORMAT);
+  const format = getFormat(baseUrlWithExtension);
 
   let baseUrl = baseUrlWithExtension;
-  let format;
 
-  if ( formatMatches !== null ) {
-    format = `${formatMatches[0]}`;
+  if ( format ) {
     baseUrl = baseUrlWithExtension.replace(new RegExp(`${format}$`), '');
   }
 
@@ -91,9 +89,9 @@ export function parseUrl(src: string): ParseUrl | undefined {
 
 /**
  * getPublicId
- * @description Retrieves the public id of a cloudiary image url. If no url is recognized it returns the parameter it self.
+ * @description Retrieves the public id of a Cloudinary image url. If no url is recognized it returns the parameter it self.
  * If it's recognized that is a url and it's not possible to get the public id, it warns the user.
- * @param {string} src: The cloudiary url or public id.
+ * @param {string} src: The Cloudinary url or public id.
  */
 
 export function getPublicId(src: string): string | undefined {
@@ -105,10 +103,22 @@ export function getPublicId(src: string): string | undefined {
 /**
  * getTransformations
  * @description Retrieves the transformations added to a Cloudinary image url. If no transformation is recognized it returns an empty array.
- * @param {string} src: The cloudiary url
+ * @param {string} src: The Cloudinary url
  */
 
 export function getTransformations(src: string) {
   const { transformations = [] } = parseUrl(src) || {};
   return transformations.map(t => t.split(','));
+}
+
+/**
+ * getFormat
+ * @description Retrieves the format of a given string
+ * @param {string} src: The Cloudinary url or any string trying to match the format
+ */
+
+export function getFormat(src: string) {
+  const matches = src.match(REGEX_FORMAT);
+  if ( matches === null ) return;
+  return matches[0];
 }
