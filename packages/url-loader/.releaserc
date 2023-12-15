@@ -39,7 +39,12 @@
         "changelogFile": "CHANGELOG.md"
       }
     ],
-    "@colbyfayock/semantic-release-pnpm",
+    [
+      "@colbyfayock/semantic-release-pnpm",
+      {
+        "publishBranch": "main|beta"
+      }
+    ],
     [
       "@semantic-release/git",
       {
