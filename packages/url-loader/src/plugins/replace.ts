@@ -13,7 +13,7 @@ export const pluginProps = {
       preserveGeometry: z.boolean().optional()
     })
   ]).describe(JSON.stringify({
-    text: 'Uses generative AI to recolor parts of your image, maintaining the relative shading.',
+    text: 'Uses generative AI to replace parts of your image with something else.',
     url: 'https://cloudinary.com/documentation/transformation_reference#e_gen_replace'
   }))
   .optional(),
