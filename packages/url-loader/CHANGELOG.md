@@ -1,3 +1,11 @@
+# [@cloudinary-util/url-loader-v3.24.0-beta.6](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.5...@cloudinary-util/url-loader-v3.24.0-beta.6) (2023-12-15)
+
+
+### Features
+
+* Beta+test2 ([#116](https://github.com/colbyfayock/cloudinary-util/issues/116)) ([ab21afb](https://github.com/colbyfayock/cloudinary-util/commit/ab21afbc603fbf1a3c6e0f130dc6caf9766476af))
+* Beta+test2 ([#117](https://github.com/colbyfayock/cloudinary-util/issues/117)) ([0c3293d](https://github.com/colbyfayock/cloudinary-util/commit/0c3293d1674dab741f4fef5eb4e9d1cc0b28caea))
+
 # [@cloudinary-util/url-loader-v3.24.0-beta.5](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.4...@cloudinary-util/url-loader-v3.24.0-beta.5) (2023-12-14)
 
 
