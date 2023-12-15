@@ -7,7 +7,7 @@ import * as defaultImagePlugin from '../plugins/default-image';
 import * as effectsPlugin from '../plugins/effects';
 import * as flagsPlugin from '../plugins/flags';
 import * as fillBackgroundPlugin from '../plugins/fill-background';
-import * as generativeReplacePlugin from '../plugins/generative-replace';
+import * as replacePlugin from '../plugins/replace';
 import * as namedTransformationsPlugin from '../plugins/named-transformations';
 import * as overlaysPlugin from '../plugins/overlays';
 import * as rawTransformationsPlugin from '../plugins/raw-transformations';
@@ -35,10 +35,10 @@ export const transformationPlugins = [
   // Some features *must* be the first transformation applied
   // thus their plugins *must* come first in the chain
 
-  generativeReplacePlugin,
   recolorPlugin,
   removePlugin,
   removeBackgroundPlugin,
+  replacePlugin,
   restorePlugin,
 
   // Raw transformations should always come before

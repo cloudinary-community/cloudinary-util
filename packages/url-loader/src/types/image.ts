@@ -7,7 +7,7 @@ import { pluginProps as fillBackgroundPluginProps } from '../plugins/fill-backgr
 import { pluginProps as recolorPluginProps } from '../plugins/recolor';
 import { pluginProps as removePluginProps } from '../plugins/remove';
 import { pluginProps as restorePluginProps } from '../plugins/restore';
-import { pluginProps as replacePluginProps } from '../plugins/generative-replace';
+import { pluginProps as replacePluginProps } from '../plugins/replace';
 import { pluginProps as zoompanPluginProps } from '../plugins/zoompan';
 
 export const imageOptionsSchema = assetOptionsSchema
