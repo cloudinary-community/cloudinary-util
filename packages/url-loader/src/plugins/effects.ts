@@ -1,9 +1,19 @@
+import { z } from 'zod';
+
 import { PluginSettings } from '../types/plugins';
 
 import { effects as qualifiersEffects } from '../constants/qualifiers';
 import { constructTransformation } from '../lib/transformations';
 
-export const props = [...Object.keys(qualifiersEffects), 'effects'];
+export const pluginProps = {
+  effects: z.array(z.any())
+    .describe(JSON.stringify({
+      text: 'Array of objects specifying transformations to be applied to asset.'
+    }))
+    .optional(),
+};
+
+export const props = [...Object.keys(qualifiersEffects), ...Object.entries(pluginProps).map(([name]) => name)];
 export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 export function plugin(props: PluginSettings) {

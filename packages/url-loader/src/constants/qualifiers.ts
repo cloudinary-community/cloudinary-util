@@ -463,10 +463,3 @@ export const flags: Record<string, Qualifier> = {
     qualifier: 'waveform'
   },
 } as const;
-
-export const video: Record<string, Qualifier> = {
-  streamingProfile: {
-    qualifier: 'sp',
-    location: 'primary'
-  }
-} as const;

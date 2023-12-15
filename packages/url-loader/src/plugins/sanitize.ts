@@ -1,7 +1,18 @@
+import { z } from 'zod';
+
 import { ImageOptions } from '../types/image';
 import { PluginSettings } from '../types/plugins';
 
-export const props = ['sanitize'];
+export const pluginProps = {
+  sanitize: z.boolean()
+    .describe(JSON.stringify({
+      text: 'Runs a sanitizer on SVG images.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#fl_sanitize'
+    }))
+    .optional(),
+};
+
+export const props = Object.entries(pluginProps).map(([name]) => name);
 export const assetTypes = ['image', 'images'];
 
 export function plugin(props: PluginSettings<ImageOptions>) {

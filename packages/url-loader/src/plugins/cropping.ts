@@ -1,15 +1,52 @@
+import { z } from 'zod';
+
 import { PluginSettings, PluginOverrides } from '../types/plugins';
 
 const cropsAspectRatio = [ 'crop', 'fill', 'lfill', 'fill_pad', 'thumb' ];
 const cropsGravityAuto = [ 'crop', 'fill', 'lfill', 'fill_pad', 'thumb' ];
 const cropsWithZoom = ['crop', 'thumb'];
 
-export const props = [
-  'aspectRatio',
-  'crop',
-  'gravity',
-  'zoom',
-];
+export const pluginProps = {
+  aspectRatio: z.union([
+      z.string(),
+      z.number()
+    ])
+    .describe(JSON.stringify({
+      text: 'Crops or resizes the asset to a new aspect ratio.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#ar_aspect_ratio'
+    }))
+    .optional(),
+  crop: z.string()
+    .default('scale')
+    .describe(JSON.stringify({
+      text: 'Mode to use when cropping an asset.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#c_crop_resize'
+    }))
+    .optional(),
+  gravity: z.string()
+    .default('auto')
+    .describe(JSON.stringify({
+      text: 'Determines which part of an asset to focus on. Note: Default of auto is applied for supported crop modes only.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#g_gravity'
+    }))
+    .optional(),
+  widthResize: z.union([
+      z.string(),
+      z.number()
+    ])
+    .describe(JSON.stringify({
+      text: 'Width to resize the asset after all transformations are applied. Useful for responsive resizing.',
+    }))
+    .optional(),
+  zoom: z.string()
+    .describe(JSON.stringify({
+      text: 'Controls how close to crop to the detected coordinates when using face-detection, custom-coordinate, or object-specific gravity.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#z_zoom'
+    }))
+    .optional()
+};
+
+export const props = Object.entries(pluginProps).map(([name]) => name);
 export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 /**

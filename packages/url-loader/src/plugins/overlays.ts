@@ -1,3 +1,4 @@
+import { z } from 'zod';
 import { encodeBase64, objectHasKey, sortByKey } from '@cloudinary-util/util';
 
 import { PluginSettings } from '../types/plugins';
@@ -13,7 +14,21 @@ import {
   text as qualifiersText,
 } from '../constants/qualifiers';
 
-export const props = ['text', 'overlays'];
+export const pluginProps = {
+  overlays: z.any()
+    .describe(JSON.stringify({
+      text: 'Image or text layers that are applied on top of the base image.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#l_layer'
+    }))
+    .optional(),
+  text: z.string()
+    .describe(JSON.stringify({
+      text: 'Text to be overlaid on asset.',
+      url: 'https://cloudinary.com/documentation/image_transformations#transformation_url_structure'
+    })).optional(),
+};
+
+export const props = Object.entries(pluginProps).map(([name]) => name);
 export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 export const DEFAULT_TEXT_OPTIONS = {

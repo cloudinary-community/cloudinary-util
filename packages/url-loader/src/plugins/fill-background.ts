@@ -3,8 +3,6 @@ import { z } from 'zod';
 import { ImageOptions } from '../types/image';
 import { PluginSettings } from '../types/plugins';
 
-// import { constructPluginSchema } from '../lib/plugins';
-
 export const pluginProps = {
   fillBackground: z.union([
       z.boolean(),
@@ -20,9 +18,6 @@ export const pluginProps = {
     }))
     .optional()
 };
-
-// @todo
-// const pluginPropsSchema = constructPluginSchema(pluginProps);
 
 // @todo: no longer need props in each file, grab from pluginProps
 export const props = Object.entries(pluginProps).map(([name]) => name);

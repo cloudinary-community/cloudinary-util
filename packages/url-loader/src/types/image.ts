@@ -10,13 +10,16 @@ import { pluginProps as restorePluginProps } from '../plugins/restore';
 import { pluginProps as replacePluginProps } from '../plugins/replace';
 import { pluginProps as zoompanPluginProps } from '../plugins/zoompan';
 
-export const imageOptionsSchema = assetOptionsSchema
-  .merge(z.object(defaultImagePluginProps))
-  .merge(z.object(fillBackgroundPluginProps))
-  .merge(z.object(recolorPluginProps))
-  .merge(z.object(removePluginProps))
-  .merge(z.object(replacePluginProps))
-  .merge(z.object(restorePluginProps))
-  .merge(z.object(zoompanPluginProps))
+export const imageOptionsSchema = assetOptionsSchema.merge(z.object({
+  // Spreading plugins instead of extend or merge to avoid excessive schema warning
+  // https://github.com/microsoft/TypeScript/issues/34933#issuecomment-1772787785
+  ...defaultImagePluginProps,
+  ...fillBackgroundPluginProps,
+  ...recolorPluginProps,
+  ...removePluginProps,
+  ...replacePluginProps,
+  ...restorePluginProps,
+  ...zoompanPluginProps,
+}))
 
 export type ImageOptions = z.infer<typeof imageOptionsSchema>;

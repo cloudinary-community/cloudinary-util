@@ -2,35 +2,30 @@ import { z } from 'zod';
 
 import { PluginSettings } from '../types/plugins';
 
-// import { constructPluginSchema } from '../lib/plugins';
 import { flags as qualifiersFlags } from '../constants/qualifiers';
 
-const pluginProps = [
-  {
-    name: 'flags',
-    type: z.union([
+export const pluginProps = {
+  // @todo: can / should this be an enum?
+  flags: z.union([
       z.array(z.string()),
-      z.record(z.string(), z.string())
-    ]).optional(),
-    assetTypes: ['image', 'images', 'video', 'videos']
-  }
-];
+      z.string()
+    ])
+    .describe(JSON.stringify({
+      text: 'Alters the regular behavior of another transformation or the overall delivery behavior.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#fl_flag'
+    }))
+    .optional()
+};
 
-// @todo
-// const pluginPropsSchema = constructPluginSchema(pluginProps);
+export const props = Object.entries(pluginProps).map(([name]) => name);
+export const assetTypes = ['image', 'images', 'video', 'videos']
 
-export const props = pluginProps.map(({ name }) => name);
-export const assetTypes = Array.from(new Set(pluginProps.flatMap(({ assetTypes }) => assetTypes)));
-
+// @todo can this be a validation check as part of Zod?
 const supportedFlags = Object.entries(qualifiersFlags).map(([_, { qualifier }]) => qualifier);
 
 export function plugin(props: PluginSettings) {
   const { cldAsset, options } = props;
   const { flags = [] } = options;
-
-  // @todo
-  // const test = pluginPropsSchema.parse(options);
-  // console.log('test', test)
 
   // First iteration of adding flags follows the same pattern
   // as the top level option from Cloudinary URL Gen SDK where

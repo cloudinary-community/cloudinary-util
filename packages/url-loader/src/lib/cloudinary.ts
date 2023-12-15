@@ -2,6 +2,7 @@ import { z } from 'zod';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { parseUrl, ParseUrl, objectHasKey } from '@cloudinary-util/util';
 
+import * as abrPlugin from '../plugins/abr';
 import * as croppingPlugin from '../plugins/cropping';
 import * as defaultImagePlugin from '../plugins/default-image';
 import * as effectsPlugin from '../plugins/effects';
@@ -19,7 +20,6 @@ import * as sanitizePlugin from '../plugins/sanitize';
 import * as seoPlugin from '../plugins/seo';
 import * as underlaysPlugin from '../plugins/underlays';
 import * as versionPlugin from '../plugins/version';
-import * as videoPlugin from '../plugins/video';
 import * as zoompanPlugin from '../plugins/zoompan';
 
 
@@ -47,6 +47,7 @@ export const transformationPlugins = [
 
   rawTransformationsPlugin,
 
+  abrPlugin,
   croppingPlugin,
   defaultImagePlugin,
   effectsPlugin,
@@ -58,7 +59,6 @@ export const transformationPlugins = [
   seoPlugin,
   underlaysPlugin,
   versionPlugin,
-  videoPlugin,
   zoompanPlugin,
 ];
 

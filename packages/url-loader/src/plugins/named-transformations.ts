@@ -1,6 +1,24 @@
+import { z } from 'zod';
+
 import { PluginSettings } from '../types/plugins';
 
-export const props = ['transformations'];
+const NamedTransformationSchema = z.string();
+type NamedTransformation = z.infer<typeof NamedTransformationSchema>;
+
+export const pluginProps = {
+  // @todo: deprecate in favor of namedTransformations
+  transformations: z.union([
+      NamedTransformationSchema,
+      z.array(NamedTransformationSchema)
+    ])
+    .describe(JSON.stringify({
+      text: 'Named transformations to apply to asset.',
+      url: 'https://cloudinary.com/documentation/image_transformations#named_transformations'
+    }))
+    .optional(),
+};
+
+export const props = Object.entries(pluginProps).map(([name]) => name);
 export const assetTypes = ['image', 'images', 'video', 'videos'];
 export const strict = true;
 
@@ -12,7 +30,7 @@ export function plugin(props: PluginSettings) {
     transformations = [transformations];
   }
 
-  transformations.forEach(transformation => {
+  transformations.forEach((transformation: NamedTransformation) => {
     cldAsset.addTransformation(`t_${transformation}`);
   });
 
