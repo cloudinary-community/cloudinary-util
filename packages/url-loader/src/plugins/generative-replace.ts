@@ -1,7 +1,25 @@
+import { z } from 'zod';
+
 import { ImageOptions } from "../types/image";
 import { PluginSettings } from "../types/plugins";
 
-export const props = ["replace"];
+export const pluginProps = {
+  replace: z.union([
+    z.array(z.string()),
+    z.array(z.boolean()),
+    z.object({
+      to: z.string(),
+      from: z.string(),
+      preserveGeometry: z.boolean().optional()
+    })
+  ]).describe(JSON.stringify({
+    text: 'Uses generative AI to recolor parts of your image, maintaining the relative shading.',
+    url: 'https://cloudinary.com/documentation/transformation_reference#e_gen_replace'
+  }))
+  .optional(),
+};
+
+export const props = Object.entries(pluginProps).map(([name]) => name);
 export const assetTypes = ["image", "images"];
 
 export function plugin(props: PluginSettings<ImageOptions>) {

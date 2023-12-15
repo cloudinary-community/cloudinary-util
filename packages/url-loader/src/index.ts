@@ -3,19 +3,8 @@ export type { ConstructUrlProps, PluginOptionsResize, PluginOptions, PluginResul
 
 export { effects, position, primary, text } from './constants/qualifiers';
 
-export type { AssetOptionsResize, AssetOptions } from './types/asset';
-export type {
-  ImageOptionsFillBackground,
-  ImageOptionsResize,
-  ImageOptionsGenerativeReplace,
-  ImageOptionsRecolorPrompt,
-  ImageOptionsRecolor,
-  ImageOptionsRemovePrompt,
-  ImageOptionsRemoveRegion,
-  ImageOptionsRemove,
-  ImageOptionsZoomPan,
-  ImageOptions
-} from './types/image';
+export type { AssetOptions } from './types/asset';
+export type { ImageOptions } from './types/image';
 export type { VideoOptionsResize, VideoOptions } from './types/video';
 
 export type { AnalyticsOptions } from './types/analytics';

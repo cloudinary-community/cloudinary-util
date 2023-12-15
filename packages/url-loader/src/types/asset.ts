@@ -1,18 +1,5 @@
 import { z } from 'zod';
 
-
-// Resize
-
-export const assetOptionsResizeSchema = z.object({
-  crop: z.string().optional(),
-  width: z.union([
-    z.number(),
-    z.string()
-  ]).optional()
-})
-
-export type AssetOptionsResize = z.infer<typeof assetOptionsResizeSchema>;
-
 // Asset Options
 
 export const assetOptionsSchema = z.object({
@@ -107,12 +94,6 @@ export const assetOptionsSchema = z.object({
     .describe(JSON.stringify({
       text: 'Runs a sanitizer on SVG images.',
       url: 'https://cloudinary.com/documentation/transformation_reference#fl_sanitize'
-    }))
-    .optional(),
-  resize: assetOptionsResizeSchema
-    .describe(JSON.stringify({
-      text: '',
-      url: ''
     }))
     .optional(),
   seoSuffix: z.string()

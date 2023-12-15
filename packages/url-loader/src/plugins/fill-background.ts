@@ -5,19 +5,28 @@ import { PluginSettings } from '../types/plugins';
 
 // import { constructPluginSchema } from '../lib/plugins';
 
-const pluginProps = [
-  {
-    name: 'fillBackground',
-    type: z.boolean().optional(),
-    assetTypes: ['image', 'images']
-  }
-];
+export const pluginProps = {
+  fillBackground: z.union([
+      z.boolean(),
+      z.object({
+        crop: z.string().optional(),
+        gravity: z.string().optional(),
+        prompt: z.string().optional()
+      })
+    ])
+    .describe(JSON.stringify({
+      text: 'Uses Generative Fill to extended padded image with AI',
+      url: 'https://cloudinary.com/documentation/transformation_reference#b_gen_fill'
+    }))
+    .optional()
+};
 
 // @todo
 // const pluginPropsSchema = constructPluginSchema(pluginProps);
 
-export const props = pluginProps.map(({ name }) => name);
-export const assetTypes = Array.from(new Set(pluginProps.flatMap(({ assetTypes }) => assetTypes)));
+// @todo: no longer need props in each file, grab from pluginProps
+export const props = Object.entries(pluginProps).map(([name]) => name);
+export const assetTypes = ['image', 'images'];
 
 const defaultCrop = 'pad';
 

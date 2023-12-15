@@ -94,6 +94,7 @@ export const constructUrlPropsSchema = z.object({
 export type ConstructUrlProps = z.infer<typeof constructUrlPropsSchema>;
 
 export interface PluginOptionsResize {
+  crop?: string;
   width?: string | number;
 }
 
@@ -182,6 +183,8 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
     throw new Error('Invalid asset type.');
   }
 
+  const pluginEffects: PluginOptions = {};
+
   transformationPlugins.forEach(({ plugin, assetTypes, props, strict }: TransformationPlugin) => {
     const supportedAssetType = typeof options?.assetType !== 'undefined' && assetTypes.includes(options?.assetType);
 
@@ -210,11 +213,11 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
     const { options: pluginOptions } = results || { options: undefined };
 
     if ( pluginOptions?.format && options ) {
-      options.format = pluginOptions.format;
+      pluginEffects.format = pluginOptions.format;
     }
 
     if ( pluginOptions?.width && options ) {
-      options.resize = {
+      pluginEffects.resize = {
         width: pluginOptions?.width
       };
     }
@@ -223,8 +226,8 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
   // We want to perform any resizing at the end of the end of the transformation
   // sets to allow consistent use of positioning / sizing, especially responsively
 
-  if ( options?.resize && !options.strictTransformations ) {
-    const { width, crop = 'limit' } = options.resize;
+  if ( pluginEffects?.resize && !options.strictTransformations ) {
+    const { width, crop = 'limit' } = pluginEffects.resize;
     cldAsset.effect(`c_${crop},w_${width}`);
   }
 

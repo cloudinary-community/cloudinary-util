@@ -1,7 +1,18 @@
+import { z } from 'zod';
+
 import { ImageOptions } from '../types/image';
 import { PluginSettings } from '../types/plugins';
 
-export const props = ['restore'];
+export const pluginProps = {
+  restore: z.boolean()
+    .describe(JSON.stringify({
+      text: 'Uses generative AI to restore details in poor quality images or images that may have become degraded through repeated processing and compression.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#e_gen_restore'
+    }))
+    .optional(),
+};
+
+export const props = Object.entries(pluginProps).map(([name]) => name);
 export const assetTypes = ['image', 'images'];
 
 export function plugin(props: PluginSettings<ImageOptions>) {

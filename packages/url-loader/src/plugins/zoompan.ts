@@ -1,7 +1,25 @@
+import { z } from 'zod';
+
 import { ImageOptions } from '../types/image';
 import { PluginSettings, PluginOverrides } from '../types/plugins';
 
-export const props = ['zoompan'];
+export const pluginProps = {
+  zoompan: z.union([
+      z.string(),
+      z.boolean(),
+      z.object({
+        loop: z.union([ z.string(), z.boolean() ]),
+        options: z.string()
+      })
+    ])
+    .describe(JSON.stringify({
+      text: 'Applies zooming and/or panning to an image, resulting in a video or animated image.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#e_zoompan'
+    }))
+    .optional()
+};
+
+export const props = Object.entries(pluginProps).map(([name]) => name);
 export const assetTypes = ['image', 'images'];
 
 export function plugin(props: PluginSettings<ImageOptions>) {
