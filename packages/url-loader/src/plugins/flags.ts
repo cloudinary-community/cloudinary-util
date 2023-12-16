@@ -1,5 +1,6 @@
-import { PluginSettings } from '../types/plugins';
 import * as parameters from '../constants/parameters';
+
+import { PluginSettings } from '../types/plugins';
 
 const { flagsEnum } = parameters;
 

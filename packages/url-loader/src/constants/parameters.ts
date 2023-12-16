@@ -1,10 +1,31 @@
 import { z } from 'zod';
 
-export const aspectRatio = {
-  qualifier: 'ar',
+export const angle = {
+  qualifier: 'a',
   schema: z.union([
       z.string(),
       z.number()
+    ])
+    .describe(JSON.stringify({
+      text: 'Rotates or flips an asset by the specified number of degrees or automatically according to its orientation or available metadata.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#a_angle'
+    })),
+}
+
+export const aspectRatioModesEnum = z.enum([
+  'vflip',
+  'hflip',
+  'ignore',
+  'auto_right',
+  'auto_left',
+])
+
+export const aspectRatio = {
+  qualifier: 'ar',
+  schema: z.union([
+      z.number(),
+      aspectRatioModesEnum,
+      z.string(),
     ])
     .describe(JSON.stringify({
       text: 'Crops or resizes the asset to a new aspect ratio.',
@@ -134,6 +155,30 @@ export const widthResize = {
     ])
     .describe(JSON.stringify({
       text: 'Width to resize the asset after all transformations are applied. Useful for responsive resizing.',
+    })),
+}
+
+export const x = {
+  qualifier: 'x',
+  schema: z.union([
+      z.string(),
+      z.number()
+    ])
+    .describe(JSON.stringify({
+      text: 'Adjusts the starting location or offset of the x axis.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#x_y_coordinates'
+    })),
+}
+
+export const y = {
+  qualifier: 'y',
+  schema: z.union([
+      z.string(),
+      z.number()
+    ])
+    .describe(JSON.stringify({
+      text: 'Adjusts the starting location or offset of the y axis.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#x_y_coordinates'
     })),
 }
 

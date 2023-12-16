@@ -1,7 +1,16 @@
 import { z } from 'zod';
 import { testColorIsHex, convertColorHexToRgb } from '@cloudinary-util/util';
 
-import { aspectRatio, crop, gravity, height, width } from './parameters';
+import {
+  angle,
+  aspectRatio,
+  crop,
+  gravity,
+  height,
+  x,
+  y,
+  width
+} from './parameters';
 import { Qualifier } from '../types/qualifiers';
 
 const convertersColors = [
@@ -20,18 +29,10 @@ export const primary: Record<string, Qualifier> = {
 } as const;
 
 export const position: Record<string, Qualifier> = {
-  angle: {
-    qualifier: 'a'
-  },
-  gravity: {
-    qualifier: 'g'
-  },
-  x: {
-    qualifier: 'x'
-  },
-  y: {
-    qualifier: 'y'
-  },
+  angle,
+  gravity,
+  x,
+  y,
 } as const;
 
 export const text: Record<string, Qualifier> = {
