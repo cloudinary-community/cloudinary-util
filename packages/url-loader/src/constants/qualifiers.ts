@@ -1,6 +1,7 @@
 import { z } from 'zod';
 import { testColorIsHex, convertColorHexToRgb } from '@cloudinary-util/util';
 
+import { aspectRatio, crop, gravity, height, width } from './parameters';
 import { Qualifier } from '../types/qualifiers';
 
 const convertersColors = [
@@ -11,57 +12,11 @@ const convertersColors = [
 ]
 
 export const primary: Record<string, Qualifier> = {
-  aspectRatio: {
-    qualifier: 'ar',
-    schema: z.string()
-      .describe(JSON.stringify({
-        text: 'A qualifier that crops or resizes the asset to a new aspect ratio.',
-        url: 'https://cloudinary.com/documentation/transformation_reference#ar_aspect_ratio',
-      }))
-      .optional(),
-  },
-  crop: {
-    qualifier: 'c',
-    schema: z.string()
-      .describe(JSON.stringify({
-        text: 'Changes the size of the delivered asset according to the requested width & height dimensions.',
-        url: 'https://cloudinary.com/documentation/transformation_reference#c_crop_resize',
-      }))
-      .optional(),
-  },
-  gravity: {
-    qualifier: 'g',
-    schema: z.string()
-      .describe(JSON.stringify({
-        text: 'A qualifier that determines which part of an asset to focus on.',
-        url: 'https://cloudinary.com/documentation/transformation_reference#g_gravity',
-      }))
-      .optional(),
-  },
-  height: {
-    qualifier: 'h',
-    schema: z.union([
-        z.number(),
-        z.string()
-      ])
-      .describe(JSON.stringify({
-        text: 'A qualifier that determines the height of a transformed asset or an overlay.',
-        url: 'https://cloudinary.com/documentation/transformation_reference#h_height',
-      }))
-      .optional(),
-  },
-  width: {
-    qualifier: 'w',
-    schema: z.union([
-        z.number(),
-        z.string()
-      ])
-      .describe(JSON.stringify({
-        text: 'A qualifier that sets the desired width of an asset using a specified value, or automatically based on the available width.',
-        url: 'https://cloudinary.com/documentation/transformation_reference#w_width',
-      }))
-      .optional(),
-  },
+  aspectRatio,
+  crop,
+  gravity,
+  height,
+  width,
 } as const;
 
 export const position: Record<string, Qualifier> = {
@@ -139,8 +94,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Applies the selected artistic filter.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_art',
-      }))
-      .optional(),
+      })),
   },
   autoBrightness: {
     prefix: 'e',
@@ -152,8 +106,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Automatically adjusts the image brightness and blends the result with the original image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_auto_brightness',
-      }))
-      .optional(),
+      })),
   },
   autoColor: {
     prefix: 'e',
@@ -165,8 +118,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Automatically adjusts the image color balance and blends the result with the original image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_auto_color',
-      }))
-      .optional(),
+      })),
   },
   autoContrast: {
     prefix: 'e',
@@ -178,8 +130,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Automatically adjusts the image contrast and blends the result with the original image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_auto_contrast',
-      }))
-      .optional(),
+      })),
   },
   assistColorblind: {
     prefix: 'e',
@@ -191,8 +142,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Applies stripes or color adjustment to help people with common color blind conditions to differentiate between colors that are similar for them.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_assist_colorblind',
-      }))
-      .optional(),
+      })),
   },
   background: {
     qualifier: 'b',
@@ -200,8 +150,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Applies a background to empty or transparent areas.',
         url: 'https://cloudinary.com/documentation/transformation_reference#b_background',
-      }))
-      .optional(),
+      })),
   },
   blackwhite: {
     prefix: 'e',
@@ -213,8 +162,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Converts an image to black and white.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_blackwhite',
-      }))
-      .optional(),
+      })),
   },
   blur: {
     prefix: 'e',
@@ -226,8 +174,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Applies a blurring filter to an asset.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_blur',
-      }))
-      .optional(),
+      })),
   },
   blurFaces: {
     prefix: 'e',
@@ -239,8 +186,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Blurs all detected faces in an image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_blur_faces',
-      }))
-      .optional(),
+      })),
   },
   blurRegion: {
     prefix: 'e',
@@ -252,8 +198,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Applies a blurring filter to the region of an image specified by x, y, width and height, or an area of text. If no region is specified, the whole image is blurred.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_blur_region',
-      }))
-      .optional(),
+      })),
   },
   border: {
     qualifier: 'bo',
@@ -261,8 +206,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Adds a solid border around an image or video.',
         url: 'https://cloudinary.com/documentation/transformation_reference#bo_border',
-      }))
-      .optional(),
+      })),
   },
   brightness: {
     prefix: 'e',
@@ -274,8 +218,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Adjusts the image or video brightness.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_brightness',
-      }))
-      .optional(),
+      })),
   },
   brightnessHSB: {
     prefix: 'e',
@@ -287,8 +230,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Adjusts image brightness modulation in HSB to prevent artifacts in some images.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_brightness_hsb',
-      }))
-      .optional(),
+      })),
   },
   cartoonify: {
     prefix: 'e',
@@ -300,8 +242,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Applies a cartoon effect to an image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_cartoonify',
-      }))
-      .optional(),
+      })),
   },
   color: {
     qualifier: 'co',
@@ -309,8 +250,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'A qualifier that specifies the color to use with the corresponding transformation.',
         url: 'https://cloudinary.com/documentation/transformation_reference#co_color',
-      }))
-      .optional(),
+      })),
     converters: convertersColors
   },
   colorize: {
@@ -320,8 +260,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Colorizes an image. By default, gray is used for colorization. You can specify a different color using the color qualifier.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_colorize',
-      }))
-      .optional(),
+      })),
   },
   contrast: {
     prefix: 'e',
@@ -333,8 +272,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Adjusts an image or video contrast.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_contrast',
-      }))
-      .optional(),
+      })),
   },
   displace: {
     prefix: 'e',
@@ -343,8 +281,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Displaces the pixels in an image according to the color channels of the pixels in another specified image (a gradient map specified with the overlay parameter).',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_displace',
-      }))
-      .optional(),
+      })),
   },
   distort: {
     prefix: 'e',
@@ -353,8 +290,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Distorts an image to a new shape by either adjusting its corners or by warping it into an arc.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_distort',
-      }))
-      .optional(),
+      })),
   },
   fillLight: {
     prefix: 'e',
@@ -366,8 +302,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Adjusts the fill light and optionally blends the result with the original image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_fill_light',
-      }))
-      .optional(),
+      })),
   },
   gamma: {
     prefix: 'e',
@@ -379,8 +314,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Adjusts the image or video gamma level.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_gamma',
-      }))
-      .optional(),
+      })),
   },
   gradientFade: {
     prefix: 'e',
@@ -392,8 +326,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Applies a gradient fade effect from the edge of an image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_gradient_fade',
-      }))
-      .optional(),
+      })),
   },
   grayscale: {
     prefix: 'e',
@@ -402,8 +335,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Converts an image to grayscale (multiple shades of gray).',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_grayscale',
-      }))
-      .optional(),
+      })),
   },
   hue: {
     prefix: 'e',
@@ -415,8 +347,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Adjusts an image\'s hue.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_hue',
-      }))
-      .optional(),
+      })),
   },
   improve: {
     prefix: 'e',
@@ -428,8 +359,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Adjusts an image\'s colors, contrast and brightness to improve its appearance.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_improve',
-      }))
-      .optional(),
+      })),
   },
   multiply: {
     prefix: 'e',
@@ -438,8 +368,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'A qualifier that blends image layers using the multiply blend mode',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_multiply',
-      }))
-      .optional(),
+      })),
   },
   negate: {
     prefix: 'e',
@@ -451,8 +380,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'https://cloudinary.com/documentation/transformation_reference#e_negate',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_negate',
-      }))
-      .optional(),
+      })),
   },
   noise: {
     prefix: 'e',
@@ -461,8 +389,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'https://cloudinary.com/documentation/transformation_reference#e_noise',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_noise',
-      }))
-      .optional(),
+      })),
   },
   oilPaint: {
     prefix: 'e',
@@ -474,8 +401,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'https://cloudinary.com/documentation/transformation_reference#e_oil_paint',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_oil_paint',
-      }))
-      .optional(),
+      })),
   },
   opacity: {
     qualifier: 'o',
@@ -486,8 +412,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Adjusts the opacity of an asset and makes it semi-transparent.',
         url: 'https://cloudinary.com/documentation/transformation_reference#o_opacity',
-      }))
-      .optional(),
+      })),
   },
   outline: {
     prefix: 'e',
@@ -499,8 +424,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Adds an outline effect to an image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_outline',
-      }))
-      .optional(),
+      })),
   },
   pixelate: {
     prefix: 'e',
@@ -512,8 +436,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Applies a pixelation effect.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_pixelate',
-      }))
-      .optional(),
+      })),
   },
   pixelateFaces: {
     prefix: 'e',
@@ -525,8 +448,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Pixelates all detected faces in an image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_pixelate_faces',
-      }))
-      .optional(),
+      })),
   },
   pixelateRegion: {
     prefix: 'e',
@@ -538,8 +460,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Pixelates the region of an image specified by x, y, width and height, or an area of text.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_pixelate_region',
-      }))
-      .optional(),
+      })),
   },
   radius: {
     qualifier: 'r',
@@ -547,8 +468,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Rounds the corners of an image or video.',
         url: 'https://cloudinary.com/documentation/transformation_reference#r_round_corners',
-      }))
-      .optional(),
+      })),
   },
   redeye: {
     prefix: 'e',
@@ -560,8 +480,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Automatically removes red eyes in an image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_redeye',
-      }))
-      .optional(),
+      })),
   },
   replaceColor: {
     prefix: 'e',
@@ -570,8 +489,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Maps an input color and those similar to the input color to corresponding shades of a specified output color.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_replace_color',
-      }))
-      .optional(),
+      })),
   },
   saturation: {
     prefix: 'e',
@@ -583,8 +501,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Adjusts an image or video saturation level.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_saturation',
-      }))
-      .optional(),
+      })),
   },
   screen: {
     prefix: 'e',
@@ -593,8 +510,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'A qualifier that blends image layers using the screen blend mode.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_screen',
-      }))
-      .optional(),
+      })),
   },
   sepia: {
     prefix: 'e',
@@ -606,8 +522,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Changes the color scheme of an image to sepia.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_sepia',
-      }))
-      .optional(),
+      })),
   },
   shadow: {
     prefix: 'e',
@@ -619,8 +534,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Adds a gray shadow to the bottom right of an image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_shadow',
-      }))
-      .optional(),
+      })),
   },
   sharpen: {
     prefix: 'e',
@@ -632,8 +546,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Applies a sharpening filter.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_sharpen',
-      }))
-      .optional(),
+      })),
   },
   shear: {
     prefix: 'e',
@@ -642,8 +555,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Skews an image according to the two specified values in degrees.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_shear',
-      }))
-      .optional(),
+      })),
   },
   simulateColorblind: {
     prefix: 'e',
@@ -655,8 +567,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Simulates the way an image would appear to someone with the specified color blind condition.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_simulate_colorblind',
-      }))
-      .optional(),
+      })),
   },
   tint: {
     prefix: 'e',
@@ -668,8 +579,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Blends an image with one or more tint colors at a specified intensity.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_tint',
-      }))
-      .optional(),
+      })),
   },
   trim: {
     prefix: 'e',
@@ -681,8 +591,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Detects and removes image edges whose color is similar to the corner pixels.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_trim',
-      }))
-      .optional(),
+      })),
   },
   unsharpMask: {
     prefix: 'e',
@@ -694,8 +603,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Applies an unsharp mask filter to an image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_unsharp_mask',
-      }))
-      .optional(),
+      })),
   },
   vectorize: {
     prefix: 'e',
@@ -707,8 +615,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Vectorizes an image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_vectorize',
-      }))
-      .optional(),
+      })),
   },
   vibrance: {
     prefix: 'e',
@@ -720,8 +627,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Applies a vibrance filter to an image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_vibrance',
-      }))
-      .optional(),
+      })),
   },
   vignette: {
     prefix: 'e',
@@ -733,8 +639,7 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Applies a vignette effect to an image.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_vignette',
-      }))
-      .optional(),
+      })),
   },
 } as const;
 
