@@ -15,6 +15,17 @@ import {
 } from '../constants/qualifiers';
 
 export const pluginProps = {
+  // @todo
+  // overlay: {
+  //   prefix: 'e',
+  //   qualifier: 'overlay',
+  //   schema: z.boolean()
+  //     .describe(JSON.stringify({
+  //       text: '',
+  //       url: 'asdf',
+  //     }))
+  //     .optional(),
+  // },
   overlays: z.any()
     .describe(JSON.stringify({
       text: 'Image or text layers that are applied on top of the base image.',

@@ -22,7 +22,6 @@ import * as underlaysPlugin from '../plugins/underlays';
 import * as versionPlugin from '../plugins/version';
 import * as zoompanPlugin from '../plugins/zoompan';
 
-
 import { imageOptionsSchema } from '../types/image';
 import { analyticsOptionsSchema } from '../types/analytics';
 import { configOptionsSchema } from '../types/config';
