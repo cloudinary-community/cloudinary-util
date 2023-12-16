@@ -12,26 +12,24 @@ export const aspectRatio = {
     })),
 }
 
-export const cropModesSchema = z.enum([
-  'fill',
-  'lfill',
-  'fill_pad',
-  'crop',
-  'thumb',
-  'scale',
-  'fit',
-  'limit',
-  'mfit',
-  'pad',
-  'lpad',
-  'mpad',
-  'imagga_scale',
-  'imagga_crop',
-]);
-
 export const crop = {
   qualifier: 'c',
-  schema: cropModesSchema
+  schema: z.enum([
+      'fill',
+      'lfill',
+      'fill_pad',
+      'crop',
+      'thumb',
+      'scale',
+      'fit',
+      'limit',
+      'mfit',
+      'pad',
+      'lpad',
+      'mpad',
+      'imagga_scale',
+      'imagga_crop',
+    ])
     .describe(JSON.stringify({
       text: 'Mode to use when cropping an asset.',
       url: 'https://cloudinary.com/documentation/transformation_reference#c_crop_resize'
