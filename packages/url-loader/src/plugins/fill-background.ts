@@ -19,8 +19,6 @@ export const pluginProps = {
     .optional()
 };
 
-// @todo: no longer need props in each file, grab from pluginProps
-export const props = Object.entries(pluginProps).map(([name]) => name);
 export const assetTypes = ['image', 'images'];
 
 const defaultCrop = 'pad';

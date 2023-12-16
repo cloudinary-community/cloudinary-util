@@ -39,7 +39,6 @@ export const pluginProps = {
     })).optional(),
 };
 
-export const props = Object.entries(pluginProps).map(([name]) => name);
 export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 export const DEFAULT_TEXT_OPTIONS = {

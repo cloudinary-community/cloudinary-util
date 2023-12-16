@@ -12,7 +12,6 @@ export const pluginProps = {
     .optional(),
 };
 
-export const props = Object.entries(pluginProps).map(([name]) => name);
 export const assetTypes = ['video', 'videos'];
 
 export function plugin(props: PluginSettings<VideoOptions>) {

@@ -17,7 +17,6 @@ export const pluginProps = {
     .optional()
 };
 
-export const props = Object.entries(pluginProps).map(([name]) => name);
 export const assetTypes = ['image', 'images', 'video', 'videos']
 
 // @todo can this be a validation check as part of Zod?

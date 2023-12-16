@@ -130,7 +130,9 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
 
   const propsCheck: Array<string> = [];
 
-  transformationPlugins.forEach(({ props = [] }) => {
+  transformationPlugins.forEach(({ pluginProps }) => {
+    const props = Object.keys(pluginProps);
+
     props.forEach(prop => {
       if ( propsCheck.includes(prop) ) {
         throw new Error(`Option ${prop} already exists!`);
@@ -184,9 +186,9 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
 
   const pluginEffects: PluginOptions = {};
 
-  transformationPlugins.forEach(({ plugin, assetTypes, props, strict }: TransformationPlugin) => {
+  transformationPlugins.forEach(({ plugin, assetTypes, pluginProps, strict }: TransformationPlugin) => {
     const supportedAssetType = typeof options?.assetType !== 'undefined' && assetTypes.includes(options?.assetType);
-
+    const props = Object.keys(pluginProps);
     const optionsKeys = Object.keys(options);
     const attemptedUse = props.map(prop => optionsKeys.includes(prop)).filter(isUsed => !!isUsed).length > 0;
 
