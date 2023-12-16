@@ -1,26 +1,13 @@
-import { z } from 'zod';
-
 import { PluginSettings } from '../types/plugins';
+import * as parameters from '../constants/parameters';
 
-import { flags as qualifiersFlags } from '../constants/qualifiers';
+const { flagsEnum } = parameters;
 
 export const pluginProps = {
-  // @todo: can / should this be an enum?
-  flags: z.union([
-      z.array(z.string()),
-      z.string()
-    ])
-    .describe(JSON.stringify({
-      text: 'Alters the regular behavior of another transformation or the overall delivery behavior.',
-      url: 'https://cloudinary.com/documentation/transformation_reference#fl_flag'
-    }))
-    .optional()
+  flags: parameters.flags.schema.optional()
 };
 
 export const assetTypes = ['image', 'images', 'video', 'videos']
-
-// @todo can this be a validation check as part of Zod?
-const supportedFlags = Object.entries(qualifiersFlags).map(([_, { qualifier }]) => qualifier);
 
 export function plugin(props: PluginSettings) {
   const { cldAsset, options } = props;
@@ -34,12 +21,28 @@ export function plugin(props: PluginSettings) {
 
   if ( Array.isArray(flags) && flags.length > 0 ) {
     flags.forEach(flag => {
-      if ( !supportedFlags.includes(flag) ) return;
+      const { success } = flagsEnum.safeParse(flag);
+      
+      if ( !success ) {
+        if ( process.env.NODE_ENV === 'development' ) {
+          console.warn(`Invalid flag ${flag}, not applying.`)
+        }
+        return;
+      }
+
       cldAsset.addFlag(flag)
     });
   } else if ( typeof flags === 'object' ) {
     Object.entries(flags).forEach(([qualifier, value]) => {
-      if ( !supportedFlags.includes(qualifier) ) return;
+      const { success } = flagsEnum.safeParse(qualifier);
+      
+      if ( !success ) {
+        if ( process.env.NODE_ENV === 'development' ) {
+          console.warn(`Invalid flag ${qualifier}, not applying.`)
+        }
+        return;
+      }
+
       // The addFlag method encodes some characters, specifically
       // the "." character which breaks some use cases like
       // du_2.5

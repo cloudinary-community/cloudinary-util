@@ -12,28 +12,86 @@ export const aspectRatio = {
     })),
 }
 
+export const cropModesEnum = z.enum([
+  'fill',
+  'lfill',
+  'fill_pad',
+  'crop',
+  'thumb',
+  'scale',
+  'fit',
+  'limit',
+  'mfit',
+  'pad',
+  'lpad',
+  'mpad',
+  'imagga_scale',
+  'imagga_crop',
+]);
+
 export const crop = {
   qualifier: 'c',
-  schema: z.enum([
-      'fill',
-      'lfill',
-      'fill_pad',
-      'crop',
-      'thumb',
-      'scale',
-      'fit',
-      'limit',
-      'mfit',
-      'pad',
-      'lpad',
-      'mpad',
-      'imagga_scale',
-      'imagga_crop',
-    ])
+  schema: cropModesEnum
     .describe(JSON.stringify({
       text: 'Mode to use when cropping an asset.',
       url: 'https://cloudinary.com/documentation/transformation_reference#c_crop_resize'
     })),
+}
+
+export const flagsEnum = z.enum([
+  'animated',
+  'any_format',
+  'apng',
+  'attachment',
+  'awebp',
+  'clip',
+  'clip_evenodd',
+  'cutter',
+  'force_icc',
+  'force_strip',
+  'getinfo',
+  'group4',
+  'hlsv3',
+  'ignore_aspect_ratio',
+  'ignore_mask_channels',
+  'immutable_cache',
+  'keep_attribution',
+  'keep_dar',
+  'keep_iptc',
+  'layer_apply',
+  'lossy',
+  'mono',
+  'no_overflow',
+  'no_stream',
+  'png8_fl_png24_fl_png32',
+  'preserve_transparency',
+  'progressive',
+  'rasterize',
+  'region_relative',
+  'relative',
+  'replace_image',
+  'sanitize',
+  'splice',
+  'streaming_attachment',
+  'strip_profile',
+  'text_disallow_overflow',
+  'text_no_trim',
+  'tiff8_lzw',
+  'tiled',
+  'truncate_ts',
+  'waveform',
+]);
+
+export const flags = {
+  qualifier: 'fl',
+  schema: z.union([
+      flagsEnum,
+      z.array(flagsEnum)
+    ])
+    .describe(JSON.stringify({
+      text: 'Alters the regular behavior of another transformation or the overall delivery behavior.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#fl_flag'
+    }))
 }
 
 export const gravity = {
