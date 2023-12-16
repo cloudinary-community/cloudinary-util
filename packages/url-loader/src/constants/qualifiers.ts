@@ -15,8 +15,8 @@ export const primary: Record<string, Qualifier> = {
     qualifier: 'ar',
     schema: z.string()
       .describe(JSON.stringify({
-        text: '',
-        url: 'asdf',
+        text: 'A qualifier that crops or resizes the asset to a new aspect ratio.',
+        url: 'https://cloudinary.com/documentation/transformation_reference#ar_aspect_ratio',
       }))
       .optional(),
   },
@@ -24,8 +24,8 @@ export const primary: Record<string, Qualifier> = {
     qualifier: 'c',
     schema: z.string()
       .describe(JSON.stringify({
-        text: '',
-        url: 'asdf',
+        text: 'Changes the size of the delivered asset according to the requested width & height dimensions.',
+        url: 'https://cloudinary.com/documentation/transformation_reference#c_crop_resize',
       }))
       .optional(),
   },
@@ -33,24 +33,34 @@ export const primary: Record<string, Qualifier> = {
     qualifier: 'g',
     schema: z.string()
       .describe(JSON.stringify({
-        text: '',
-        url: 'asdf',
+        text: 'A qualifier that determines which part of an asset to focus on.',
+        url: 'https://cloudinary.com/documentation/transformation_reference#g_gravity',
       }))
       .optional(),
   },
   height: {
     qualifier: 'h',
     schema: z.union([
-      z.number(),
-      z.string()
-    ])
+        z.number(),
+        z.string()
+      ])
+      .describe(JSON.stringify({
+        text: 'A qualifier that determines the height of a transformed asset or an overlay.',
+        url: 'https://cloudinary.com/documentation/transformation_reference#h_height',
+      }))
+      .optional(),
   },
   width: {
     qualifier: 'w',
     schema: z.union([
-      z.number(),
-      z.string()
-    ])
+        z.number(),
+        z.string()
+      ])
+      .describe(JSON.stringify({
+        text: 'A qualifier that sets the desired width of an asset using a specified value, or automatically based on the available width.',
+        url: 'https://cloudinary.com/documentation/transformation_reference#w_width',
+      }))
+      .optional(),
   },
 } as const;
 
@@ -188,8 +198,8 @@ export const effects: Record<string, Qualifier> = {
     qualifier: 'b',
     schema: z.string()
       .describe(JSON.stringify({
-        text: '',
-        url: 'asdf',
+        text: 'Applies a background to empty or transparent areas.',
+        url: 'https://cloudinary.com/documentation/transformation_reference#b_background',
       }))
       .optional(),
   },
@@ -249,8 +259,8 @@ export const effects: Record<string, Qualifier> = {
     qualifier: 'bo',
     schema: z.string()
       .describe(JSON.stringify({
-        text: '',
-        url: 'asdf',
+        text: 'Adds a solid border around an image or video.',
+        url: 'https://cloudinary.com/documentation/transformation_reference#bo_border',
       }))
       .optional(),
   },
@@ -297,8 +307,8 @@ export const effects: Record<string, Qualifier> = {
     qualifier: 'co',
     schema: z.string()
       .describe(JSON.stringify({
-        text: '',
-        url: 'asdf',
+        text: 'A qualifier that specifies the color to use with the corresponding transformation.',
+        url: 'https://cloudinary.com/documentation/transformation_reference#co_color',
       }))
       .optional(),
     converters: convertersColors
@@ -474,8 +484,8 @@ export const effects: Record<string, Qualifier> = {
         z.number()
       ])
       .describe(JSON.stringify({
-        text: '',
-        url: 'asdf',
+        text: 'Adjusts the opacity of an asset and makes it semi-transparent.',
+        url: 'https://cloudinary.com/documentation/transformation_reference#o_opacity',
       }))
       .optional(),
   },
@@ -535,8 +545,8 @@ export const effects: Record<string, Qualifier> = {
     qualifier: 'r',
     schema: z.string()
       .describe(JSON.stringify({
-        text: '',
-        url: 'asdf',
+        text: 'Rounds the corners of an image or video.',
+        url: 'https://cloudinary.com/documentation/transformation_reference#r_round_corners',
       }))
       .optional(),
   },
