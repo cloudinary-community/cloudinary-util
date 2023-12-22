@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.24.0-beta.10](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.9...@cloudinary-util/url-loader-v3.24.0-beta.10) (2023-12-22)
+
+
+### Features
+
+* Plugin Types ([#121](https://github.com/colbyfayock/cloudinary-util/issues/121)) ([8992ab9](https://github.com/colbyfayock/cloudinary-util/commit/8992ab9abfb4de5e48456552331def5526ab4350))
+
 # [@cloudinary-util/url-loader-v3.24.0-beta.9](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.8...@cloudinary-util/url-loader-v3.24.0-beta.9) (2023-12-15)
 
 
