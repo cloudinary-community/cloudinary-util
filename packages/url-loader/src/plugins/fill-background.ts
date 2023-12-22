@@ -3,21 +3,23 @@ import { z } from 'zod';
 import { ImageOptions } from '../types/image';
 import { PluginSettings } from '../types/plugins';
 
-// import { constructPluginSchema } from '../lib/plugins';
+export const pluginProps = {
+  fillBackground: z.union([
+      z.boolean(),
+      z.object({
+        crop: z.string().optional(),
+        gravity: z.string().optional(),
+        prompt: z.string().optional()
+      })
+    ])
+    .describe(JSON.stringify({
+      text: 'Uses Generative Fill to extended padded image with AI',
+      url: 'https://cloudinary.com/documentation/transformation_reference#b_gen_fill'
+    }))
+    .optional()
+};
 
-const pluginProps = [
-  {
-    name: 'fillBackground',
-    type: z.boolean().optional(),
-    assetTypes: ['image', 'images']
-  }
-];
-
-// @todo
-// const pluginPropsSchema = constructPluginSchema(pluginProps);
-
-export const props = pluginProps.map(({ name }) => name);
-export const assetTypes = Array.from(new Set(pluginProps.flatMap(({ assetTypes }) => assetTypes)));
+export const assetTypes = ['image', 'images'];
 
 const defaultCrop = 'pad';
 

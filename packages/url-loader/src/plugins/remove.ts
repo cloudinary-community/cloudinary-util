@@ -1,9 +1,37 @@
+import { z } from 'zod';
+
 import { promptArrayToString } from '../lib/transformations';
 
 import { ImageOptions } from '../types/image';
 import { PluginSettings } from '../types/plugins';
 
-export const props = ['remove'];
+const imageOptionsRemovePromptSchema = z.union([
+  z.string(),
+  z.array(z.string())
+]);
+
+const imageOptionsRemoveSchema = z.object({
+  prompt: imageOptionsRemovePromptSchema.optional(),
+  region: z.union([
+      z.array(z.number()),
+      z.array(z.array(z.number()))
+    ]).optional(),
+  multiple: z.boolean().optional(),
+  removeShadow: z.boolean().optional()
+})
+
+export const pluginProps = {
+  remove: z.union([
+    imageOptionsRemovePromptSchema,
+    imageOptionsRemoveSchema,
+  ])
+  .describe(JSON.stringify({
+    text: 'Applies zooming and/or panning to an image, resulting in a video or animated image.',
+    url: 'https://cloudinary.com/documentation/transformation_reference#e_zoompan'
+  }))
+  .optional(),
+};
+
 export const assetTypes = ['image', 'images'];
 
 export function plugin(props: PluginSettings<ImageOptions>) {

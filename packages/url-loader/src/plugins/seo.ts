@@ -1,6 +1,16 @@
+import { z } from 'zod';
+
 import { PluginSettings } from '../types/plugins';
 
-export const props = ['seoSuffix'];
+export const pluginProps = {
+  seoSuffix: z.string()
+    .describe(JSON.stringify({
+      text: 'Configures the URL to include an SEO-friendly suffix in the URL',
+      url: 'https://cloudinary.com/documentation/advanced_url_delivery_options#seo_friendly_media_asset_urls'
+    }))
+    .optional()
+};
+
 export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 export function plugin(props: PluginSettings) {

@@ -1,15 +1,19 @@
+import * as parameters from '../constants/parameters';
+
 import { PluginSettings, PluginOverrides } from '../types/plugins';
 
 const cropsAspectRatio = [ 'crop', 'fill', 'lfill', 'fill_pad', 'thumb' ];
 const cropsGravityAuto = [ 'crop', 'fill', 'lfill', 'fill_pad', 'thumb' ];
 const cropsWithZoom = ['crop', 'thumb'];
 
-export const props = [
-  'aspectRatio',
-  'crop',
-  'gravity',
-  'zoom',
-];
+export const pluginProps = {
+  aspectRatio: parameters.aspectRatio.schema.optional(),
+  crop: parameters.crop.schema.default('scale').optional(),
+  gravity: parameters.gravity.schema.default('auto').optional(),
+  widthResize: parameters.widthResize.schema.optional(),
+  zoom: parameters.zoom.schema.optional(),
+};
+
 export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 /**

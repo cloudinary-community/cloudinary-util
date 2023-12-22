@@ -1,8 +1,8 @@
 import { Cloudinary } from '@cloudinary/url-gen';
 
-import * as videoPlugin from '../../src/plugins/video';
+import * as abrPlugin from '../../src/plugins/abr';
 
-const { plugin } = videoPlugin
+const { plugin } = abrPlugin
 
 const cld = new Cloudinary({
   cloud: {
@@ -11,7 +11,7 @@ const cld = new Cloudinary({
 });
 
 describe('Plugins', () => {
-  describe('Video', () => {
+  describe('ABR', () => {
     it('should include sp_auto on a video with streamingProfile of auto', () => {
       const src = 'turtle.mp4';
       const cldVideo = cld.video(src);

@@ -1,3 +1,4 @@
+import { z } from 'zod';
 import { objectHasKey } from '@cloudinary-util/util';
 
 import { PluginSettings } from '../types/plugins';
@@ -8,7 +9,21 @@ import {
   position as qualifiersPosition
 } from '../constants/qualifiers';
 
-export const props = ['underlay', 'underlays'];
+export const pluginProps = {
+  underlay: z.string()
+    .describe(JSON.stringify({
+      text: 'Public ID of image that is applied under the base image.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#l_layer'
+    }))
+    .optional(),
+  underlays: z.array(z.any())
+    .describe(JSON.stringify({
+      text: 'Image layers that are applied under the base image.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#l_layer'
+    }))
+    .optional(),
+};
+
 export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 export function plugin(props: PluginSettings) {

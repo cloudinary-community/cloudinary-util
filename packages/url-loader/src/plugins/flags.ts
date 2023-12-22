@@ -1,36 +1,18 @@
-import { z } from 'zod';
+import * as parameters from '../constants/parameters';
 
 import { PluginSettings } from '../types/plugins';
 
-// import { constructPluginSchema } from '../lib/plugins';
-import { flags as qualifiersFlags } from '../constants/qualifiers';
+const { flagsEnum } = parameters;
 
-const pluginProps = [
-  {
-    name: 'flags',
-    type: z.union([
-      z.array(z.string()),
-      z.record(z.string(), z.string())
-    ]).optional(),
-    assetTypes: ['image', 'images', 'video', 'videos']
-  }
-];
+export const pluginProps = {
+  flags: parameters.flags.schema.optional()
+};
 
-// @todo
-// const pluginPropsSchema = constructPluginSchema(pluginProps);
-
-export const props = pluginProps.map(({ name }) => name);
-export const assetTypes = Array.from(new Set(pluginProps.flatMap(({ assetTypes }) => assetTypes)));
-
-const supportedFlags = Object.entries(qualifiersFlags).map(([_, { qualifier }]) => qualifier);
+export const assetTypes = ['image', 'images', 'video', 'videos']
 
 export function plugin(props: PluginSettings) {
   const { cldAsset, options } = props;
   const { flags = [] } = options;
-
-  // @todo
-  // const test = pluginPropsSchema.parse(options);
-  // console.log('test', test)
 
   // First iteration of adding flags follows the same pattern
   // as the top level option from Cloudinary URL Gen SDK where
@@ -40,12 +22,28 @@ export function plugin(props: PluginSettings) {
 
   if ( Array.isArray(flags) && flags.length > 0 ) {
     flags.forEach(flag => {
-      if ( !supportedFlags.includes(flag) ) return;
+      const { success } = flagsEnum.safeParse(flag);
+      
+      if ( !success ) {
+        if ( process.env.NODE_ENV === 'development' ) {
+          console.warn(`Invalid flag ${flag}, not applying.`)
+        }
+        return;
+      }
+
       cldAsset.addFlag(flag)
     });
   } else if ( typeof flags === 'object' ) {
     Object.entries(flags).forEach(([qualifier, value]) => {
-      if ( !supportedFlags.includes(qualifier) ) return;
+      const { success } = flagsEnum.safeParse(qualifier);
+      
+      if ( !success ) {
+        if ( process.env.NODE_ENV === 'development' ) {
+          console.warn(`Invalid flag ${qualifier}, not applying.`)
+        }
+        return;
+      }
+
       // The addFlag method encodes some characters, specifically
       // the "." character which breaks some use cases like
       // du_2.5
