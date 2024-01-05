@@ -1,3 +1,11 @@
+# [@cloudinary-util/url-loader-v3.24.0-beta.11](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.10...@cloudinary-util/url-loader-v3.24.0-beta.11) (2024-01-05)
+
+
+### Features
+
+* adding more schemas, updating flags to use enum ([dd28438](https://github.com/colbyfayock/cloudinary-util/commit/dd284380cd964280306590b52b084e46a1602b4e))
+* adding namedTransformations prop ([61c802f](https://github.com/colbyfayock/cloudinary-util/commit/61c802ff8f8d8af578edb8f7b955a65a77a6951b))
+
 # [@cloudinary-util/url-loader-v3.24.0-beta.10](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.9...@cloudinary-util/url-loader-v3.24.0-beta.10) (2023-12-22)
 
 
