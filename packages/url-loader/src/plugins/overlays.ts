@@ -3,30 +3,74 @@ import { encodeBase64, objectHasKey, sortByKey } from '@cloudinary-util/util';
 
 import { PluginSettings } from '../types/plugins';
 import { Qualifier } from '../types/qualifiers';
+import { angle, gravity, flagsEnum, x, y } from '../constants/parameters';
 
 import { constructTransformation } from '../lib/transformations';
 
 import {
   effects as qualifiersEffects,
-  flags as qualifiersFlags,
   position as qualifiersPosition,
   primary as qualifiersPrimary,
   text as qualifiersText,
 } from '../constants/qualifiers';
 
+const overlayTextSchema = z.object({
+  alignment: z.string().optional(),
+  antialias: z.string().optional(),
+  border: z.string().optional(),
+  color: z.string().optional(),
+  fontFamily: z.string().optional(),
+  fontSize: z.number().optional(),
+  fontStyle: z.union([
+      z.string(),
+      z.number()
+    ])
+    .optional(),
+  fontWeight: z.string().optional(),
+  hinting: z.union([
+      z.string(),
+      z.number()
+    ])
+    .optional(),
+  letterSpacing: z.union([
+      z.string(),
+      z.number()
+    ])
+    .optional(),
+  lineSpacing: z.union([
+      z.string(),
+      z.number()
+    ])
+    .optional(),
+  stroke: z.string().optional(),
+  text: z.string(), // Required if using object format
+});
+
+const overlayPositionSchema = z.object({
+  angle: angle.schema.optional(),
+  gravity: gravity.schema.optional(),
+  x: x.schema.optional(),
+  y: x.schema.optional(),
+})
+
+const overlaySchema = z.object({
+  url: z.string().optional(),
+  publicId: z.string().optional(),
+  width: z.string().optional(),
+  text: z.union([
+      z.string(),
+      overlayTextSchema
+    ]).optional(),
+  effects: z.array(z.any()).optional(),
+  appliedEffects: z.array(z.any()).optional(),
+  flags: z.array(z.any()).optional(),
+  appliedFlags: z.array(z.any()).optional(),
+  position: overlayPositionSchema.optional()
+});
+
 export const pluginProps = {
-  // @todo
-  // overlay: {
-  //   prefix: 'e',
-  //   qualifier: 'overlay',
-  //   schema: z.boolean()
-  //     .describe(JSON.stringify({
-  //       text: '',
-  //       url: 'asdf',
-  //     }))
-  //     .optional(),
-  // },
-  overlays: z.any()
+  overlay: overlaySchema.optional(),
+  overlays: z.array(overlaySchema)
     .describe(JSON.stringify({
       text: 'Image or text layers that are applied on top of the base image.',
       url: 'https://cloudinary.com/documentation/transformation_reference#l_layer'
@@ -47,8 +91,6 @@ export const DEFAULT_TEXT_OPTIONS = {
   fontSize: 200,
   fontWeight: 'bold',
 };
-
-const supportedFlags = Object.entries(qualifiersFlags).map(([_, { qualifier }]) => qualifier);
 
 export function plugin(props: PluginSettings) {
   const { cldAsset, options } = props;
@@ -90,7 +132,7 @@ export function plugin(props: PluginSettings) {
     effects?: Array<object>;
     appliedFlags?: Array<string>;
     flags?: Array<string>;
-    position?: string;
+    position?: object;
     publicId?: string;
     text?: string | ApplyOverlaySettingsText;
     url?: string;
@@ -201,17 +243,35 @@ export function plugin(props: PluginSettings) {
 
     // Layer Flags
     // Add flags to the primary layer transformation segment
+    // @TODO: accept flag value
 
     layerFlags.forEach(flag => {
-      if ( !supportedFlags.includes(flag) ) return;
+      const { success } = flagsEnum.safeParse(flag);
+
+      if ( !success ) {
+        if ( process.env.NODE_ENV === 'development' ) {
+          console.warn(`Invalid flag ${flag}, not applying.`)
+        }
+        return;
+      }
+
       primary.push(`fl_${flag}`);
     });
 
     // Applied Flags
     // Add flags to the fl_layer_apply transformation segment
+    // @TODO: accept flag value
 
     appliedFlags.forEach(flag => {
-      if ( !supportedFlags.includes(flag) ) return;
+      const { success } = flagsEnum.safeParse(flag);
+
+      if ( !success ) {
+        if ( process.env.NODE_ENV === 'development' ) {
+          console.warn(`Invalid flag ${flag}, not applying.`)
+        }
+        return;
+      }
+
       applied.push(`fl_${flag}`);
     });
 
@@ -290,7 +350,7 @@ export function plugin(props: PluginSettings) {
 
     if ( hasPosition ) {
       Object.keys(position).forEach(key => {
-        if ( !objectHasKey(qualifiersPosition, key) ) return;
+        if ( !objectHasKey(qualifiersPosition, key) || !objectHasKey(position, key) ) return;
 
         const { qualifier, converters } = qualifiersPosition[key];
 

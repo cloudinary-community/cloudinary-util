@@ -3,12 +3,14 @@ import { z } from 'zod';
 import { ImageOptions } from '../types/image';
 import { PluginSettings } from '../types/plugins';
 
+import { crop, gravity } from '../constants/parameters';
+
 export const pluginProps = {
   fillBackground: z.union([
       z.boolean(),
       z.object({
-        crop: z.string().optional(),
-        gravity: z.string().optional(),
+        crop: crop.schema.optional(),
+        gravity: gravity.schema.optional(),
         prompt: z.string().optional()
       })
     ])
@@ -37,7 +39,7 @@ export function plugin(props: PluginSettings<ImageOptions>) {
 
     cldAsset.addTransformation(properties.join(','));
   } else if ( typeof fillBackground === 'object' ) {
-    const { crop = defaultCrop, gravity, prompt } = fillBackground
+    const { crop = defaultCrop, gravity, prompt } = fillBackground;
 
     const properties = [
       `ar_${options.width}:${options.height}`,

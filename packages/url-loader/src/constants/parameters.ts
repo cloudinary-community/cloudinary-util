@@ -1,5 +1,7 @@
 import { z } from 'zod';
 
+/** Angle - a */
+
 export const angle = {
   qualifier: 'a',
   schema: z.union([
@@ -12,13 +14,16 @@ export const angle = {
     })),
 }
 
+
+/** Aspect Ratio */
+
 export const aspectRatioModesEnum = z.enum([
   'vflip',
   'hflip',
   'ignore',
   'auto_right',
   'auto_left',
-])
+]);
 
 export const aspectRatio = {
   qualifier: 'ar',
@@ -32,6 +37,9 @@ export const aspectRatio = {
       url: 'https://cloudinary.com/documentation/transformation_reference#ar_aspect_ratio'
     })),
 }
+
+
+/** Crop */
 
 export const cropModesEnum = z.enum([
   'fill',
@@ -58,6 +66,9 @@ export const crop = {
       url: 'https://cloudinary.com/documentation/transformation_reference#c_crop_resize'
     })),
 }
+
+
+/** Flags */
 
 export const flagsEnum = z.enum([
   'animated',
@@ -115,6 +126,9 @@ export const flags = {
     }))
 }
 
+
+/** Gravity */
+
 export const gravity = {
   qualifier: 'g',
   schema: z.string()
@@ -123,6 +137,9 @@ export const gravity = {
       url: 'https://cloudinary.com/documentation/transformation_reference#g_gravity'
     })),
 }
+
+
+/** Height */
 
 export const height = {
   qualifier: 'h',
@@ -136,6 +153,9 @@ export const height = {
     })),
 }
 
+
+/** Width */
+
 export const width = {
   qualifier: 'w',
   schema: z.union([
@@ -148,6 +168,9 @@ export const width = {
     })),
 }
 
+
+/** Width Resize */
+
 export const widthResize = {
   schema: z.union([
       z.string(),
@@ -157,6 +180,9 @@ export const widthResize = {
       text: 'Width to resize the asset after all transformations are applied. Useful for responsive resizing.',
     })),
 }
+
+
+/** X */
 
 export const x = {
   qualifier: 'x',
@@ -170,6 +196,9 @@ export const x = {
     })),
 }
 
+
+/** Y */
+
 export const y = {
   qualifier: 'y',
   schema: z.union([
@@ -181,6 +210,9 @@ export const y = {
       url: 'https://cloudinary.com/documentation/transformation_reference#x_y_coordinates'
     })),
 }
+
+
+/** Zoom */
 
 export const zoom = {
   schema: z.string()

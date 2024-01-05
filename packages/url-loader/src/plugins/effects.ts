@@ -5,12 +5,7 @@ import { PluginSettings } from '../types/plugins';
 import { effects as qualifiersEffects } from '../constants/qualifiers';
 import { constructTransformation } from '../lib/transformations';
 
-export const pluginProps = {
-  effects: z.array(z.any())
-    .describe(JSON.stringify({
-      text: 'Array of objects specifying transformations to be applied to asset.'
-    }))
-    .optional(),
+const effectProps = {
   art: qualifiersEffects.art.schema.optional(),
   autoBrightness: qualifiersEffects.autoBrightness.schema.optional(),
   autoColor: qualifiersEffects.autoColor.schema.optional(),
@@ -58,6 +53,15 @@ export const pluginProps = {
   vectorize: qualifiersEffects.vectorize.schema.optional(),
   vibrance: qualifiersEffects.vibrance.schema.optional(),
   vignette: qualifiersEffects.vignette.schema.optional(),
+}
+
+export const pluginProps = {
+  effects: z.array(z.object(effectProps))
+    .describe(JSON.stringify({
+      text: 'Array of objects specifying transformations to be applied to asset.'
+    }))
+    .optional(),
+  ...effectProps
 };
 
 export const assetTypes = ['image', 'images', 'video', 'videos'];

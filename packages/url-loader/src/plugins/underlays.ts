@@ -3,8 +3,9 @@ import { objectHasKey } from '@cloudinary-util/util';
 
 import { PluginSettings } from '../types/plugins';
 
+import { flagsEnum } from '../constants/parameters';
+
 import {
-  flags as qualifiersFlags,
   primary as qualifiersPrimary,
   position as qualifiersPosition
 } from '../constants/qualifiers';
@@ -113,11 +114,19 @@ export function plugin(props: PluginSettings) {
     }
 
     // Positioning
+    // @TODO: accept flag value
 
-    flags.forEach(key => {
-      if ( !objectHasKey(qualifiersFlags, key) ) return;
-      const { qualifier, prefix } = qualifiersFlags[key];
-      primary.push(`${prefix}_${qualifier}`);
+    flags.forEach(flag => {
+      const { success } = flagsEnum.safeParse(flag);
+
+      if ( !success ) {
+        if ( process.env.NODE_ENV === 'development' ) {
+          console.warn(`Invalid flag ${flag}, not applying.`)
+        }
+        return;
+      }
+
+      primary.push(`fl_${flag}`);
     });
 
     // Add all primary transformations
