@@ -26,7 +26,7 @@ describe('Plugins', () => {
         options
       });
 
-      expect(result.options.format).toBe('gif');
+      expect(result.options.format).toBe('auto:animated');
       expect(cldImage.toURL()).toContain(`e_zoompan`);
     });
 

@@ -254,7 +254,7 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
     }
 
     if ( options?.format !== 'default' ) {
-      cldAsset.format(options?.format || 'auto')
+      cldAsset.format(options?.format || pluginEffects?.format || 'auto')
     }
 
     if ( options?.quality !== 'default' ) {

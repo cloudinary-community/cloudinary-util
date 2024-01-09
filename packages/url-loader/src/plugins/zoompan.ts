@@ -61,7 +61,7 @@ export function plugin(props: PluginSettings<ImageOptions>) {
   }
 
   if ( zoompan !== false ) {
-    overrides.format = 'gif';
+    overrides.format = 'auto:animated';
   }
 
   return {
