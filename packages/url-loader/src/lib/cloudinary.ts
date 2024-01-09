@@ -22,7 +22,9 @@ import * as underlaysPlugin from '../plugins/underlays';
 import * as versionPlugin from '../plugins/version';
 import * as zoompanPlugin from '../plugins/zoompan';
 
+import { assetOptionsSchema } from '../types/asset';
 import { imageOptionsSchema } from '../types/image';
+import { videoOptionsSchema } from '../types/video';
 import { analyticsOptionsSchema } from '../types/analytics';
 import { configOptionsSchema } from '../types/config';
 
@@ -68,9 +70,9 @@ export const transformationPlugins = [
 
 export const constructUrlPropsSchema = z.object({
   analytics: z.union([
-    analyticsOptionsSchema,
-    z.boolean()
-  ])
+      analyticsOptionsSchema,
+      z.boolean()
+    ])
     .describe(JSON.stringify({
       text: 'Tech, dependency, and feature identifiers for tracking SDK usage.',
       path: '/analyticsoptions'
@@ -83,7 +85,11 @@ export const constructUrlPropsSchema = z.object({
       path: '/analyticsoptions'
     }))
     .optional(),
-  options: imageOptionsSchema
+  options: z.union([
+      assetOptionsSchema,
+      imageOptionsSchema,
+      videoOptionsSchema,
+    ])
     .describe(JSON.stringify({
       text: 'Asset options (Image or Video) that define delivery URL including public ID and transformations.',
       path: '/assetoptions'
