@@ -9,7 +9,7 @@ export const pluginProps = {
   defaultImage: z.string()
     .describe(JSON.stringify({
       text: 'Configures the default image to use in case the given public ID is not available. Must include file extension.',
-      url: 'https://cloudinary.com/documentation/transformation_reference#b_gen_fill'
+      url: 'https://cloudinary.com/documentation/transformation_reference#d_default_image'
     }))
     .optional(),
 };

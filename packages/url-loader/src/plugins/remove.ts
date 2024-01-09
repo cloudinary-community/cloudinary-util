@@ -22,14 +22,14 @@ const imageOptionsRemoveSchema = z.object({
 
 export const pluginProps = {
   remove: z.union([
-    imageOptionsRemovePromptSchema,
-    imageOptionsRemoveSchema,
-  ])
-  .describe(JSON.stringify({
-    text: 'Applies zooming and/or panning to an image, resulting in a video or animated image.',
-    url: 'https://cloudinary.com/documentation/transformation_reference#e_zoompan'
-  }))
-  .optional(),
+      imageOptionsRemovePromptSchema,
+      imageOptionsRemoveSchema,
+    ])
+    .describe(JSON.stringify({
+      text: 'Applies zooming and/or panning to an image, resulting in a video or animated image.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#e_zoompan'
+    }))
+    .optional(),
 };
 
 export const assetTypes = ['image', 'images'];

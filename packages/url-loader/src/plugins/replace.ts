@@ -5,18 +5,18 @@ import { PluginSettings } from "../types/plugins";
 
 export const pluginProps = {
   replace: z.union([
-    z.array(z.string()),
-    z.array(z.boolean()),
-    z.object({
-      to: z.string(),
-      from: z.string(),
-      preserveGeometry: z.boolean().optional()
-    })
-  ]).describe(JSON.stringify({
-    text: 'Uses generative AI to replace parts of your image with something else.',
-    url: 'https://cloudinary.com/documentation/transformation_reference#e_gen_replace'
-  }))
-  .optional(),
+      z.array(z.string()),
+      z.array(z.boolean()),
+      z.object({
+        to: z.string(),
+        from: z.string(),
+        preserveGeometry: z.boolean().optional()
+      })
+    ]).describe(JSON.stringify({
+      text: 'Uses generative AI to replace parts of your image with something else.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#e_gen_replace'
+    }))
+    .optional(),
 };
 
 export const assetTypes = ["image", "images"];

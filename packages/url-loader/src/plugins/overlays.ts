@@ -71,7 +71,12 @@ const overlaySchema = z.object({
 });
 
 export const pluginProps = {
-  overlay: overlaySchema.optional(),
+  overlay: overlaySchema
+    .describe(JSON.stringify({
+      text: 'Image or text layer that is applied on top of the base image.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#l_layer'
+    }))
+    .optional(),
   overlays: z.array(overlaySchema)
     .describe(JSON.stringify({
       text: 'Image or text layers that are applied on top of the base image.',
