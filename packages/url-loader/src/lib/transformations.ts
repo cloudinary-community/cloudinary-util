@@ -9,7 +9,7 @@ import { QualiferConverters } from "../types/qualifiers";
 interface ConstructTransformationSettings {
   prefix?: string;
   qualifier?: string | boolean;
-  value?: string | boolean;
+  value?: string | number | boolean;
   converters?: Array<QualiferConverters>;
 }
 

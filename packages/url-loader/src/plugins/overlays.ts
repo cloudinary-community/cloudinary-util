@@ -3,7 +3,7 @@ import { encodeBase64, objectHasKey, sortByKey } from '@cloudinary-util/util';
 
 import { PluginSettings } from '../types/plugins';
 import { Qualifier } from '../types/qualifiers';
-import { angle, gravity, flagsEnum, x, y } from '../constants/parameters';
+import { angle, crop, flags, flagsEnum, gravity, height, width, x, y } from '../constants/parameters';
 
 import { constructTransformation } from '../lib/transformations';
 
@@ -50,22 +50,24 @@ const overlayPositionSchema = z.object({
   angle: angle.schema.optional(),
   gravity: gravity.schema.optional(),
   x: x.schema.optional(),
-  y: x.schema.optional(),
+  y: y.schema.optional(),
 })
 
 const overlaySchema = z.object({
-  url: z.string().optional(),
+  appliedEffects: z.array(z.object({})).optional(),
+  appliedFlags: flags.schema.optional(),
+  effects: z.array(z.object({})).optional(),
+  crop: crop.schema.optional(),
+  flags: flags.schema.optional(),
+  height: height.schema.optional(),
+  position: overlayPositionSchema.optional(),
   publicId: z.string().optional(),
-  width: z.string().optional(),
   text: z.union([
-      z.string(),
-      overlayTextSchema
-    ]).optional(),
-  effects: z.array(z.any()).optional(),
-  appliedEffects: z.array(z.any()).optional(),
-  flags: z.array(z.any()).optional(),
-  appliedFlags: z.array(z.any()).optional(),
-  position: overlayPositionSchema.optional()
+    z.string(),
+    overlayTextSchema
+  ]).optional(),
+  url: z.string().optional(),
+  width: width.schema.optional(),
 });
 
 export const pluginProps = {
@@ -119,24 +121,7 @@ export function plugin(props: PluginSettings) {
    * applyOverlay
    */
 
-  interface ApplyOverlaySettingsText {
-    color?: string;
-    fontFamily?: string;
-    fontSize?: number;
-    fontWeight?: string;
-    text: string;
-  }
-
-  interface ApplyOverlaySettings {
-    appliedEffects?: Array<object>;
-    effects?: Array<object>;
-    appliedFlags?: Array<string>;
-    flags?: Array<string>;
-    position?: object;
-    publicId?: string;
-    text?: string | ApplyOverlaySettingsText;
-    url?: string;
-  }
+  type ApplyOverlaySettings = z.infer<typeof overlaySchema>;
 
   function applyOverlay({ publicId, url, position, text, effects: layerEffects = [], appliedEffects = [], flags: layerFlags = [], appliedFlags = [], ...options }: ApplyOverlaySettings) {
     const hasPublicId = typeof publicId === 'string';
@@ -245,7 +230,9 @@ export function plugin(props: PluginSettings) {
     // Add flags to the primary layer transformation segment
     // @TODO: accept flag value
 
-    layerFlags.forEach(flag => {
+    const activeLayerFlags = Array.isArray(layerFlags) ? layerFlags : [layerFlags];
+
+    activeLayerFlags.forEach(flag => {
       const { success } = flagsEnum.safeParse(flag);
 
       if ( !success ) {
@@ -262,7 +249,9 @@ export function plugin(props: PluginSettings) {
     // Add flags to the fl_layer_apply transformation segment
     // @TODO: accept flag value
 
-    appliedFlags.forEach(flag => {
+    const activeAppliedFlags = Array.isArray(appliedFlags) ? appliedFlags : [appliedFlags];
+
+    activeAppliedFlags.forEach(flag => {
       const { success } = flagsEnum.safeParse(flag);
 
       if ( !success ) {
