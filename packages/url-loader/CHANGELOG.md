@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v3.24.0-beta.12](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.11...@cloudinary-util/url-loader-v3.24.0-beta.12) (2024-01-09)
+
+
+### Features
+
+* [#96](https://github.com/colbyfayock/cloudinary-util/issues/96) - updating zoompan to use auto:animated for performance and efficient formats ([ce44caa](https://github.com/colbyfayock/cloudinary-util/commit/ce44caaaa5b9e1fde4b1276bdd6bd1c508b32494))
+
 # [@cloudinary-util/url-loader-v3.24.0-beta.11](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.10...@cloudinary-util/url-loader-v3.24.0-beta.11) (2024-01-05)
 
 
