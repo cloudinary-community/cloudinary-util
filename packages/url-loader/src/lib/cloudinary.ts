@@ -75,14 +75,14 @@ export const constructUrlPropsSchema = z.object({
     ])
     .describe(JSON.stringify({
       text: 'Tech, dependency, and feature identifiers for tracking SDK usage.',
-      path: '/analyticsoptions'
+      path: '/url-loader/analyticsoptions'
     }))
     .optional(),
   config: configOptionsSchema
     .describe(JSON.stringify({
       text: 'Configuration parameters for environment and Cloudinary account.',
       url: 'https://cloudinary.com/documentation/cloudinary_sdks#configuration_parameters',
-      path: '/analyticsoptions'
+      path: '/url-loader/analyticsoptions'
     }))
     .optional(),
   options: z.union([
@@ -92,7 +92,7 @@ export const constructUrlPropsSchema = z.object({
     ])
     .describe(JSON.stringify({
       text: 'Asset options (Image or Video) that define delivery URL including public ID and transformations.',
-      path: '/assetoptions'
+      path: '/url-loader/assetoptions'
     })),
 })
 

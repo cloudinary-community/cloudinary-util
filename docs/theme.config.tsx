@@ -2,7 +2,7 @@ import React from 'react'
 import { DocsThemeConfig } from 'nextra-theme-docs'
 
 const config: DocsThemeConfig = {
-  logo: <span>Cloudinary Util</span>,
+  logo: <strong>Cloudinary Util</strong>,
   project: {
     link: 'https://github.com/colbyfayock/cloudinary-util',
   },

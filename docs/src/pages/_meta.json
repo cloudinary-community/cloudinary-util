@@ -1,17 +1,12 @@
 {
-  "index": "Getting Started",
-  "api": {
-    "type": "separator",
-    "title": "API"
+  "index": {
+    "title": "Getting Started",
+    "display": "hidden",
+    "theme": {
+      "breadcrumb": false,
+      "pagination": false,
+      "toc": false
+    }
   },
-  "constructcloudinaryurl": "constructCloudinaryUrl",
-  "types": {
-    "type": "separator",
-    "title": "Types"
-  },
-  "analyticsoptions": "AnalyticsOptions",
-  "assetoptions": "AssetOptions",
-  "configoptions": "ConfigOptions",
-  "imageoptions": "ImageOptions",
-  "videooptions": "VideoOptions"
+  "url-loader": "URL Loader"
 }

@@ -1,9 +1,8 @@
 import Link from 'next/link';
-import { Table, Tr, Td } from 'nextra/components';
 
 import { sortByKey } from '../../lib/util';
 
-import styles from './SchemaTable.module.scss';
+import Table from '@/components/Table';
 
 interface Configuration {
   anyOf: Array<{ type: string; }>;
@@ -60,42 +59,53 @@ export const SchemaTable = ({ schema, schemaKey }) => {
 
   const sortedProperties = sortByKey(formattedProperties, 'name');
 
+  console.log('sortedProperties', sortedProperties)
+
   return (
-    <>
-      <Table className={styles.schemaTable}>
-        <thead>
-          <Tr>
-            <Td><strong>Property</strong></Td>
-            <Td><strong>Types</strong></Td>
-            <Td><strong>Required</strong></Td>
-            <Td><strong>Default</strong></Td>
-            <Td><strong>Description</strong></Td>
-            <Td></Td>
-          </Tr>
-        </thead>
-        <tbody>
-        {sortedProperties.map(({ name, required, types, defaultValue, description, link, path }: Property) => {
-          return (
-            <Tr key={name}>
-              <Td>
-                { path && (
-                  <Link href={path}>{ name }</Link>
-                )}
-                { !path && name }
-              </Td>
-              <Td>{ types && types.filter(v => !!v).length > 0 ? types.join(' | ') : '-' }</Td>
-              <Td>{ required ? 'Yes' : '-' }</Td>
-              <Td>{ defaultValue || '-' }</Td>
-              <Td>{ description }</Td>
-              <Td>
-                {link && <a href={link.url}>{ link.label }</a>}
-              </Td>
-            </Tr>
-          )
-        })}
-        </tbody>
-      </Table>
-    </>
+    <Table
+      columns={[
+        {
+          id: 'property',
+          title: 'Property',
+        },
+        {
+          id: 'types',  
+          title: 'Types',
+        },
+        {
+          id: 'required',  
+          title: 'Required',
+        },
+        {
+          id: 'default',  
+          title: 'Default',
+        },
+        {
+          id: 'description',  
+          title: 'Description',
+        },
+        {
+          id: 'more', 
+        },
+      ]}
+      data={
+        sortedProperties.map((prop: Property) => {
+          return {
+            default: prop.defaultValue || '-',
+            description: prop.description,
+            more: prop.link?.url ? () => (<a href={prop.link.url}>{ prop.link.label }</a>) : '',
+            property: () => {
+              if ( prop.path ) {
+                return <Link href={prop.path}>{ prop.name }</Link>
+              }
+              return prop.name;
+            },
+            required: prop.required ? 'Yes' : '-',
+            type: prop.types && prop.types.filter(v => !!v).length > 0 ? prop.types.join(' | ') : '-',
+          }
+        })
+      }
+    />
   )
 }
 
