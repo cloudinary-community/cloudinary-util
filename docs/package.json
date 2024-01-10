@@ -9,14 +9,14 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/shuding/nextra-docs-template.git"
+    "url": "git+https://github.com/colbyfayock/cloudinary-util.git"
   },
-  "author": "Shu Ding <g@shud.in>",
+  "author": "Colby Fayock <hello@colbyfayock.com>",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/shuding/nextra-docs-template/issues"
+    "url": "https://github.com/colbyfayock/cloudinary-util/issues"
   },
-  "homepage": "https://github.com/shuding/nextra-docs-template#readme",
+  "homepage": "https://github.com/colbyfayock/cloudinary-util#readme",
   "dependencies": {
     "@cloudinary-util/url-loader": "workspace:*",
     "next": "^14.0.4",
@@ -24,12 +24,12 @@
     "nextra-theme-docs": "^2.13.2",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "sass": "^1.69.5",
+    "sass": "^1.69.7",
     "zod": "^3.22.4",
     "zod-to-json-schema": "^3.22.3"
   },
   "devDependencies": {
-    "@types/node": "20.10.4",
+    "@types/node": "20.10.8",
     "autoprefixer": "^10.4.16",
     "postcss": "^8.4.33",
     "tailwindcss": "^3.4.1",

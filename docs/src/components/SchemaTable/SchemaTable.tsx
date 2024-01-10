@@ -59,8 +59,6 @@ export const SchemaTable = ({ schema, schemaKey }) => {
 
   const sortedProperties = sortByKey(formattedProperties, 'name');
 
-  console.log('sortedProperties', sortedProperties)
-
   return (
     <Table
       columns={[

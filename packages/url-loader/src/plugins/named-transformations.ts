@@ -35,7 +35,7 @@ export function plugin(props: PluginSettings) {
   const { transformations, namedTransformations } = options;
 
   if ( transformations && process.env.NODE_ENVIRONMENT === 'development' ) {
-    console.log('The transformations prop will be deprecated in future versions. Please use namedTransformations');
+    console.warn('The transformations prop will be deprecated in future versions. Please use namedTransformations');
   }
 
   let _namedTransformations = namedTransformations || transformations || [];
