@@ -1,7 +1,7 @@
 {
-  "name": "nextra-docs-template",
+  "name": "cloudinary-util-docs",
   "version": "0.0.1",
-  "description": "Nextra docs template",
+  "description": "Documentation for Cloudinary Util",
   "scripts": {
     "dev": "next dev",
     "build": "next build",

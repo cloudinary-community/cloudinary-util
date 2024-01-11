@@ -1,23 +1,26 @@
-# Nextra Docs Template 
+# Documentation
 
-This is a template for creating documentation with [Nextra](https://nextra.site).
+## Getting Started
 
-[**Live Demo →**](https://nextra-docs-template.vercel.app)
+1. Install dependencies using pnpm
 
-[![](.github/screenshot.png)](https://nextra-docs-template.vercel.app)
+```shell copy
+pnpm install
+```
 
-## Quick Start
+2. Build Cloudinary Util packages
 
-Click the button to clone this repository and deploy it on Vercel:
+This can be done in the root of the project by running:
 
-[![](https://vercel.com/button)](https://vercel.com/new/clone?s=https%3A%2F%2Fgithub.com%2Fshuding%2Fnextra-docs-template&showOptionalTeamCreation=false)
+```shell copy
+pnpm build
+```
 
-## Local Development
+Each package under the `packages` directory will be built, where these are then
+pulled in automatically to help generate documentation.
 
-First, run `pnpm i` to install the dependencies.
+3. Start development server
 
-Then, run `pnpm dev` to start the development server and visit localhost:3000.
-
-## License
-
-This project is licensed under the MIT License.
+```shell copy
+pnpm dev
+```
