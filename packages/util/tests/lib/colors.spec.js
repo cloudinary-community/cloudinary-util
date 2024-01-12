@@ -1,3 +1,5 @@
+import { describe, it, expect } from 'vitest';
+
 import { testColorIsHex, convertColorHexToRgb } from '../../src/lib/colors';
 
 describe('colors', () => {
