@@ -1,15 +1,17 @@
+import { vi, describe, it, expect, afterEach } from 'vitest';
+
 import { constructCloudinaryUrl } from '../../src/lib/cloudinary';
 
 // Mock console.warn() so we can see when it's called
 global.console = {
   ...global.console,
-  warn: jest.fn()
+  warn: vi.fn()
 }
 
 describe('Cloudinary', () => {
   afterEach(() => {
     // Clears the state of console.warn, in case multiple tests want to monitor it
-    jest.restoreAllMocks()
+    vi.restoreAllMocks()
   });
 
   describe('constructCloudinaryUrl', () => {

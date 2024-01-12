@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { Cloudinary } from '@cloudinary/url-gen';
 
 import * as flagsPlugin from '../../src/plugins/flags';
