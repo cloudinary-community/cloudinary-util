@@ -1,9 +1,3 @@
-# [@cloudinary-util/url-loader-v3.25.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0...@cloudinary-util/url-loader-v3.25.0) (2024-01-16)
-
-
-### Features
-
-* Deprecation Warning for transformations prop ([#128](https://github.com/colbyfayock/cloudinary-util/issues/128)) ([b89ea8f](https://github.com/colbyfayock/cloudinary-util/commit/b89ea8f0881623ca518a9e98dd8bc44ee93ed343))
 
 # [@cloudinary-util/url-loader-v3.24.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.23.0...@cloudinary-util/url-loader-v3.24.0) (2024-01-16)
 
