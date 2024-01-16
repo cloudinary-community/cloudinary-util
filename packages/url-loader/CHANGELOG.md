@@ -1,9 +1,7 @@
 # [@cloudinary-util/url-loader-v4.0.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.0.0...@cloudinary-util/url-loader-v4.0.1) (2024-01-16)
 
+Fixes issue with Util dependency targeting a beta release and not resolving.
 
-### Bug Fixes
-
-* Description - force patch ([#131](https://github.com/colbyfayock/cloudinary-util/issues/131)) ([c3ffe43](https://github.com/colbyfayock/cloudinary-util/commit/c3ffe43c6d6bacf8365fd725cf76cc77566e05af))
 
 # [@cloudinary-util/url-loader-v4.0.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.25.0...@cloudinary-util/url-loader-v4.0.0) (2024-01-16)
 
