@@ -15,7 +15,9 @@ export const pluginProps = {
       url: 'https://cloudinary.com/documentation/image_transformations#named_transformations'
     }))
     .optional(),
-  // @todo: deprecate in favor of namedTransformations
+  /**
+   * @deprecated use {@link `namedTransformations`} instead
+   */
   transformations: z.union([
       NamedTransformationSchema,
       z.array(NamedTransformationSchema)
