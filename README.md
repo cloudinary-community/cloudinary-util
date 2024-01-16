@@ -26,9 +26,9 @@ Learn what tools are available and how to install them:
 * [URL Loader](https://github.com/colbyfayock/cloudinary-util/tree/main/packages/url-loader): Construct a Cloudinary URL given a set of options
 * [Util](https://github.com/colbyfayock/cloudinary-util/tree/main/packages/util): Set of functions to help working with Cloudinary
 
-## 🧰 Working Locally with Cloudinary Util
+_The minimum node version officially supported is version 18._
 
-The minimum node version officially supported is version 18.
+## 🧰 Working Locally with Cloudinary Util
 
 ### Installation
 
