@@ -11,7 +11,7 @@ export const pluginProps = {
       z.array(RawTransformationSchema)
     ])
     .describe(JSON.stringify({
-      text: 'Array of URL transformation parameters to apply to an asset.',
+      text: 'Array of transformation parameters using the Cloudinary URL API to apply to an asset.',
       url: 'https://cloudinary.com/documentation/transformation_reference'
     }))
     .optional(),
