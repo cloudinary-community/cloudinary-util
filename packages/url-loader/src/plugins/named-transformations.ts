@@ -16,7 +16,7 @@ export const pluginProps = {
     }))
     .optional(),
   /**
-   * @deprecated use namedTransformations instead
+   * @deprecated use {@link `namedTransformations`} instead
    */
   transformations: z.union([
       NamedTransformationSchema,
