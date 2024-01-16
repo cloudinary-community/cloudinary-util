@@ -20,6 +20,8 @@ The loader works by loading a list of "plugins" which provide option-based confi
 
 ## 🚀 Getting Started
 
+_The minimum node version officially supported is version 18._
+
 * Install Cloudinary URL Loader:
 
 ```
