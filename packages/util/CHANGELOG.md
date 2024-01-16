@@ -1,3 +1,13 @@
+# [@cloudinary-util/util-v3.0.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.3.0...@cloudinary-util/util-v3.0.0) (2024-01-16)
+
+
+* Moves normalizeNumberParameter to Util (#130) ([27db546](https://github.com/colbyfayock/cloudinary-util/commit/27db546734c1d124d181e508ec712255f9a13706)), closes [#130](https://github.com/colbyfayock/cloudinary-util/issues/130)
+
+
+### BREAKING CHANGES
+
+* Forcing major version for recent TS config updates and to correspond with URL Loader
+
 # [@cloudinary-util/util-v2.4.0-beta.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.3.0...@cloudinary-util/util-v2.4.0-beta.1) (2023-12-14)
 
 
