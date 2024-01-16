@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { Cloudinary } from '@cloudinary/url-gen';
 import * as zoomPanPlugin from '../../src/plugins/zoompan';
 
@@ -26,7 +27,7 @@ describe('Plugins', () => {
         options
       });
 
-      expect(result.options.format).toBe('gif');
+      expect(result.options.format).toBe('auto:animated');
       expect(cldImage.toURL()).toContain(`e_zoompan`);
     });
 

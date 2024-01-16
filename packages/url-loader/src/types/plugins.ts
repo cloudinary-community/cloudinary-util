@@ -17,6 +17,6 @@ export interface PluginOverrides {
 export interface TransformationPlugin {
   assetTypes: Array<string>;
   plugin: Function;
-  props: Array<string>;
   strict?: boolean;
+  pluginProps: object;
 }

@@ -4,7 +4,6 @@
   "exclude": ["dist", "build", "node_modules"],
   "compilerOptions": {
     "types": [
-      "jest",
       "node"
     ]
   }

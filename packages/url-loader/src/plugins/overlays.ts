@@ -1,19 +1,95 @@
+import { z } from 'zod';
 import { encodeBase64, objectHasKey, sortByKey } from '@cloudinary-util/util';
 
 import { PluginSettings } from '../types/plugins';
 import { Qualifier } from '../types/qualifiers';
+import { angle, crop, flags, flagsEnum, gravity, height, width, x, y } from '../constants/parameters';
 
 import { constructTransformation } from '../lib/transformations';
 
 import {
   effects as qualifiersEffects,
-  flags as qualifiersFlags,
   position as qualifiersPosition,
   primary as qualifiersPrimary,
   text as qualifiersText,
 } from '../constants/qualifiers';
 
-export const props = ['text', 'overlays'];
+const overlayTextSchema = z.object({
+  alignment: z.string().optional(),
+  antialias: z.string().optional(),
+  border: z.string().optional(),
+  color: z.string().optional(),
+  fontFamily: z.string().optional(),
+  fontSize: z.number().optional(),
+  fontStyle: z.union([
+      z.string(),
+      z.number()
+    ])
+    .optional(),
+  fontWeight: z.string().optional(),
+  hinting: z.union([
+      z.string(),
+      z.number()
+    ])
+    .optional(),
+  letterSpacing: z.union([
+      z.string(),
+      z.number()
+    ])
+    .optional(),
+  lineSpacing: z.union([
+      z.string(),
+      z.number()
+    ])
+    .optional(),
+  stroke: z.string().optional(),
+  text: z.string(), // Required if using object format
+});
+
+const overlayPositionSchema = z.object({
+  angle: angle.schema.optional(),
+  gravity: gravity.schema.optional(),
+  x: x.schema.optional(),
+  y: y.schema.optional(),
+})
+
+const overlaySchema = z.object({
+  appliedEffects: z.array(z.object({})).optional(),
+  appliedFlags: flags.schema.optional(),
+  effects: z.array(z.object({})).optional(),
+  crop: crop.schema.optional(),
+  flags: flags.schema.optional(),
+  height: height.schema.optional(),
+  position: overlayPositionSchema.optional(),
+  publicId: z.string().optional(),
+  text: z.union([
+    z.string(),
+    overlayTextSchema
+  ]).optional(),
+  url: z.string().optional(),
+  width: width.schema.optional(),
+});
+
+export const pluginProps = {
+  overlay: overlaySchema
+    .describe(JSON.stringify({
+      text: 'Image or text layer that is applied on top of the base image.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#l_layer'
+    }))
+    .optional(),
+  overlays: z.array(overlaySchema)
+    .describe(JSON.stringify({
+      text: 'Image or text layers that are applied on top of the base image.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#l_layer'
+    }))
+    .optional(),
+  text: z.string()
+    .describe(JSON.stringify({
+      text: 'Text to be overlaid on asset.',
+      url: 'https://cloudinary.com/documentation/image_transformations#transformation_url_structure'
+    })).optional(),
+};
+
 export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 export const DEFAULT_TEXT_OPTIONS = {
@@ -22,8 +98,6 @@ export const DEFAULT_TEXT_OPTIONS = {
   fontSize: 200,
   fontWeight: 'bold',
 };
-
-const supportedFlags = Object.entries(qualifiersFlags).map(([_, { qualifier }]) => qualifier);
 
 export function plugin(props: PluginSettings) {
   const { cldAsset, options } = props;
@@ -38,17 +112,13 @@ export function plugin(props: PluginSettings) {
 
   if ( typeof text === 'string' ) {
     applyOverlay({
-      text: {
-        ...DEFAULT_TEXT_OPTIONS,
+      text: Object.assign({}, DEFAULT_TEXT_OPTIONS, {
         text
-      }
+      })
     })
   } else if ( typeof text === 'object' ) {
     applyOverlay({
-      text: {
-        ...DEFAULT_TEXT_OPTIONS,
-        ...text
-      }
+      text: Object.assign({}, DEFAULT_TEXT_OPTIONS, text)
     })
   }
 
@@ -56,24 +126,7 @@ export function plugin(props: PluginSettings) {
    * applyOverlay
    */
 
-  interface ApplyOverlaySettingsText {
-    color?: string;
-    fontFamily?: string;
-    fontSize?: number;
-    fontWeight?: string;
-    text: string;
-  }
-
-  interface ApplyOverlaySettings {
-    appliedEffects?: Array<object>;
-    effects?: Array<object>;
-    appliedFlags?: Array<string>;
-    flags?: Array<string>;
-    position?: string;
-    publicId?: string;
-    text?: string | ApplyOverlaySettingsText;
-    url?: string;
-  }
+  type ApplyOverlaySettings = z.infer<typeof overlaySchema>;
 
   function applyOverlay({ publicId, url, position, text, effects: layerEffects = [], appliedEffects = [], flags: layerFlags = [], appliedFlags = [], ...options }: ApplyOverlaySettings) {
     const hasPublicId = typeof publicId === 'string';
@@ -180,17 +233,39 @@ export function plugin(props: PluginSettings) {
 
     // Layer Flags
     // Add flags to the primary layer transformation segment
+    // @TODO: accept flag value
 
-    layerFlags.forEach(flag => {
-      if ( !supportedFlags.includes(flag) ) return;
+    const activeLayerFlags = Array.isArray(layerFlags) ? layerFlags : [layerFlags];
+
+    activeLayerFlags.forEach(flag => {
+      const { success } = flagsEnum.safeParse(flag);
+
+      if ( !success ) {
+        if ( process.env.NODE_ENV === 'development' ) {
+          console.warn(`Invalid flag ${flag}, not applying.`)
+        }
+        return;
+      }
+
       primary.push(`fl_${flag}`);
     });
 
     // Applied Flags
     // Add flags to the fl_layer_apply transformation segment
+    // @TODO: accept flag value
 
-    appliedFlags.forEach(flag => {
-      if ( !supportedFlags.includes(flag) ) return;
+    const activeAppliedFlags = Array.isArray(appliedFlags) ? appliedFlags : [appliedFlags];
+
+    activeAppliedFlags.forEach(flag => {
+      const { success } = flagsEnum.safeParse(flag);
+
+      if ( !success ) {
+        if ( process.env.NODE_ENV === 'development' ) {
+          console.warn(`Invalid flag ${flag}, not applying.`)
+        }
+        return;
+      }
+
       applied.push(`fl_${flag}`);
     });
 
@@ -269,7 +344,7 @@ export function plugin(props: PluginSettings) {
 
     if ( hasPosition ) {
       Object.keys(position).forEach(key => {
-        if ( !objectHasKey(qualifiersPosition, key) ) return;
+        if ( !objectHasKey(qualifiersPosition, key) || !objectHasKey(position, key) ) return;
 
         const { qualifier, converters } = qualifiersPosition[key];
 

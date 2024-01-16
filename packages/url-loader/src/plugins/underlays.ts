@@ -1,14 +1,51 @@
+import { z } from 'zod';
 import { objectHasKey } from '@cloudinary-util/util';
 
 import { PluginSettings } from '../types/plugins';
 
+import { angle, crop, flags, flagsEnum, gravity, height, width, x, y } from '../constants/parameters';
+
 import {
-  flags as qualifiersFlags,
   primary as qualifiersPrimary,
   position as qualifiersPosition
 } from '../constants/qualifiers';
 
-export const props = ['underlay', 'underlays'];
+const underlayPositionSchema = z.object({
+  angle: angle.schema.optional(),
+  gravity: gravity.schema.optional(),
+  x: x.schema.optional(),
+  y: y.schema.optional(),
+})
+
+const underlaySchema = z.object({
+  appliedEffects: z.array(z.object({})).optional(),
+  appliedFlags: flags.schema.optional(),
+  effects: z.array(z.object({})).optional(),
+  crop: crop.schema.optional(),
+  flags: flags.schema.optional(),
+  height: height.schema.optional(),
+  position: underlayPositionSchema.optional(),
+  publicId: z.string().optional(),
+  type: z.string().optional(),
+  url: z.string().optional(),
+  width: width.schema.optional(),
+});
+
+export const pluginProps = {
+  underlay: z.string()
+    .describe(JSON.stringify({
+      text: 'Public ID of image that is applied under the base image.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#l_layer'
+    }))
+    .optional(),
+  underlays: z.array(underlaySchema)
+    .describe(JSON.stringify({
+      text: 'Image layers that are applied under the base image.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#l_layer'
+    }))
+    .optional(),
+};
+
 export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 export function plugin(props: PluginSettings) {
@@ -37,20 +74,9 @@ export function plugin(props: PluginSettings) {
    * applyUnderlay
    */
 
-  interface ApplyUnderlaySettings {
-    appliedEffects?: Array<object>
-    effects?: Array<object>;
-    crop?: string;
-    flags?: Array<string>;
-    height?: string | number;
-    position?: string;
-    publicId?: string;
-    type?: string;
-    url?: string;
-    width?: string | number;
-  }
+  type ApplyUnderlaySettings = z.infer<typeof underlaySchema>;
 
-  function applyUnderlay({ publicId, type, position, effects: layerEffects = [], flags = [], ...options }: ApplyUnderlaySettings) {
+  function applyUnderlay({ publicId, type, position, effects: layerEffects = [], flags: layerFlags = [], appliedFlags = [], ...options }: ApplyUnderlaySettings) {
     const hasPublicId = typeof publicId === 'string';
     const hasPosition = typeof position === 'object';
 
@@ -97,12 +123,42 @@ export function plugin(props: PluginSettings) {
       });
     }
 
-    // Positioning
+    // Layer Flags
+    // Add flags to the primary layer transformation segment
+    // @TODO: accept flag value
 
-    flags.forEach(key => {
-      if ( !objectHasKey(qualifiersFlags, key) ) return;
-      const { qualifier, prefix } = qualifiersFlags[key];
-      primary.push(`${prefix}_${qualifier}`);
+    const activeLayerFlags = Array.isArray(layerFlags) ? layerFlags : [layerFlags];
+
+    activeLayerFlags.forEach(flag => {
+      const { success } = flagsEnum.safeParse(flag);
+
+      if ( !success ) {
+        if ( process.env.NODE_ENV === 'development' ) {
+          console.warn(`Invalid flag ${flag}, not applying.`)
+        }
+        return;
+      }
+
+      primary.push(`fl_${flag}`);
+    });
+
+    // Applied Flags
+    // Add flags to the fl_layer_apply transformation segment
+    // @TODO: accept flag value
+
+    const activeAppliedFlags = Array.isArray(appliedFlags) ? appliedFlags : [appliedFlags];
+
+    activeAppliedFlags.forEach(flag => {
+      const { success } = flagsEnum.safeParse(flag);
+
+      if ( !success ) {
+        if ( process.env.NODE_ENV === 'development' ) {
+          console.warn(`Invalid flag ${flag}, not applying.`)
+        }
+        return;
+      }
+
+      applied.push(`fl_${flag}`);
     });
 
     // Add all primary transformations

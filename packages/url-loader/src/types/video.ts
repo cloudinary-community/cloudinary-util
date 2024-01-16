@@ -1,7 +1,13 @@
-import type { AssetOptions, AssetOptionsResize } from './asset';
+import { z } from 'zod';
 
-export interface VideoOptionsResize extends AssetOptionsResize {}
+import { assetOptionsSchema } from './asset';
 
-export interface VideoOptions extends AssetOptions {
-  streamingProfile?: string;
-}
+import { pluginProps as abrPluginProps } from '../plugins/abr';
+
+export const videoOptionsSchema = assetOptionsSchema.merge(z.object({
+  // Spreading plugins instead of extend or merge to avoid excessive schema warning
+  // https://github.com/microsoft/TypeScript/issues/34933#issuecomment-1772787785
+  ...abrPluginProps,
+}))
+
+export type VideoOptions = z.infer<typeof videoOptionsSchema>;

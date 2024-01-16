@@ -1,8 +1,9 @@
+import { describe, it, expect } from 'vitest';
 import { Cloudinary } from "@cloudinary/url-gen";
 
-import * as generativeReplacePlugin from "../../src/plugins/generative-replace";
+import * as replacePlugin from "../../src/plugins/replace";
 
-const { plugin } = generativeReplacePlugin;
+const { plugin } = replacePlugin;
 
 const cld = new Cloudinary({
   cloud: {

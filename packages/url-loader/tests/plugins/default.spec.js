@@ -1,3 +1,4 @@
+import { vi, describe, it, expect, afterEach } from 'vitest';
 import { Cloudinary } from '@cloudinary/url-gen';
 
 import * as defaultImage from '../../src/plugins/default-image';
@@ -14,13 +15,13 @@ const TEST_PUBLIC_ID = 'test-public-id';
 
 global.console = {
   ...global.console,
-  warn: jest.fn()
+  warn: vi.fn()
 }
 
 describe('Default Image plugin', () => {
   afterEach(() => {
     // Clears the state of console.warn, in case multiple tests want to monitor it
-    jest.restoreAllMocks()
+    vi.restoreAllMocks()
   });
 
   it('should add a default image', () => {

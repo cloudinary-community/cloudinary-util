@@ -1,0 +1,22 @@
+{
+  "installation": {
+    "title": "Installation",
+    "theme": {
+      "breadcrumb": false
+    }
+  },
+  "sep-api": {
+    "type": "separator",
+    "title": "API"
+  },
+  "constructcloudinaryurl": "constructCloudinaryUrl",
+  "sep-types": {
+    "type": "separator",
+    "title": "Types"
+  },
+  "analyticsoptions": "AnalyticsOptions",
+  "assetoptions": "AssetOptions",
+  "configoptions": "ConfigOptions",
+  "imageoptions": "ImageOptions",
+  "videooptions": "VideoOptions"
+}

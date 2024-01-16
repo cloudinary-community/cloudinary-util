@@ -1,0 +1,12 @@
+{
+  "index": {
+    "title": "Getting Started",
+    "display": "hidden",
+    "theme": {
+      "breadcrumb": false,
+      "pagination": false,
+      "toc": false
+    }
+  },
+  "url-loader": "URL Loader"
+}

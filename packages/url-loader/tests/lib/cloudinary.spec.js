@@ -1,15 +1,17 @@
+import { vi, describe, it, expect, afterEach } from 'vitest';
+
 import { constructCloudinaryUrl } from '../../src/lib/cloudinary';
 
 // Mock console.warn() so we can see when it's called
 global.console = {
   ...global.console,
-  warn: jest.fn()
+  warn: vi.fn()
 }
 
 describe('Cloudinary', () => {
   afterEach(() => {
     // Clears the state of console.warn, in case multiple tests want to monitor it
-    jest.restoreAllMocks()
+    vi.restoreAllMocks()
   });
 
   describe('constructCloudinaryUrl', () => {
@@ -794,6 +796,7 @@ describe('Cloudinary', () => {
             },
             removeBackground: true,
             restore: true,
+            zoompan: true,
           },
           config: {
             cloud: {
@@ -814,7 +817,8 @@ describe('Cloudinary', () => {
           `e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}`,
           `l_${overlaySrc},co_${overlayColor},e_shadow:${overlayShadow},x_${overlayX},y_${overlayY}`,
           `fl_layer_apply,fl_no_overflow,co_${overlayColor},e_shadow:${overlayShadow},x_${overlayX},y_${overlayY}`,
-          `f_auto`,
+          `e_zoompan`,
+          `f_auto:animated`, // Effect of zoompan
           `q_auto`,
           src
         ].join('/'));

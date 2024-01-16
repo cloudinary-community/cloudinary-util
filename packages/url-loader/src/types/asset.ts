@@ -1,34 +1,89 @@
-export interface AssetOptionsResize {
-  crop?: string;
-  width?: number | string;
-}
+import { z } from 'zod';
 
-export interface AssetOptions {
-  aspectRatio?: string | number;
-  assetType?: string;
-  crop?: string;
-  deliveryType?: string;
-  dpr?: number | string;
-  effects?: Array<any>;
-  flags?: Array<string> | object;
-  format?: string;
-  gravity?: string;
-  height?: string | number;
-  overlays?: Array<any>;
-  quality?: number | string;
-  rawTransformations?: string[];
-  removeBackground?: boolean;
-  sanitize?: boolean;
-  resize?: AssetOptionsResize;
-  seoSuffix?: string;
-  strictTransformations?: boolean;
-  src: string;
-  text?: any;
-  transformations?: Array<string>;
-  underlay?: string;
-  underlays?: Array<any>;
-  version?: number | string;
-  width?: string | number;
-  widthResize?: string | number;
-  zoom?: string;
-}
+import { pluginProps as croppingPluginProps } from '../plugins/cropping';
+import { pluginProps as effectsPluginProps } from '../plugins/effects';
+import { pluginProps as flagsPluginProps } from '../plugins/flags';
+import { pluginProps as namedTransformationsPluginProps } from '../plugins/named-transformations';
+import { pluginProps as overlaysPluginProps } from '../plugins/overlays';
+import { pluginProps as rawTransformationsPluginProps } from '../plugins/raw-transformations';
+import { pluginProps as removeBackgroundPluginProps } from '../plugins/remove-background';
+import { pluginProps as sanitizePluginProps } from '../plugins/sanitize';
+import { pluginProps as seoPluginProps } from '../plugins/seo';
+import { pluginProps as underlaysPluginProps } from '../plugins/underlays';
+import { pluginProps as versionPluginProps } from '../plugins/version';
+
+// Asset Options
+
+export const assetOptionsSchema = z.object({
+  assetType: z.string()
+    .default('image')
+    .describe(JSON.stringify({
+      text: 'The type of asset to deliver.',
+      url: 'https://cloudinary.com/documentation/image_transformations#transformation_url_structure'
+    }))
+    .optional(),
+  deliveryType: z.string()
+    .default('upload')
+    .describe(JSON.stringify({
+      text: 'Delivery method of the asset.',
+      url: 'https://cloudinary.com/documentation/image_transformations#delivery_types'
+    }))
+    .optional(),
+  dpr: z.union([ z.string(), z.number() ])
+    .describe(JSON.stringify({
+      text: 'Delivery method of the asset.',
+      url: 'https://cloudinary.com/documentation/image_transformations#delivery_types'
+    }))
+    .optional(),
+  format: z.string()
+    .default('auto')
+    .describe(JSON.stringify({
+      text: 'Converts (if necessary) and delivers an asset in the specified format.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#f_format'
+    }))
+    .optional(),
+  height: z.union([z.string(), z.number()])
+    .describe(JSON.stringify({
+      text: 'Height of the given asset.'
+    }))
+    .optional(),
+  quality: z.union([z.number(), z.string()])
+    .default('auto')
+    .describe(JSON.stringify({
+      text: 'Quality of the delivered asset',
+      url: 'https://cloudinary.com/documentation/transformation_reference#q_quality'
+    }))
+    .optional(),
+  src: z.string()
+    .describe(JSON.stringify({
+        text: 'Cloudinary Public ID or versioned Cloudinary URL (/v1234/)'
+      })),
+  strictTransformations: z.boolean()
+    .describe(JSON.stringify({
+      text: 'Gives you the ability to have more control over what transformations are permitted to be used from your Cloudinary account.',
+      url: 'https://cloudinary.com/documentation/control_access_to_media#strict_transformations'
+    }))
+    .optional(),
+  width: z.union([z.string(), z.number()])
+    .describe(JSON.stringify({
+      text: 'Width of the given asset.',
+    }))
+    .optional(),
+
+  // Spreading plugins instead of extend or merge to avoid excessive schema warning
+  // https://github.com/microsoft/TypeScript/issues/34933#issuecomment-1772787785
+  
+  ...croppingPluginProps,
+  ...effectsPluginProps,
+  ...flagsPluginProps,
+  ...namedTransformationsPluginProps,
+  ...overlaysPluginProps,
+  ...rawTransformationsPluginProps,
+  ...removeBackgroundPluginProps,
+  ...sanitizePluginProps,
+  ...seoPluginProps,
+  ...underlaysPluginProps,
+  ...versionPluginProps,
+})
+
+export type AssetOptions = z.infer<typeof assetOptionsSchema>;

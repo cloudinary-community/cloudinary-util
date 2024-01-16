@@ -16,6 +16,8 @@
 
 ## 🚀 Getting Started
 
+_The minimum node version officially supported is version 18._
+
 ```
 npm install @cloudinary-util/util
 ```

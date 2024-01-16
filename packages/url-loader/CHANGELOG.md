@@ -1,3 +1,96 @@
+# [@cloudinary-util/url-loader-v3.24.0-beta.12](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.11...@cloudinary-util/url-loader-v3.24.0-beta.12) (2024-01-09)
+
+
+### Features
+
+* [#96](https://github.com/colbyfayock/cloudinary-util/issues/96) - updating zoompan to use auto:animated for performance and efficient formats ([ce44caa](https://github.com/colbyfayock/cloudinary-util/commit/ce44caaaa5b9e1fde4b1276bdd6bd1c508b32494))
+
+# [@cloudinary-util/url-loader-v3.24.0-beta.11](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.10...@cloudinary-util/url-loader-v3.24.0-beta.11) (2024-01-05)
+
+
+### Features
+
+* adding more schemas, updating flags to use enum ([dd28438](https://github.com/colbyfayock/cloudinary-util/commit/dd284380cd964280306590b52b084e46a1602b4e))
+* adding namedTransformations prop ([61c802f](https://github.com/colbyfayock/cloudinary-util/commit/61c802ff8f8d8af578edb8f7b955a65a77a6951b))
+
+# [@cloudinary-util/url-loader-v3.24.0-beta.10](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.9...@cloudinary-util/url-loader-v3.24.0-beta.10) (2023-12-22)
+
+
+### Features
+
+* Plugin Types ([#121](https://github.com/colbyfayock/cloudinary-util/issues/121)) ([8992ab9](https://github.com/colbyfayock/cloudinary-util/commit/8992ab9abfb4de5e48456552331def5526ab4350))
+
+# [@cloudinary-util/url-loader-v3.24.0-beta.9](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.8...@cloudinary-util/url-loader-v3.24.0-beta.9) (2023-12-15)
+
+
+### Features
+
+* last time tongiht ([#120](https://github.com/colbyfayock/cloudinary-util/issues/120)) ([05d9e90](https://github.com/colbyfayock/cloudinary-util/commit/05d9e907145a60b2dd621fb7b36126740f8d9260))
+
+# [@cloudinary-util/url-loader-v3.24.0-beta.8](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.7...@cloudinary-util/url-loader-v3.24.0-beta.8) (2023-12-15)
+
+
+### Features
+
+* test ([#119](https://github.com/colbyfayock/cloudinary-util/issues/119)) ([89ad0f5](https://github.com/colbyfayock/cloudinary-util/commit/89ad0f511fcab96c2889205a1b25679445372fa3))
+
+# [@cloudinary-util/url-loader-v3.24.0-beta.7](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.6...@cloudinary-util/url-loader-v3.24.0-beta.7) (2023-12-15)
+
+
+### Features
+
+* publish branch ([#118](https://github.com/colbyfayock/cloudinary-util/issues/118)) ([6e4d2d9](https://github.com/colbyfayock/cloudinary-util/commit/6e4d2d9b45199d45cdf31ded1178430c36cd5ed5))
+
+# [@cloudinary-util/url-loader-v3.24.0-beta.6](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.5...@cloudinary-util/url-loader-v3.24.0-beta.6) (2023-12-15)
+
+
+### Features
+
+* Beta+test2 ([#116](https://github.com/colbyfayock/cloudinary-util/issues/116)) ([ab21afb](https://github.com/colbyfayock/cloudinary-util/commit/ab21afbc603fbf1a3c6e0f130dc6caf9766476af))
+* Beta+test2 ([#117](https://github.com/colbyfayock/cloudinary-util/issues/117)) ([0c3293d](https://github.com/colbyfayock/cloudinary-util/commit/0c3293d1674dab741f4fef5eb4e9d1cc0b28caea))
+
+# [@cloudinary-util/url-loader-v3.24.0-beta.5](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.4...@cloudinary-util/url-loader-v3.24.0-beta.5) (2023-12-14)
+
+
+### Features
+
+* reverting back to pnpm ([#115](https://github.com/colbyfayock/cloudinary-util/issues/115)) ([15a25f6](https://github.com/colbyfayock/cloudinary-util/commit/15a25f650a0988b293cb995a78bfbc10c04075d4))
+
+# [@cloudinary-util/url-loader-v3.24.0-beta.4](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.3...@cloudinary-util/url-loader-v3.24.0-beta.4) (2023-12-14)
+
+
+### Features
+
+* updating semrel pnpm ([#114](https://github.com/colbyfayock/cloudinary-util/issues/114)) ([e82f8ea](https://github.com/colbyfayock/cloudinary-util/commit/e82f8ea0a61a387d7f593bc87ffdf6ce8d4f0048))
+
+# [@cloudinary-util/url-loader-v3.24.0-beta.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.2...@cloudinary-util/url-loader-v3.24.0-beta.3) (2023-12-14)
+
+
+### Features
+
+* reverting npm semrelease version ([#113](https://github.com/colbyfayock/cloudinary-util/issues/113)) ([7f3c8a5](https://github.com/colbyfayock/cloudinary-util/commit/7f3c8a55cafd54fc4013e6710c779c64dc57b904))
+* trying semantic release npm ([#112](https://github.com/colbyfayock/cloudinary-util/issues/112)) ([f16e702](https://github.com/colbyfayock/cloudinary-util/commit/f16e7023a824ecae368086a3c487bcf5ad9e534c))
+
+# [@cloudinary-util/url-loader-v3.24.0-beta.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.1...@cloudinary-util/url-loader-v3.24.0-beta.2) (2023-12-14)
+
+
+### Bug Fixes
+
+* Revert "Beta in workflow" ([#108](https://github.com/colbyfayock/cloudinary-util/issues/108)) ([32183d0](https://github.com/colbyfayock/cloudinary-util/commit/32183d00572801878333a246eb0d02bd6ce19421)), closes [colbyfayock/cloudinary-util#107](https://github.com/colbyfayock/cloudinary-util/issues/107)
+
+
+### Features
+
+* Beta in workflow ([#107](https://github.com/colbyfayock/cloudinary-util/issues/107)) ([22dc46c](https://github.com/colbyfayock/cloudinary-util/commit/22dc46c862b0482faf957b85db786b747a2293cc))
+
+# [@cloudinary-util/url-loader-v3.24.0-beta.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.23.0...@cloudinary-util/url-loader-v3.24.0-beta.1) (2023-12-14)
+
+
+### Features
+
+* Auto Generate Docs with Zod ([#52](https://github.com/colbyfayock/cloudinary-util/issues/52)) ([b179bdc](https://github.com/colbyfayock/cloudinary-util/commit/b179bdcd2d06b81a09f2ebb8a6f7926319743b98)), closes [#50](https://github.com/colbyfayock/cloudinary-util/issues/50)
+* remove main only releases ([#111](https://github.com/colbyfayock/cloudinary-util/issues/111)) ([969c00b](https://github.com/colbyfayock/cloudinary-util/commit/969c00bb23241dd58460e4039646e228ba41405c))
+
 # [@cloudinary-util/url-loader-v3.23.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.22.0...@cloudinary-util/url-loader-v3.23.0) (2023-12-14)
 
 

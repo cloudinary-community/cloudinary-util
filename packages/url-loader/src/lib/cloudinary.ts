@@ -1,12 +1,14 @@
+import { z } from 'zod';
 import { Cloudinary } from '@cloudinary/url-gen';
 import { parseUrl, ParseUrl, objectHasKey } from '@cloudinary-util/util';
 
+import * as abrPlugin from '../plugins/abr';
 import * as croppingPlugin from '../plugins/cropping';
 import * as defaultImagePlugin from '../plugins/default-image';
 import * as effectsPlugin from '../plugins/effects';
 import * as flagsPlugin from '../plugins/flags';
 import * as fillBackgroundPlugin from '../plugins/fill-background';
-import * as generativeReplacePlugin from '../plugins/generative-replace';
+import * as replacePlugin from '../plugins/replace';
 import * as namedTransformationsPlugin from '../plugins/named-transformations';
 import * as overlaysPlugin from '../plugins/overlays';
 import * as rawTransformationsPlugin from '../plugins/raw-transformations';
@@ -18,23 +20,26 @@ import * as sanitizePlugin from '../plugins/sanitize';
 import * as seoPlugin from '../plugins/seo';
 import * as underlaysPlugin from '../plugins/underlays';
 import * as versionPlugin from '../plugins/version';
-import * as videoPlugin from '../plugins/video';
 import * as zoompanPlugin from '../plugins/zoompan';
 
-import { ImageOptions } from '../types/image';
-import { AnalyticsOptions } from '../types/analytics';
-import { ConfigOptions } from '../types/config';
+import { assetOptionsSchema } from '../types/asset';
+import { imageOptionsSchema } from '../types/image';
+import { videoOptionsSchema } from '../types/video';
+import { analyticsOptionsSchema } from '../types/analytics';
+import { configOptionsSchema } from '../types/config';
+
 import { TransformationPlugin } from '../types/plugins';
+
 
 export const transformationPlugins = [
 
   // Some features *must* be the first transformation applied
   // thus their plugins *must* come first in the chain
 
-  generativeReplacePlugin,
   recolorPlugin,
   removePlugin,
   removeBackgroundPlugin,
+  replacePlugin,
   restorePlugin,
 
   // Raw transformations should always come before
@@ -43,6 +48,7 @@ export const transformationPlugins = [
 
   rawTransformationsPlugin,
 
+  abrPlugin,
   croppingPlugin,
   defaultImagePlugin,
   effectsPlugin,
@@ -54,7 +60,6 @@ export const transformationPlugins = [
   seoPlugin,
   underlaysPlugin,
   versionPlugin,
-  videoPlugin,
   zoompanPlugin,
 ];
 
@@ -63,13 +68,38 @@ export const transformationPlugins = [
  * @description Builds a full Cloudinary URL using transformation plugins specified by options
  */
 
-export interface ConstructUrlProps {
-  options: ImageOptions;
-  config?: ConfigOptions;
-  analytics?: AnalyticsOptions | false;
-}
+export const constructUrlPropsSchema = z.object({
+  analytics: z.union([
+      analyticsOptionsSchema,
+      z.boolean()
+    ])
+    .describe(JSON.stringify({
+      text: 'Tech, dependency, and feature identifiers for tracking SDK usage.',
+      path: '/url-loader/analyticsoptions'
+    }))
+    .optional(),
+  config: configOptionsSchema
+    .describe(JSON.stringify({
+      text: 'Configuration parameters for environment and Cloudinary account.',
+      url: 'https://cloudinary.com/documentation/cloudinary_sdks#configuration_parameters',
+      path: '/url-loader/analyticsoptions'
+    }))
+    .optional(),
+  options: z.union([
+      assetOptionsSchema,
+      imageOptionsSchema,
+      videoOptionsSchema,
+    ])
+    .describe(JSON.stringify({
+      text: 'Asset options (Image or Video) that define delivery URL including public ID and transformations.',
+      path: '/url-loader/assetoptions'
+    })),
+})
+
+export type ConstructUrlProps = z.infer<typeof constructUrlPropsSchema>;
 
 export interface PluginOptionsResize {
+  crop?: string;
   width?: string | number;
 }
 
@@ -106,7 +136,9 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
 
   const propsCheck: Array<string> = [];
 
-  transformationPlugins.forEach(({ props = [] }) => {
+  transformationPlugins.forEach(({ pluginProps }) => {
+    const props = Object.keys(pluginProps);
+
     props.forEach(prop => {
       if ( propsCheck.includes(prop) ) {
         throw new Error(`Option ${prop} already exists!`);
@@ -158,9 +190,11 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
     throw new Error('Invalid asset type.');
   }
 
-  transformationPlugins.forEach(({ plugin, assetTypes, props, strict }: TransformationPlugin) => {
-    const supportedAssetType = typeof options?.assetType !== 'undefined' && assetTypes.includes(options?.assetType);
+  const pluginEffects: PluginOptions = {};
 
+  transformationPlugins.forEach(({ plugin, assetTypes, pluginProps, strict }: TransformationPlugin) => {
+    const supportedAssetType = typeof options?.assetType !== 'undefined' && assetTypes.includes(options?.assetType);
+    const props = Object.keys(pluginProps);
     const optionsKeys = Object.keys(options);
     const attemptedUse = props.map(prop => optionsKeys.includes(prop)).filter(isUsed => !!isUsed).length > 0;
 
@@ -186,11 +220,11 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
     const { options: pluginOptions } = results || { options: undefined };
 
     if ( pluginOptions?.format && options ) {
-      options.format = pluginOptions.format;
+      pluginEffects.format = pluginOptions.format;
     }
 
     if ( pluginOptions?.width && options ) {
-      options.resize = {
+      pluginEffects.resize = {
         width: pluginOptions?.width
       };
     }
@@ -199,8 +233,8 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
   // We want to perform any resizing at the end of the end of the transformation
   // sets to allow consistent use of positioning / sizing, especially responsively
 
-  if ( options?.resize && !options.strictTransformations ) {
-    const { width, crop = 'limit' } = options.resize;
+  if ( pluginEffects?.resize && !options.strictTransformations ) {
+    const { width, crop = 'limit' } = pluginEffects.resize;
     cldAsset.effect(`c_${crop},w_${width}`);
   }
 
@@ -220,7 +254,7 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
     }
 
     if ( options?.format !== 'default' ) {
-      cldAsset.format(options?.format || 'auto')
+      cldAsset.format(options?.format || pluginEffects?.format || 'auto')
     }
 
     if ( options?.quality !== 'default' ) {

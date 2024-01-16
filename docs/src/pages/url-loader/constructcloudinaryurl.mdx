@@ -1,0 +1,10 @@
+import { constructUrlPropsSchema } from '@cloudinary-util/url-loader/dist/schema';
+import { zodToJsonSchema } from 'zod-to-json-schema';
+
+import SchemaTable from '@/components/SchemaTable';
+
+# constructCloudinaryUrl
+
+## Properties
+
+<SchemaTable schema={zodToJsonSchema(constructUrlPropsSchema, 'constructUrlProps')} schemaKey="constructUrlProps" />

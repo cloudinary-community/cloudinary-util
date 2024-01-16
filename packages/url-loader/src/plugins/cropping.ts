@@ -1,20 +1,26 @@
+import * as parameters from '../constants/parameters';
+
 import { PluginSettings, PluginOverrides } from '../types/plugins';
 
 const cropsAspectRatio = [ 'crop', 'fill', 'lfill', 'fill_pad', 'thumb' ];
 const cropsGravityAuto = [ 'crop', 'fill', 'lfill', 'fill_pad', 'thumb' ];
 const cropsWithZoom = ['crop', 'thumb'];
 
-export const props = [
-  'aspectRatio',
-  'crop',
-  'gravity',
-  'zoom',
-];
+const DEFAULT_CROP = 'limit';
+
+export const pluginProps = {
+  aspectRatio: parameters.aspectRatio.schema.optional(),
+  crop: parameters.crop.schema.default(DEFAULT_CROP).optional(),
+  gravity: parameters.gravity.schema.optional(),
+  widthResize: parameters.widthResize.schema.optional(),
+  zoom: parameters.zoom.schema.optional(),
+};
+
 export const assetTypes = ['image', 'images', 'video', 'videos'];
 
 /**
  * normalizeNumberParameter
- * TODO: move into util
+ * @TODO: move into util
  */
 
 export function normalizeNumberParameter(param: number | string | undefined) {
@@ -33,7 +39,7 @@ export function plugin(props: PluginSettings) {
     // Default the crop to "limit" to avoid upscaling, even when widthResize is passed in.
     // This avoid further distorting the image since the browser will resize in that case.
     // If caller wants actual resize, can explicitly pass in "scale".
-    crop = 'limit'
+    crop = DEFAULT_CROP
   } = options;
 
   const overrides: PluginOverrides = {

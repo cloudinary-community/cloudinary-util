@@ -1,3 +1,4 @@
+import { describe, it, expect } from 'vitest';
 import { Cloudinary } from '@cloudinary/url-gen';
 
 import * as rawTransformationsPlugin from '../../src/plugins/raw-transformations';

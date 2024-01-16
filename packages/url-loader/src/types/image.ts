@@ -1,48 +1,25 @@
-import type { AssetOptions, AssetOptionsResize } from "./asset";
+import { z } from 'zod';
 
-export interface ImageOptionsFillBackground {
-  crop?: string;
-  gravity?: string;
-  prompt?: string;
-}
+import { assetOptionsSchema } from './asset';
 
-export interface ImageOptionsResize extends AssetOptionsResize {}
+import { pluginProps as defaultImagePluginProps } from '../plugins/default-image';
+import { pluginProps as fillBackgroundPluginProps } from '../plugins/fill-background';
+import { pluginProps as recolorPluginProps } from '../plugins/recolor';
+import { pluginProps as removePluginProps } from '../plugins/remove';
+import { pluginProps as restorePluginProps } from '../plugins/restore';
+import { pluginProps as replacePluginProps } from '../plugins/replace';
+import { pluginProps as zoompanPluginProps } from '../plugins/zoompan';
 
-export interface ImageOptionsGenerativeReplace {
-  to: string;
-  from: string;
-  preserveGeometry?: boolean;
-}
+export const imageOptionsSchema = assetOptionsSchema.merge(z.object({
+  // Spreading plugins instead of extend or merge to avoid excessive schema warning
+  // https://github.com/microsoft/TypeScript/issues/34933#issuecomment-1772787785
+  ...defaultImagePluginProps,
+  ...fillBackgroundPluginProps,
+  ...recolorPluginProps,
+  ...removePluginProps,
+  ...replacePluginProps,
+  ...restorePluginProps,
+  ...zoompanPluginProps,
+}))
 
-export type ImageOptionsRecolorPrompt = string | Array<string>;
-
-export interface ImageOptionsRecolor {
-  prompt?: ImageOptionsRecolorPrompt;
-  to?: string;
-  multiple?: boolean,
-}
-
-export type ImageOptionsRemovePrompt = string | Array<string>;
-export type ImageOptionsRemoveRegion = Array<number> | Array<Array<number>>;
-
-export interface ImageOptionsRemove {
-  prompt?: ImageOptionsRemovePrompt;
-  region?: [300, 200, 1900, 3500], // x,y,w,h
-  multiple?: boolean,
-  removeShadow?: boolean
-}
-
-export interface ImageOptionsZoomPan {
-  loop: string | boolean;
-  options: string;
-}
-
-export interface ImageOptions extends AssetOptions {
-  defaultImage?: string;
-  fillBackground?: boolean | ImageOptionsFillBackground;
-  recolor?: ImageOptionsRecolorPrompt | ImageOptionsRecolor;
-  remove?: ImageOptionsRemovePrompt | ImageOptionsRemove;
-  replace?: Array<string | boolean> | ImageOptionsGenerativeReplace;
-  restore?: boolean;
-  zoompan?: string | boolean | ImageOptionsZoomPan;
-}
+export type ImageOptions = z.infer<typeof imageOptionsSchema>;

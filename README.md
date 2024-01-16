@@ -28,6 +28,8 @@ Learn what tools are available and how to install them:
 
 ## 🧰 Working Locally with Cloudinary Util
 
+The minimum node version officially supported is version 18.
+
 ### Installation
 
 * Install all dependencies via [pnpm](https://pnpm.io/):
