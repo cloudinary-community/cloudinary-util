@@ -3,12 +3,8 @@
 
 ### Features
 
-* Descriptions ([#129](https://github.com/colbyfayock/cloudinary-util/issues/129)) ([6403c9b](https://github.com/colbyfayock/cloudinary-util/commit/6403c9bf680ad9ec62c7b39d8ad564213730e060))
+* Zod Types, Broader Typescript Support, Exported Docs Definitions [#106](https://github.com/colbyfayock/cloudinary-util/pull/106)
 
-
-### BREAKING CHANGES
-
-* force major
 
 # [@cloudinary-util/url-loader-v3.24.0-beta.12](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.11...@cloudinary-util/url-loader-v3.24.0-beta.12) (2024-01-09)
 
