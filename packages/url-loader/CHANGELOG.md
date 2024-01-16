@@ -1,3 +1,15 @@
+# [@cloudinary-util/url-loader-v3.24.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.23.0...@cloudinary-util/url-loader-v3.24.0) (2024-01-16)
+
+
+### Bug Fixes
+
+* Revert "Beta in workflow" ([#108](https://github.com/colbyfayock/cloudinary-util/issues/108)) ([32183d0](https://github.com/colbyfayock/cloudinary-util/commit/32183d00572801878333a246eb0d02bd6ce19421)), closes [colbyfayock/cloudinary-util#107](https://github.com/colbyfayock/cloudinary-util/issues/107)
+
+
+### Features
+
+* Beta in workflow ([#107](https://github.com/colbyfayock/cloudinary-util/issues/107)) ([22dc46c](https://github.com/colbyfayock/cloudinary-util/commit/22dc46c862b0482faf957b85db786b747a2293cc))
+
 # [@cloudinary-util/url-loader-v3.24.0-beta.12](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v3.24.0-beta.11...@cloudinary-util/url-loader-v3.24.0-beta.12) (2024-01-09)
 
 
