@@ -74,7 +74,7 @@ export const constructUrlPropsSchema = z.object({
       z.boolean()
     ])
     .describe(JSON.stringify({
-      text: 'Tech, dependency, and feature identifiers for tracking SDK usage.',
+      text: 'Tech, dependency, and feature identifiers for tracking SDK usage related to Cloudinary.',
       path: '/url-loader/analyticsoptions'
     }))
     .optional(),
