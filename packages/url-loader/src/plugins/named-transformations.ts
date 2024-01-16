@@ -16,14 +16,14 @@ export const pluginProps = {
     }))
     .optional(),
   /**
-   * @deprecated use namedTransformations instead
+   * @deprecated use {@link `namedTransformations`} instead
    */
   transformations: z.union([
       NamedTransformationSchema,
       z.array(NamedTransformationSchema)
     ])
     .describe(JSON.stringify({
-      text: 'Named transformations to apply to asset.',
+      text: 'Deprecated: use namedTransformations instead',
       url: 'https://cloudinary.com/documentation/image_transformations#named_transformations'
     }))
     .optional(),
