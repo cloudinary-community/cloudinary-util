@@ -122,3 +122,15 @@ export function getFormat(src: string) {
   if ( matches === null ) return;
   return matches[0];
 }
+
+/**
+ * normalizeNumberParameter
+ * @description Returns a number given a string or number value
+ * @param {string|number} param: The value to return as a number
+ */
+
+
+export function normalizeNumberParameter(param: number | string | undefined) {
+  if ( typeof param !== 'string' ) return param;
+  return parseInt(param)
+}
