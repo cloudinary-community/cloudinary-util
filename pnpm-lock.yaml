@@ -90,8 +90,8 @@ importers:
         specifier: workspace:*
         version: link:../util
       '@cloudinary/url-gen':
-        specifier: ^1.16.0
-        version: 1.16.0
+        specifier: ^1.15.0
+        version: 1.15.0
       '@semantic-release/npm':
         specifier: ^9.0.2
         version: 9.0.2(semantic-release@20.1.0)
@@ -1363,6 +1363,12 @@ packages:
     resolution: {integrity: sha512-UUb1wS/eWCf4YBThGszoBBzH6kP+frdd5JeJkF0/SOwbX3tkcrdzxD+Srn5GXPCqzf6Gw1nrGrv/3U9hiZP55A==}
     dependencies:
       '@cloudinary/url-gen': 1.16.0
+    dev: false
+
+  /@cloudinary/url-gen@1.15.0:
+    resolution: {integrity: sha512-bjU67eZxLUgoRy/Plli4TQio7q6P31OYqnEgXxeN9TKXrzr6h0DeEdIUhKI9gy3HkEBWXWWJIPh7j7gkOJPnyA==}
+    dependencies:
+      '@cloudinary/transformation-builder-sdk': 1.10.1
     dev: false
 
   /@cloudinary/url-gen@1.16.0:
