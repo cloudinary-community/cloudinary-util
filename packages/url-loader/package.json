@@ -16,7 +16,8 @@
     "clean": "rm -rf .turbo && rm -rf node_modules && rm -rf dist",
     "prepublishOnly": "cd ../../ && pnpm build && cd packages/url-loader",
     "semantic-release": "semantic-release",
-    "test": "vitest run"
+    "test": "vitest run",
+    "test:watch": "vitest"
   },
   "devDependencies": {
     "@babel/core": "^7.20.12",
@@ -39,7 +40,7 @@
   },
   "dependencies": {
     "@cloudinary-util/util": "workspace:*",
-    "@cloudinary/url-gen": "^1.10.2",
+    "@cloudinary/url-gen": "^1.15.0",
     "@semantic-release/npm": "^9.0.2",
     "zod": "^3.22.4",
     "zod-to-json-schema": "^3.22.3"
