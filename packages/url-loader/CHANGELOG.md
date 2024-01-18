@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v4.1.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.1.0...@cloudinary-util/url-loader-v4.1.1) (2024-01-18)
+
+
+### Bug Fixes
+
+* Reverting "pluginProps" to "props" in transformation plugins ([#135](https://github.com/colbyfayock/cloudinary-util/issues/135)) ([9d9798e](https://github.com/colbyfayock/cloudinary-util/commit/9d9798e04a51b42e17841286cbae91b279bc6b73))
+
 # [@cloudinary-util/url-loader-v4.1.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.0.1...@cloudinary-util/url-loader-v4.1.0) (2024-01-18)
 
 
