@@ -5,7 +5,7 @@ import { PluginSettings } from '../types/plugins';
 
 import { getFormat } from '@cloudinary-util/util';
 
-export const pluginProps = {
+export const props = {
   defaultImage: z.string()
     .describe(JSON.stringify({
       text: 'Configures the default image to use in case the given public ID is not available. Must include file extension.',

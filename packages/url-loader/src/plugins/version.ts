@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { PluginSettings } from '../types/plugins';
 
-export const pluginProps = {
+export const props = {
   version: z.union([
       z.number(),
       z.string()

@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { ImageOptions } from '../types/image';
 import { PluginSettings } from '../types/plugins';
 
-export const pluginProps = {
+export const props = {
   removeBackground: z.boolean()
     .describe(JSON.stringify({
       text: 'Removes the background of an image using the Cloudinary AI Background Removal Add-On (Required).',

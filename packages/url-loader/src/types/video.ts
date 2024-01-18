@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { assetOptionsSchema } from './asset';
 
-import { pluginProps as abrPluginProps } from '../plugins/abr';
+import { props as abrPluginProps } from '../plugins/abr';
 
 export const videoOptionsSchema = assetOptionsSchema.merge(z.object({
   // Spreading plugins instead of extend or merge to avoid excessive schema warning

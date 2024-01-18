@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { ImageOptions } from '../types/image';
 import { PluginSettings } from '../types/plugins';
 
-export const pluginProps = {
+export const props = {
   sanitize: z.boolean()
     .describe(JSON.stringify({
       text: 'Runs a sanitizer on SVG images.',
