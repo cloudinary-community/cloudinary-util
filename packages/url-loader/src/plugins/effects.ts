@@ -55,7 +55,7 @@ const effectProps = {
   vignette: qualifiersEffects.vignette.schema.optional(),
 }
 
-export const pluginProps = {
+export const props = {
   effects: z.array(z.object(effectProps))
     .describe(JSON.stringify({
       text: 'Array of objects specifying transformations to be applied to asset.'

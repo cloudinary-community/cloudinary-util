@@ -5,7 +5,7 @@ import { PluginSettings } from '../types/plugins';
 const RawTransformationSchema = z.string();
 type RawTransformation = z.infer<typeof RawTransformationSchema>;
 
-export const pluginProps = {
+export const props = {
   rawTransformations: z.union([
       RawTransformationSchema,
       z.array(RawTransformationSchema)

@@ -18,5 +18,5 @@ export interface TransformationPlugin {
   assetTypes: Array<string>;
   plugin: Function;
   strict?: boolean;
-  pluginProps: object;
+  props: object;
 }

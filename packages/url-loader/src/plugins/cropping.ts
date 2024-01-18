@@ -8,7 +8,7 @@ const cropsWithZoom = ['crop', 'thumb'];
 
 const DEFAULT_CROP = 'limit';
 
-export const pluginProps = {
+export const props = {
   aspectRatio: parameters.aspectRatio.schema.optional(),
   crop: parameters.crop.schema.default(DEFAULT_CROP).optional(),
   gravity: parameters.gravity.schema.optional(),

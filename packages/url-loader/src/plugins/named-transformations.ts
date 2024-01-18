@@ -5,7 +5,7 @@ import { PluginSettings } from '../types/plugins';
 const NamedTransformationSchema = z.string();
 type NamedTransformation = z.infer<typeof NamedTransformationSchema>;
 
-export const pluginProps = {
+export const props = {
   namedTransformations: z.union([
       NamedTransformationSchema,
       z.array(NamedTransformationSchema)
