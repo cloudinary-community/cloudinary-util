@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { ImageOptions } from '../types/image';
 import { PluginSettings } from '../types/plugins';
 
-export const pluginProps = {
+export const props = {
   restore: z.boolean()
     .describe(JSON.stringify({
       text: 'Uses generative AI to restore details in poor quality images or images that may have become degraded through repeated processing and compression.',

@@ -4,7 +4,7 @@ import { PluginSettings } from '../types/plugins';
 
 const { flagsEnum } = parameters;
 
-export const pluginProps = {
+export const props = {
   flags: parameters.flags.schema.optional()
 };
 

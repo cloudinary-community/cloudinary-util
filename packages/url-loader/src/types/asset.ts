@@ -1,16 +1,16 @@
 import { z } from 'zod';
 
-import { pluginProps as croppingPluginProps } from '../plugins/cropping';
-import { pluginProps as effectsPluginProps } from '../plugins/effects';
-import { pluginProps as flagsPluginProps } from '../plugins/flags';
-import { pluginProps as namedTransformationsPluginProps } from '../plugins/named-transformations';
-import { pluginProps as overlaysPluginProps } from '../plugins/overlays';
-import { pluginProps as rawTransformationsPluginProps } from '../plugins/raw-transformations';
-import { pluginProps as removeBackgroundPluginProps } from '../plugins/remove-background';
-import { pluginProps as sanitizePluginProps } from '../plugins/sanitize';
-import { pluginProps as seoPluginProps } from '../plugins/seo';
-import { pluginProps as underlaysPluginProps } from '../plugins/underlays';
-import { pluginProps as versionPluginProps } from '../plugins/version';
+import { props as croppingPluginProps } from '../plugins/cropping';
+import { props as effectsPluginProps } from '../plugins/effects';
+import { props as flagsPluginProps } from '../plugins/flags';
+import { props as namedTransformationsPluginProps } from '../plugins/named-transformations';
+import { props as overlaysPluginProps } from '../plugins/overlays';
+import { props as rawTransformationsPluginProps } from '../plugins/raw-transformations';
+import { props as removeBackgroundPluginProps } from '../plugins/remove-background';
+import { props as sanitizePluginProps } from '../plugins/sanitize';
+import { props as seoPluginProps } from '../plugins/seo';
+import { props as underlaysPluginProps } from '../plugins/underlays';
+import { props as versionPluginProps } from '../plugins/version';
 
 // Asset Options
 

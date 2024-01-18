@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { VideoOptions } from '../types/video';
 import { PluginSettings } from '../types/plugins';
 
-export const pluginProps = {
+export const props = {
   streamingProfile: z.string()
     .describe(JSON.stringify({
       text: 'The streaming profile to apply when delivering a video using adaptive bitrate streaming.',

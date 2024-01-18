@@ -70,7 +70,7 @@ const overlaySchema = z.object({
   width: width.schema.optional(),
 });
 
-export const pluginProps = {
+export const props = {
   overlay: overlaySchema
     .describe(JSON.stringify({
       text: 'Image or text layer that is applied on top of the base image.',

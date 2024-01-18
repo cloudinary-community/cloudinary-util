@@ -2,7 +2,7 @@ import { z } from 'zod';
 
 import { PluginSettings } from '../types/plugins';
 
-export const pluginProps = {
+export const props = {
   seoSuffix: z.string()
     .describe(JSON.stringify({
       text: 'Configures the URL to include an SEO-friendly suffix in the URL',

@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { ImageOptions } from "../types/image";
 import { PluginSettings } from "../types/plugins";
 
-export const pluginProps = {
+export const props = {
   replace: z.union([
       z.array(z.string()),
       z.array(z.boolean()),

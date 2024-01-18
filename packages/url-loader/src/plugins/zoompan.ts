@@ -3,7 +3,7 @@ import { z } from 'zod';
 import { ImageOptions } from '../types/image';
 import { PluginSettings, PluginOverrides } from '../types/plugins';
 
-export const pluginProps = {
+export const props = {
   zoompan: z.union([
       z.string(),
       z.boolean(),

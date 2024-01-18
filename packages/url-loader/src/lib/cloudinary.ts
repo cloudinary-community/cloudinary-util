@@ -136,10 +136,10 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
 
   const propsCheck: Array<string> = [];
 
-  transformationPlugins.forEach(({ pluginProps }) => {
-    const props = Object.keys(pluginProps);
+  transformationPlugins.forEach(({ props }) => {
+    const pluginProps = Object.keys(props);
 
-    props.forEach(prop => {
+    pluginProps.forEach(prop => {
       if ( propsCheck.includes(prop) ) {
         throw new Error(`Option ${prop} already exists!`);
       }
@@ -192,22 +192,22 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
 
   const pluginEffects: PluginOptions = {};
 
-  transformationPlugins.forEach(({ plugin, assetTypes, pluginProps, strict }: TransformationPlugin) => {
+  transformationPlugins.forEach(({ plugin, assetTypes, props, strict }: TransformationPlugin) => {
     const supportedAssetType = typeof options?.assetType !== 'undefined' && assetTypes.includes(options?.assetType);
-    const props = Object.keys(pluginProps);
+    const pluginProps = Object.keys(props);
     const optionsKeys = Object.keys(options);
-    const attemptedUse = props.map(prop => optionsKeys.includes(prop)).filter(isUsed => !!isUsed).length > 0;
+    const attemptedUse = pluginProps.map(prop => optionsKeys.includes(prop)).filter(isUsed => !!isUsed).length > 0;
 
     if ( !supportedAssetType ) {
       if ( attemptedUse ) {
-        console.warn(`One of the following props [${props.join(', ')}] was used with an unsupported asset type [${options?.assetType}]`);
+        console.warn(`One of the following props [${pluginProps.join(', ')}] was used with an unsupported asset type [${options?.assetType}]`);
       }
       return;
     }
 
     if ( options.strictTransformations && !strict ) {
       if ( attemptedUse ) {
-        console.warn(`One of the following props [${props.join(', ')}] was used that is not supported with Strict Transformations.`);
+        console.warn(`One of the following props [${pluginProps.join(', ')}] was used that is not supported with Strict Transformations.`);
       }
       return;
     }

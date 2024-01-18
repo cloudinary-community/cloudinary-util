@@ -5,7 +5,7 @@ import { PluginSettings } from '../types/plugins';
 
 import { crop, gravity } from '../constants/parameters';
 
-export const pluginProps = {
+export const props = {
   fillBackground: z.union([
       z.boolean(),
       z.object({
