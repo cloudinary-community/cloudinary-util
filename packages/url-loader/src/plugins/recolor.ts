@@ -16,7 +16,7 @@ const imageOptionsRecolorSchema = z.object({
   multiple: z.boolean().optional(),
 });
 
-export const pluginProps = {
+export const props = {
   recolor: z.union([
       imageOptionsRecolorPromptSchema,
       imageOptionsRecolorSchema

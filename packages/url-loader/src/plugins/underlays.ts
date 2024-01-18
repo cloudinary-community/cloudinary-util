@@ -31,7 +31,7 @@ const underlaySchema = z.object({
   width: width.schema.optional(),
 });
 
-export const pluginProps = {
+export const props = {
   underlay: z.string()
     .describe(JSON.stringify({
       text: 'Public ID of image that is applied under the base image.',

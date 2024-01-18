@@ -20,7 +20,7 @@ const imageOptionsRemoveSchema = z.object({
   removeShadow: z.boolean().optional()
 })
 
-export const pluginProps = {
+export const props = {
   remove: z.union([
       imageOptionsRemovePromptSchema,
       imageOptionsRemoveSchema,
