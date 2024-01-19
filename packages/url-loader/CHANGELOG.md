@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v4.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.1.2...@cloudinary-util/url-loader-v4.2.0) (2024-01-19)
+
+
+### Features
+
+* Fixes pnpm Monorepo Issue with Types ([#137](https://github.com/colbyfayock/cloudinary-util/issues/137)) ([bc781d0](https://github.com/colbyfayock/cloudinary-util/commit/bc781d03c9424e8b27e6f5bbb02d9549a3840def)), closes [/github.com/microsoft/TypeScript/issues/47663#issuecomment-1519138189](https://github.com//github.com/microsoft/TypeScript/issues/47663/issues/issuecomment-1519138189)
+
 # [@cloudinary-util/url-loader-v4.2.0-beta.4](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.2.0-beta.3...@cloudinary-util/url-loader-v4.2.0-beta.4) (2024-01-19)
 
 
