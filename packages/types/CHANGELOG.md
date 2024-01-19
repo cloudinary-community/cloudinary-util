@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.0.0-beta.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/types-v1.0.0-beta.1...@cloudinary-util/types-v1.0.0-beta.2) (2024-01-19)
+
+
+### Bug Fixes
+
+* adding release branches ([47df8fd](https://github.com/colbyfayock/cloudinary-util/commit/47df8fd1d3d4c07eff344b1b381d5e757a071289))
+
 # @cloudinary-util/types-v1.0.0-beta.1 (2024-01-19)
 
 
