@@ -1,6 +1,6 @@
 {
   "name": "@cloudinary-util/url-loader",
-  "version": "4.1.2",
+  "version": "4.2.0-beta.4",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
@@ -41,8 +41,6 @@
   "dependencies": {
     "@cloudinary-util/util": "workspace:*",
     "@cloudinary/url-gen": "1.15.0",
-    "@semantic-release/npm": "^9.0.2",
-    "zod": "^3.22.4",
-    "zod-to-json-schema": "^3.22.3"
+    "zod": "^3.22.4"
   }
 }
