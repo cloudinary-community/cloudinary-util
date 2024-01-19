@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v4.2.0-beta.4](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.2.0-beta.3...@cloudinary-util/url-loader-v4.2.0-beta.4) (2024-01-19)
+
+
+### Features
+
+* trying to export cloudinary types from root ([dd0dd54](https://github.com/colbyfayock/cloudinary-util/commit/dd0dd541eeba71915f376364150fa7bbc1755267))
+
 # [@cloudinary-util/url-loader-v4.2.0-beta.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.2.0-beta.2...@cloudinary-util/url-loader-v4.2.0-beta.3) (2024-01-19)
 
 
