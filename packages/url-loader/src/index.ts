@@ -7,7 +7,7 @@ export type { AssetOptions } from './types/asset';
 export type { ImageOptions } from './types/image';
 export type { VideoOptions } from './types/video';
 
-export type { AnalyticsOptions } from './types/analytics';
-export type { ConfigOptions } from './types/config';
+export type { AnalyticsOptions, CloudinaryAnalyticsOptions } from './types/analytics';
+export type { ConfigOptions, CloudinaryConfigurationOptions } from './types/config';
 export type { PluginSettings, PluginOverrides } from './types/plugins';
 export type { Qualifier, QualiferConverters } from './types/qualifiers';
