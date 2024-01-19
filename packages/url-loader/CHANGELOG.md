@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v4.2.0-beta.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.2.0-beta.2...@cloudinary-util/url-loader-v4.2.0-beta.3) (2024-01-19)
+
+
+### Features
+
+* updating how url gen types are re-exported ([45ca34a](https://github.com/colbyfayock/cloudinary-util/commit/45ca34a8a5cab7afbfb5611b5812229c8fcb404e))
+
 # [@cloudinary-util/url-loader-v4.2.0-beta.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.2.0-beta.1...@cloudinary-util/url-loader-v4.2.0-beta.2) (2024-01-19)
 
 
