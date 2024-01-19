@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v4.2.0-beta.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.2.0-beta.1...@cloudinary-util/url-loader-v4.2.0-beta.2) (2024-01-19)
+
+
+### Features
+
+* removing unnecessary dependencies from url-loader package ([22c4194](https://github.com/colbyfayock/cloudinary-util/commit/22c41945338a6f1d565ced6e16905c7c365349e7))
+
 # [@cloudinary-util/url-loader-v4.2.0-beta.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.1.2...@cloudinary-util/url-loader-v4.2.0-beta.1) (2024-01-19)
 
 
