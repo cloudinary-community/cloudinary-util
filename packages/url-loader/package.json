@@ -40,7 +40,7 @@
   },
   "dependencies": {
     "@cloudinary-util/util": "workspace:*",
-    "@cloudinary/url-gen": "^1.15.0",
+    "@cloudinary/url-gen": "1.15.0",
     "@semantic-release/npm": "^9.0.2",
     "zod": "^3.22.4",
     "zod-to-json-schema": "^3.22.3"
