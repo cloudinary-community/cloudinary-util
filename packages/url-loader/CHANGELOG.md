@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v4.1.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.1.1...@cloudinary-util/url-loader-v4.1.2) (2024-01-19)
+
+
+### Bug Fixes
+
+* Pin URL Gen 1.15.0 ([#136](https://github.com/colbyfayock/cloudinary-util/issues/136)) ([032a9c4](https://github.com/colbyfayock/cloudinary-util/commit/032a9c46c78f43ab5b276e433e2deb39155da6ec))
+
 # [@cloudinary-util/url-loader-v4.1.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.1.0...@cloudinary-util/url-loader-v4.1.1) (2024-01-18)
 
 
