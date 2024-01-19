@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.0.0-beta.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/types-v1.0.0-beta.2...@cloudinary-util/types-v1.0.0-beta.3) (2024-01-19)
+
+
+### Features
+
+* adding types for cloudinary upload widget ([3334cf1](https://github.com/colbyfayock/cloudinary-util/commit/3334cf1fe050031899f5a4d6fee581e6d0e2fb62))
+
 # [@cloudinary-util/types-v1.0.0-beta.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/types-v1.0.0-beta.1...@cloudinary-util/types-v1.0.0-beta.2) (2024-01-19)
 
 
