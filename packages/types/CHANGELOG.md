@@ -1,3 +1,10 @@
+# @cloudinary-util/types-v1.0.0 (2024-01-24)
+
+
+### Features
+
+* Types Package for Cloudinary Upload Widget and Video Player ([#138](https://github.com/colbyfayock/cloudinary-util/issues/138)) ([6928b1f](https://github.com/colbyfayock/cloudinary-util/commit/6928b1fea41e163b745b0d87bfbaa1b4ffd6720f)), closes [#122](https://github.com/colbyfayock/cloudinary-util/issues/122)
+
 # [@cloudinary-util/types-v1.0.0-beta.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/types-v1.0.0-beta.2...@cloudinary-util/types-v1.0.0-beta.3) (2024-01-19)
 
 
