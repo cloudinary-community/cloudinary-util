@@ -1,5 +1,24 @@
 import { z } from 'zod';
 
+/** Shared */
+
+export const cropModesEnum = z.enum([
+  'fill',
+  'lfill',
+  'fill_pad',
+  'crop',
+  'thumb',
+  'scale',
+  'fit',
+  'limit',
+  'mfit',
+  'pad',
+  'lpad',
+  'mpad',
+  'imagga_scale',
+  'imagga_crop',
+]);
+
 /** Angle - a */
 
 export const angle = {
@@ -40,23 +59,6 @@ export const aspectRatio = {
 
 
 /** Crop */
-
-export const cropModesEnum = z.enum([
-  'fill',
-  'lfill',
-  'fill_pad',
-  'crop',
-  'thumb',
-  'scale',
-  'fit',
-  'limit',
-  'mfit',
-  'pad',
-  'lpad',
-  'mpad',
-  'imagga_scale',
-  'imagga_crop',
-]);
 
 export const crop = {
   qualifier: 'c',
@@ -169,15 +171,34 @@ export const width = {
 }
 
 
-/** Width Resize */
+/** Base Resizing */
 
-export const widthResize = {
+export const baseCrop = {
+  qualifier: 'c',
+  schema: cropModesEnum
+    .describe(JSON.stringify({
+      text: 'Mode to use when cropping an asset\'s "base canvas".',
+      url: 'https://cloudinary.com/documentation/transformation_reference#c_crop_resize'
+    })),
+}
+
+export const baseHeight = {
   schema: z.union([
       z.string(),
       z.number()
     ])
     .describe(JSON.stringify({
-      text: 'Width to resize the asset after all transformations are applied. Useful for responsive resizing.',
+      text: 'Height to resize the asset before all transformations are applied. Useful providing a "base canvas" for applying transformations like text overlays"',
+    })),
+}
+
+export const baseWidth = {
+  schema: z.union([
+      z.string(),
+      z.number()
+    ])
+    .describe(JSON.stringify({
+      text: 'Width to resize the asset before all transformations are applied. Useful providing a "base canvas" for applying transformations like text overlays"',
     })),
 }
 

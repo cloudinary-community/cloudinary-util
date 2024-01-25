@@ -9,14 +9,24 @@ export interface PluginSettings<Options extends AllOptions = AllOptions> {
   options: Options;
 }
 
-export interface PluginOverrides {
-  format?: string;
-  width?: number;
-}
-
 export interface TransformationPlugin {
   assetTypes: Array<string>;
   plugin: Function;
   strict?: boolean;
   props: object;
+}
+
+export interface PluginOptions {
+  aspectRatio?: string | number;
+  crop?: string;
+  gravity?: string;
+  height?: number;
+  format?: string;
+  width?: string | number;
+  zoom?: string;
+}
+
+export interface PluginResults {
+  options?: PluginOptions;
+  resize?: string;
 }
