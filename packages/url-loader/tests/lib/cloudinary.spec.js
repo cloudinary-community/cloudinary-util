@@ -730,10 +730,17 @@ describe('Cloudinary', () => {
     it('Kitchen Sink - Image', () => {
       const cloudName = 'customtestcloud';
         const assetType = 'image';
+        const crop = 'auto';
+        const defaultImage = 'my-image.jpg';
+        const height = 321;
         const src = 'turtle';
         const width = 123;
-        const height = 321;
-        const defaultImage = 'my-image.jpg';
+        const zoom = '2.0';
+
+        const baseCrop = 'fill';
+        const baseHeight = 8765;
+        const baseWidth = 4321;
+        const baseZoom = 3;
 
         const cartoonify = '50';
         const gradientFade = true;
@@ -749,11 +756,17 @@ describe('Cloudinary', () => {
 
         const url = constructCloudinaryUrl({
           options: {
+            assetType,
+            baseCrop,
+            baseHeight,
+            baseWidth,
+            baseZoom,
+            crop,
+            defaultImage,
+            height,
             src,
             width,
-            height,
-            assetType,
-            defaultImage,
+            zoom,
             effects: [
               {
                 shear,
@@ -815,13 +828,14 @@ describe('Cloudinary', () => {
           `e_gen_remove:prompt_apple;multiple_true;remove-shadow_true`,
           `e_background_removal`,
           `e_gen_restore`,
+          `c_${baseCrop},w_${baseWidth},h_${baseHeight},g_auto,z_${baseZoom}`,
           `d_${defaultImage}`,
           `o_${opacity},e_shear:${shear}`,
           `e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}`,
           `l_${overlaySrc},co_${overlayColor},e_shadow:${overlayShadow},x_${overlayX},y_${overlayY}`,
           `fl_layer_apply,fl_no_overflow,co_${overlayColor},e_shadow:${overlayShadow},x_${overlayX},y_${overlayY}`,
           `e_zoompan`,
-          `c_limit,w_${width}`,
+          `c_${crop},w_${width},h_${height},g_auto,z_${zoom}`,
           `f_auto:animated`, // Effect of zoompan
           `q_auto`,
           src
