@@ -56,50 +56,37 @@ describe('Cropping plugin', () => {
     expect(resize).toBeUndefined();
   });
 
-  // it('should return resize override with original size in URL if resize is smaller than width', () => {
-  //   const cldImage = cld.image(TEST_PUBLIC_ID);
-  //   const options = {
-  //     width: 900,
-  //     widthResize: 600
-  //   };
+  it('should return resize override width a base width', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      baseWidth: 600,
+      width: 900,
+    };
 
-  //   const { options: pluginOptions, resize } = plugin({ cldAsset: cldImage, options });
+    const { resize } = plugin({ cldAsset: cldImage, options });
 
-  //   expect(resize).toContain(`image/upload/c_limit,w_${options.width}`);
-  //   expect(pluginOptions).toMatchObject({
-  //     width: options.widthResize
-  //   })
-  // });
+    expect(resize).toContain(`c_limit,w_${options.width}`);
+    expect(cldImage.toURL()).toContain(`image/upload/c_limit,w_${options.baseWidth}`);
+  });
 
-  // it('should return resize override with original size in URL if resize is larger than width', () => {
-  //   const cldImage = cld.image(TEST_PUBLIC_ID);
-  //   const options = {
-  //     width: 900,
-  //     widthResize: 1200
-  //   };
+  it('should return resize override width a base width', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      baseCrop: 'auto',
+      baseHeight: 8765,
+      baseWidth: 4321,
+      baseZoom: 3,
+      crop: 'fill',
+      height: 5678,
+      width: 1234,
+      zoom: 2,
+    };
 
-  //   const { options: pluginOptions } = plugin({ cldAsset: cldImage, options });
+    const { resize } = plugin({ cldAsset: cldImage, options });
 
-  //   expect(cldImage.toURL()).toContain(`image/upload/c_limit,w_${options.width}`);
-  //   expect(pluginOptions).toMatchObject({
-  //     width: options.widthResize
-  //   })
-  // });
-
-  // it('should return resize override with original size in URL if resize is the same as width', () => {
-  //   const cldImage = cld.image(TEST_PUBLIC_ID);
-  //   const options = {
-  //     width: 900,
-  //     widthResize: 900
-  //   };
-
-  //   const { options: pluginOptions } = plugin({ cldAsset: cldImage, options });
-
-  //   expect(cldImage.toURL()).toContain(`image/upload/c_limit,w_${options.width}`);
-  //   expect(pluginOptions).toMatchObject({
-  //     width: options.widthResize
-  //   })
-  // });
+    expect(resize).toContain(`c_${options.crop},w_${options.width},h_${options.height},g_auto,z_${options.zoom}`);
+    expect(cldImage.toURL()).toContain(`image/upload/c_${options.baseCrop},w_${options.baseWidth},h_${options.baseHeight},g_auto,z_${options.baseZoom}`);
+  });
 
   it('should not apply a height when crop is fill if isnt set', () => {
     const cldImage = cld.image(TEST_PUBLIC_ID);

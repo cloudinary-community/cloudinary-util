@@ -203,7 +203,7 @@ describe('Cloudinary', () => {
             }
           }
         });
-        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_${crop},w_${width},h_${height}/f_auto/q_auto/${publicId}`);
+        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_${crop},w_${width},h_${height},g_auto/f_auto/q_auto/${publicId}`);
       });
 
       it('should create a Cloudinary URL with a aspect ratio, custom crop, zoom, and default gravity', () => {

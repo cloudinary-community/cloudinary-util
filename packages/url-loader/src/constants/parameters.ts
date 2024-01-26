@@ -1,6 +1,6 @@
 import { z } from 'zod';
 
-/** Shared */
+/** enum */
 
 export const cropModesEnum = z.enum([
   'fill',
@@ -17,6 +17,50 @@ export const cropModesEnum = z.enum([
   'mpad',
   'imagga_scale',
   'imagga_crop',
+]);
+
+export const flagsEnum = z.enum([
+  'animated',
+  'any_format',
+  'apng',
+  'attachment',
+  'awebp',
+  'clip',
+  'clip_evenodd',
+  'cutter',
+  'force_icc',
+  'force_strip',
+  'getinfo',
+  'group4',
+  'hlsv3',
+  'ignore_aspect_ratio',
+  'ignore_mask_channels',
+  'immutable_cache',
+  'keep_attribution',
+  'keep_dar',
+  'keep_iptc',
+  'layer_apply',
+  'lossy',
+  'mono',
+  'no_overflow',
+  'no_stream',
+  'png8_fl_png24_fl_png32',
+  'preserve_transparency',
+  'progressive',
+  'rasterize',
+  'region_relative',
+  'relative',
+  'replace_image',
+  'sanitize',
+  'splice',
+  'streaming_attachment',
+  'strip_profile',
+  'text_disallow_overflow',
+  'text_no_trim',
+  'tiff8_lzw',
+  'tiled',
+  'truncate_ts',
+  'waveform',
 ]);
 
 /** Angle - a */
@@ -72,50 +116,6 @@ export const crop = {
 
 /** Flags */
 
-export const flagsEnum = z.enum([
-  'animated',
-  'any_format',
-  'apng',
-  'attachment',
-  'awebp',
-  'clip',
-  'clip_evenodd',
-  'cutter',
-  'force_icc',
-  'force_strip',
-  'getinfo',
-  'group4',
-  'hlsv3',
-  'ignore_aspect_ratio',
-  'ignore_mask_channels',
-  'immutable_cache',
-  'keep_attribution',
-  'keep_dar',
-  'keep_iptc',
-  'layer_apply',
-  'lossy',
-  'mono',
-  'no_overflow',
-  'no_stream',
-  'png8_fl_png24_fl_png32',
-  'preserve_transparency',
-  'progressive',
-  'rasterize',
-  'region_relative',
-  'relative',
-  'replace_image',
-  'sanitize',
-  'splice',
-  'streaming_attachment',
-  'strip_profile',
-  'text_disallow_overflow',
-  'text_no_trim',
-  'tiff8_lzw',
-  'tiled',
-  'truncate_ts',
-  'waveform',
-]);
-
 export const flags = {
   qualifier: 'fl',
   schema: z.union([
@@ -128,6 +128,17 @@ export const flags = {
     }))
 }
 
+/** Format */
+
+export const format = {
+  qualifier: 'f',
+  // @TODO: enum
+  schema: z.string()
+    .describe(JSON.stringify({
+      text: 'Converts (if necessary) and delivers an asset in the specified format regardless of the file extension used in the delivery URL.',
+      url: 'https://cloudinary.com/documentation/transformation_reference#f_format'
+    })),
+}
 
 /** Gravity */
 
@@ -170,39 +181,6 @@ export const width = {
     })),
 }
 
-
-/** Base Resizing */
-
-export const baseCrop = {
-  qualifier: 'c',
-  schema: cropModesEnum
-    .describe(JSON.stringify({
-      text: 'Mode to use when cropping an asset\'s "base canvas".',
-      url: 'https://cloudinary.com/documentation/transformation_reference#c_crop_resize'
-    })),
-}
-
-export const baseHeight = {
-  schema: z.union([
-      z.string(),
-      z.number()
-    ])
-    .describe(JSON.stringify({
-      text: 'Height to resize the asset before all transformations are applied. Useful providing a "base canvas" for applying transformations like text overlays"',
-    })),
-}
-
-export const baseWidth = {
-  schema: z.union([
-      z.string(),
-      z.number()
-    ])
-    .describe(JSON.stringify({
-      text: 'Width to resize the asset before all transformations are applied. Useful providing a "base canvas" for applying transformations like text overlays"',
-    })),
-}
-
-
 /** X */
 
 export const x = {
@@ -242,3 +220,13 @@ export const zoom = {
       url: 'https://cloudinary.com/documentation/transformation_reference#z_zoom'
     })),
 }
+
+
+/** Base Resizing */
+
+export const baseAspectRatio = { ...aspectRatio };
+export const baseCrop = { ...crop };
+export const baseGravity = { ...gravity };
+export const baseHeight = { ...height };
+export const baseWidth = { ...width };
+export const baseZoom = { ...zoom };
