@@ -22,7 +22,7 @@ describe('Cropping plugin', () => {
       crop: 'crop',
       gravity: 'auto'
     };
-    const { resize } = plugin({ cldAsset: cldImage, options });
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
     expect(resize).toContain(`c_${options.crop},w_${options.width},h_${options.height},g_${options.gravity}`);
   });
 
@@ -33,7 +33,7 @@ describe('Cropping plugin', () => {
       height: 100,
       crop: 'fill'
     };
-    const { resize } = plugin({ cldAsset: cldImage, options });
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
     expect(resize).toContain(`c_${options.crop},w_${options.width},h_${options.height},g_auto`);
   });
 
@@ -45,14 +45,14 @@ describe('Cropping plugin', () => {
       crop: 'fill',
       zoom: 0.5
     };
-    const { resize } = plugin({ cldAsset: cldImage, options });
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
     expect(resize).toContain(`c_${options.crop},w_${options.width},h_${options.height},g_auto,z_${options.zoom}`);
   });
 
   it('should not include a width if not set', () => {
     const cldImage = cld.image(TEST_PUBLIC_ID);
     const options = {};
-    const { resize } = plugin({ cldAsset: cldImage, options });
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
     expect(resize).toBeUndefined();
   });
 
@@ -63,7 +63,7 @@ describe('Cropping plugin', () => {
       width: 900,
     };
 
-    const { resize } = plugin({ cldAsset: cldImage, options });
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
 
     expect(resize).toContain(`c_limit,w_${options.width}`);
     expect(cldImage.toURL()).toContain(`image/upload/c_limit,w_${options.baseWidth}`);
@@ -82,7 +82,7 @@ describe('Cropping plugin', () => {
       zoom: 2,
     };
 
-    const { resize } = plugin({ cldAsset: cldImage, options });
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
 
     expect(resize).toContain(`c_${options.crop},w_${options.width},h_${options.height},g_auto,z_${options.zoom}`);
     expect(cldImage.toURL()).toContain(`image/upload/c_${options.baseCrop},w_${options.baseWidth},h_${options.baseHeight},g_auto,z_${options.baseZoom}`);
@@ -94,7 +94,7 @@ describe('Cropping plugin', () => {
       width: 100,
       crop: 'fill',
     };
-    const { resize } = plugin({ cldAsset: cldImage, options });
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
     expect(resize).toContain(`c_${options.crop},w_${options.width},g_auto`);
   });
 
@@ -104,7 +104,7 @@ describe('Cropping plugin', () => {
       aspectRatio: '16:9',
       crop: 'fill'
     };
-    const { resize } = plugin({ cldAsset: cldImage, options });
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
     expect(resize).toContain(`c_fill,ar_16:9,g_auto`);
   });
 
@@ -114,7 +114,7 @@ describe('Cropping plugin', () => {
       aspectRatio: .5,
       crop: 'fill'
     };
-    const { resize } = plugin({ cldAsset: cldImage, options });
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
     // for my own sanity that float => string will add the leading 0
     expect(`${options.aspectRatio}`).toMatch('0.5');
     expect(resize).toContain(`c_fill,ar_${options.aspectRatio},g_auto`);
@@ -126,7 +126,7 @@ describe('Cropping plugin', () => {
       aspectRatio: '16:9',
       crop: 'fit'
     };
-    const { resize } = plugin({ cldAsset: cldImage, options });
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
     expect(resize).toBeUndefined();
   });
 });

@@ -25,6 +25,7 @@ export const pluginOptionsSchema = z.object({
   gravity: gravity.schema.optional(),
   height: height.schema.optional(),
   format: format.schema.optional(),
+  resize: z.string().optional(),
   width: width.schema.optional(),
   zoom: zoom.schema.optional(),
 })
@@ -33,5 +34,4 @@ export type PluginOptions = z.infer<typeof pluginOptionsSchema>;
 
 export interface PluginResults {
   options?: PluginOptions;
-  resize?: string;
 }

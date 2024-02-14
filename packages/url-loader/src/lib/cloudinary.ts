@@ -181,7 +181,6 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
   }
 
   const pluginEffects: PluginOptions = {};
-  let pluginResize;
 
   transformationPlugins.forEach(({ plugin, assetTypes, props, strict }: TransformationPlugin) => {
     const supportedAssetType = typeof options?.assetType !== 'undefined' && assetTypes.includes(options?.assetType);
@@ -208,20 +207,16 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
       options
     });
 
-    const { options: pluginOptions, resize } = results || { options: undefined };
+    const { options: pluginOptions } = results || { options: undefined };
 
     Object.assign(pluginEffects, pluginOptions);
-
-    if ( resize ) {
-      pluginResize = resize;
-    }
   });
 
   // We want to perform any resizing at the end of the end of the transformation
   // sets to allow consistent use of positioning / sizing, especially responsively
 
-  if ( pluginResize ) {
-    cldAsset.addTransformation(pluginResize);
+  if ( typeof pluginEffects.resize === 'string' ) {
+    cldAsset.addTransformation(pluginEffects.resize);
   }
 
   cldAsset.setDeliveryType(options?.deliveryType || 'upload');

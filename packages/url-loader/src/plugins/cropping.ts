@@ -137,10 +137,12 @@ export function plugin(props: PluginSettings) {
 
   // If we have any overrides, which are the the standard width/height options, apply 
   
-  const results: PluginResults = {};
+  const results: PluginResults = {
+    options: {}
+  };
 
-  if ( overrideTransformations.length > 0 ) {
-    results.resize = overrideTransformations.join(',');
+  if ( results.options && overrideTransformations.length > 0 ) {
+    results.options.resize = overrideTransformations.join(',');
   }
 
   return results
