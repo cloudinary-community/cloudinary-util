@@ -16,7 +16,6 @@ const TEST_PUBLIC_ID = 'test-public-id';
 describe('Plugins', () => {
   describe('Fill Background', () => {
     it('should generate a background with basic settings', () => {
-
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
@@ -30,11 +29,10 @@ describe('Plugins', () => {
         options
       });
 
-      expect(cldImage.toURL()).toContain(`b_gen_fill,ar_${options.width}:${options.height},w_${options.width},c_pad/${TEST_PUBLIC_ID}`);
+      expect(cldImage.toURL()).toContain(`b_gen_fill,ar_${options.width}:${options.height},c_pad/${TEST_PUBLIC_ID}`);
     });
 
     it('should generate with custom options', () => {
-
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
@@ -52,7 +50,7 @@ describe('Plugins', () => {
         options
       });
 
-      expect(cldImage.toURL()).toContain(`b_gen_fill:${encodeURIComponent(options.fillBackground.prompt)},ar_${options.width}:${options.height},w_${options.width},c_${options.fillBackground.crop},g_${options.fillBackground.gravity}/${TEST_PUBLIC_ID}`);
+      expect(cldImage.toURL()).toContain(`b_gen_fill:${encodeURIComponent(options.fillBackground.prompt)},ar_${options.width}:${options.height},c_${options.fillBackground.crop},g_${options.fillBackground.gravity}/${TEST_PUBLIC_ID}`);
     });
   });
 });

@@ -2,6 +2,8 @@ import * as parameters from '../constants/parameters';
 
 import { PluginSettings, PluginResults } from '../types/plugins';
 
+import { normalizeNumberParameter } from '../lib/transformations';
+
 const cropsAspectRatio = [ 'auto', 'crop', 'fill', 'lfill', 'fill_pad', 'thumb' ];
 const cropsGravityAuto = [ 'auto', 'crop', 'fill', 'lfill', 'fill_pad', 'thumb' ];
 const cropsWithZoom = ['crop', 'thumb'];
@@ -23,15 +25,6 @@ export const props = {
 
 export const assetTypes = ['image', 'images', 'video', 'videos'];
 
-/**
- * normalizeNumberParameter
- * @TODO: move into util
- */
-
-export function normalizeNumberParameter(param: number | string | undefined) {
-  if ( typeof param !== 'string' ) return param;
-  return parseInt(param)
-}
 
 export function plugin(props: PluginSettings) {
   const { cldAsset, options } = props;
@@ -119,7 +112,7 @@ export function plugin(props: PluginSettings) {
       if ( gravity === 'auto' && !cropsGravityAuto.includes(crop) ) {
         console.warn(`Auto gravity can only be used with crop modes: ${cropsGravityAuto.join(', ')}. Not applying gravity.`);
       } else {
-        transformations.push(`g_${gravity}`);gravity = gravity;
+        transformations.push(`g_${gravity}`);
       }
     }
 

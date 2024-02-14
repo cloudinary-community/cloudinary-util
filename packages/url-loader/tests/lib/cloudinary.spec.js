@@ -227,7 +227,7 @@ describe('Cloudinary', () => {
             }
           }
         });
-        console.log(url)
+
         expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_${crop},ar_${aspectRatio},g_auto,z_${zoom}/f_auto/q_auto/${publicId}`);
       });
 
