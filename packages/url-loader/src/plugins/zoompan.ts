@@ -1,7 +1,7 @@
 import { z } from 'zod';
 
 import { ImageOptions } from '../types/image';
-import { PluginSettings, PluginOverrides } from '../types/plugins';
+import { PluginSettings, PluginOptions } from '../types/plugins';
 
 export const props = {
   zoompan: z.union([
@@ -25,7 +25,7 @@ export function plugin(props: PluginSettings<ImageOptions>) {
   const { cldAsset, options } = props;
   const { zoompan = false } = options;
 
-  const overrides: PluginOverrides = {
+  const overrides: PluginOptions = {
     format: undefined
   };
 

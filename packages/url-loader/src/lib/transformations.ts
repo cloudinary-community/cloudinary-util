@@ -48,3 +48,13 @@ export function constructTransformation({ prefix, qualifier, value, converters }
 export function promptArrayToString(promptArray: Array<string>) {
   return `(${promptArray.join(';')})`;
 }
+
+/**
+ * normalizeNumberParameter
+ * @TODO: move into util
+ */
+
+export function normalizeNumberParameter(param: number | string | undefined) {
+  if ( typeof param !== 'string' ) return param;
+  return parseInt(param)
+}
