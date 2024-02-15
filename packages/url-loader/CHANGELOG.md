@@ -1,3 +1,13 @@
+# [@cloudinary-util/url-loader-v5.0.0-beta.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.2.0...@cloudinary-util/url-loader-v5.0.0-beta.1) (2024-02-15)
+
+
+* Reworking Resizing / Cropping (#139) ([89bf6ab](https://github.com/colbyfayock/cloudinary-util/commit/89bf6ab4588d926460f61d4b53818c513ba46577)), closes [#139](https://github.com/colbyfayock/cloudinary-util/issues/139)
+
+
+### BREAKING CHANGES
+
+* Removes widthResize in favor of width, baseWidth added to replace original width application
+
 # [@cloudinary-util/url-loader-v4.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.1.2...@cloudinary-util/url-loader-v4.2.0) (2024-01-19)
 
 
