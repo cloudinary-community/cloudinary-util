@@ -114,8 +114,8 @@ describe('Cropping plugin', () => {
     };
 
     const { options: { resize } } = plugin({ cldAsset: cldImage, options });
+
     expect(resize).toContain(`c_limit,w_${options.width}`);
-    console.log('cldImage.toURL()', cldImage.toURL())
     expect(cldImage.toURL()).toContain(`image/upload/c_${options.crop.crop},ar_${options.crop.aspectRatio},g_auto`);
   });
 
@@ -168,6 +168,29 @@ describe('Cropping plugin', () => {
     const { options: { resize } } = plugin({ cldAsset: cldImage, options });
 
     expect(resize).toContain(`c_${options.crop[0].crop},w_${options.crop[0].width},h_${options.crop[0].height},g_${options.crop[0].gravity},z_${options.crop[0].zoom}`);
+  });
+
+  it('should crop in two stages with array configurations inferring width/height', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      height: 5678,
+      width: 1234,
+      crop: [
+        {
+          crop: 'thumb',
+          source: true
+        },
+        {
+          crop: 'scale'
+        }
+      ]
+    };
+
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
+
+    expect(resize).toContain(`c_${options.crop[1].crop},w_${options.width},h_${options.height}`);
+
+    expect(cldImage.toURL()).toContain(`image/upload/c_${options.crop[0].crop},w_${options.width},h_${options.height},g_auto`);
   });
 
   it('should not apply a height when crop is fill if isnt set', () => {
