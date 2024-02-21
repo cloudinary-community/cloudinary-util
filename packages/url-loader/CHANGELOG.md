@@ -1,3 +1,15 @@
+# [@cloudinary-util/url-loader-v5.0.0-beta.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.0.0-beta.1...@cloudinary-util/url-loader-v5.0.0-beta.2) (2024-02-21)
+
+
+### Features
+
+* Removes base* Parameters, Adds Advanced Cropping Syntax ([#144](https://github.com/colbyfayock/cloudinary-util/issues/144)) ([a9e6997](https://github.com/colbyfayock/cloudinary-util/commit/a9e69978c0becfa5ca8a2731bcb4b9503734372c))
+
+
+### BREAKING CHANGES
+
+* removes base* syntax from previous beta
+
 # [@cloudinary-util/url-loader-v5.0.0-beta.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.2.0...@cloudinary-util/url-loader-v5.0.0-beta.1) (2024-02-15)
 
 
