@@ -88,24 +88,28 @@ export function plugin(props: PluginSettings) {
   let sourceTransformations: Array<Array<string>> = [];
 
   for ( const crop of crops ) {
-    if ( typeof crop.width === 'undefined' ) {
-      crop.width = options.width;
+    const cropDimensions = {
+      width: crop.width,
+      height: crop.height,
+    }
+
+    if ( typeof cropDimensions.width === 'undefined' && typeof crop.aspectRatio === 'undefined' ) {
+      cropDimensions.width = options.width;
 
       // We likely don't want to infer one dimension and not the other
       // so only infer the height if we're already inferring the width
 
-      if ( typeof crop.height === 'undefined' ) {
-        crop.height = options.height;
+      if ( typeof cropDimensions.height === 'undefined' ) {
+        cropDimensions.height = options.height;
       }
     }
     
     const transformations = collectTransformations({
       aspectRatio: crop.aspectRatio,
-      width: crop.width,
-      height: crop.height,
       gravity: crop.gravity,
       crop: crop.crop || DEFAULT_CROP,
       zoom: crop.zoom,
+      ...cropDimensions
     });
 
     // A source of true means we want to apply the transformations

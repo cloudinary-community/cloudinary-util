@@ -85,6 +85,40 @@ describe('Cropping plugin', () => {
     expect(resize).toContain(`c_${options.crop.crop},w_${options.width},h_${options.height},g_auto`);
   });
 
+  it('should crop as thumb in 2 stages with width inferred', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      width: 900,
+      height: 600,
+      crop: {
+        crop: 'thumb',
+        source: true
+      }
+    };
+
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
+    expect(resize).toContain(`c_limit,w_${options.width}`);
+    expect(cldImage.toURL()).toContain(`image/upload/c_${options.crop.crop},w_${options.width},h_${options.height},g_auto`);
+  });
+
+  it('should crop as thumb in 2 stages with aspect ratio', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      width: 900,
+      height: 600,
+      crop: {
+        crop: 'thumb',
+        aspectRatio: '16:9',
+        source: true
+      }
+    };
+
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
+    expect(resize).toContain(`c_limit,w_${options.width}`);
+    console.log('cldImage.toURL()', cldImage.toURL())
+    expect(cldImage.toURL()).toContain(`image/upload/c_${options.crop.crop},ar_${options.crop.aspectRatio},g_auto`);
+  });
+
   it('should resize based on crop parameter', () => {
     const cldImage = cld.image(TEST_PUBLIC_ID);
     const options = {
