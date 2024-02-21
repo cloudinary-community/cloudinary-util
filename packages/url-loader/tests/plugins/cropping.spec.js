@@ -56,36 +56,118 @@ describe('Cropping plugin', () => {
     expect(resize).toBeUndefined();
   });
 
-  it('should return resize override width a base width', () => {
+  it('should crop as thumb instead of default with object syntax, width, and height', () => {
     const cldImage = cld.image(TEST_PUBLIC_ID);
     const options = {
-      baseWidth: 600,
       width: 900,
+      crop: {
+        width: 100,
+        height: 200,
+        crop: 'thumb'
+      }
+    };
+
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
+    expect(resize).toContain(`c_${options.crop.crop},w_${options.crop.width},h_${options.crop.height},g_auto`);
+  });
+
+  it('should crop as thumb instead of default with object syntax with width inferred', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      width: 900,
+      height: 600,
+      crop: {
+        crop: 'thumb'
+      }
+    };
+
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
+    expect(resize).toContain(`c_${options.crop.crop},w_${options.width},h_${options.height},g_auto`);
+  });
+
+  it('should crop as thumb in 2 stages with width inferred', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      width: 900,
+      height: 600,
+      crop: {
+        crop: 'thumb',
+        source: true
+      }
+    };
+
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
+    expect(resize).toContain(`c_limit,w_${options.width}`);
+    expect(cldImage.toURL()).toContain(`image/upload/c_${options.crop.crop},w_${options.width},h_${options.height},g_auto`);
+  });
+
+  it('should crop as thumb in 2 stages with aspect ratio', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      width: 900,
+      height: 600,
+      crop: {
+        crop: 'thumb',
+        aspectRatio: '16:9',
+        source: true
+      }
+    };
+
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
+    expect(resize).toContain(`c_limit,w_${options.width}`);
+    console.log('cldImage.toURL()', cldImage.toURL())
+    expect(cldImage.toURL()).toContain(`image/upload/c_${options.crop.crop},ar_${options.crop.aspectRatio},g_auto`);
+  });
+
+  it('should resize based on crop parameter', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      width: 900,
+      crop: {
+        width: 600
+      }
+    };
+
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
+
+    expect(resize).toContain(`c_limit,w_${options.crop.width}`);
+  });
+
+  it('should resize in two stages', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      width: 900,
+      crop: {
+        width: 600,
+        height: 500,
+        crop: 'thumb',
+        source: true
+      }
     };
 
     const { options: { resize } } = plugin({ cldAsset: cldImage, options });
 
     expect(resize).toContain(`c_limit,w_${options.width}`);
-    expect(cldImage.toURL()).toContain(`image/upload/c_limit,w_${options.baseWidth}`);
+    expect(cldImage.toURL()).toContain(`image/upload/c_${options.crop.crop},w_${options.crop.width},h_${options.crop.height},g_auto`);
   });
 
-  it('should return resize override width a base width', () => {
+  it('should crop in two stages with array of single configuration', () => {
     const cldImage = cld.image(TEST_PUBLIC_ID);
     const options = {
-      baseCrop: 'auto',
-      baseHeight: 8765,
-      baseWidth: 4321,
-      baseZoom: 3,
-      crop: 'fill',
       height: 5678,
       width: 1234,
-      zoom: 2,
+      crop: [{
+        crop: 'auto',
+        height: 8765,
+        width: 4321,
+        zoom: 3,
+        gravity: 'center'
+      }]
     };
 
     const { options: { resize } } = plugin({ cldAsset: cldImage, options });
 
-    expect(resize).toContain(`c_${options.crop},w_${options.width},h_${options.height},g_auto,z_${options.zoom}`);
-    expect(cldImage.toURL()).toContain(`image/upload/c_${options.baseCrop},w_${options.baseWidth},h_${options.baseHeight},g_auto,z_${options.baseZoom}`);
+    expect(resize).toContain(`c_${options.crop[0].crop},w_${options.crop[0].width},h_${options.crop[0].height},g_${options.crop[0].gravity},z_${options.crop[0].zoom}`);
   });
 
   it('should not apply a height when crop is fill if isnt set', () => {
