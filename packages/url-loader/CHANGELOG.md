@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.0.0-beta.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.0.0-beta.2...@cloudinary-util/url-loader-v5.0.0-beta.3) (2024-02-21)
+
+
+### Features
+
+* updating the API to use type for objects and array syntax when cropping ([20cc147](https://github.com/colbyfayock/cloudinary-util/commit/20cc14795444bb2bbe4640c1f9f6d96b3f7b98d5))
+
 # [@cloudinary-util/url-loader-v5.0.0-beta.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.0.0-beta.1...@cloudinary-util/url-loader-v5.0.0-beta.2) (2024-02-21)
 
 
