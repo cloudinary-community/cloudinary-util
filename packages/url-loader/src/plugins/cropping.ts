@@ -42,10 +42,6 @@ export const assetTypes = ['image', 'images', 'video', 'videos'];
 export function plugin(props: PluginSettings) {
   const { cldAsset, options } = props;
   
-  // Standard Cropping/Resizing
-  // The final crop and resize for the image to be delivered after any transformations are applied
-
-  
   let crops: Array<CropOptions> = [];
 
   // Normalize the data that we're working with for simpler processing
@@ -70,6 +66,10 @@ export function plugin(props: PluginSettings) {
     crops = options.crop;
   }
 
+  // We always need a post-transformation to resize the image, whether that uses the
+  // default crop mode of "limit" or something user set, so if we dont have anything
+  // matching that criteria, push on a "default" using whatever data we can find
+
   if ( crops.length === 1 && crops[0].source === true ) {
     crops.push({
       aspectRatio: options.aspectRatio,
@@ -82,10 +82,10 @@ export function plugin(props: PluginSettings) {
   }
 
   // Start working through the different crop options and determine whether they're
-  // pre-transformation (source) or post-transformation
+  // pre-transformation (source) or post-transformation (final)
 
-  let overrideTransformations: Array<Array<string>> = [];
-  let baseTransformations: Array<Array<string>> = [];
+  let finalTransformations: Array<Array<string>> = [];
+  let sourceTransformations: Array<Array<string>> = [];
 
   for ( const crop of crops ) {
     if ( typeof crop.width === 'undefined' ) {
@@ -113,19 +113,18 @@ export function plugin(props: PluginSettings) {
 
     if ( transformations.length > 0 ) {
       if ( crop.source === true ) {
-        baseTransformations.push(transformations);
+        sourceTransformations.push(transformations);
       } else {
-        overrideTransformations.push(transformations);
+        finalTransformations.push(transformations);
       }
     }
   }
 
-  // Base Resizing/Cropping
   // This stage provides the option for someone to crop and resize the image before any transformations
   // are applied. this could be handy if you want a consistent size on different assets to share
   // transformations for instance
 
-  baseTransformations.forEach(transformation => {
+  sourceTransformations.forEach(transformation => {
     if ( transformation.length > 0 ) {
       cldAsset.addTransformation(transformation.join(','));
     }
@@ -137,8 +136,8 @@ export function plugin(props: PluginSettings) {
     options: {}
   };
 
-  if ( results.options && overrideTransformations.length > 0 ) {
-    results.options.resize = overrideTransformations.map(transformation => transformation.join(',')).join('/');
+  if ( results.options && finalTransformations.length > 0 ) {
+    results.options.resize = finalTransformations.map(transformation => transformation.join(',')).join('/');
   }
 
   return results
