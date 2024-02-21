@@ -737,11 +737,6 @@ describe('Cloudinary', () => {
         const width = 123;
         const zoom = '2.0';
 
-        const baseCrop = 'fill';
-        const baseHeight = 8765;
-        const baseWidth = 4321;
-        const baseZoom = 3;
-
         const cartoonify = '50';
         const gradientFade = true;
         const opacity = '50';
@@ -757,11 +752,21 @@ describe('Cloudinary', () => {
         const url = constructCloudinaryUrl({
           options: {
             assetType,
-            baseCrop,
-            baseHeight,
-            baseWidth,
-            baseZoom,
-            crop,
+            crop: [
+              {
+                crop,
+                height,
+                width,
+                zoom,
+              },
+              {
+                crop,
+                height,
+                width,
+                zoom,
+                source: true
+              },
+            ],
             defaultImage,
             height,
             src,
@@ -821,6 +826,7 @@ describe('Cloudinary', () => {
             }
           }
         });
+
         expect(url).toContain([
           assetType,
           `upload`,
@@ -828,7 +834,7 @@ describe('Cloudinary', () => {
           `e_gen_remove:prompt_apple;multiple_true;remove-shadow_true`,
           `e_background_removal`,
           `e_gen_restore`,
-          `c_${baseCrop},w_${baseWidth},h_${baseHeight},g_auto,z_${baseZoom}`,
+          `c_${crop},w_${width},h_${height},g_auto,z_${zoom}`,
           `d_${defaultImage}`,
           `o_${opacity},e_shear:${shear}`,
           `e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}`,
