@@ -754,13 +754,13 @@ describe('Cloudinary', () => {
             assetType,
             crop: [
               {
-                crop,
+                type: crop,
                 height,
                 width,
                 zoom,
               },
               {
-                crop,
+                type: crop,
                 height,
                 width,
                 zoom,

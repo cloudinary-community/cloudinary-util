@@ -14,7 +14,7 @@ const DEFAULT_CROP = 'limit';
 
 const cropOptionsSchema = z.object({
   aspectRatio: parameters.aspectRatio.schema.optional(),
-  crop: parameters.crop.schema,
+  type: parameters.crop.schema,
   gravity: parameters.gravity.schema.optional(),
   height: parameters.height.schema.optional(),
   width: parameters.width.schema.optional(),
@@ -57,7 +57,7 @@ export function plugin(props: PluginSettings) {
       width: options.width,
       height: options.height,
       gravity: options.gravity,
-      crop: options.crop || DEFAULT_CROP,
+      type: options.crop || DEFAULT_CROP,
       zoom: options.zoom,
     })
   } else if ( typeof options.crop === 'object' && !Array.isArray(options.crop) ) {
@@ -76,7 +76,7 @@ export function plugin(props: PluginSettings) {
       width: options.width,
       height: options.height,
       gravity: options.gravity,
-      crop: DEFAULT_CROP,
+      type: DEFAULT_CROP,
       zoom: options.zoom,
     })
   }
@@ -107,7 +107,7 @@ export function plugin(props: PluginSettings) {
     const transformations = collectTransformations({
       aspectRatio: crop.aspectRatio,
       gravity: crop.gravity,
-      crop: crop.crop || DEFAULT_CROP,
+      type: crop.type || DEFAULT_CROP,
       zoom: crop.zoom,
       ...cropDimensions
     });
@@ -157,7 +157,7 @@ function collectTransformations(collectOptions: CropOptions) {
   // Default the crop to "limit" to avoid upscaling
   // This avoid further distorting the image since the browser will resize in that case.
   // If caller wants actual resize, can explicitly pass in "scale".
-  const { aspectRatio, crop, zoom } = collectOptions;
+  const { aspectRatio, type: crop, zoom } = collectOptions;
 
   // Normalize sizing parameters
 
