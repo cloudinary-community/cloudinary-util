@@ -1,3 +1,15 @@
+# [@cloudinary-util/url-loader-v5.0.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.2.0...@cloudinary-util/url-loader-v5.0.0) (2024-02-26)
+
+
+### Features
+
+* v5.0.0 ([#143](https://github.com/colbyfayock/cloudinary-util/issues/143)) ([170dca1](https://github.com/colbyfayock/cloudinary-util/commit/170dca115381c53261401d192a95c8a9e417bedd))
+
+
+### BREAKING CHANGES
+
+* Removes widthResize in favor of advanced crop prop
+
 # [@cloudinary-util/url-loader-v5.0.0-beta.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.0.0-beta.2...@cloudinary-util/url-loader-v5.0.0-beta.3) (2024-02-21)
 
 
