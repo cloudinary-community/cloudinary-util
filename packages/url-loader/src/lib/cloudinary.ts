@@ -28,7 +28,7 @@ import { videoOptionsSchema } from '../types/video';
 import { analyticsOptionsSchema } from '../types/analytics';
 import { configOptionsSchema } from '../types/config';
 
-import { TransformationPlugin } from '../types/plugins';
+import { TransformationPlugin, PluginResults, PluginOptions } from '../types/plugins';
 
 
 export const transformationPlugins = [
@@ -42,6 +42,12 @@ export const transformationPlugins = [
   replacePlugin,
   restorePlugin,
 
+  // Cropping needs to be before any other general transformations
+  // as it provides the option of 2-step resizing where someone
+  // can resize the "base" canvas as well as the final resize
+  // mechanism commonly used for responsive resizing
+  croppingPlugin,
+
   // Raw transformations should always come before
   // other arguments to avoid conflicting with
   // added options via the component
@@ -49,7 +55,6 @@ export const transformationPlugins = [
   rawTransformationsPlugin,
 
   abrPlugin,
-  croppingPlugin,
   defaultImagePlugin,
   effectsPlugin,
   fillBackgroundPlugin,
@@ -97,21 +102,6 @@ export const constructUrlPropsSchema = z.object({
 })
 
 export type ConstructUrlProps = z.infer<typeof constructUrlPropsSchema>;
-
-export interface PluginOptionsResize {
-  crop?: string;
-  width?: string | number;
-}
-
-export interface PluginOptions {
-  format?: string;
-  resize?: PluginOptionsResize;
-  width?: string | number;
-}
-
-export interface PluginResults {
-  options?: PluginOptions;
-}
 
 export function constructCloudinaryUrl({ options, config = {}, analytics }: ConstructUrlProps): string {
   // If someone is explicitly passing in undefined for analytics via the analytics option,
@@ -219,23 +209,14 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
 
     const { options: pluginOptions } = results || { options: undefined };
 
-    if ( pluginOptions?.format && options ) {
-      pluginEffects.format = pluginOptions.format;
-    }
-
-    if ( pluginOptions?.width && options ) {
-      pluginEffects.resize = {
-        width: pluginOptions?.width
-      };
-    }
+    Object.assign(pluginEffects, pluginOptions);
   });
 
   // We want to perform any resizing at the end of the end of the transformation
   // sets to allow consistent use of positioning / sizing, especially responsively
 
-  if ( pluginEffects?.resize && !options.strictTransformations ) {
-    const { width, crop = 'limit' } = pluginEffects.resize;
-    cldAsset.effect(`c_${crop},w_${width}`);
+  if ( typeof pluginEffects.resize === 'string' ) {
+    cldAsset.addTransformation(pluginEffects.resize);
   }
 
   cldAsset.setDeliveryType(options?.deliveryType || 'upload');

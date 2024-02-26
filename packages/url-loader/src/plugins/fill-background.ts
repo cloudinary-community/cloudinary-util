@@ -5,6 +5,8 @@ import { PluginSettings } from '../types/plugins';
 
 import { crop, gravity } from '../constants/parameters';
 
+import { normalizeNumberParameter } from '../lib/transformations';
+
 export const props = {
   fillBackground: z.union([
       z.boolean(),
@@ -29,11 +31,21 @@ export function plugin(props: PluginSettings<ImageOptions>) {
   const { cldAsset, options } = props;
   const { fillBackground } = options;
 
+  const width = normalizeNumberParameter(options.width);
+  const height = normalizeNumberParameter(options.height);
+  const hasDefinedDimensions = typeof height === 'number' && typeof width === 'number';
+  let aspectRatio = options.aspectRatio;
+
+  if ( !aspectRatio && hasDefinedDimensions ) {
+    aspectRatio = `${width}:${height}`;
+  }
+
+  if ( !aspectRatio ) return;
+
   if ( fillBackground === true ) {
     const properties = [
       'b_gen_fill',
-      `ar_${options.width}:${options.height}`,
-      `w_${options.width}`,
+      `ar_${aspectRatio}`,
       `c_${defaultCrop}`
     ]
 
@@ -42,8 +54,7 @@ export function plugin(props: PluginSettings<ImageOptions>) {
     const { crop = defaultCrop, gravity, prompt } = fillBackground;
 
     const properties = [
-      `ar_${options.width}:${options.height}`,
-      `w_${options.width}`,
+      `ar_${aspectRatio}`,
       `c_${crop}`
     ]
 

@@ -1,3 +1,32 @@
+# [@cloudinary-util/url-loader-v5.0.0-beta.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.0.0-beta.2...@cloudinary-util/url-loader-v5.0.0-beta.3) (2024-02-21)
+
+
+### Features
+
+* updating the API to use type for objects and array syntax when cropping ([20cc147](https://github.com/colbyfayock/cloudinary-util/commit/20cc14795444bb2bbe4640c1f9f6d96b3f7b98d5))
+
+# [@cloudinary-util/url-loader-v5.0.0-beta.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.0.0-beta.1...@cloudinary-util/url-loader-v5.0.0-beta.2) (2024-02-21)
+
+
+### Features
+
+* Removes base* Parameters, Adds Advanced Cropping Syntax ([#144](https://github.com/colbyfayock/cloudinary-util/issues/144)) ([a9e6997](https://github.com/colbyfayock/cloudinary-util/commit/a9e69978c0becfa5ca8a2731bcb4b9503734372c))
+
+
+### BREAKING CHANGES
+
+* removes base* syntax from previous beta
+
+# [@cloudinary-util/url-loader-v5.0.0-beta.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.2.0...@cloudinary-util/url-loader-v5.0.0-beta.1) (2024-02-15)
+
+
+* Reworking Resizing / Cropping (#139) ([89bf6ab](https://github.com/colbyfayock/cloudinary-util/commit/89bf6ab4588d926460f61d4b53818c513ba46577)), closes [#139](https://github.com/colbyfayock/cloudinary-util/issues/139)
+
+
+### BREAKING CHANGES
+
+* Removes widthResize in favor of width, baseWidth added to replace original width application
+
 # [@cloudinary-util/url-loader-v4.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.1.2...@cloudinary-util/url-loader-v4.2.0) (2024-01-19)
 
 
