@@ -730,6 +730,9 @@ describe('Cloudinary', () => {
     it('Kitchen Sink - Image', () => {
       const cloudName = 'customtestcloud';
         const assetType = 'image';
+        
+        const angle = 15;
+        const background = 'blue';
         const crop = 'auto';
         const defaultImage = 'my-image.jpg';
         const height = 321;
@@ -749,9 +752,22 @@ describe('Cloudinary', () => {
         const overlayX = 0;
         const overlayY = 0;
 
+        const effectsAngle = 'vflip';
+        const effectsLoop = 15;
+
         const url = constructCloudinaryUrl({
           options: {
             assetType,
+            src,
+
+            angle,
+            background,
+            defaultImage,
+            height,
+            loop: true,
+            width,
+            zoom,
+
             crop: [
               {
                 type: crop,
@@ -767,11 +783,7 @@ describe('Cloudinary', () => {
                 source: true
               },
             ],
-            defaultImage,
-            height,
-            src,
-            width,
-            zoom,
+
             effects: [
               {
                 shear,
@@ -781,8 +793,15 @@ describe('Cloudinary', () => {
                 gradientFade,
                 cartoonify,
                 radius
+              },
+              {
+                angle: effectsAngle
+              },
+              {
+                loop: effectsLoop
               }
             ],
+
             overlays: [
               {
                 publicId: overlaySrc,
@@ -804,8 +823,11 @@ describe('Cloudinary', () => {
                 ],
               }
             ],
+
             // Note: removeBackground and restore can't actually be used together
             // in practice, but this is simply testing that it works applies correctly
+
+            enhance: true,
             recolor: {
               prompt: 'duck',
               to: 'blue',
@@ -830,14 +852,20 @@ describe('Cloudinary', () => {
         expect(url).toContain([
           assetType,
           `upload`,
+          'e_enhance',
           'e_gen_recolor:prompt_duck;to-color_blue;multiple_true',
-          `e_gen_remove:prompt_apple;multiple_true;remove-shadow_true`,
           `e_background_removal`,
+          `e_gen_remove:prompt_apple;multiple_true;remove-shadow_true`,
           `e_gen_restore`,
           `c_${crop},w_${width},h_${height},g_auto,z_${zoom}`,
           `d_${defaultImage}`,
+          `a_${angle}`,
+          `b_${background}`,
+          `e_loop`,
           `o_${opacity},e_shear:${shear}`,
           `e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}`,
+          `a_${effectsAngle}`,
+          `e_loop:${effectsLoop}`,
           `l_${overlaySrc},co_${overlayColor},e_shadow:${overlayShadow},x_${overlayX},y_${overlayY}`,
           `fl_layer_apply,fl_no_overflow,co_${overlayColor},e_shadow:${overlayShadow},x_${overlayX},y_${overlayY}`,
           `e_zoompan`,

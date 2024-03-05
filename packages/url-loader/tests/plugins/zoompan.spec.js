@@ -19,7 +19,7 @@ describe('Plugins', () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
-        zoompan : true
+        zoompan: true
       }
 
       const result = plugin({
@@ -48,7 +48,7 @@ describe('Plugins', () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
-        zoompan : "loop"
+        zoompan: "loop"
       }
 
       plugin({
@@ -65,7 +65,7 @@ describe('Plugins', () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
-        zoompan : 'string'
+        zoompan: 'mode_ofc;maxzoom_3.2;du_5;fps_30'
       }
 
       plugin({
@@ -77,13 +77,12 @@ describe('Plugins', () => {
     });
 
     it('should add a custom options', () => {
-
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
-        zoompan : {
-          options: "string",
-          loop: true
+        zoompan: {
+          loop: true,
+          options: 'to_(g_auto;zoom_1.4)'
         }
       }
 
@@ -92,18 +91,17 @@ describe('Plugins', () => {
         options
       });
 
-      expect(cldImage.toURL()).toContain(`e_zoompan${options.zoompan.options}`);
+      expect(cldImage.toURL()).toContain(`e_zoompan:${options.zoompan.options}`);
       expect(cldImage.toURL()).toContain('e_loop');
     });
 
     it('should add a custom loop option', () => {
-
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
-        zoompan : {
-          options: "string",
-          loop: "string"
+        zoompan: {
+          options: 'string',
+          loop: 15
         }
       }
 
@@ -112,21 +110,20 @@ describe('Plugins', () => {
         options
       });
 
-      expect(cldImage.toURL()).toContain(`e_loop${options.zoompan.loop}`);
+      expect(cldImage.toURL()).toContain(`e_zoompan:${options.zoompan.options}/e_loop:${options.zoompan.loop}`);
     });
 
     it('should not override format', () => {
-
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
-        zoompan : false
+        zoompan: false
       }
 
       const result = plugin({
-                      cldAsset: cldImage,
-                      options
-                    });
+        cldAsset: cldImage,
+        options
+      });
 
       expect(result.options.format).toBe(undefined);
     });

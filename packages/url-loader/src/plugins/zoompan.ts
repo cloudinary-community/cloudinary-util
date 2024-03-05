@@ -2,13 +2,14 @@ import { z } from 'zod';
 
 import { ImageOptions } from '../types/image';
 import { PluginSettings, PluginOptions } from '../types/plugins';
+import { effects as qualifiersEffects } from '../constants/qualifiers';
 
 export const props = {
   zoompan: z.union([
       z.string(),
       z.boolean(),
       z.object({
-        loop: z.union([ z.string(), z.boolean() ]),
+        loop: qualifiersEffects.loop.schema.optional(),
         options: z.string()
       })
     ])
@@ -42,7 +43,7 @@ export function plugin(props: PluginSettings<ImageOptions>) {
     let zoompanEffect = 'e_zoompan';
 
     if ( typeof zoompan.options === 'string' ) {
-      zoompanEffect = `${zoompanEffect}${zoompan.options}`;
+      zoompanEffect = `${zoompanEffect}:${zoompan.options}`;
     }
 
     cldAsset.effect(zoompanEffect);
@@ -51,8 +52,8 @@ export function plugin(props: PluginSettings<ImageOptions>) {
 
     if ( zoompan.loop === true ) {
       loopEffect = 'e_loop';
-    } else if ( typeof zoompan.loop === 'string' ) {
-      loopEffect = `e_loop${zoompan.loop}`;
+    } else if ( typeof zoompan.loop === 'string' || typeof zoompan.loop === 'number' ) {
+      loopEffect = `e_loop:${zoompan.loop}`;
     }
 
     if ( loopEffect ) {
