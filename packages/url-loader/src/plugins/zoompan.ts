@@ -2,13 +2,14 @@ import { z } from 'zod';
 
 import { ImageOptions } from '../types/image';
 import { PluginSettings, PluginOptions } from '../types/plugins';
+import { effects as qualifiersEffects } from '../constants/qualifiers';
 
 export const props = {
   zoompan: z.union([
       z.string(),
       z.boolean(),
       z.object({
-        loop: z.union([ z.string(), z.number(), z.boolean() ]),
+        loop: qualifiersEffects.loop.schema.optional(),
         options: z.string()
       })
     ])

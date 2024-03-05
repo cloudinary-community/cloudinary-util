@@ -30,6 +30,7 @@ const effectProps = {
   gradientFade: qualifiersEffects.gradientFade.schema.optional(),
   grayscale: qualifiersEffects.grayscale.schema.optional(),
   improve: qualifiersEffects.improve.schema.optional(),
+  loop: qualifiersEffects.loop.schema.optional(),
   multiply: qualifiersEffects.multiply.schema.optional(),
   negate: qualifiersEffects.negate.schema.optional(),
   oilPaint: qualifiersEffects.oilPaint.schema.optional(),
