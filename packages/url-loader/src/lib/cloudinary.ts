@@ -6,6 +6,7 @@ import * as abrPlugin from '../plugins/abr';
 import * as croppingPlugin from '../plugins/cropping';
 import * as defaultImagePlugin from '../plugins/default-image';
 import * as effectsPlugin from '../plugins/effects';
+import * as enhancePlugin from '../plugins/enhance';
 import * as flagsPlugin from '../plugins/flags';
 import * as fillBackgroundPlugin from '../plugins/fill-background';
 import * as replacePlugin from '../plugins/replace';
@@ -36,9 +37,10 @@ export const transformationPlugins = [
   // Some features *must* be the first transformation applied
   // thus their plugins *must* come first in the chain
 
+  enhancePlugin,
   recolorPlugin,
-  removePlugin,
   removeBackgroundPlugin,
+  removePlugin,
   replacePlugin,
   restorePlugin,
 

@@ -187,7 +187,6 @@ describe('Cropping plugin', () => {
     };
 
     const { options: { resize } } = plugin({ cldAsset: cldImage, options });
-    console.log('resize', resize)
 
     expect(resize).toContain(`c_${options.crop[1].type},w_${options.width},h_${options.height}`);
 

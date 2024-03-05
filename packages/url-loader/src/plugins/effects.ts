@@ -6,6 +6,7 @@ import { effects as qualifiersEffects } from '../constants/qualifiers';
 import { constructTransformation } from '../lib/transformations';
 
 const effectProps = {
+  angle: qualifiersEffects.angle.schema.optional(),
   art: qualifiersEffects.art.schema.optional(),
   autoBrightness: qualifiersEffects.autoBrightness.schema.optional(),
   autoColor: qualifiersEffects.autoColor.schema.optional(),

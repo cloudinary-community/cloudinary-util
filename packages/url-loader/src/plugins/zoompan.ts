@@ -8,7 +8,7 @@ export const props = {
       z.string(),
       z.boolean(),
       z.object({
-        loop: z.union([ z.string(), z.boolean() ]),
+        loop: z.union([ z.string(), z.number(), z.boolean() ]),
         options: z.string()
       })
     ])
@@ -42,7 +42,7 @@ export function plugin(props: PluginSettings<ImageOptions>) {
     let zoompanEffect = 'e_zoompan';
 
     if ( typeof zoompan.options === 'string' ) {
-      zoompanEffect = `${zoompanEffect}${zoompan.options}`;
+      zoompanEffect = `${zoompanEffect}:${zoompan.options}`;
     }
 
     cldAsset.effect(zoompanEffect);
@@ -51,8 +51,8 @@ export function plugin(props: PluginSettings<ImageOptions>) {
 
     if ( zoompan.loop === true ) {
       loopEffect = 'e_loop';
-    } else if ( typeof zoompan.loop === 'string' ) {
-      loopEffect = `e_loop${zoompan.loop}`;
+    } else if ( typeof zoompan.loop === 'string' || typeof zoompan.loop === 'number' ) {
+      loopEffect = `e_loop:${zoompan.loop}`;
     }
 
     if ( loopEffect ) {

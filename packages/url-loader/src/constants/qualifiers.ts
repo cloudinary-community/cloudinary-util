@@ -88,6 +88,7 @@ export const text: Record<string, Qualifier> = {
 } as const;
 
 export const effects: Record<string, Qualifier> = {
+  angle,
   art: {
     prefix: 'e',
     qualifier: 'art',
@@ -360,6 +361,19 @@ export const effects: Record<string, Qualifier> = {
       .describe(JSON.stringify({
         text: 'Adjusts an image\'s colors, contrast and brightness to improve its appearance.',
         url: 'https://cloudinary.com/documentation/transformation_reference#e_improve',
+      })),
+  },
+  loop: {
+    prefix: 'e',
+    qualifier: 'loop',
+    schema: z.union([
+        z.boolean(),
+        z.number(),
+        z.string(),
+      ])
+      .describe(JSON.stringify({
+        text: 'Loops a video or animated image the specified number of times.',
+        url: 'https://cloudinary.com/documentation/transformation_reference#e_loop',
       })),
   },
   multiply: {

@@ -52,5 +52,20 @@ describe('Plugins', () => {
 
       expect(cldImage.toURL()).toContain(`b_gen_fill:${encodeURIComponent(options.fillBackground.prompt)},ar_${options.width}:${options.height},c_${options.fillBackground.crop},g_${options.fillBackground.gravity}/${TEST_PUBLIC_ID}`);
     });
+
+    it('should not add generative fill if does not include aspect ratio', () => {
+      const cldImage = cld.image(TEST_PUBLIC_ID);
+
+      const options = {
+        fillBackground: true
+      }
+
+      plugin({
+        cldAsset: cldImage,
+        options
+      });
+
+      expect(cldImage.toURL()).toContain(`image/upload/${TEST_PUBLIC_ID}`);
+    });
   });
 });

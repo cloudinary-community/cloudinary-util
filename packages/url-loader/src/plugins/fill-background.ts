@@ -31,6 +31,8 @@ export function plugin(props: PluginSettings<ImageOptions>) {
   const { cldAsset, options } = props;
   const { fillBackground } = options;
 
+  if ( typeof fillBackground === 'undefined' ) return;
+
   const width = normalizeNumberParameter(options.width);
   const height = normalizeNumberParameter(options.height);
   const hasDefinedDimensions = typeof height === 'number' && typeof width === 'number';
@@ -40,7 +42,12 @@ export function plugin(props: PluginSettings<ImageOptions>) {
     aspectRatio = `${width}:${height}`;
   }
 
-  if ( !aspectRatio ) return;
+  if ( !aspectRatio ) {
+    if ( process.env.NODE_ENV === 'development' ) {
+      console.warn(`Could not determine aspect ratio based on available options to use fillBackground. Please specify width and height or an aspect ratio.`)
+    }
+    return;
+  }
 
   if ( fillBackground === true ) {
     const properties = [
