@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.1.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.0.0...@cloudinary-util/url-loader-v5.1.0) (2024-03-05)
+
+
+### Features
+
+* AI Enhance, Angle, Fixes zoompan, Misc Fixes / Tests ([#145](https://github.com/colbyfayock/cloudinary-util/issues/145)) ([45240eb](https://github.com/colbyfayock/cloudinary-util/commit/45240ebd93c664ea33fc80ad9cb76ed6df4aa400)), closes [#140](https://github.com/colbyfayock/cloudinary-util/issues/140) [#91](https://github.com/colbyfayock/cloudinary-util/issues/91) [#100](https://github.com/colbyfayock/cloudinary-util/issues/100)
+
 # [@cloudinary-util/url-loader-v5.0.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v4.2.0...@cloudinary-util/url-loader-v5.0.0) (2024-02-26)
 
 
