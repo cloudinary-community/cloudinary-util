@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { Cloudinary } from '@cloudinary/url-gen';
+import { Cloudinary, CloudinaryImage, CloudinaryVideo } from '@cloudinary/url-gen';
 import { parseUrl, ParseUrl, objectHasKey } from '@cloudinary-util/util';
 
 import * as abrPlugin from '../plugins/abr';
@@ -227,7 +227,6 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
   // enabled, nothing should be added on top of the URL
 
   if ( !options.strictTransformations ) {
-
     if ( options?.dpr ) {
       let dpr = options.dpr;
       if ( typeof dpr === 'number' ) {
@@ -236,17 +235,52 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
       cldAsset.addTransformation(`dpr_${dpr}`)
     }
 
-    if ( options?.format !== 'default' ) {
+    // An enhancement to our delivery URL is to automatically opt into optimization
+    // including both the most efficient format and automatic compression. However,
+    // we want to be able to give someone the ability to opt out (default) or if
+    // we already detect a format or quality in the URL, such as consuming an
+    // existing Cloudianry URL as the source, we don't want to double apply it
+    // which can cause conflicts with the previous asset
+
+    if ( options?.format !== 'default' && !searchAssetRawTransformations('f_', cldAsset, { matchType: 'startsWith' }) ) {
       cldAsset.format(options?.format || pluginEffects?.format || 'auto')
     }
 
-    if ( options?.quality !== 'default' ) {
+    if ( options?.quality !== 'default' && !searchAssetRawTransformations('q_', cldAsset, { matchType: 'startsWith' }) ) {
       cldAsset.quality(options?.quality || 'auto')
     }
-
   }
 
   return cldAsset.toURL({
     trackedAnalytics: analytics
   });
+}
+
+/**
+ * searchAssetRawTransformations
+ * @description Given a CloudinaryImage or CloudinaryVideo, searches raw transformations applied to the instance
+ */
+
+interface SearchAssetRawTransformationsOptions {
+  matchType: string;
+}
+
+export function searchAssetRawTransformations(query: string, asset: CloudinaryImage | CloudinaryVideo, options?: SearchAssetRawTransformationsOptions) {
+  if ( typeof asset.transformation === 'undefined' ) return;
+
+  const { matchType = 'includes' } = options || {};
+
+  const transformations = asset.transformation.actions.flatMap((transformation) => {
+    return transformation.toString().split(',');
+  });
+
+  const matches = transformations.filter(transformation => {
+    if ( matchType === 'startsWith' ) {
+      return transformation.startsWith(query);
+    } else {
+      return transformation.includes(query);
+    }
+  });
+
+  return matches.length > 0;
 }
