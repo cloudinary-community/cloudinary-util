@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.1.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.1.0...@cloudinary-util/url-loader-v5.1.1) (2024-03-06)
+
+
+### Bug Fixes
+
+* Fixes Quality String Type ([#149](https://github.com/colbyfayock/cloudinary-util/issues/149)) ([9986bb0](https://github.com/colbyfayock/cloudinary-util/commit/9986bb092cb05292e49395af4a1898b7a127a96a)), closes [#148](https://github.com/colbyfayock/cloudinary-util/issues/148)
+
 # [@cloudinary-util/url-loader-v5.1.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.0.0...@cloudinary-util/url-loader-v5.1.0) (2024-03-05)
 
 
