@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.2.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.2.0...@cloudinary-util/url-loader-v5.2.1) (2024-03-06)
+
+
+### Bug Fixes
+
+* Fixes f_ or q_ detection on rawTransformations ([#150](https://github.com/colbyfayock/cloudinary-util/issues/150)) ([8ba8d10](https://github.com/colbyfayock/cloudinary-util/commit/8ba8d10003cee8bda4bc4fd86cd71fb6d8c4d6f9))
+
 # [@cloudinary-util/url-loader-v5.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.1.1...@cloudinary-util/url-loader-v5.2.0) (2024-03-06)
 
 
