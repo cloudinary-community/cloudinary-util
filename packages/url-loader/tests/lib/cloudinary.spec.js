@@ -596,6 +596,7 @@ describe('Cloudinary', () => {
         const cloudName = 'customtestcloud';
         const src = 'turtle';
         const rawTransformations = ['f_auto:animated,q_10'];
+
         const url = constructCloudinaryUrl({
           options: {
             src,
@@ -607,7 +608,32 @@ describe('Cloudinary', () => {
             }
           }
         });
+
         expect(url).toContain(`image/upload/${rawTransformations.join('/')}/${src}`);
+      });
+
+      it('should not apply f_auto if exists in raw transformations with / joined segments', () => {
+        const cloudName = 'customtestcloud';
+        const src = 'turtle';
+        const width = 960;
+        const quality = 75;
+        const rawTransformations = ['c_crop,h_359,w_517,x_1483,y_0/c_scale,h_359,w_517/f_auto,q_auto'];
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            width,
+            quality,
+            rawTransformations
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+
+        expect(url).toContain(`image/upload/${rawTransformations.join('/')}/c_limit,w_${width}/q_${quality}/${src}`);
       });
 
     })
@@ -748,7 +774,7 @@ describe('Cloudinary', () => {
     it('Kitchen Sink - Image', () => {
       const cloudName = 'customtestcloud';
         const assetType = 'image';
-        
+
         const angle = 15;
         const background = 'blue';
         const crop = 'auto';

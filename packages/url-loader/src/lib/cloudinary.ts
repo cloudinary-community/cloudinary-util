@@ -242,11 +242,19 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
     // existing Cloudianry URL as the source, we don't want to double apply it
     // which can cause conflicts with the previous asset
 
-    if ( options?.format !== 'default' && !searchAssetRawTransformations('f_', cldAsset, { matchType: 'startsWith' }) ) {
+    const defaultFormat = options?.format === 'default'
+    const rawContainsFormat = searchAssetRawTransformations('f_', cldAsset, { matchType: 'startsWith' });
+    const rawContainsFormatAndExplicit = rawContainsFormat && typeof options?.format !== 'undefined';
+
+    if ( pluginEffects?.format || (!defaultFormat && (!rawContainsFormat || rawContainsFormatAndExplicit)) ) {
       cldAsset.format(options?.format || pluginEffects?.format || 'auto')
     }
 
-    if ( options?.quality !== 'default' && !searchAssetRawTransformations('q_', cldAsset, { matchType: 'startsWith' }) ) {
+    const defaultQuality = options?.quality === 'default'
+    const rawContainsQuality = searchAssetRawTransformations('q_', cldAsset, { matchType: 'startsWith' });
+    const rawContainsQualityAndExplicit = rawContainsQuality && typeof options?.quality !== 'undefined';
+
+    if ( !defaultQuality && (!rawContainsQuality || rawContainsQualityAndExplicit) ) {
       cldAsset.quality(options?.quality || 'auto')
     }
   }
@@ -271,7 +279,9 @@ export function searchAssetRawTransformations(query: string, asset: CloudinaryIm
   const { matchType = 'includes' } = options || {};
 
   const transformations = asset.transformation.actions.flatMap((transformation) => {
-    return transformation.toString().split(',');
+    // Raw transformations can come in different shapes and sizes including
+    // `['f_auto/q_auto']` or `['f_auto','q_auto']` so attempt to handle both
+    return transformation.toString().split('/').flatMap(seg => seg.split(','));
   });
 
   const matches = transformations.filter(transformation => {
