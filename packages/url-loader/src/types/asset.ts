@@ -47,7 +47,7 @@ export const assetOptionsSchema = z.object({
       text: 'Height of the given asset.'
     }))
     .optional(),
-  quality: z.union([z.number(), z.string()])
+  quality: z.union([z.string(), z.number(), z.string()])
     .default('auto')
     .describe(JSON.stringify({
       text: 'Quality of the delivered asset',
