@@ -577,7 +577,7 @@ describe('Cloudinary', () => {
       it('should apply rawTransformations to the beginning of the URL', () => {
         const cloudName = 'customtestcloud';
         const src = 'turtle';
-        const rawTransformations = ['c_crop,h_359,w_517,x_1483,y_0/c_scale,h_359,w_517/f_auto,q_auto'];
+        const rawTransformations = ['c_crop,h_359,w_517,x_1483,y_0/c_scale,h_359,w_517'];
         const url = constructCloudinaryUrl({
           options: {
             src,
@@ -590,6 +590,24 @@ describe('Cloudinary', () => {
           }
         });
         expect(url).toContain(`image/upload/${rawTransformations.join('/')}/f_auto/q_auto/${src}`);
+      });
+
+      it('should not apply f_auto,q_auto if exists in raw transformations', () => {
+        const cloudName = 'customtestcloud';
+        const src = 'turtle';
+        const rawTransformations = ['f_auto:animated,q_10'];
+        const url = constructCloudinaryUrl({
+          options: {
+            src,
+            rawTransformations
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`image/upload/${rawTransformations.join('/')}/${src}`);
       });
 
     })
