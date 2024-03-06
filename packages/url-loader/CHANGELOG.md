@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.2.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.1.1...@cloudinary-util/url-loader-v5.2.0) (2024-03-06)
+
+
+### Features
+
+* Fixes duplicate format or quality when added via Raw Transformations ([#147](https://github.com/colbyfayock/cloudinary-util/issues/147)) ([61a8a5b](https://github.com/colbyfayock/cloudinary-util/commit/61a8a5b6380f2708179ce0238b8c1a5f2fadfc1a)), closes [#146](https://github.com/colbyfayock/cloudinary-util/issues/146)
+
 # [@cloudinary-util/url-loader-v5.1.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.1.0...@cloudinary-util/url-loader-v5.1.1) (2024-03-06)
 
 
