@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.0.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/types-v1.0.0...@cloudinary-util/types-v1.0.1) (2024-03-12)
+
+
+### Bug Fixes
+
+* adding pictureInPictureToggle prop to video player ([74fdc3f](https://github.com/colbyfayock/cloudinary-util/commit/74fdc3f72775a7abc5aea8864d98f7ffdf373c75))
+
 # @cloudinary-util/types-v1.0.0 (2024-01-24)
 
 
