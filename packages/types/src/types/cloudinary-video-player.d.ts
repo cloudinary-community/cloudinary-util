@@ -40,6 +40,7 @@ export interface CloudinaryVideoPlayerOptions extends CloudinaryVideoPlayerOptio
   loop?: boolean;
   maxTries?: Number;
   muted?: boolean;
+  pictureInPictureToggle?: boolean;
   playedEventPercents?: number[];
   playedEventTimes?: null | Array<any>;
   playsinline?: boolean;
