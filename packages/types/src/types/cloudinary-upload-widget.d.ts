@@ -123,6 +123,7 @@ export interface CloudinaryUploadWidgetInfo {
   context: Record<string, Record<string, string>>;
   created_at: string;
   etag: string;
+  existing: boolean,
   folder: string;
   format: string;
   height: number;
