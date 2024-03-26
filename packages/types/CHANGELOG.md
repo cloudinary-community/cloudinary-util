@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.0.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/types-v1.0.1...@cloudinary-util/types-v1.0.2) (2024-03-26)
+
+
+### Bug Fixes
+
+* adding width, height, and aspectRatio to player types ([4a5c4e4](https://github.com/colbyfayock/cloudinary-util/commit/4a5c4e41e2708efc15300c80a8ba96337497a5e5))
+
 # [@cloudinary-util/types-v1.0.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/types-v1.0.0...@cloudinary-util/types-v1.0.1) (2024-03-12)
 
 
