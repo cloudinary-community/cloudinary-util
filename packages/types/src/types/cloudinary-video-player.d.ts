@@ -8,6 +8,10 @@ export interface CloudinaryVideoPlayerOptionsLogo {
   showLogo?: boolean;
 }
 export interface CloudinaryVideoPlayerOptions extends CloudinaryVideoPlayerOptionsLogo {
+  width?: string | number;
+  height?: string | number;
+  aspectRatio?: string;
+
   // ------------ Player visuals Props ------------
   aiHighlightsGraph?: boolean;
   bigPlayButton?: boolean | string;
@@ -50,7 +54,7 @@ export interface CloudinaryVideoPlayerOptions extends CloudinaryVideoPlayerOptio
   // ------------ Video Config Props ------------
   chapters?: object;
   preload?: string;
-  publicId?: string;  
+  publicId?: string;
   sourceTransformation?: object;
   sourceTypes?: Array<string>;
   transformation?: Array<object> | object;
