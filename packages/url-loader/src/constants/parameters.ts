@@ -3,6 +3,7 @@ import { z } from 'zod';
 /** enum */
 
 export const cropModesEnum = z.enum([
+  'auto',
   'fill',
   'lfill',
   'fill_pad',
