@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.2.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.2.1...@cloudinary-util/url-loader-v5.2.2) (2024-04-09)
+
+
+### Bug Fixes
+
+* adding auto to crop enum list ([a5bdb2b](https://github.com/colbyfayock/cloudinary-util/commit/a5bdb2bb9a215df450eb73bc8f85773e18c3690b))
+
 # [@cloudinary-util/url-loader-v5.2.1](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.2.0...@cloudinary-util/url-loader-v5.2.1) (2024-03-06)
 
 
