@@ -12,7 +12,7 @@
 
 <a href="#-getting-started">Getting Started</a>
 
-**This plugin is a community library and not officially supported by Cloudinary.**
+**This is a community library supported by the Cloudinary Developer Experience team.**
 
 ## 🚀 Getting Started
 
