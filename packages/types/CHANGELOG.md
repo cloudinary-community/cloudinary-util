@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.0.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/types-v1.0.2...@cloudinary-util/types-v1.0.3) (2024-05-06)
+
+
+### Bug Fixes
+
+* moving chaptersButton to top level prop for video player ([a9f886d](https://github.com/colbyfayock/cloudinary-util/commit/a9f886df5efb5f36d1a68861b7c6083c1ae8a4ac))
+
 # [@cloudinary-util/types-v1.0.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/types-v1.0.1...@cloudinary-util/types-v1.0.2) (2024-03-26)
 
 
