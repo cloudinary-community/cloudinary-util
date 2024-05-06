@@ -1,6 +1,6 @@
 {
   "name": "@cloudinary-util/url-loader",
-  "version": "5.2.1",
+  "version": "5.2.2",
   "main": "./dist/index.js",
   "module": "./dist/index.mjs",
   "types": "./dist/index.d.ts",
