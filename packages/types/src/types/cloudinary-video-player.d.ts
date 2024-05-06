@@ -18,7 +18,6 @@ export interface CloudinaryVideoPlayerOptions extends CloudinaryVideoPlayerOptio
   colors?: CloudinaryVideoPlayerOptionsColors;
   controlBar?: {
     pictureInPictureToggle?: boolean;
-    chaptersButton?: boolean;
   };
   controls?: boolean;
   floatingWhenNotVisible?: string;
@@ -53,6 +52,7 @@ export interface CloudinaryVideoPlayerOptions extends CloudinaryVideoPlayerOptio
 
   // ------------ Video Config Props ------------
   chapters?: object;
+  chaptersButton?: boolean;
   preload?: string;
   publicId?: string;
   sourceTransformation?: object;
