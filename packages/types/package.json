@@ -1,6 +1,6 @@
 {
   "name": "@cloudinary-util/types",
-  "version": "1.0.3",
+  "version": "1.0.4",
   "types": "./src/index.d.ts",
   "license": "MIT",
   "scripts": {

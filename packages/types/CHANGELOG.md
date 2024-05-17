@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.0.4](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.0.3...@cloudinary-util/types-v1.0.4) (2024-05-17)
+
+
+### Bug Fixes
+
+* adding deprecating notice to controlBar.pictureInPictureToggle that should have been added upon original fix ([ff1d8e8](https://github.com/cloudinary-community/cloudinary-util/commit/ff1d8e8d369e3debfe0b083ff04a4edac490b2a6))
+
 # [@cloudinary-util/types-v1.0.3](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/types-v1.0.2...@cloudinary-util/types-v1.0.3) (2024-05-06)
 
 
