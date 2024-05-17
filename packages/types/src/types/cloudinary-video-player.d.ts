@@ -17,6 +17,9 @@ export interface CloudinaryVideoPlayerOptions extends CloudinaryVideoPlayerOptio
   bigPlayButton?: boolean | string;
   colors?: CloudinaryVideoPlayerOptionsColors;
   controlBar?: {
+    /**
+     * @deprecated use {@link `pictureInPictureToggle`} instead
+     */
     pictureInPictureToggle?: boolean;
   };
   controls?: boolean;
