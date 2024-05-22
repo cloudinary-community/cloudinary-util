@@ -24,7 +24,6 @@ describe('video-player', () => {
           autoplayMode: undefined,
           cloud_name: 'testcloud',
           controls: true,
-          fontFace: '',
           height: '1080',
           language: undefined,
           languages: undefined,
@@ -96,15 +95,21 @@ describe('video-player', () => {
     })
 
     describe('Customization', () => {
-      it('should configure custom logo', () => {
+      it('should configure custom logo and colors', () => {
         const options = {
           width: '1620',
           height: '1080',
           src: 'videos/mountain-stars',
+          fontFace: 'Colby',
           logo: {
             imageUrl: 'https://image.com',
             onClickUrl: 'https://spacejelly.dev'
           },
+          colors: {
+            accent: '#ff0000',
+            base: '#00ff00',
+            text: '#0000ff'
+          }
         }
         
         const config = {
@@ -112,11 +117,13 @@ describe('video-player', () => {
             cloudName: 'testcloud'
           }
         };
-    
+
         expect(getVideoPlayerOptions(options, config)).toMatchObject({
+          fontFace: options.fontFace,
           logoImageUrl: options.logo.imageUrl,
           logoOnclickUrl: options.logo.onClickUrl,
-          showLogo: true
+          showLogo: true,
+          colors: options.colors
         });
       });
 

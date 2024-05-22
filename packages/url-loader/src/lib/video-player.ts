@@ -1,6 +1,7 @@
 import { CloudinaryVideoPlayerOptionsLogo, CloudinaryVideoPlayerOptions } from '@cloudinary-util/types';
-import { constructCloudinaryUrl, ConstructUrlProps } from './cloudinary';
 import { parseUrl } from '@cloudinary-util/util';
+
+import { constructCloudinaryUrl, ConstructUrlProps } from './cloudinary';
 import { ConfigOptions } from '../types/config';
 
 
@@ -8,8 +9,6 @@ import { ConfigOptions } from '../types/config';
 
 // Check if the publicId passed is an URL
 // Set the default transformation for the player
-// set the playerId
-// Set the player class name
 // set the basic event listeners (onError, loadedData, loadedmetadata, pause, play, ended)
 
 export type GetVideoPlayerOptions = Omit<CloudinaryVideoPlayerOptions, "cloud_name" | "autoplayMode" | "publicId" | "secure" | "showLogo" | "logoImageUrl" | "logoOnclickUrl"> & {
@@ -28,9 +27,7 @@ export interface GetVideoPlayerOptionsLogo {
 export function getVideoPlayerOptions(options: GetVideoPlayerOptions, config: ConfigOptions) {
   const {
     autoplay,
-    colors,
     controls = true,
-    fontFace,
     height,
     language,
     languages,
@@ -39,18 +36,26 @@ export function getVideoPlayerOptions(options: GetVideoPlayerOptions, config: Co
     muted = false,
     poster,
     src,
-    sourceTypes,
     transformation,
     quality = 'auto',
     width,
     ...otherCldVidPlayerOptions
   } = options;
 
-  const playerTransformations = Array.isArray(transformation) ? transformation : [transformation];
-  let publicId: string = src || "";
+  // Configuration for Cloudinary account. Cloud name is required,
+  // so if one isn't present, throw.
+
+  const { cloudName } = config?.cloud || {};
+  const { secureDistribution, privateCdn } = config?.url || {};
+
+  if (!cloudName) {
+    throw new Error('A Cloudinary Cloud name is required, please make sure your environment variable is set and configured in your environment.');
+  }
 
   // If the publicId/src is a URL, attempt to parse it as a Cloudinary URL
   // to get the public ID alone
+
+  let publicId = src || "";
 
   if ( publicId.startsWith('http') ) {
     try {
@@ -61,9 +66,21 @@ export function getVideoPlayerOptions(options: GetVideoPlayerOptions, config: Co
     } catch(e) {}
   }
 
+  // Normalize player transformations as an array
+
+  const playerTransformations = Array.isArray(transformation) ? transformation : [transformation];
+
+  // We want to apply a quality transformation which defaults
+  // to auto, but we want it to be in the beginning of the
+  // transformations array, in the event someone
+  // has already passed some in, giving them the opportunity
+  // to override if desired
+
   playerTransformations.unshift({
     quality
   });
+
+  // Provide an object configuration option for player logos
 
   let logoOptions: CloudinaryVideoPlayerOptionsLogo = {};
 
@@ -82,23 +99,18 @@ export function getVideoPlayerOptions(options: GetVideoPlayerOptions, config: Co
   // if its a boolean or a boolean passed as string ("true") set it directly to browser standard prop autoplay else fallback to default;
   // if its a string and not a boolean passed as string ("true") set it to cloudinary video player autoplayMode prop else fallback to undefined;
 
-  let autoPlayValue: boolean | 'true' | 'false' = false;
+  let autoplayValue: boolean | 'true' | 'false' = false;
   let autoplayModeValue: string | undefined = undefined;
 
   if (typeof autoplay === 'boolean' || autoplay === 'true' || autoplay === 'false') {
-    autoPlayValue = autoplay
+    autoplayValue = autoplay;
   }
 
   if (typeof autoplay === 'string' && autoplay !== 'true' && autoplay !== 'false') {
     autoplayModeValue = autoplay;
   }
 
-  const { cloudName } = config?.cloud || {};
-  const { secureDistribution, privateCdn } = config?.url || {};
-
-  if (!cloudName) {
-    throw new Error('A Cloudinary Cloud name is required, please make sure your environment variable is set and configured in your environment.');
-  }
+  // Finally construct the Player Options object
 
   let playerOptions: CloudinaryVideoPlayerOptions = {
     cloud_name: cloudName,
@@ -106,9 +118,8 @@ export function getVideoPlayerOptions(options: GetVideoPlayerOptions, config: Co
     secureDistribution,
 
     autoplayMode: autoplayModeValue,
-    autoplay: autoPlayValue,
+    autoplay: autoplayValue,
     controls,
-    fontFace: fontFace || '',
     language,
     languages,
     loop,
@@ -119,16 +130,8 @@ export function getVideoPlayerOptions(options: GetVideoPlayerOptions, config: Co
     aspectRatio: `${width}:${height}`,
     transformation: playerTransformations,
     ...logoOptions,
-    ...otherCldVidPlayerOptions
+    ...otherCldVidPlayerOptions,
   };
-
-  if ( Array.isArray(sourceTypes) ) {
-    playerOptions.sourceTypes = sourceTypes;
-  }
-
-  if ( typeof colors === 'object' ) {
-    playerOptions.colors = colors;
-  }
 
   if ( typeof poster === 'string' ) {
     // If poster is a string, assume it's either a public ID
