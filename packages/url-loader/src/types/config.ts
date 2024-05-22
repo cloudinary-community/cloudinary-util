@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import ICloudinaryConfigurations from '@cloudinary/url-gen/config/interfaces/Config/ICloudinaryConfigurations';
+import ICloudinaryConfigurations from '@cloudinary/url-gen/config/interfaces/Config/ICloudinaryAssetConfigurations';
 
 export interface CloudinaryConfigurationOptions extends ICloudinaryConfigurations {}
 
