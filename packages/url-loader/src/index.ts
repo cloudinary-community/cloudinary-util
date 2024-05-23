@@ -1,6 +1,9 @@
 export { constructCloudinaryUrl, transformationPlugins } from './lib/cloudinary';
 export type { ConstructUrlProps } from './lib/cloudinary';
 
+export { getVideoPlayerOptions } from './lib/video-player';
+export type { GetVideoPlayerOptions, GetVideoPlayerOptionsLogo } from './lib/video-player';
+
 export { effects, position, primary, text } from './constants/qualifiers';
 
 export type { AssetOptions } from './types/asset';

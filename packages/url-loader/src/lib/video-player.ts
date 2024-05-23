@@ -4,12 +4,9 @@ import { parseUrl } from '@cloudinary-util/util';
 import { constructCloudinaryUrl, ConstructUrlProps } from './cloudinary';
 import { ConfigOptions } from '../types/config';
 
-
-// Also for the player there are basic JS stuff that can be shared that are framework agnostic I think like:
-
-// Check if the publicId passed is an URL
-// Set the default transformation for the player
-// set the basic event listeners (onError, loadedData, loadedmetadata, pause, play, ended)
+/**
+ * getVideoPlayerOptions
+ */
 
 export type GetVideoPlayerOptions = Omit<CloudinaryVideoPlayerOptions, "cloud_name" | "autoplayMode" | "publicId" | "secure" | "showLogo" | "logoImageUrl" | "logoOnclickUrl"> & {
   logo?: boolean | GetVideoPlayerOptionsLogo;
