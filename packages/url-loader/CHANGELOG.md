@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.3.0-beta.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.3.0-beta.1...@cloudinary-util/url-loader-v5.3.0-beta.2) (2024-05-23)
+
+
+### Bug Fixes
+
+* getVideoPlayerOptions Exports ([#158](https://github.com/cloudinary-community/cloudinary-util/issues/158)) ([980f423](https://github.com/cloudinary-community/cloudinary-util/commit/980f423790235e2c08acc1bdfbb17b2fa610f445))
+
 # [@cloudinary-util/url-loader-v5.3.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.2.2...@cloudinary-util/url-loader-v5.3.0-beta.1) (2024-05-23)
 
 
