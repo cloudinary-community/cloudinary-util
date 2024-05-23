@@ -39,6 +39,7 @@
     "access": "public"
   },
   "dependencies": {
+    "@cloudinary-util/types": "workspace:*",
     "@cloudinary-util/util": "workspace:*",
     "@cloudinary/url-gen": "1.15.0",
     "zod": "^3.22.4"
