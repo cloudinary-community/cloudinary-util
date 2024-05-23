@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.0.5](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.0.4...@cloudinary-util/types-v1.0.5) (2024-05-23)
+
+
+### Bug Fixes
+
+* requiring public ID as video player option ([e17102f](https://github.com/cloudinary-community/cloudinary-util/commit/e17102f0991e3d14a2643bb971d1ae1a00e15991))
+
 # [@cloudinary-util/types-v1.0.4](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.0.3...@cloudinary-util/types-v1.0.4) (2024-05-17)
 
 
