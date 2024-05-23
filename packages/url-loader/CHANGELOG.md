@@ -1,3 +1,24 @@
+# [@cloudinary-util/url-loader-v5.3.0-beta.3](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.3.0-beta.2...@cloudinary-util/url-loader-v5.3.0-beta.3) (2024-05-23)
+
+
+### Features
+
+* Throw error if no public ID for video player options ([#159](https://github.com/cloudinary-community/cloudinary-util/issues/159)) ([973d5fa](https://github.com/cloudinary-community/cloudinary-util/commit/973d5fa05801e40d99fbdc6bdbb634839b76c120))
+
+# [@cloudinary-util/url-loader-v5.3.0-beta.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.3.0-beta.1...@cloudinary-util/url-loader-v5.3.0-beta.2) (2024-05-23)
+
+
+### Bug Fixes
+
+* getVideoPlayerOptions Exports ([#158](https://github.com/cloudinary-community/cloudinary-util/issues/158)) ([980f423](https://github.com/cloudinary-community/cloudinary-util/commit/980f423790235e2c08acc1bdfbb17b2fa610f445))
+
+# [@cloudinary-util/url-loader-v5.3.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.2.2...@cloudinary-util/url-loader-v5.3.0-beta.1) (2024-05-23)
+
+
+### Features
+
+* getVideoPlayerOptions ([#156](https://github.com/cloudinary-community/cloudinary-util/issues/156)) ([da6b56d](https://github.com/cloudinary-community/cloudinary-util/commit/da6b56d591efaf767669be722c0c954720bb9463)), closes [#155](https://github.com/cloudinary-community/cloudinary-util/issues/155)
+
 # [@cloudinary-util/url-loader-v5.2.2](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/url-loader-v5.2.1...@cloudinary-util/url-loader-v5.2.2) (2024-04-09)
 
 
