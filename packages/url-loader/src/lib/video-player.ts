@@ -63,6 +63,10 @@ export function getVideoPlayerOptions(options: GetVideoPlayerOptions, config: Co
     } catch(e) {}
   }
 
+  if ( !publicId ) {
+    throw new Error('Video Player requires a src, please make sure to configure your src as a public ID or Cloudinary URL.');
+  }
+
   // Normalize player transformations as an array
 
   const playerTransformations = Array.isArray(transformation) ? transformation : [transformation];
