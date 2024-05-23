@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.3.0-beta.3](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.3.0-beta.2...@cloudinary-util/url-loader-v5.3.0-beta.3) (2024-05-23)
+
+
+### Features
+
+* Throw error if no public ID for video player options ([#159](https://github.com/cloudinary-community/cloudinary-util/issues/159)) ([973d5fa](https://github.com/cloudinary-community/cloudinary-util/commit/973d5fa05801e40d99fbdc6bdbb634839b76c120))
+
 # [@cloudinary-util/url-loader-v5.3.0-beta.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.3.0-beta.1...@cloudinary-util/url-loader-v5.3.0-beta.2) (2024-05-23)
 
 
