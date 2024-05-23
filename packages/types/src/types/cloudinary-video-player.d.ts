@@ -57,7 +57,7 @@ export interface CloudinaryVideoPlayerOptions extends CloudinaryVideoPlayerOptio
   chapters?: object;
   chaptersButton?: boolean;
   preload?: string;
-  publicId?: string;
+  publicId: string;
   sourceTransformation?: object;
   sourceTypes?: Array<string>;
   transformation?: Array<object> | object;
