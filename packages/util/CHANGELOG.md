@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v3.0.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.0.0...@cloudinary-util/util-v3.0.1) (2024-05-24)
+
+
+### Bug Fixes
+
+* Fixes Secure Distributions (CNAMEs) from not being parsed ([#160](https://github.com/cloudinary-community/cloudinary-util/issues/160)) ([1e04393](https://github.com/cloudinary-community/cloudinary-util/commit/1e04393b17deaacc42809a9ff5d4761f0576a5f5))
+
 # [@cloudinary-util/util-v3.0.0](https://github.com/colbyfayock/cloudinary-util/compare/@cloudinary-util/util-v2.3.0...@cloudinary-util/util-v3.0.0) (2024-01-16)
 
 
