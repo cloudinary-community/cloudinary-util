@@ -284,6 +284,56 @@ describe('Cloudinary', () => {
         version,
       })
     });
+
+    it('should parse a Cloudinary URL with a secure distribution with private CDN', () => {
+      const assetType = 'image';
+      const deliveryType = 'upload';
+      const host = 'assets.mycoolsite.com';
+      const publicId = 'asdf';
+      const version = 1234;
+
+      const src = `http://${host}/${assetType}/${deliveryType}/v${version}/${publicId}`;
+
+      expect(parseUrl(src)).toMatchObject({
+        assetType,
+        deliveryType,
+        host,
+        publicId,
+        version,
+      })
+    });
+
+    it('should parse a Cloudinary URL with a secure distribution including a cloud name', () => {
+      const assetType = 'image';
+      const cloudName = 'test-cloud';
+      const deliveryType = 'upload';
+      const host = 'assets.mycoolsite.com';
+      const publicId = 'asdf';
+      const version = 1234;
+
+      const src = `http://${host}/${cloudName}/${assetType}/${deliveryType}/v${version}/${publicId}`;
+
+      expect(parseUrl(src)).toMatchObject({
+        assetType,
+        cloudName,
+        deliveryType,
+        host,
+        publicId,
+        version,
+      })
+    });
+
+    it('should throw an error if delivering from res.cloudinary.com without a cloud name', () => {
+      const assetType = 'image';
+      const deliveryType = 'upload';
+      const host = 'res.cloudinary.com';
+      const publicId = 'asdf';
+      const version = 1234;
+
+      const src = `http://${host}/${assetType}/${deliveryType}/v${version}/${publicId}`;
+
+      expect(() => parseUrl(src)).toThrowError('Cloudinary URL delivered from res.cloudinary.com must include Cloud Name (ex: res.cloudinary.com/<Cloud Name>/image/...)');
+    });
   });
 
   describe('getPublicId', () => {
