@@ -119,7 +119,7 @@ export function constructCloudinaryUrl({ options, config = {}, analytics }: Cons
   const cld = new Cloudinary(config);
 
   if ( typeof options?.src !== 'string' ) {
-    throw Error(`Failed to construct Cloudinary URL: Missing source (src) in options`);
+    throw Error(`Failed to construct Cloudinary URL: Missing source (src) in options.`);
   }
 
   if ( !options?.assetType ) {
