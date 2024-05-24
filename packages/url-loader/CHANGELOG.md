@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.3.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.3.0...@cloudinary-util/url-loader-v5.3.1) (2024-05-24)
+
+
+### Bug Fixes
+
+* adding . to error, forcing upgrade of /util package ([93aac14](https://github.com/cloudinary-community/cloudinary-util/commit/93aac1472151d9af2510e48fca638aa3bcde9068))
+
 # [@cloudinary-util/url-loader-v5.3.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.2.2...@cloudinary-util/url-loader-v5.3.0) (2024-05-23)
 
 
