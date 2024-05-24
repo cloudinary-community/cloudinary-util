@@ -322,6 +322,18 @@ describe('Cloudinary', () => {
         version,
       })
     });
+
+    it('should throw an error if delivering from res.cloudinary.com without a cloud name', () => {
+      const assetType = 'image';
+      const deliveryType = 'upload';
+      const host = 'res.cloudinary.com';
+      const publicId = 'asdf';
+      const version = 1234;
+
+      const src = `http://${host}/${assetType}/${deliveryType}/v${version}/${publicId}`;
+
+      expect(() => parseUrl(src)).toThrowError('Cloudinary URL delivered from res.cloudinary.com must include Cloud Name (ex: res.cloudinary.com/<Cloud Name>/image/...)');
+    });
   });
 
   describe('getPublicId', () => {
