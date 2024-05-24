@@ -284,6 +284,44 @@ describe('Cloudinary', () => {
         version,
       })
     });
+
+    it('should parse a Cloudinary URL with a secure distribution with private CDN', () => {
+      const assetType = 'image';
+      const deliveryType = 'upload';
+      const host = 'assets.mycoolsite.com';
+      const publicId = 'asdf';
+      const version = 1234;
+
+      const src = `http://${host}/${assetType}/${deliveryType}/v${version}/${publicId}`;
+
+      expect(parseUrl(src)).toMatchObject({
+        assetType,
+        deliveryType,
+        host,
+        publicId,
+        version,
+      })
+    });
+
+    it('should parse a Cloudinary URL with a secure distribution including a cloud name', () => {
+      const assetType = 'image';
+      const cloudName = 'test-cloud';
+      const deliveryType = 'upload';
+      const host = 'assets.mycoolsite.com';
+      const publicId = 'asdf';
+      const version = 1234;
+
+      const src = `http://${host}/${cloudName}/${assetType}/${deliveryType}/v${version}/${publicId}`;
+
+      expect(parseUrl(src)).toMatchObject({
+        assetType,
+        cloudName,
+        deliveryType,
+        host,
+        publicId,
+        version,
+      })
+    });
   });
 
   describe('getPublicId', () => {
