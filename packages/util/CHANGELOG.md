@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v3.0.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.0.1...@cloudinary-util/util-v3.0.2) (2024-05-24)
+
+
+### Bug Fixes
+
+* forcing with error messaging cleanup ([5c4aa3f](https://github.com/cloudinary-community/cloudinary-util/commit/5c4aa3f0d0f01dab6bf178bc7a829e3a0206af83))
+
 # [@cloudinary-util/util-v3.0.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.0.0...@cloudinary-util/util-v3.0.1) (2024-05-24)
 
 
