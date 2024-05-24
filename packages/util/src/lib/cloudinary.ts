@@ -26,13 +26,13 @@ export interface ParseUrl {
 
 export function parseUrl(src: string): ParseUrl | undefined {
   if ( typeof src !== 'string' ) {
-    throw new Error(`Failed to parse URL: Invalid src of type ${typeof src}`);
+    throw new Error(`Failed to parse URL - Invalid src: Is not a string`);
   }
 
   const hasVersion = REGEX_VERSION.test(src);
 
   if ( !hasVersion ) {
-    throw new Error(`Invalid src: Does not include version (Ex: /v1234/)`);
+    throw new Error(`Failed to parse URL - Invalid src: Does not include version (Ex: /v1234/)`);
   }
 
   const [baseUrlWithExtension, queryString] = src.split('?');
@@ -59,7 +59,7 @@ export function parseUrl(src: string): ParseUrl | undefined {
   }
 
   if ( parts.host === CLOUDINARY_DEFAULT_HOST && !parts.cloudName ) {
-    throw new Error('Invalid src: Cloudinary URL delivered from res.cloudinary.com must include Cloud Name (ex: res.cloudinary.com/<Cloud Name>/image/...)')
+    throw new Error('Failed to parse URL - Invalid src: Cloudinary URL delivered from res.cloudinary.com must include Cloud Name (ex: res.cloudinary.com/<Cloud Name>/image/...)')
   }
 
   if ( queryString ) {
