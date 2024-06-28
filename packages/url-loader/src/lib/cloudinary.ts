@@ -1,43 +1,43 @@
-import { z } from "zod";
+import { objectHasKey, parseUrl, type ParseUrl } from "@cloudinary-util/util";
 import {
   Cloudinary,
   CloudinaryImage,
   CloudinaryVideo,
 } from "@cloudinary/url-gen";
-import { parseUrl, ParseUrl, objectHasKey } from "@cloudinary-util/util";
+import { z } from "zod";
 
-import { abrPlugin } from "../plugins/abr";
-import { croppingPlugin } from "../plugins/cropping";
-import { defaultImagePlugin } from "../plugins/default-image";
-import { effectsPlugin } from "../plugins/effects";
-import { enhancePlugin } from "../plugins/enhance";
-import { flagsPlugin } from "../plugins/flags";
-import { fillBackgroundPlugin } from "../plugins/fill-background";
-import { replacePlugin } from "../plugins/replace";
-import { namedTransformationsPlugin } from "../plugins/named-transformations";
-import { overlaysPlugin } from "../plugins/overlays";
-import { rawTransformationsPlugin } from "../plugins/raw-transformations";
-import { recolorPlugin } from "../plugins/recolor";
-import { removePlugin } from "../plugins/remove";
-import { removeBackgroundPlugin } from "../plugins/remove-background";
-import { restorePlugin } from "../plugins/restore";
-import { sanitizePlugin } from "../plugins/sanitize";
-import { seoPlugin } from "../plugins/seo";
-import { underlaysPlugin } from "../plugins/underlays";
-import { zoompanPlugin } from "../plugins/zoompan";
+import { abrPlugin } from "../plugins/abr.js";
+import { croppingPlugin } from "../plugins/cropping.js";
+import { defaultImagePlugin } from "../plugins/default-image.js";
+import { effectsPlugin } from "../plugins/effects.js";
+import { enhancePlugin } from "../plugins/enhance.js";
+import { fillBackgroundPlugin } from "../plugins/fill-background.js";
+import { flagsPlugin } from "../plugins/flags.js";
+import { namedTransformationsPlugin } from "../plugins/named-transformations.js";
+import { overlaysPlugin } from "../plugins/overlays.js";
+import { rawTransformationsPlugin } from "../plugins/raw-transformations.js";
+import { recolorPlugin } from "../plugins/recolor.js";
+import { removeBackgroundPlugin } from "../plugins/remove-background.js";
+import { removePlugin } from "../plugins/remove.js";
+import { replacePlugin } from "../plugins/replace.js";
+import { restorePlugin } from "../plugins/restore.js";
+import { sanitizePlugin } from "../plugins/sanitize.js";
+import { seoPlugin } from "../plugins/seo.js";
+import { underlaysPlugin } from "../plugins/underlays.js";
+import { zoompanPlugin } from "../plugins/zoompan.js";
 
-import { assetOptionsSchema } from "../types/asset";
-import { imageOptionsSchema } from "../types/image";
-import { videoOptionsSchema } from "../types/video";
-import { analyticsOptionsSchema } from "../types/analytics";
-import { configOptionsSchema } from "../types/config";
+import { analyticsOptionsSchema } from "../types/analytics.js";
+import { assetOptionsSchema } from "../types/asset.js";
+import { configOptionsSchema } from "../types/config.js";
+import { imageOptionsSchema } from "../types/image.js";
+import { videoOptionsSchema } from "../types/video.js";
 
-import {
-  TransformationPlugin,
-  PluginResults,
-  PluginOptions,
-} from "../types/plugins";
 import { versionPlugin } from "../plugins/version.js";
+import type {
+  PluginOptions,
+  PluginResults,
+  TransformationPlugin,
+} from "../types/plugins.js";
 
 export const transformationPlugins = [
   // Some features *must* be the first transformation applied
@@ -75,24 +75,6 @@ export const transformationPlugins = [
   versionPlugin,
   zoompanPlugin,
 ];
-
-type show<t> = { [k in keyof t]: t[k] } & unknown;
-
-type composePlugins<
-  plugins extends readonly TransformationPlugin[],
-  result = {}
-> = plugins extends readonly [
-  TransformationPlugin<infer opts>,
-  ...infer tail extends TransformationPlugin[]
-]
-  ? composePlugins<tail, result & opts>
-  : show<result>;
-
-const composePlugins = <plugins extends readonly TransformationPlugin[]>(
-  ...plugins: plugins
-): TransformationPlugin<composePlugins<plugins>> => plugins as never;
-
-const composed = composePlugins(...transformationPlugins);
 
 /**
  * constructCloudinaryUrl

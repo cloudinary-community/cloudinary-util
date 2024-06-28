@@ -1,5 +1,5 @@
 import { z } from 'zod';
-import { IAnalyticsOptions } from '@cloudinary/url-gen/sdkAnalytics/interfaces/IAnalyticsOptions';
+import type { IAnalyticsOptions } from '@cloudinary/url-gen/sdkAnalytics/interfaces/IAnalyticsOptions';
 
 export interface CloudinaryAnalyticsOptions extends IAnalyticsOptions {}
 

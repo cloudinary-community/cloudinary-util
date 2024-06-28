@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { type TransformationPlugin } from "../types/plugins";
-import { VideoOptions } from "../types/video";
+import { type TransformationPlugin } from "../types/plugins.js";
+import { type VideoOptions } from "../types/video.js";
 
 export const abrProps = {
   streamingProfile: z

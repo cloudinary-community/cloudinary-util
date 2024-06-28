@@ -1,4 +1,4 @@
-import { QualiferConverters } from "../types/qualifiers";
+import type { QualiferConverters } from "../types/qualifiers.js";
 
 /**
  * constructTransformation

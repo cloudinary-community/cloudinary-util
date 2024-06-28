@@ -1,7 +1,7 @@
 import { z } from "zod";
-import * as parameters from "../constants/parameters";
-import { PluginResults, type TransformationPlugin } from "../types/plugins";
-import { normalizeNumberParameter } from "../lib/transformations";
+import * as parameters from "../constants/parameters.js";
+import { type PluginResults, type TransformationPlugin } from "../types/plugins.js";
+import { normalizeNumberParameter } from "../lib/transformations.js";
 
 const cropsAspectRatio = ["auto", "crop", "fill", "lfill", "fill_pad", "thumb"];
 const cropsGravityAuto = ["auto", "crop", "fill", "lfill", "fill_pad", "thumb"];

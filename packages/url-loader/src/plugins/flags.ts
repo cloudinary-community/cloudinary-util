@@ -1,6 +1,6 @@
-import * as parameters from "../constants/parameters";
+import * as parameters from "../constants/parameters.js";
 
-import { type TransformationPlugin } from "../types/plugins";
+import { type TransformationPlugin } from "../types/plugins.js";
 
 const { flagsEnum } = parameters;
 

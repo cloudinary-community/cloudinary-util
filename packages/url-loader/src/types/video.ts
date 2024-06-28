@@ -1,6 +1,6 @@
 import { z } from "zod";
-import { assetOptionsSchema } from "./asset";
-import { abrProps } from "../plugins/abr";
+import { assetOptionsSchema } from "./asset.js";
+import { abrProps } from "../plugins/abr.js";
 
 export const videoOptionsSchema = assetOptionsSchema.merge(
   z.object({

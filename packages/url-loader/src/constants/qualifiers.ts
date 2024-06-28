@@ -1,17 +1,17 @@
+import { convertColorHexToRgb, testColorIsHex } from "@cloudinary-util/util";
 import { z } from "zod";
-import { testColorIsHex, convertColorHexToRgb } from "@cloudinary-util/util";
 
+import type { Qualifier } from "../types/qualifiers.js";
 import {
   angle,
   aspectRatio,
   crop,
   gravity,
   height,
+  width,
   x,
   y,
-  width,
-} from "./parameters";
-import { Qualifier } from "../types/qualifiers";
+} from "./parameters.js";
 
 const convertersColors = [
   {

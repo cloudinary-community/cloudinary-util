@@ -11,9 +11,8 @@
     "test:packages": "turbo run build --filter='./packages/*' && turbo run test --filter='./packages/*'"
   },
   "devDependencies": {
-    "eslint": "^7.32.0",
-    "eslint-config-cloudinary-util": "workspace:*",
-    "prettier": "^2.8.3",
+    "eslint": "^8.57.0",
+    "prettier": "^3.3.2",
     "turbo": "^1.7.2"
   },
   "packageManager": "pnpm@9.1.4"

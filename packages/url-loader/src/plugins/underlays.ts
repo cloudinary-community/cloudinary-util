@@ -10,12 +10,12 @@ import {
   width,
   x,
   y,
-} from "../constants/parameters";
-import { type TransformationPlugin } from "../types/plugins";
+} from "../constants/parameters.js";
 import {
   position as qualifiersPosition,
   primary as qualifiersPrimary,
-} from "../constants/qualifiers";
+} from "../constants/qualifiers.js";
+import { type TransformationPlugin } from "../types/plugins.js";
 
 const underlayPositionSchema = z.object({
   angle: angle.schema.optional(),

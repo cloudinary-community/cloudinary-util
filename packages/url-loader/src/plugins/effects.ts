@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { type TransformationPlugin } from "../types/plugins";
-import { effects as qualifiersEffects } from "../constants/qualifiers";
-import { constructTransformation } from "../lib/transformations";
+import type { TransformationPlugin } from "../types/plugins.js";
+import { effects as qualifiersEffects } from "../constants/qualifiers.js";
+import { constructTransformation } from "../lib/transformations.js";
 
 const effectProps = {
   angle: qualifiersEffects.angle.schema.optional(),

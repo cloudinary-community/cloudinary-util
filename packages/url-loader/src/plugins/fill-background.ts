@@ -1,8 +1,8 @@
 import { z } from "zod";
-import { crop, gravity } from "../constants/parameters";
-import { normalizeNumberParameter } from "../lib/transformations";
-import { ImageOptions } from "../types/image";
-import { type TransformationPlugin } from "../types/plugins";
+import { crop, gravity } from "../constants/parameters.js";
+import { normalizeNumberParameter } from "../lib/transformations.js";
+import type { ImageOptions } from "../types/image.js";
+import { type TransformationPlugin } from "../types/plugins.js";
 
 const defaultCrop = "pad";
 

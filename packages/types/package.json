@@ -1,9 +1,10 @@
 {
   "name": "@cloudinary-util/types",
   "version": "1.0.5",
-  "types": "./src/index.d.ts",
+  "types": "./src/dist/index.d.ts",
   "license": "MIT",
   "scripts": {
+    "build": "tsup src/index.ts --format esm,cjs --dts --clean",
     "semantic-release": "semantic-release"
   },
   "devDependencies": {
@@ -11,7 +12,8 @@
     "@semantic-release/changelog": "^6.0.2",
     "@semantic-release/git": "^10.0.1",
     "semantic-release": "^20.1.0",
-    "semantic-release-monorepo": "^7.0.5"
+    "semantic-release-monorepo": "^7.0.5",
+    "tsup": "^5.10.1"
   },
   "publishConfig": {
     "access": "public"

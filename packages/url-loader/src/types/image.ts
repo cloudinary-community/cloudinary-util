@@ -1,13 +1,13 @@
 import { z } from "zod";
-import { assetOptionsSchema } from "./asset";
-import { defaultImageProps } from "../plugins/default-image";
-import { enhanceProps } from "../plugins/enhance";
-import { fillBackgroundProps } from "../plugins/fill-background";
-import { recolorProps } from "../plugins/recolor";
-import { removeProps } from "../plugins/remove";
-import { replaceProps } from "../plugins/replace";
-import { restoreProps } from "../plugins/restore";
-import { zoompanProps } from "../plugins/zoompan";
+import { assetOptionsSchema } from "./asset.js";
+import { defaultImageProps } from "../plugins/default-image.js";
+import { enhanceProps } from "../plugins/enhance.js";
+import { fillBackgroundProps } from "../plugins/fill-background.js";
+import { recolorProps } from "../plugins/recolor.js";
+import { removeProps } from "../plugins/remove.js";
+import { replaceProps } from "../plugins/replace.js";
+import { restoreProps } from "../plugins/restore.js";
+import { zoompanProps } from "../plugins/zoompan.js";
 
 export const imageOptionsSchema = assetOptionsSchema.merge(
   z.object({

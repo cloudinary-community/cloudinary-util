@@ -7,10 +7,10 @@ import {
   height,
   width,
   zoom,
-} from "../constants/parameters";
-import { AssetOptions } from "./asset";
-import { ImageOptions } from "./image";
-import { VideoOptions } from "./video";
+} from "../constants/parameters.js";
+import type { AssetOptions } from "./asset.js";
+import type { ImageOptions } from "./image.js";
+import type { VideoOptions } from "./video.js";
 
 type AllOptions = AssetOptions | ImageOptions | VideoOptions;
 

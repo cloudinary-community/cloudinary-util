@@ -10,16 +10,16 @@ import {
   width,
   x,
   y,
-} from "../constants/parameters";
-import { type TransformationPlugin } from "../types/plugins";
-import { Qualifier } from "../types/qualifiers";
-import { constructTransformation } from "../lib/transformations";
+} from "../constants/parameters.js";
 import {
   effects as qualifiersEffects,
   position as qualifiersPosition,
   primary as qualifiersPrimary,
   text as qualifiersText,
-} from "../constants/qualifiers";
+} from "../constants/qualifiers.js";
+import { constructTransformation } from "../lib/transformations.js";
+import { type TransformationPlugin } from "../types/plugins.js";
+import type { Qualifier } from "../types/qualifiers.js";
 
 const overlayTextSchema = z.object({
   alignment: z.string().optional(),

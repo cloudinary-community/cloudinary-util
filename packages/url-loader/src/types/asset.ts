@@ -1,15 +1,15 @@
 import { z } from "zod";
-import { croppingProps } from "../plugins/cropping";
-import { effectsProps } from "../plugins/effects";
-import { flagsProps } from "../plugins/flags";
-import { namedTransformationsProps } from "../plugins/named-transformations";
-import { overlaysProps } from "../plugins/overlays";
-import { rawTransformationsProps } from "../plugins/raw-transformations";
-import { removeBackgroundProps } from "../plugins/remove-background";
-import { sanitizeProps } from "../plugins/sanitize";
-import { seoProps } from "../plugins/seo";
-import { underlaysProps } from "../plugins/underlays";
-import { versionProps } from "../plugins/version";
+import { croppingProps } from "../plugins/cropping.js";
+import { effectsProps } from "../plugins/effects.js";
+import { flagsProps } from "../plugins/flags.js";
+import { namedTransformationsProps } from "../plugins/named-transformations.js";
+import { overlaysProps } from "../plugins/overlays.js";
+import { rawTransformationsProps } from "../plugins/raw-transformations.js";
+import { removeBackgroundProps } from "../plugins/remove-background.js";
+import { sanitizeProps } from "../plugins/sanitize.js";
+import { seoProps } from "../plugins/seo.js";
+import { underlaysProps } from "../plugins/underlays.js";
+import { versionProps } from "../plugins/version.js";
 
 // Asset Options
 

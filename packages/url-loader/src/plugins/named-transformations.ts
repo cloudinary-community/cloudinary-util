@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { type TransformationPlugin } from "../types/plugins";
+import { type TransformationPlugin } from "../types/plugins.js";
 
 const NamedTransformationSchema = z.string();
 type NamedTransformation = z.infer<typeof NamedTransformationSchema>;

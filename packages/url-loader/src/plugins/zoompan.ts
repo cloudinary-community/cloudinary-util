@@ -1,7 +1,7 @@
 import { z } from "zod";
-import { effects as qualifiersEffects } from "../constants/qualifiers";
-import { ImageOptions } from "../types/image";
-import { PluginOptions, type TransformationPlugin } from "../types/plugins";
+import { effects as qualifiersEffects } from "../constants/qualifiers.js";
+import type { ImageOptions } from "../types/image.js";
+import type { PluginOptions, TransformationPlugin } from "../types/plugins.js";
 
 export const zoompanProps = {
   zoompan: z

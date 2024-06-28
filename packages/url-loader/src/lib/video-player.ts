@@ -1,8 +1,8 @@
-import { CloudinaryVideoPlayerOptionsLogo, CloudinaryVideoPlayerOptions } from '@cloudinary-util/types';
+import type { CloudinaryVideoPlayerOptions, CloudinaryVideoPlayerOptionsLogo } from '@cloudinary-util/types';
 import { parseUrl } from '@cloudinary-util/util';
 
-import { constructCloudinaryUrl, ConstructUrlProps } from './cloudinary';
-import { ConfigOptions } from '../types/config';
+import type { ConfigOptions } from '../types/config.js';
+import { constructCloudinaryUrl, type ConstructUrlProps } from './cloudinary.js';
 
 /**
  * getVideoPlayerOptions

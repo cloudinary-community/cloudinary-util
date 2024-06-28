@@ -1,0 +1,23 @@
+{
+  "editor.defaultFormatter": "esbenp.prettier-vscode",
+  "editor.codeActionsOnSave": [
+    "editor.formatOnSave",
+    "source.fixAll.eslint",
+    "source.sortImports"
+  ],
+  "eslint.codeActionsOnSave.rules": [
+    "object-shorthand",
+    "@typescript-eslint/consistent-type-imports",
+    "import/no-duplicates",
+    "@typescript-eslint/no-import-type-side-effects",
+    "curly"
+  ],
+  "typescript.preferences.preferTypeOnlyAutoImports": true,
+  "typescript.preferences.autoImportFileExcludePatterns": [
+    "out",
+    // too many overlapping names, easy to import in schema/arktype where we don't want it
+    // should just import as * as ts when we need it in attest
+    "typescript"
+  ],
+  "typescript.tsserver.experimental.enableProjectDiagnostics": true
+}

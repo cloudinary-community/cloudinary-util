@@ -1,8 +1,8 @@
 import { z } from "zod";
 
 import { getFormat } from "@cloudinary-util/util";
-import { ImageOptions } from "../types/image";
-import { type TransformationPlugin } from "../types/plugins";
+import type { ImageOptions } from "../types/image.js";
+import type { TransformationPlugin } from "../types/plugins.js";
 
 export const defaultImageProps = {
   defaultImage: z
