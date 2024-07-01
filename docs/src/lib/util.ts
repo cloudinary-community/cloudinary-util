@@ -8,7 +8,7 @@ export function sortByKey(
   key: string,
   type: string = "asc"
 ) {
-  function compare(a: any, b: any) {
+  function compare(a: object, b: object) {
     let keyA = a[key];
     let keyB = b[key];
 

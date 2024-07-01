@@ -28,8 +28,8 @@ export interface CloudinaryVideoPlayerOptions
   fluid?: boolean;
   fontFace?: string;
   hideContextMenu?: boolean;
-  interactionAreas?: any; // Used "any" cause this fetaure is still in beta
-  playbackRates?: Array<any>;
+  interactionAreas?: unknown; // Used "any" cause this fetaure is still in beta
+  playbackRates?: Array<unknown>;
   playlistWidget?: {
     direction?: string;
     total?: string;
@@ -45,11 +45,11 @@ export interface CloudinaryVideoPlayerOptions
   autoplayMode?: string;
   autoShowRecommendations?: boolean;
   loop?: boolean;
-  maxTries?: Number;
+  maxTries?: number;
   muted?: boolean;
   pictureInPictureToggle?: boolean;
   playedEventPercents?: number[];
-  playedEventTimes?: null | Array<any>;
+  playedEventTimes?: null | Array<unknown>;
   playsinline?: boolean;
   videoTimeout?: number;
   withCredentials?: boolean;
@@ -74,7 +74,7 @@ export interface CloudinaryVideoPlayerOptions
     postrollTimeout?: number;
   };
   analytics?: boolean;
-  allowUsageReport?: Boolean;
+  allowUsageReport?: boolean;
 
   // ------------ Delivery ------------
   cloud_name?: string;

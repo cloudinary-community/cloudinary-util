@@ -15,12 +15,12 @@ import type { VideoOptions } from "./video.js";
 type AllOptions = AssetOptions | ImageOptions | VideoOptions;
 
 export interface PluginSettings<Options extends AllOptions = AllOptions> {
-  cldAsset: any;
+  cldAsset: unknown;
   options: Options;
 }
 
 export type PluginFunction<Options extends AllOptions = AllOptions> = (
-  settings: PluginSettings<Options>,
+  settings: PluginSettings<Options>
 ) => PluginResults;
 
 export type AssetType = "image" | "images" | "video" | "videos";

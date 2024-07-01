@@ -4,7 +4,7 @@
  * @param {any} value: The value to encode as a string
  */
 
-export function encodeBase64(value: any) {
+export function encodeBase64(value: unknown) {
   if (typeof btoa === "function") {
     return btoa(value);
   }
@@ -33,9 +33,9 @@ export function objectHasKey<T>(obj: T, key: PropertyKey): key is keyof T {
 export function sortByKey(
   array: Array<object> = [],
   key: string,
-  type: string = "asc",
+  type: string = "asc"
 ) {
-  function compare(a: any, b: any) {
+  function compare(a: object, b: object) {
     let keyA = a[key];
     let keyB = b[key];
 

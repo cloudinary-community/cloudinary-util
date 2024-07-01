@@ -15,7 +15,7 @@ import {
   position as qualifiersPosition,
   primary as qualifiersPrimary,
 } from "../constants/qualifiers.js";
-import { type TransformationPlugin } from "../types/plugins.js";
+import type { TransformationPlugin } from "../types/plugins.js";
 
 const underlayPositionSchema = z.object({
   angle: angle.schema.optional(),
@@ -45,7 +45,7 @@ export const underlaysProps = {
       JSON.stringify({
         text: "Public ID of image that is applied under the base image.",
         url: "https://cloudinary.com/documentation/transformation_reference#l_layer",
-      }),
+      })
     )
     .optional(),
   underlays: z
@@ -54,7 +54,7 @@ export const underlaysProps = {
       JSON.stringify({
         text: "Image layers that are applied under the base image.",
         url: "https://cloudinary.com/documentation/transformation_reference#l_layer",
-      }),
+      })
     )
     .optional(),
 };
@@ -110,7 +110,7 @@ export const underlaysPlugin = {
 
       let layerTransformation = `${typeQualifier}_${publicId.replace(
         /\//g,
-        ":",
+        ":"
       )}`;
 
       // Begin organizing transformations based on what it is and the location
@@ -145,7 +145,7 @@ export const underlaysPlugin = {
             if (!objectHasKey(qualifiersPosition, key)) return;
             const { qualifier } = qualifiersPosition[key as string];
             applied.push(`${qualifier}_${position[key]}`);
-          },
+          }
         );
       }
 

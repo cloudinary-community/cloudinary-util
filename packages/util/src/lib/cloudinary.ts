@@ -2,7 +2,7 @@ const REGEX_VERSION = /\/v\d+\//;
 const REGEX_FORMAT =
   /\.(ai|avif|gif|png|webp|bmp|bw|djvu|dng|ps|ept|eps|eps3|fbx|flif|gif|glb|gltf|heif|heic|ico|indd|jpg|jpe|jpeg|jp2|wdp|jxr|hdp|obj|pdf|ply|png|psd|arw|cr2|svg|tga|tif|tiff|u3ma|usdz|webp|3g2|3gp|avi|flv|m3u8|ts|m2ts|mts|mov|mkv|mp4|mpeg|mpd|mxf|ogv|webm|wmv)$/i;
 const REGEX_URL =
-  /https?:\/\/(?<host>[^\/]+)\/(?<cloudName>[^\/]+)?\/?(?<assetType>image|images|video|videos|raw|files)\/(?<deliveryType>upload|fetch|private|authenticated|sprite|facebook|twitter|youtube|vimeo)?\/?(?<signature>s--([a-zA-Z0-9\_\-]{8}|[a-zA-Z0-9\_\-]{32})--)?\/?(?<transformations>(?:[^_\/]+_[^,\/]+,?\/?)*\/)*(?<version>v\d+|\w{1,2})\/(?<publicId>[^\s]+)$/;
+  /https?:\/\/(?<host>[^/]+)\/(?<cloudName>[^/]+)?\/?(?<assetType>image|images|video|videos|raw|files)\/(?<deliveryType>upload|fetch|private|authenticated|sprite|facebook|twitter|youtube|vimeo)?\/?(?<signature>s--([a-zA-Z0-9_-]{8}|[a-zA-Z0-9_-]{32})--)?\/?(?<transformations>(?:[^_/]+_[^,/]+,?\/?)*\/)*(?<version>v\d+|\w{1,2})\/(?<publicId>[^\s]+)$/;
 const ASSET_TYPES_SEO = ["images", "videos", "files"];
 
 const CLOUDINARY_DEFAULT_HOST = "res.cloudinary.com";
@@ -35,7 +35,7 @@ export function parseUrl(src: string): ParseUrl | undefined {
 
   if (!hasVersion) {
     throw new Error(
-      `Failed to parse URL - Invalid src: Does not include version (Ex: /v1234/)`,
+      `Failed to parse URL - Invalid src: Does not include version (Ex: /v1234/)`
     );
   }
 
@@ -68,7 +68,7 @@ export function parseUrl(src: string): ParseUrl | undefined {
 
   if (parts.host === CLOUDINARY_DEFAULT_HOST && !parts.cloudName) {
     throw new Error(
-      "Failed to parse URL - Invalid src: Cloudinary URL delivered from res.cloudinary.com must include Cloud Name (ex: res.cloudinary.com/<Cloud Name>/image/...)",
+      "Failed to parse URL - Invalid src: Cloudinary URL delivered from res.cloudinary.com must include Cloud Name (ex: res.cloudinary.com/<Cloud Name>/image/...)"
     );
   }
 

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { type TransformationPlugin } from "../types/plugins.js";
+import type { TransformationPlugin } from "../types/plugins.js";
 
 export const versionProps = {
   version: z
@@ -8,7 +8,7 @@ export const versionProps = {
       JSON.stringify({
         text: "Custom version number to apply to asset URL.",
         url: "https://cloudinary.com/documentation/advanced_url_delivery_options#asset_versions",
-      }),
+      })
     )
     .optional(),
 };

@@ -6,7 +6,6 @@ import { recolorProps } from "../plugins/recolor.js";
 import { removeProps } from "../plugins/remove.js";
 import { replaceProps } from "../plugins/replace.js";
 import { restoreProps } from "../plugins/restore.js";
-import { sanitizeProps } from "../plugins/sanitize.js";
 import { zoompanProps } from "../plugins/zoompan.js";
 import { assetOptionsSchema } from "./asset.js";
 

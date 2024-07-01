@@ -2,7 +2,7 @@
  * testColorIsHex
  */
 
-export function testColorIsHex(value: any) {
+export function testColorIsHex(value: unknown) {
   if (typeof value !== "string") return false;
   return !!value.startsWith("#");
 }

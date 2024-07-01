@@ -18,7 +18,7 @@ import {
   text as qualifiersText,
 } from "../constants/qualifiers.js";
 import { constructTransformation } from "../lib/transformations.js";
-import { type TransformationPlugin } from "../types/plugins.js";
+import type { TransformationPlugin } from "../types/plugins.js";
 import type { Qualifier } from "../types/qualifiers.js";
 
 const overlayTextSchema = z.object({
@@ -71,7 +71,7 @@ export const overlaysProps = {
       JSON.stringify({
         text: "Image or text layer that is applied on top of the base image.",
         url: "https://cloudinary.com/documentation/transformation_reference#l_layer",
-      }),
+      })
     )
     .optional(),
   overlays: z
@@ -80,7 +80,7 @@ export const overlaysProps = {
       JSON.stringify({
         text: "Image or text layers that are applied on top of the base image.",
         url: "https://cloudinary.com/documentation/transformation_reference#l_layer",
-      }),
+      })
     )
     .optional(),
   text: z
@@ -89,7 +89,7 @@ export const overlaysProps = {
       JSON.stringify({
         text: "Text to be overlaid on asset.",
         url: "https://cloudinary.com/documentation/image_transformations#transformation_url_structure",
-      }),
+      })
     )
     .optional(),
 };
@@ -156,7 +156,7 @@ export const overlaysPlugin = {
       } else if (hasPublicId) {
         layerTransformation = `${typeQualifier}_${publicId.replace(
           /\//g,
-          ":",
+          ":"
         )}`;
       } else if (hasUrl) {
         layerTransformation = `${typeQualifier}_fetch:${encodeBase64(url)}`;
@@ -304,7 +304,7 @@ export const overlaysPlugin = {
         if (typeof text === "object") {
           interface TextOption extends Qualifier {
             key: string;
-            value: any;
+            value: unknown;
             order: number;
           }
 
@@ -360,13 +360,13 @@ export const overlaysPlugin = {
           )?.forEach((character: string) => {
             layerText = layerText?.replace(
               character,
-              specialCharacters[character],
+              specialCharacters[character]
             );
           });
         }
 
         layerTransformation = `${layerTransformation}:${textTransformations.join(
-          "_",
+          "_"
         )}:${layerText}`;
       }
 

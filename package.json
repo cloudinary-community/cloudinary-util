@@ -3,7 +3,7 @@
   "scripts": {
     "build": "turbo run build",
     "dev": "turbo run dev --no-cache --continue",
-    "lint": "eslint .",
+    "lint": "eslint --max-warnings=0 .",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "release": "turbo run build --filter=docs^... && turbo run semantic-release --concurrency=1",
@@ -17,6 +17,8 @@
     "eslint-plugin-import": "^2.29.1",
     "eslint-define-config": "^2.1.0",
     "eslint-config-prettier": "^9.1.0",
+    "eslint-config-next": "^14.2.4",
+    "eslint-plugin-only-warn": "^1.1.0",
     "@typescript-eslint/eslint-plugin": "^7.13.1",
     "@typescript-eslint/parser": "^7.13.1",
     "@colbyfayock/semantic-release-pnpm": "^1.0.7",
@@ -26,7 +28,9 @@
     "semantic-release-monorepo": "^7.0.5",
     "tsup": "^8.1.0",
     "typescript": "^5.5.2",
-    "vitest": "^1.6.0"
+    "vitest": "^1.6.0",
+    "@babel/core": "^7.20.12",
+    "@babel/preset-env": "^7.20.2"
   },
   "packageManager": "pnpm@9.1.4"
 }

@@ -1,8 +1,8 @@
 import { objectHasKey, parseUrl, type ParseUrl } from "@cloudinary-util/util";
 import {
   Cloudinary,
-  CloudinaryImage,
-  CloudinaryVideo,
+  type CloudinaryImage,
+  type CloudinaryVideo,
 } from "@cloudinary/url-gen";
 import { z } from "zod";
 
@@ -167,7 +167,9 @@ export function constructCloudinaryUrl({
       publicId = parts?.publicId;
       parsedOptions.seoSuffix = parts?.seoSuffix;
       parsedOptions.version = parts?.version;
-    } catch (e) {}
+    } catch (e) {
+      // ignore
+    }
   }
 
   if (!publicId) {
@@ -186,7 +188,7 @@ export function constructCloudinaryUrl({
 
   // Begin creating a new Cloudinary image instance and configure
 
-  let cldAsset: any = undefined;
+  let cldAsset: unknown = undefined;
 
   if (["image", "images"].includes(options.assetType)) {
     cldAsset = cld.image(publicId);
