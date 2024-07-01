@@ -1,9 +1,12 @@
-import Head from 'next/head';
-import { Callout, Steps, Tab, Tabs } from 'nextra-theme-docs';
+import Head from "next/head";
+import { Callout, Steps, Tab, Tabs } from "nextra-theme-docs";
 
 <Head>
   <title>Installation - Next Cloudinary</title>
-  <meta name="og:title" content="Installing Next Cloudinary - Next Cloudinary" />
+  <meta
+    name="og:title"
+    content="Installing Next Cloudinary - Next Cloudinary"
+  />
   <meta name="og:url" content={`https://next.cloudinary.dev/installation`} />
 </Head>
 
@@ -15,28 +18,16 @@ import { Callout, Steps, Tab, Tabs } from 'nextra-theme-docs';
 
 ### Installation
 
-<Tabs items={['npm', 'pnpm', 'yarn']}>
-  <Tab>
-    ```ansi copy
-    npm install @cloudinary-util/url-loader
-    ```
-  </Tab>
-  <Tab>
-    ```ansi copy
-    pnpm install @cloudinary-util/url-loader
-    ```
-  </Tab>
-  <Tab>
-    ```ansi copy
-    yarn add @cloudinary-util/url-loader
-    ```
-  </Tab>
+<Tabs items={["npm", "pnpm", "yarn"]}>
+  <Tab>```ansi copy npm install @cloudinary-util/url-loader ```</Tab>
+  <Tab>```ansi copy pnpm install @cloudinary-util/url-loader ```</Tab>
+  <Tab>```ansi copy yarn add @cloudinary-util/url-loader ```</Tab>
 </Tabs>
 
 ### Import the Dependency
 
 ```jsx copy
-import { constructCloudinaryUrl } from '@cloudinary-util/url-loader';
+import { constructCloudinaryUrl } from "@cloudinary-util/url-loader";
 ```
 
 ### Create a Cloudinary URL
@@ -44,20 +35,24 @@ import { constructCloudinaryUrl } from '@cloudinary-util/url-loader';
 ```jsx copy
 const url = constructCloudinaryUrl({
   options: {
-    src: 'my-public-id',
+    src: "my-public-id",
     width: 800,
-    height: 600
+    height: 600,
   },
   config: {
     cloud: {
-      cloudName: 'my-cloud'
-    }
-  }
+      cloudName: "my-cloud",
+    },
+  },
 });
 ```
 
 <Callout emoji={false}>
-Don't have a Cloudinary account? <a href="https://cloudinary.com/users/register_free?utm_campaign=devx_cloudinaryutil&utm_medium=referral&utm_source=cloudinaryutil">Sign up for free</a> on cloudinary.com!
+  Don't have a Cloudinary account?{" "}
+  <a href="https://cloudinary.com/users/register_free?utm_campaign=devx_cloudinaryutil&utm_medium=referral&utm_source=cloudinaryutil">
+    Sign up for free
+  </a>{" "}
+  on cloudinary.com!
 </Callout>
 
 </Steps>
