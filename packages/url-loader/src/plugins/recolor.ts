@@ -1,7 +1,7 @@
 import { z } from "zod";
 import { promptArrayToString } from "../lib/transformations.js";
 import type { ImageOptions } from "../types/image.js";
-import { type TransformationPlugin } from "../types/plugins.js";
+import type { TransformationPlugin } from "../types/plugins.js";
 
 const imageOptionsRecolorPromptSchema = z.union([
   z.string(),
@@ -21,7 +21,7 @@ export const recolorProps = {
       JSON.stringify({
         text: "Uses generative AI to recolor parts of your image, maintaining the relative shading.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_gen_recolor",
-      }),
+      })
     )
     .optional(),
 };

@@ -1,5 +1,5 @@
 import { z } from "zod";
-import { type TransformationPlugin } from "../types/plugins.js";
+import type { TransformationPlugin } from "../types/plugins.js";
 
 const RawTransformationSchema = z.string();
 type RawTransformation = z.infer<typeof RawTransformationSchema>;
@@ -11,7 +11,7 @@ export const rawTransformationsProps = {
       JSON.stringify({
         text: "Array of transformation parameters using the Cloudinary URL API to apply to an asset.",
         url: "https://cloudinary.com/documentation/transformation_reference",
-      }),
+      })
     )
     .optional(),
 };

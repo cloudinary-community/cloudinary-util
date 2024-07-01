@@ -33,6 +33,7 @@ module.exports = defineConfig({
       "warn",
       { fixStyle: "inline-type-imports" },
     ],
+    "@typescript-eslint/no-import-type-side-effects": "warn",
     "import/no-duplicates": ["warn", { "prefer-inline": true }],
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-explicit-any": "off",

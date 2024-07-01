@@ -16,6 +16,9 @@
     "paths": {
       "@cloudinary-util/types": ["./packages/types/src/index.ts"],
       "@cloudinary-util/url-loader": ["./packages/url-loader/src/index.ts"],
+      "@cloudinary-util/url-loader/schema": [
+        "./packages/url-loader/src/schema.ts"
+      ],
       "@cloudinary-util/util": ["./packages/util/src/index.ts"]
     }
   },

@@ -1,6 +1,6 @@
 import { z } from "zod";
 import type { ImageOptions } from "../types/image.js";
-import { type TransformationPlugin } from "../types/plugins.js";
+import type { TransformationPlugin } from "../types/plugins.js";
 
 export const sanitizeProps = {
   sanitize: z

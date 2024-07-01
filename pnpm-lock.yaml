@@ -8,6 +8,9 @@ importers:
 
   .:
     devDependencies:
+      '@arktype/fs':
+        specifier: ^0.0.20
+        version: 0.0.20
       '@babel/core':
         specifier: ^7.20.12
         version: 7.20.12
@@ -59,6 +62,9 @@ importers:
       tsup:
         specifier: ^8.1.0
         version: 8.1.0(postcss@8.4.33)(typescript@5.5.2)
+      tsx:
+        specifier: ^4.16.0
+        version: 4.16.0
       turbo:
         specifier: ^1.7.2
         version: 1.7.2
@@ -131,6 +137,9 @@ importers:
       zod:
         specifier: ^3.22.4
         version: 3.22.4
+      zod-to-ts:
+        specifier: ^1.2.0
+        version: 1.2.0(typescript@5.5.2)(zod@3.22.4)
     devDependencies:
       '@types/node':
         specifier: ^17.0.12
@@ -151,6 +160,9 @@ packages:
   '@ampproject/remapping@2.2.0':
     resolution: {integrity: sha512-qRmjj8nj9qmLTQXXmaR1cck3UXSRMPrbsLJAasZpF+t3riI71BXed5ebIOYwQntykeZuhjsdweEc9BxH5Jc26w==}
     engines: {node: '>=6.0.0'}
+
+  '@arktype/fs@0.0.20':
+    resolution: {integrity: sha512-WnoIFrhiDKnWixd7xmcvFTlP7ZVReT7j37nTbCpieUCsVaUldb38pgQjxdvlJN40UL3kkjxyiYIRmc7BOvgy1A==}
 
   '@babel/code-frame@7.18.6':
     resolution: {integrity: sha512-TDCmlK5eOvH+eH7cdAFlNXeVJqWIQ7gW9tY1GJIpUtFb6CmjVyq2VM3u71bOyR8CRihcCgMUYoDNyLXao3+70Q==}
@@ -4829,6 +4841,11 @@ packages:
       typescript:
         optional: true
 
+  tsx@4.16.0:
+    resolution: {integrity: sha512-MPgN+CuY+4iKxGoJNPv+1pyo5YWZAQ5XfsyobUG+zoKG7IkvCPLZDEyoIb8yLS2FcWci1nlxAqmvPlFWD5AFiQ==}
+    engines: {node: '>=18.0.0'}
+    hasBin: true
+
   turbo-darwin-64@1.7.2:
     resolution: {integrity: sha512-Sml3WR8MSu80W+gS8SnoKNImcDOlIX7zlvezzds65mW11yGniIFfZ18aKWGOm92Nj2SvXCQ2+UmyGghbFaHNmQ==}
     cpu: [x64]
@@ -5247,6 +5264,12 @@ packages:
     peerDependencies:
       zod: ^3.22.4
 
+  zod-to-ts@1.2.0:
+    resolution: {integrity: sha512-x30XE43V+InwGpvTySRNz9kB7qFU8DlyEy7BsSTCHPH1R0QasMmHWZDCzYm6bVXtj/9NNJAZF3jW8rzFvH5OFA==}
+    peerDependencies:
+      typescript: ^4.9.4 || ^5.0.2
+      zod: ^3
+
   zod@3.22.4:
     resolution: {integrity: sha512-iC+8Io04lddc+mVqQ9AZ7OQ2MrUKGN+oIQyq1vemgt46jwCwLfhq7/pwnBnNXXXZb8VTVLKwp9EDkx+ryxIWmg==}
 
@@ -5261,6 +5284,8 @@ snapshots:
     dependencies:
       '@jridgewell/gen-mapping': 0.1.1
       '@jridgewell/trace-mapping': 0.3.17
+
+  '@arktype/fs@0.0.20': {}
 
   '@babel/code-frame@7.18.6':
     dependencies:
@@ -10771,6 +10796,13 @@ snapshots:
       - supports-color
       - ts-node
 
+  tsx@4.16.0:
+    dependencies:
+      esbuild: 0.21.5
+      get-tsconfig: 4.7.5
+    optionalDependencies:
+      fsevents: 2.3.3
+
   turbo-darwin-64@1.7.2:
     optional: true
 
@@ -11232,6 +11264,11 @@ snapshots:
 
   zod-to-json-schema@3.22.3(zod@3.22.4):
     dependencies:
+      zod: 3.22.4
+
+  zod-to-ts@1.2.0(typescript@5.5.2)(zod@3.22.4):
+    dependencies:
+      typescript: 5.5.2
       zod: 3.22.4
 
   zod@3.22.4: {}

@@ -11,6 +11,7 @@
     "test:packages": "turbo run build --filter='./packages/*' && turbo run test --filter='./packages/*'"
   },
   "devDependencies": {
+    "@arktype/fs": "^0.0.20",
     "eslint": "^8.57.0",
     "prettier": "^3.3.2",
     "turbo": "^1.7.2",
@@ -30,7 +31,8 @@
     "typescript": "^5.5.2",
     "vitest": "^1.6.0",
     "@babel/core": "^7.20.12",
-    "@babel/preset-env": "^7.20.2"
+    "@babel/preset-env": "^7.20.2",
+    "tsx": "^4.16.0"
   },
   "packageManager": "pnpm@9.1.4"
 }
