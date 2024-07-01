@@ -2,7 +2,6 @@
   "extends": "../../tsconfig.json",
   "compilerOptions": {
     "noErrorTruncation": true,
-    "lib": ["ES2020"],
     "target": "ES2020",
     "types": ["node"]
   },

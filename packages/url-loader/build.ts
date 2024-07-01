@@ -1,4 +1,4 @@
-import { shell } from "@arktype/fs";
+import { fromHere, readFile, shell, walkPaths, writeFile } from "@arktype/fs";
 import { printNode, zodToTs } from "zod-to-ts";
 import { constructUrlPropsSchema } from "./src/schema.js";
 
@@ -8,4 +8,15 @@ const tsTypeSrc = printNode(
   zodToTs(constructUrlPropsSchema, "constructUrlPropsSchema").node
 );
 
-console.log(tsTypeSrc);
+walkPaths(fromHere("dist"), {
+  include: (path) => path.endsWith("ts"),
+}).forEach((path) => {
+  const originalSrc = readFile(path);
+  writeFile(
+    path,
+    originalSrc.replace(
+      "type ConstructUrlProps = z.infer<typeof constructUrlPropsSchema>;",
+      `type ConstructUrlProps = ${tsTypeSrc};`
+    )
+  );
+});
