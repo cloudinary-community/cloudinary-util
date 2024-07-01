@@ -18,5 +18,6 @@
       "@cloudinary-util/url-loader": ["./packages/url-loader/src/index.ts"],
       "@cloudinary-util/util": ["./packages/util/src/index.ts"]
     }
-  }
+  },
+  "exclude": ["**/out", "**/node_modules", "./docs"]
 }

@@ -3,8 +3,7 @@
  * @description Universally returns a base64 encoded string
  * @param {any} value: The value to encode as a string
  */
-
-export function encodeBase64(value: unknown) {
+export function encodeBase64(value: any) {
   if (typeof btoa === "function") {
     return btoa(value);
   }
@@ -35,7 +34,7 @@ export function sortByKey(
   key: string,
   type: string = "asc"
 ) {
-  function compare(a: object, b: object) {
+  function compare(a: any, b: any) {
     let keyA = a[key];
     let keyB = b[key];
 

@@ -304,7 +304,7 @@ export const overlaysPlugin = {
         if (typeof text === "object") {
           interface TextOption extends Qualifier {
             key: string;
-            value: unknown;
+            value: any;
             order: number;
           }
 

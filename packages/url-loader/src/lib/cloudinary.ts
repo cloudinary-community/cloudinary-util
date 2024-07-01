@@ -188,7 +188,7 @@ export function constructCloudinaryUrl({
 
   // Begin creating a new Cloudinary image instance and configure
 
-  let cldAsset: unknown = undefined;
+  let cldAsset: any = undefined;
 
   if (["image", "images"].includes(options.assetType)) {
     cldAsset = cld.image(publicId);

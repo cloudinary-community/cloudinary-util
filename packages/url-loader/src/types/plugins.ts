@@ -15,7 +15,7 @@ import type { VideoOptions } from "./video.js";
 type AllOptions = AssetOptions | ImageOptions | VideoOptions;
 
 export interface PluginSettings<Options extends AllOptions = AllOptions> {
-  cldAsset: unknown;
+  cldAsset: any;
   options: Options;
 }
 
