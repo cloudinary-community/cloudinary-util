@@ -27,7 +27,6 @@ import { underlaysPlugin } from "../plugins/underlays.js";
 import { zoompanPlugin } from "../plugins/zoompan.js";
 
 import { analyticsOptionsSchema } from "../types/analytics.js";
-import { assetOptionsSchema } from "../types/asset.js";
 import { configOptionsSchema } from "../types/config.js";
 import { imageOptionsSchema } from "../types/image.js";
 import { videoOptionsSchema } from "../types/video.js";
@@ -77,6 +76,15 @@ export const transformationPlugins = [
   zoompanPlugin,
 ];
 
+const constructUrlOptionsSchema = z
+  .union([imageOptionsSchema, videoOptionsSchema])
+  .describe(
+    JSON.stringify({
+      text: "Asset options (Image or Video) that define delivery URL including public ID and transformations.",
+      path: "/url-loader/assetoptions",
+    })
+  );
+
 /**
  * constructCloudinaryUrl
  * @description Builds a full Cloudinary URL using transformation plugins specified by options
@@ -101,14 +109,7 @@ export const constructUrlPropsSchema = z.object({
       })
     )
     .optional(),
-  options: z
-    .union([assetOptionsSchema, imageOptionsSchema, videoOptionsSchema])
-    .describe(
-      JSON.stringify({
-        text: "Asset options (Image or Video) that define delivery URL including public ID and transformations.",
-        path: "/url-loader/assetoptions",
-      })
-    ),
+  options: constructUrlOptionsSchema,
 });
 
 export type ConstructUrlProps = z.infer<typeof constructUrlPropsSchema>;
