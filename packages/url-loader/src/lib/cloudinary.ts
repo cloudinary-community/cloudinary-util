@@ -88,7 +88,7 @@ export const constructUrlPropsSchema = z.object({
       JSON.stringify({
         text: "Tech, dependency, and feature identifiers for tracking SDK usage related to Cloudinary.",
         path: "/url-loader/analyticsoptions",
-      })
+      }),
     )
     .optional(),
   config: configOptionsSchema
@@ -97,7 +97,7 @@ export const constructUrlPropsSchema = z.object({
         text: "Configuration parameters for environment and Cloudinary account.",
         url: "https://cloudinary.com/documentation/cloudinary_sdks#configuration_parameters",
         path: "/url-loader/analyticsoptions",
-      })
+      }),
     )
     .optional(),
   options: z
@@ -106,7 +106,7 @@ export const constructUrlPropsSchema = z.object({
       JSON.stringify({
         text: "Asset options (Image or Video) that define delivery URL including public ID and transformations.",
         path: "/url-loader/assetoptions",
-      })
+      }),
     ),
 });
 
@@ -131,7 +131,7 @@ export function constructCloudinaryUrl({
 
   if (typeof options?.src !== "string") {
     throw Error(
-      `Failed to construct Cloudinary URL: Missing source (src) in options.`
+      `Failed to construct Cloudinary URL: Missing source (src) in options.`,
     );
   }
 
@@ -180,7 +180,7 @@ export function constructCloudinaryUrl({
     (key) => {
       if (objectHasKey(options, key)) return;
       options[key] = parsedOptions[key];
-    }
+    },
   );
 
   // Begin creating a new Cloudinary image instance and configure
@@ -215,8 +215,8 @@ export function constructCloudinaryUrl({
         if (attemptedUse) {
           console.warn(
             `One of the following props [${pluginProps.join(
-              ", "
-            )}] was used with an unsupported asset type [${options?.assetType}]`
+              ", ",
+            )}] was used with an unsupported asset type [${options?.assetType}]`,
           );
         }
         return;
@@ -226,8 +226,8 @@ export function constructCloudinaryUrl({
         if (attemptedUse) {
           console.warn(
             `One of the following props [${pluginProps.join(
-              ", "
-            )}] was used that is not supported with Strict Transformations.`
+              ", ",
+            )}] was used that is not supported with Strict Transformations.`,
           );
         }
         return;
@@ -241,7 +241,7 @@ export function constructCloudinaryUrl({
       const { options: pluginOptions } = results || { options: undefined };
 
       Object.assign(pluginEffects, pluginOptions);
-    }
+    },
   );
 
   // We want to perform any resizing at the end of the end of the transformation
@@ -318,7 +318,7 @@ interface SearchAssetRawTransformationsOptions {
 export function searchAssetRawTransformations(
   query: string,
   asset: CloudinaryImage | CloudinaryVideo,
-  options?: SearchAssetRawTransformationsOptions
+  options?: SearchAssetRawTransformationsOptions,
 ) {
   if (typeof asset.transformation === "undefined") return;
 
@@ -332,7 +332,7 @@ export function searchAssetRawTransformations(
         .toString()
         .split("/")
         .flatMap((seg) => seg.split(","));
-    }
+    },
   );
 
   const matches = transformations.filter((transformation) => {

@@ -1,6 +1,9 @@
 import { z } from "zod";
 import * as parameters from "../constants/parameters.js";
-import { type PluginResults, type TransformationPlugin } from "../types/plugins.js";
+import {
+  type PluginResults,
+  type TransformationPlugin,
+} from "../types/plugins.js";
 import { normalizeNumberParameter } from "../lib/transformations.js";
 
 const cropsAspectRatio = ["auto", "crop", "fill", "lfill", "fill_pad", "thumb"];
@@ -219,8 +222,8 @@ function collectTransformations(collectOptions: CropOptions) {
     if (gravity === "auto" && !cropsGravityAuto.includes(crop)) {
       console.warn(
         `Auto gravity can only be used with crop modes: ${cropsGravityAuto.join(
-          ", "
-        )}. Not applying gravity.`
+          ", ",
+        )}. Not applying gravity.`,
       );
     } else {
       transformations.push(`g_${gravity}`);
@@ -233,8 +236,8 @@ function collectTransformations(collectOptions: CropOptions) {
     if (zoom === "auto" && !cropsWithZoom.includes(crop)) {
       console.warn(
         `Zoom can only be used with crop modes: ${cropsWithZoom.join(
-          ", "
-        )}. Not applying zoom.`
+          ", ",
+        )}. Not applying zoom.`,
       );
     } else {
       transformations.push(`z_${zoom}`);

@@ -21,7 +21,7 @@ export const recolorProps = {
       JSON.stringify({
         text: "Uses generative AI to recolor parts of your image, maintaining the relative shading.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_gen_recolor",
-      })
+      }),
     )
     .optional(),
 };

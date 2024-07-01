@@ -21,7 +21,7 @@ export const imageOptionsSchema = assetOptionsSchema.merge(
     ...replaceProps,
     ...restoreProps,
     ...zoompanProps,
-  })
+  }),
 );
 
 type _ImageOptions = z.infer<typeof imageOptionsSchema>;

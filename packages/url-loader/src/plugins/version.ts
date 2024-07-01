@@ -8,7 +8,7 @@ export const versionProps = {
       JSON.stringify({
         text: "Custom version number to apply to asset URL.",
         url: "https://cloudinary.com/documentation/advanced_url_delivery_options#asset_versions",
-      })
+      }),
     )
     .optional(),
 };

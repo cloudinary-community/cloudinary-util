@@ -9,7 +9,7 @@ export const enhanceProps = {
       JSON.stringify({
         text: "Uses AI to analyze an image and make adjustments to enhance the appeal of the image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_enhance",
-      })
+      }),
     )
     .optional(),
 };

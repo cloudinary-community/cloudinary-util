@@ -8,13 +8,13 @@ export type {
   CloudinaryUploadWidgetInstanceMethodOpenOptions,
   CloudinaryUploadWidgetInstanceMethodUpdateOptions,
   CloudinaryUploadWidgetSources,
-  CloudinaryUploadWidgetError
-} from './types/cloudinary-upload-widget';
+  CloudinaryUploadWidgetError,
+} from "./types/cloudinary-upload-widget";
 
-export type { 
+export type {
   CloudinaryVideoPlayer,
   CloudinaryVideoPlayerOptionsLogo,
   CloudinaryVideoPlayerOptions,
   CloudinaryVideoPlayerOptionsColors,
-  CloudinaryVideoPlayerOptionPosterOptions
-} from './types/cloudinary-video-player';
+  CloudinaryVideoPlayerOptionPosterOptions,
+} from "./types/cloudinary-video-player";

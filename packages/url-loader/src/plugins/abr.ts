@@ -9,7 +9,7 @@ export const abrProps = {
       JSON.stringify({
         text: "The streaming profile to apply when delivering a video using adaptive bitrate streaming.",
         url: "https://cloudinary.com/documentation/transformation_reference#sp_streaming_profile",
-      })
+      }),
     )
     .optional(),
 };

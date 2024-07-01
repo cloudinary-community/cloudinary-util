@@ -11,7 +11,7 @@ export const defaultImageProps = {
       JSON.stringify({
         text: "Configures the default image to use in case the given public ID is not available. Must include file extension.",
         url: "https://cloudinary.com/documentation/transformation_reference#d_default_image",
-      })
+      }),
     )
     .optional(),
 };
@@ -26,7 +26,7 @@ export const defaultImagePlugin = {
     if (typeof defaultImage === "string") {
       if (!getFormat(defaultImage)) {
         console.warn(
-          `The defaultImage prop may be missing a format and must include it along with the public ID. (Ex: myimage.jpg)`
+          `The defaultImage prop may be missing a format and must include it along with the public ID. (Ex: myimage.jpg)`,
         );
       }
       const defaultImageId = defaultImage.replace(/\//g, ":");

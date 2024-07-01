@@ -1,5 +1,5 @@
 export interface CloudinaryVideoPlayer {
-  on: Function
+  on: Function;
 }
 
 export interface CloudinaryVideoPlayerOptionsLogo {
@@ -7,7 +7,8 @@ export interface CloudinaryVideoPlayerOptionsLogo {
   logoOnclickUrl?: string;
   showLogo?: boolean;
 }
-export interface CloudinaryVideoPlayerOptions extends CloudinaryVideoPlayerOptionsLogo {
+export interface CloudinaryVideoPlayerOptions
+  extends CloudinaryVideoPlayerOptionsLogo {
   width?: string | number;
   height?: string | number;
   aspectRatio?: string;
@@ -31,7 +32,7 @@ export interface CloudinaryVideoPlayerOptions extends CloudinaryVideoPlayerOptio
   playbackRates?: Array<any>;
   playlistWidget?: {
     direction?: string;
-    total?: string
+    total?: string;
   };
   posterOptions?: CloudinaryVideoPlayerOptionPosterOptions;
   showJumpControls?: boolean;
@@ -62,7 +63,7 @@ export interface CloudinaryVideoPlayerOptions extends CloudinaryVideoPlayerOptio
   sourceTypes?: Array<string>;
   transformation?: Array<object> | object;
 
- // ------------ Ads And Analytics Props ------------
+  // ------------ Ads And Analytics Props ------------
   ads?: {
     adTagUrl?: string;
     adsInPlaylist?: string;
@@ -94,7 +95,6 @@ export interface CloudinaryVideoPlayerOptionsColors {
   base?: string;
   text?: string;
 }
-
 
 export interface CloudinaryVideoPlayerOptionPosterOptions {
   publicId: string;

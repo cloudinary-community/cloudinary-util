@@ -9,7 +9,7 @@ export const restoreProps = {
       JSON.stringify({
         text: "Uses generative AI to restore details in poor quality images or images that may have become degraded through repeated processing and compression.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_gen_restore",
-      })
+      }),
     )
     .optional(),
 };

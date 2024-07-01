@@ -61,7 +61,7 @@ export const effectsProps = {
     .describe(
       JSON.stringify({
         text: "Array of objects specifying transformations to be applied to asset.",
-      })
+      }),
     )
     .optional(),
   ...effectProps,
@@ -117,7 +117,7 @@ export const effectsPlugin = {
             value: options?.[key],
             converters,
           });
-        }
+        },
       );
     }
 

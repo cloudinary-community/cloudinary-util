@@ -9,7 +9,7 @@ export const props = {
       JSON.stringify({
         text: "Runs a sanitizer on SVG images.",
         url: "https://cloudinary.com/documentation/transformation_reference#fl_sanitize",
-      })
+      }),
     )
     .optional(),
 };
