@@ -1,5 +1,4 @@
 import { z } from "zod";
-import { assetOptionsSchema } from "./asset.js";
 import { defaultImageProps } from "../plugins/default-image.js";
 import { enhanceProps } from "../plugins/enhance.js";
 import { fillBackgroundProps } from "../plugins/fill-background.js";
@@ -7,7 +6,9 @@ import { recolorProps } from "../plugins/recolor.js";
 import { removeProps } from "../plugins/remove.js";
 import { replaceProps } from "../plugins/replace.js";
 import { restoreProps } from "../plugins/restore.js";
+import { sanitizeProps } from "../plugins/sanitize.js";
 import { zoompanProps } from "../plugins/zoompan.js";
+import { assetOptionsSchema } from "./asset.js";
 
 export const imageOptionsSchema = assetOptionsSchema.merge(
   z.object({
@@ -21,7 +22,7 @@ export const imageOptionsSchema = assetOptionsSchema.merge(
     ...replaceProps,
     ...restoreProps,
     ...zoompanProps,
-  }),
+  })
 );
 
 type _ImageOptions = z.infer<typeof imageOptionsSchema>;
