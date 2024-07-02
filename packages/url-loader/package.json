@@ -33,11 +33,11 @@
     "@cloudinary-util/types": "workspace:*",
     "@cloudinary-util/util": "workspace:*",
     "@cloudinary/url-gen": "1.15.0",
-    "zod": "^3.22.4",
-    "zod-to-ts": "^1.2.0"
+    "zod": "^3.22.4"
   },
   "devDependencies": {
-    "@types/node": "^17.0.12"
+    "@types/node": "^17.0.12",
+    "zod-to-ts": "^1.2.0"
   },
   "publishConfig": {
     "access": "public"
