@@ -28,7 +28,7 @@ export interface CloudinaryVideoPlayerOptions
   fluid?: boolean;
   fontFace?: string;
   hideContextMenu?: boolean;
-  interactionAreas?: unknown; // Used "any" cause this fetaure is still in beta
+  interactionAreas?: unknown;
   playbackRates?: Array<unknown>;
   playlistWidget?: {
     direction?: string;
