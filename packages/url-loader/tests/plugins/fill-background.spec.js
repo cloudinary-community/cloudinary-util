@@ -1,7 +1,7 @@
-import { describe, it, expect } from 'vitest';
 import { Cloudinary } from '@cloudinary/url-gen';
+import { describe, expect, it } from 'vitest';
 
-import * as fillBackgroundPlugin from '../../src/plugins/fill-background';
+import { fillBackgroundPlugin } from '../../src/plugins/fill-background';
 
 const { plugin } = fillBackgroundPlugin
 
