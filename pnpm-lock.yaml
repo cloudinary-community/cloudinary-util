@@ -137,13 +137,13 @@ importers:
       zod:
         specifier: ^3.22.4
         version: 3.22.4
-      zod-to-ts:
-        specifier: ^1.2.0
-        version: 1.2.0(typescript@5.5.2)(zod@3.22.4)
     devDependencies:
       '@types/node':
         specifier: ^17.0.12
         version: 17.0.45
+      zod-to-ts:
+        specifier: ^1.2.0
+        version: 1.2.0(typescript@5.5.2)(zod@3.22.4)
 
   packages/util:
     devDependencies:
