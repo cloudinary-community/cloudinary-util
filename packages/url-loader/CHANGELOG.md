@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.4.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.3.1...@cloudinary-util/url-loader-v5.4.0-beta.1) (2024-07-09)
+
+
+### Features
+
+* Improve plugin types, modernize monorepo structure ([#161](https://github.com/cloudinary-community/cloudinary-util/issues/161)) ([8ad6066](https://github.com/cloudinary-community/cloudinary-util/commit/8ad60661d4b3c78c08e9dd1939171a689eeb7b08))
+
 # [@cloudinary-util/url-loader-v5.3.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.3.0...@cloudinary-util/url-loader-v5.3.1) (2024-05-24)
 
 ### Bug Fixes
