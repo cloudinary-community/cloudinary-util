@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.1.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.0.5...@cloudinary-util/types-v1.1.0-beta.1) (2024-07-09)
+
+
+### Features
+
+* Improve plugin types, modernize monorepo structure ([#161](https://github.com/cloudinary-community/cloudinary-util/issues/161)) ([8ad6066](https://github.com/cloudinary-community/cloudinary-util/commit/8ad60661d4b3c78c08e9dd1939171a689eeb7b08))
+
 # [@cloudinary-util/types-v1.0.5](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.0.4...@cloudinary-util/types-v1.0.5) (2024-05-23)
 
 ### Bug Fixes
