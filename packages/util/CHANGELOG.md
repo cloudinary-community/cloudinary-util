@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v3.1.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.0.2...@cloudinary-util/util-v3.1.0-beta.1) (2024-07-09)
+
+
+### Features
+
+* Improve plugin types, modernize monorepo structure ([#161](https://github.com/cloudinary-community/cloudinary-util/issues/161)) ([8ad6066](https://github.com/cloudinary-community/cloudinary-util/commit/8ad60661d4b3c78c08e9dd1939171a689eeb7b08))
+
 # [@cloudinary-util/util-v3.0.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.0.1...@cloudinary-util/util-v3.0.2) (2024-05-24)
 
 ### Bug Fixes
