@@ -1,7 +1,7 @@
-import { describe, it, expect } from 'vitest';
 import { Cloudinary } from '@cloudinary/url-gen';
+import { describe, expect, it } from 'vitest';
 
-import * as removeBackgroundPlugin from '../../src/plugins/remove-background';
+import { removeBackgroundPlugin } from '../../src/plugins/remove-background';
 
 const { plugin } = removeBackgroundPlugin
 

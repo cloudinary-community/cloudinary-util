@@ -1,7 +1,7 @@
-import { describe, it, expect } from 'vitest';
 import { Cloudinary } from "@cloudinary/url-gen";
+import { describe, expect, it } from 'vitest';
 
-import * as removePlugin from "../../src/plugins/remove";
+import { removePlugin } from "../../src/plugins/remove";
 
 const { plugin } = removePlugin;
 

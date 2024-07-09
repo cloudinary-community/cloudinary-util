@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
 import { Cloudinary } from '@cloudinary/url-gen';
+import { describe, expect, it } from 'vitest';
 
-import * as effectsPlugin from '../../src/plugins/effects';
+import { effectsPlugin } from '../../src/plugins/effects';
 
-const { plugin, DEFAULT_TEXT_OPTIONS } = effectsPlugin
+const { plugin } = effectsPlugin
 
 const cld = new Cloudinary({
   cloud: {

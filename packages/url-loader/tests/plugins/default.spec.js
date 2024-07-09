@@ -1,9 +1,9 @@
-import { vi, describe, it, expect, afterEach } from 'vitest';
 import { Cloudinary } from '@cloudinary/url-gen';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
-import * as defaultImage from '../../src/plugins/default-image';
+import { defaultImagePlugin } from '../../src/plugins/default-image';
 
-const { plugin } = defaultImage
+const { plugin } = defaultImagePlugin
 
 const cld = new Cloudinary({
   cloud: {

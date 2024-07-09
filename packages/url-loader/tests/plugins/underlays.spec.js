@@ -1,9 +1,9 @@
-import { describe, it, expect } from 'vitest';
 import { Cloudinary } from '@cloudinary/url-gen';
+import { describe, expect, it } from 'vitest';
 
-import * as underlaysPlugin from '../../src/plugins/underlays';
+import { underlaysPlugin } from '../../src/plugins/underlays';
 
-const { plugin, DEFAULT_TEXT_OPTIONS } = underlaysPlugin
+const { plugin } = underlaysPlugin
 
 const cld = new Cloudinary({
   cloud: {
