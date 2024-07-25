@@ -3,6 +3,12 @@
 type CustomURL = `https://${string}.${string}`;
 
 export interface CloudinaryUploadWidgetOptions {
+  // Configuration
+
+  apiKey?: string;
+  cloudName?: string;
+  uploadPreset?: string;
+
   // Widget
 
   encryption?: {
