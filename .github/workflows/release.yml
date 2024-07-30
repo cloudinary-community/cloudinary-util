@@ -24,8 +24,15 @@ jobs:
 
       - run: pnpm install
 
+      - run: pnpm build
+
       - run: pnpm test:packages
 
+      - run: pnpm lint
+
+      - run: pnpm lint:attw
+
+      - run: pnpm lint:publint
   release:
     name: Release
     if: ${{ github.event_name == 'push' && (github.ref_name == 'main' || github.ref_name == 'beta') }}
