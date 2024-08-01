@@ -1,7 +1,7 @@
-import { describe, it, expect } from 'vitest';
 import { Cloudinary } from '@cloudinary/url-gen';
+import { describe, expect, it } from 'vitest';
 
-import * as restorePlugin from '../../src/plugins/restore';
+import { restorePlugin } from '../../src/plugins/restore';
 
 const { plugin } = restorePlugin
 

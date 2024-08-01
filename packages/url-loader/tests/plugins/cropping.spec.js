@@ -1,7 +1,7 @@
-import { describe, it, expect } from 'vitest';
 import { Cloudinary } from '@cloudinary/url-gen';
+import { describe, expect, it } from 'vitest';
 
-import * as croppingPlugin from '../../src/plugins/cropping';
+import { croppingPlugin } from '../../src/plugins/cropping';
 
 const { plugin } = croppingPlugin
 

@@ -1,8 +1,8 @@
-import { describe, it, expect } from 'vitest';
 import { Cloudinary } from '@cloudinary/url-gen';
-import * as zoomPanPlugin from '../../src/plugins/zoompan';
+import { describe, expect, it } from 'vitest';
+import { zoompanPlugin } from '../../src/plugins/zoompan';
 
-const { plugin } = zoomPanPlugin
+const { plugin } = zoompanPlugin
 
 const cld = new Cloudinary({
   cloud: {
