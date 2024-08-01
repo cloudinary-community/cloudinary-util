@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.1.0-beta.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.1.0-beta.1...@cloudinary-util/types-v1.1.0-beta.2) (2024-08-01)
+
+
+### Bug Fixes
+
+* adding config options to upload widget options ([0d979d2](https://github.com/cloudinary-community/cloudinary-util/commit/0d979d261ff1dfdde50d47686decf10e7a5a4a39))
+
 # [@cloudinary-util/types-v1.1.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.0.5...@cloudinary-util/types-v1.1.0-beta.1) (2024-07-09)
 
 # [@cloudinary-util/types-v1.0.6](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.0.5...@cloudinary-util/types-v1.0.6) (2024-07-25)
