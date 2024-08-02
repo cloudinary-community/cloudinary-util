@@ -883,6 +883,10 @@ describe('Cloudinary', () => {
               removeShadow: true
             },
             removeBackground: true,
+            replaceBackground: {
+              prompt: 'space jellyfish',
+              seed: 2
+            },
             restore: true,
             zoompan: true,
           },
@@ -900,6 +904,7 @@ describe('Cloudinary', () => {
           'e_gen_recolor:prompt_duck;to-color_blue;multiple_true',
           `e_background_removal`,
           `e_gen_remove:prompt_apple;multiple_true;remove-shadow_true`,
+          `e_gen_background_replace:prompt_space%20jellyfish;seed_2`,
           `e_gen_restore`,
           `c_${crop},w_${width},h_${height},g_auto,z_${zoom}`,
           `d_${defaultImage}`,

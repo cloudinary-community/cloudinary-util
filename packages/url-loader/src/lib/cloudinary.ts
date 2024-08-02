@@ -20,6 +20,7 @@ import { recolorPlugin } from "../plugins/recolor.js";
 import { removeBackgroundPlugin } from "../plugins/remove-background.js";
 import { removePlugin } from "../plugins/remove.js";
 import { replacePlugin } from "../plugins/replace.js";
+import { replaceBackgroundPlugin } from "../plugins/replace-background.js";
 import { restorePlugin } from "../plugins/restore.js";
 import { sanitizePlugin } from "../plugins/sanitize.js";
 import { seoPlugin } from "../plugins/seo.js";
@@ -48,6 +49,7 @@ export const transformationPlugins = [
   removeBackgroundPlugin,
   removePlugin,
   replacePlugin,
+  replaceBackgroundPlugin,
   restorePlugin,
 
   // Cropping needs to be before any other general transformations
