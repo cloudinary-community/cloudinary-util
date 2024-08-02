@@ -94,7 +94,7 @@ const UPLOAD_WIDGET_EVENTS: { [key: string]: string } = {
 
 export function generateUploadWidgetResultCallback(options: GenerateUploadWidgetResultCallback) {
   return function resultCallback(error: CloudinaryUploadWidgetError, uploadResult: CloudinaryUploadWidgetResults) {
-    if ( error && error !== null ) {
+    if ( error ) {
       if ( typeof options.onError === 'function' ) {
         options.onError(error, uploadResult);
       }
