@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.4.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.3.1...@cloudinary-util/url-loader-v5.4.0-beta.1) (2024-08-02)
+
+
+### Features
+
+* getUploadWidgetOptions, generateSignatureCallback, generateUploadWidgetResultCallback ([#165](https://github.com/cloudinary-community/cloudinary-util/issues/165)) ([4e3adc4](https://github.com/cloudinary-community/cloudinary-util/commit/4e3adc4317022ceb8031cda5372b5419ba8bafe7)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
+
 # [@cloudinary-util/url-loader-v5.4.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.3.1...@cloudinary-util/url-loader-v5.4.0-beta.1) (2024-07-09)
 
 
