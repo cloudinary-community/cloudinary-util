@@ -1,7 +1,7 @@
-import { describe, it, expect } from 'vitest';
 import { Cloudinary } from '@cloudinary/url-gen';
+import { describe, expect, it } from 'vitest';
 
-import * as abrPlugin from '../../src/plugins/abr';
+import { abrPlugin } from '../../src/plugins/abr';
 
 const { plugin } = abrPlugin
 

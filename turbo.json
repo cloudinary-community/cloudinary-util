@@ -11,6 +11,8 @@
       "dependsOn": []
     },
     "lint": {},
+    "lint:attw": {},
+    "lint:publint": {},
     "dev": {
       "cache": false,
       "persistent": true

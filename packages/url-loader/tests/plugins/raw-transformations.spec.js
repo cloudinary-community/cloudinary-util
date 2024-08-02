@@ -1,7 +1,7 @@
-import { describe, it, expect } from 'vitest';
 import { Cloudinary } from '@cloudinary/url-gen';
+import { describe, expect, it } from 'vitest';
 
-import * as rawTransformationsPlugin from '../../src/plugins/raw-transformations';
+import { rawTransformationsPlugin } from '../../src/plugins/raw-transformations';
 
 const { plugin } = rawTransformationsPlugin
 
