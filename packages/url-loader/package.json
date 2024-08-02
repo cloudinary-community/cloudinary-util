@@ -1,6 +1,6 @@
 {
   "name": "@cloudinary-util/url-loader",
-  "version": "5.5.0-beta.2",
+  "version": "5.5.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.cts",
