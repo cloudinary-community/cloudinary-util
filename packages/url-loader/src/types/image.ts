@@ -5,6 +5,7 @@ import { fillBackgroundProps } from "../plugins/fill-background.js";
 import { recolorProps } from "../plugins/recolor.js";
 import { removeProps } from "../plugins/remove.js";
 import { replaceProps } from "../plugins/replace.js";
+import { replaceBackgroundProps } from "../plugins/replace-background.js";
 import { restoreProps } from "../plugins/restore.js";
 import { zoompanProps } from "../plugins/zoompan.js";
 import { assetOptionsSchema } from "./asset.js";
@@ -19,6 +20,7 @@ export const imageOptionsSchema = assetOptionsSchema.merge(
     ...recolorProps,
     ...removeProps,
     ...replaceProps,
+    ...replaceBackgroundProps,
     ...restoreProps,
     ...zoompanProps,
   })
