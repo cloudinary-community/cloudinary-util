@@ -6,14 +6,6 @@ export {
   type ConstructUrlProps
 } from "./lib/cloudinary.js";
 
-// Video Player
-
-export {
-  getVideoPlayerOptions,
-  type GetVideoPlayerOptions,
-  type GetVideoPlayerOptionsLogo
-} from "./lib/video-player.js";
-
 // Upload Widget
 
 export {
@@ -28,6 +20,14 @@ export {
   generateSignatureCallback,
   type GenerateSignatureCallback
 } from './lib/upload.js';
+
+// Video Player
+
+export {
+  getVideoPlayerOptions,
+  type GetVideoPlayerOptions,
+  type GetVideoPlayerOptionsLogo
+} from "./lib/video-player.js";
 
 // Transformation definitions
 
