@@ -76,7 +76,7 @@ export interface GenerateUploadWidgetResultCallback {
   onResult: CloudinaryUploadWidgetResultCallback;
 }
 
-const UPLOAD_WIDGET_EVENTS: { [key: string]: string } = {
+export const UPLOAD_WIDGET_EVENTS: { [key: string]: string } = {
   'abort': 'onAbort',
   'batch-cancelled': 'onBatchCancelled',
   'close': 'onClose',
