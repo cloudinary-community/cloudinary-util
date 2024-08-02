@@ -1,4 +1,4 @@
-import { CloudinaryUploadWidgetOptions } from '@cloudinary-util/types';
+import type { CloudinaryUploadWidgetOptions } from '@cloudinary-util/types';
 
 /**
  * generateSignature

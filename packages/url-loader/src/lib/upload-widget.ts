@@ -1,6 +1,6 @@
-import { CloudinaryUploadWidgetError, CloudinaryUploadWidgetOptions, CloudinaryUploadWidgetResults } from '@cloudinary-util/types';
+import type { CloudinaryUploadWidgetError, CloudinaryUploadWidgetOptions, CloudinaryUploadWidgetResults } from '@cloudinary-util/types';
 
-import { ConfigOptions } from '../types/config';
+import type { ConfigOptions } from '../types/config.js';
 
 /**
  * getUploadWidgetOptions
