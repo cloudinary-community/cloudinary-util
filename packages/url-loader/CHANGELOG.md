@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.5.0-beta.3](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.5.0-beta.2...@cloudinary-util/url-loader-v5.5.0-beta.3) (2024-08-02)
+
+
+### Features
+
+* Generative Replace Background ([#167](https://github.com/cloudinary-community/cloudinary-util/issues/167)) ([4129214](https://github.com/cloudinary-community/cloudinary-util/commit/412921423f69bc7ead546f62543784bce3d30bf6))
+
 # [@cloudinary-util/url-loader-v5.5.0-beta.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.5.0-beta.1...@cloudinary-util/url-loader-v5.5.0-beta.2) (2024-08-02)
 
 
