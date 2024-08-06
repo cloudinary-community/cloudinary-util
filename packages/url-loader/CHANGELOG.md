@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.6.0-beta.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.6.0-beta.1...@cloudinary-util/url-loader-v5.6.0-beta.2) (2024-08-06)
+
+
+### Bug Fixes
+
+* updating enum value to allow for both the list of values and string ([1b4c403](https://github.com/cloudinary-community/cloudinary-util/commit/1b4c403a7b27a1883e7e9aec21c56fbbd099767a))
+
 # [@cloudinary-util/url-loader-v5.6.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.5.0...@cloudinary-util/url-loader-v5.6.0-beta.1) (2024-08-02)
 
 
