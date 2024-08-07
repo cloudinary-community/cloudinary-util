@@ -1,3 +1,15 @@
+# [@cloudinary-util/url-loader-v5.6.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.5.0...@cloudinary-util/url-loader-v5.6.0) (2024-08-07)
+
+
+### Bug Fixes
+
+* falsy check for replacebackground ([5574e39](https://github.com/cloudinary-community/cloudinary-util/commit/5574e39c1d245dbccb52a3e44a1e79eb906df9c0))
+
+
+### Features
+
+* url-loader@5.6.0 ([#166](https://github.com/cloudinary-community/cloudinary-util/issues/166)) ([26736af](https://github.com/cloudinary-community/cloudinary-util/commit/26736afe7c9e32bad971beb273c71a9519c36944)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
+
 # [@cloudinary-util/url-loader-v5.6.0-beta.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.6.0-beta.1...@cloudinary-util/url-loader-v5.6.0-beta.2) (2024-08-06)
 
 
