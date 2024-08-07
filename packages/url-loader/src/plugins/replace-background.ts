@@ -28,7 +28,7 @@ export const replaceBackgroundPlugin = {
     const { cldAsset, options } = settings;
     const { replaceBackground } = options;
 
-    if (replaceBackground === false || typeof replaceBackground === "undefined") return {};
+    if (!replaceBackground || typeof replaceBackground === "undefined") return {};
 
     const properties = [];
 
