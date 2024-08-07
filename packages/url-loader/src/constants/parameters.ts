@@ -89,7 +89,7 @@ export const aspectRatioModesEnum = z.enum([
 const aspectRatioSchema = z.union([
   z.number(),
   aspectRatioModesEnum,
-  z.string(),
+  z.intersection(z.string(), z.object({})) // Quirk to allow enum + string
 ]);
 
 export const aspectRatio = {

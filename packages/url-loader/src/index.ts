@@ -1,32 +1,53 @@
+// URL Construction & Plugins
+
 export {
   constructCloudinaryUrl,
   transformationPlugins,
+  type ConstructUrlProps
 } from "./lib/cloudinary.js";
-export type { ConstructUrlProps } from "./lib/cloudinary.js";
 
-export { getVideoPlayerOptions } from "./lib/video-player.js";
-export type {
-  GetVideoPlayerOptions,
-  GetVideoPlayerOptionsLogo,
+// Upload Widget
+
+export {
+  UPLOAD_WIDGET_EVENTS, generateUploadWidgetResultCallback,
+  getUploadWidgetOptions, type CloudinaryUploadWidgetErrorCallback,
+  type CloudinaryUploadWidgetResultCallback,
+  type GenerateUploadWidgetResultCallback,
+  type GetUploadWidgetOptions
+} from './lib/upload-widget.js';
+
+export {
+  generateSignatureCallback,
+  type GenerateSignatureCallback
+} from './lib/upload.js';
+
+// Video Player
+
+export {
+  getVideoPlayerOptions,
+  type GetVideoPlayerOptions,
+  type GetVideoPlayerOptionsLogo
 } from "./lib/video-player.js";
+
+// Transformation definitions
 
 export { effects, position, primary, text } from "./constants/qualifiers.js";
 
-export type { AssetOptions } from "./types/asset.js";
-export type { ImageOptions } from "./types/image.js";
-export type { VideoOptions } from "./types/video.js";
+// General Types
 
 export type {
   AnalyticsOptions,
-  CloudinaryAnalyticsOptions,
+  CloudinaryAnalyticsOptions
 } from "./types/analytics.js";
+export type { AssetOptions } from "./types/asset.js";
 export type {
-  ConfigOptions,
-  CloudinaryConfigurationOptions,
+  CloudinaryConfigurationOptions, ConfigOptions
 } from "./types/config.js";
+export type { ImageOptions } from "./types/image.js";
 export type {
-  PluginSettings,
   PluginOptions,
-  PluginResults,
+  PluginResults, PluginSettings
 } from "./types/plugins.js";
-export type { Qualifier, QualiferConverters } from "./types/qualifiers.js";
+export type { QualiferConverters, Qualifier } from "./types/qualifiers.js";
+export type { VideoOptions } from "./types/video.js";
+
