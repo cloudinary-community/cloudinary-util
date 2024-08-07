@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.2.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.1.0...@cloudinary-util/types-v1.2.0) (2024-08-07)
+
+
+### Features
+
+* url-loader@5.6.0 ([#166](https://github.com/cloudinary-community/cloudinary-util/issues/166)) ([26736af](https://github.com/cloudinary-community/cloudinary-util/commit/26736afe7c9e32bad971beb273c71a9519c36944)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
+
 # [@cloudinary-util/types-v1.2.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.1.0...@cloudinary-util/types-v1.2.0-beta.1) (2024-08-02)
 
 
