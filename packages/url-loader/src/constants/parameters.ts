@@ -143,7 +143,25 @@ export const format = {
 
 /** Gravity */
 
-const gravitySchema = z.string();
+export type Gravity = z.infer<typeof gravitySchema>;
+
+const gravitySchema = z.enum([
+  "auto",
+  "auto_content_aware",
+  "center",
+  "custom",
+  "east",
+  "face",
+  "face_center",
+  "multi_face",
+  "north",
+  "north_east",
+  "north_west",
+  "south",
+  "south_east",
+  "south_west",
+  "west"
+]);
 
 export const gravity = {
   qualifier: "g",
