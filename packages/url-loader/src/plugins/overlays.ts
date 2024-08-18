@@ -20,6 +20,7 @@ import {
 import { constructTransformation } from "../lib/transformations.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 import type { Qualifier } from "../types/qualifiers.js";
+import { effectsProps } from "./effects.js";
 
 const overlayTextSchema = z.object({
   alignment: z.string().optional(),
@@ -47,7 +48,7 @@ const overlayPositionSchema = z.object({
 const overlaySchema = z.object({
   appliedEffects: z.array(z.object({})).optional(),
   appliedFlags: flags.schema.optional(),
-  effects: z.array(z.object({})).optional(),
+  effects: z.array(z.object(effectsProps)).optional(),
   crop: crop.schema.optional(),
   flags: flags.schema.optional(),
   height: height.schema.optional(),
