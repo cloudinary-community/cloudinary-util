@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.3.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.2.0...@cloudinary-util/types-v1.3.0) (2024-08-20)
+
+
+### Features
+
+* adding configuration types ([4478dd4](https://github.com/cloudinary-community/cloudinary-util/commit/4478dd4619cea25a36cd4436e8b855aca1f27701))
+
 # [@cloudinary-util/types-v1.2.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.1.0...@cloudinary-util/types-v1.2.0) (2024-08-07)
 
 
