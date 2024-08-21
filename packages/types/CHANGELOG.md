@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.3.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.3.0...@cloudinary-util/types-v1.3.1) (2024-08-21)
+
+
+### Bug Fixes
+
+* adding dist files to config ([ef9b56e](https://github.com/cloudinary-community/cloudinary-util/commit/ef9b56e64a475e7a479bdac554fa05381cff08a1))
+
 # [@cloudinary-util/types-v1.3.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.2.0...@cloudinary-util/types-v1.3.0) (2024-08-20)
 
 
