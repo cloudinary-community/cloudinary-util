@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.4.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.3.2...@cloudinary-util/types-v1.4.0) (2024-08-21)
+
+
+### Features
+
+* deprecating controlBar in video player as not recommended for use ([429f40a](https://github.com/cloudinary-community/cloudinary-util/commit/429f40a7c546a653181e36e5fc2077fb2e5598e0))
+
 # [@cloudinary-util/types-v1.3.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.3.1...@cloudinary-util/types-v1.3.2) (2024-08-21)
 
 
