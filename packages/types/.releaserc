@@ -42,7 +42,6 @@
     [
       "@colbyfayock/semantic-release-pnpm",
       {
-        "pkgRoot": ".",
         "publishBranch": "main|beta"
       }
     ],
