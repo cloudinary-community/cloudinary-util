@@ -1,4 +1,4 @@
-import { describe, it, expect } from 'vitest';
+import { describe, expect, it } from 'vitest';
 
 import { getVideoPlayerOptions } from '../../src/lib/video-player';
 
@@ -11,13 +11,13 @@ describe('video-player', () => {
           height: '1080',
           src: 'videos/mountain-stars',
         }
-        
+
         const config = {
           cloud: {
             cloudName: 'testcloud'
           }
         };
-  
+
         const expectedOptions = {
           aspectRatio: '1620:1080',
           autoplay: false,
@@ -39,8 +39,85 @@ describe('video-player', () => {
           ],
           width: '1620',
         }
-  
+
         expect(getVideoPlayerOptions(options, config)).toMatchObject(expectedOptions)
+      });
+
+      it('should return create an options object without a width or height', () => {
+        const options = {
+          src: 'videos/mountain-stars',
+        }
+
+        const config = {
+          cloud: {
+            cloudName: 'testcloud'
+          }
+        };
+
+        const expectedOptions = {
+          autoplay: false,
+          autoplayMode: undefined,
+          cloud_name: 'testcloud',
+          controls: true,
+          language: undefined,
+          languages: undefined,
+          loop: false,
+          muted: false,
+          privateCdn: undefined,
+          publicId: 'videos/mountain-stars',
+          secureDistribution: undefined,
+          showLogo: true,
+          transformation: [
+            { quality: 'auto' },
+            undefined
+          ],
+        }
+
+        const playerOptions = getVideoPlayerOptions(options, config);
+
+        expect(playerOptions).toMatchObject(expectedOptions);
+        expect(playerOptions.width).toBeUndefined();
+        expect(playerOptions.height).toBeUndefined();
+        expect(playerOptions.aspectRatio).toBeUndefined();
+      });
+
+      it('should return create an options object with only an aspect ratio', () => {
+        const options = {
+          src: 'videos/mountain-stars',
+          aspectRatio: '16:9'
+        }
+
+        const config = {
+          cloud: {
+            cloudName: 'testcloud'
+          }
+        };
+
+        const expectedOptions = {
+          aspectRatio: options.aspectRatio,
+          autoplay: false,
+          autoplayMode: undefined,
+          cloud_name: 'testcloud',
+          controls: true,
+          language: undefined,
+          languages: undefined,
+          loop: false,
+          muted: false,
+          privateCdn: undefined,
+          publicId: 'videos/mountain-stars',
+          secureDistribution: undefined,
+          showLogo: true,
+          transformation: [
+            { quality: 'auto' },
+            undefined
+          ],
+        }
+
+        const playerOptions = getVideoPlayerOptions(options, config);
+
+        expect(playerOptions).toMatchObject(expectedOptions);
+        expect(playerOptions.width).toBeUndefined();
+        expect(playerOptions.height).toBeUndefined();
       });
 
       it('should configure custom quality', () => {
@@ -50,13 +127,13 @@ describe('video-player', () => {
           src: 'videos/mountain-stars',
           quality: 50,
         }
-        
+
         const config = {
           cloud: {
             cloudName: 'testcloud'
           }
         };
-  
+
         expect(getVideoPlayerOptions(options, config)).toMatchObject({
           transformation: [
             { quality: options.quality },
@@ -65,7 +142,7 @@ describe('video-player', () => {
         })
       });
     })
-    
+
     describe('Playback', () => {
       it('should configure ABR via source types', () => {
         const options = {
@@ -77,13 +154,13 @@ describe('video-player', () => {
           },
           sourceTypes: ['hls'],
         }
-        
+
         const config = {
           cloud: {
             cloudName: 'testcloud'
           }
         };
-    
+
         expect(getVideoPlayerOptions(options, config)).toMatchObject({
           transformation: [
             { quality: 'auto' },
@@ -111,7 +188,7 @@ describe('video-player', () => {
             text: '#0000ff'
           }
         }
-        
+
         const config = {
           cloud: {
             cloudName: 'testcloud'
@@ -134,7 +211,7 @@ describe('video-player', () => {
           src: 'videos/mountain-stars',
           poster: 'string'
         }
-        
+
         const config = {
           cloud: {
             cloudName: 'testcloud'
@@ -155,7 +232,7 @@ describe('video-player', () => {
             tint: 'equalize:80:blue:blueviolet'
           }
         }
-        
+
         const config = {
           cloud: {
             cloudName: 'testcloud'
@@ -177,7 +254,7 @@ describe('video-player', () => {
             tint: 'equalize:80:blue:blueviolet'
           }
         }
-        
+
         const config = {
           cloud: {
             cloudName: 'testcloud'

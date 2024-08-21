@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.6.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.6.0...@cloudinary-util/url-loader-v5.6.1) (2024-08-21)
+
+
+### Bug Fixes
+
+* Fixes undefined aspect ratio `undefined:undefined` with no width or height ([#177](https://github.com/cloudinary-community/cloudinary-util/issues/177)) ([f12adaa](https://github.com/cloudinary-community/cloudinary-util/commit/f12adaaaf21ac63977684eebaf39e0b896e85058)), closes [#176](https://github.com/cloudinary-community/cloudinary-util/issues/176)
+
 # [@cloudinary-util/url-loader-v5.6.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.5.0...@cloudinary-util/url-loader-v5.6.0) (2024-08-07)
 
 
