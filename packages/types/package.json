@@ -16,6 +16,7 @@
   ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --clean",
+    "prepublishOnly": "pnpm build",
     "semantic-release": "semantic-release"
   },
   "publishConfig": {
