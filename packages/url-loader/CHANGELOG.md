@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.7.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.6.1...@cloudinary-util/url-loader-v5.7.0-beta.1) (2024-08-21)
+
+
+### Features
+
+* Using /types to import Config Options ([#178](https://github.com/cloudinary-community/cloudinary-util/issues/178)) ([d3763e6](https://github.com/cloudinary-community/cloudinary-util/commit/d3763e65af42493dfdcd4010cbd0ded96acdd063))
+
 # [@cloudinary-util/url-loader-v5.6.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.6.0...@cloudinary-util/url-loader-v5.6.1) (2024-08-21)
 
 
