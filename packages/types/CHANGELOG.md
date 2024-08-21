@@ -1,3 +1,11 @@
+# [@cloudinary-util/types-v1.3.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.3.1...@cloudinary-util/types-v1.3.2) (2024-08-21)
+
+
+### Bug Fixes
+
+* prepublish build ([b2e84d2](https://github.com/cloudinary-community/cloudinary-util/commit/b2e84d20a8cc97dee42e9ce32822322a7166811d))
+* releaserc ([2d11e72](https://github.com/cloudinary-community/cloudinary-util/commit/2d11e727aeb03bec5138a4dc451b620a814f87b6))
+
 # [@cloudinary-util/types-v1.3.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.3.0...@cloudinary-util/types-v1.3.1) (2024-08-21)
 
 
