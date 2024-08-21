@@ -43,7 +43,6 @@ export function getVideoPlayerOptions(
   const {
     autoplay,
     controls = true,
-    height,
     language,
     languages,
     logo = true,
@@ -53,7 +52,6 @@ export function getVideoPlayerOptions(
     src,
     transformation,
     quality = "auto",
-    width,
     ...otherCldVidPlayerOptions
   } = options;
 
@@ -160,13 +158,14 @@ export function getVideoPlayerOptions(
     loop,
     muted,
     publicId,
-    width,
-    height,
-    aspectRatio: `${width}:${height}`,
     transformation: playerTransformations,
     ...logoOptions,
     ...otherCldVidPlayerOptions,
   };
+
+  if ( playerOptions.width && playerOptions.height && !playerOptions.aspectRatio ) {
+    playerOptions.aspectRatio = `${playerOptions.width}:${playerOptions.height}`;
+  }
 
   if (typeof poster === "string") {
     // If poster is a string, assume it's either a public ID
