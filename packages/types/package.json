@@ -11,6 +11,9 @@
     }
   },
   "license": "MIT",
+  "files": [
+    "dist/**"
+  ],
   "scripts": {
     "build": "tsup src/index.ts --format esm,cjs --dts --clean",
     "semantic-release": "semantic-release"
