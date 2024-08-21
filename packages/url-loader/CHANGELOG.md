@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.7.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.6.1...@cloudinary-util/url-loader-v5.7.0) (2024-08-21)
+
+
+### Features
+
+* v5.7.0 ([#179](https://github.com/cloudinary-community/cloudinary-util/issues/179)) ([21abfb8](https://github.com/cloudinary-community/cloudinary-util/commit/21abfb8f8c048e9b5335be673c8da1b20a7cc83a))
+
 # [@cloudinary-util/url-loader-v5.7.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.6.1...@cloudinary-util/url-loader-v5.7.0-beta.1) (2024-08-21)
 
 
