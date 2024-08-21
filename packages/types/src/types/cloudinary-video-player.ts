@@ -17,6 +17,9 @@ export interface CloudinaryVideoPlayerOptions
   aiHighlightsGraph?: boolean;
   bigPlayButton?: boolean | string;
   colors?: CloudinaryVideoPlayerOptionsColors;
+  /**
+   * @deprecated use top level options instead
+   */
   controlBar?: {
     /**
      * @deprecated use {@link `pictureInPictureToggle`} instead
