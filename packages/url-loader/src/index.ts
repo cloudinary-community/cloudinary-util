@@ -41,7 +41,7 @@ export type {
 } from "./types/analytics.js";
 export type { AssetOptions } from "./types/asset.js";
 export type {
-  CloudinaryConfigurationOptions, ConfigOptions
+  ConfigOptions
 } from "./types/config.js";
 export type { ImageOptions } from "./types/image.js";
 export type {
