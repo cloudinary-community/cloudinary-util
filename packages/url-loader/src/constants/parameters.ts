@@ -145,25 +145,29 @@ export const format = {
 
 export type Gravity = z.infer<typeof gravitySchema>;
 
-const gravitySchema = z.enum([
-  "auto",
-  "auto_content_aware",
-  "center",
-  "custom",
-  "east",
-  "face",
-  "face_center",
-  "multi_face",
-  "north",
-  "north_east",
-  "north_west",
-  "south",
-  "south_east",
-  "south_west",
-  "west"
+const gravitySchema = z.union([
+  z.enum([
+    "auto",
+    "auto_content_aware",
+    "center",
+    "custom",
+    "east",
+    "face",
+    "face_center",
+    "multi_face",
+    "north",
+    "north_east",
+    "north_west",
+    "south",
+    "south_east",
+    "south_west",
+    "west"
+  ]),
+  // Quirk to allow enum + string
+  z.intersection(z.string(), z.object({}))
 ]);
 
-export const gravity = {
+export const c = {
   qualifier: "g",
   schema: gravitySchema.describe(
     JSON.stringify({
