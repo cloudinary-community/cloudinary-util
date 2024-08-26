@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.7.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.7.0...@cloudinary-util/url-loader-v5.7.1) (2024-08-26)
+
+
+### Bug Fixes
+
+* added all the gravity types as a Zod enum ([#172](https://github.com/cloudinary-community/cloudinary-util/issues/172)) ([d667e24](https://github.com/cloudinary-community/cloudinary-util/commit/d667e249e8644aa2d04ee98a6df7ac8881908207)), closes [#170](https://github.com/cloudinary-community/cloudinary-util/issues/170)
+
 # [@cloudinary-util/url-loader-v5.7.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.6.1...@cloudinary-util/url-loader-v5.7.0) (2024-08-21)
 
 
