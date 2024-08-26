@@ -167,7 +167,7 @@ const gravitySchema = z.union([
   z.intersection(z.string(), z.object({}))
 ]);
 
-export const c = {
+export const gravity = {
   qualifier: "g",
   schema: gravitySchema.describe(
     JSON.stringify({
