@@ -1,5 +1,5 @@
 import { getTransformations } from "@cloudinary-util/util";
-import { boolean, z } from "zod";
+import { z } from "zod";
 import type { TransformationPlugin } from "../types/plugins.js";
 
 export const preserveTransformationsProps = {
@@ -18,7 +18,7 @@ export const preserveTransformationsPlugin = {
   props: preserveTransformationsProps,
   assetTypes: ["image", "images", "video", "videos"],
   plugin: ({ cldAsset, options }) => {
-    let { preserveTransformations = false } = options;
+    const { preserveTransformations = false } = options;
 
     // Try to preserve the original transformations from the Cloudinary URL passed in
     // to the component. This only works if the URL has a version number on it and otherwise
