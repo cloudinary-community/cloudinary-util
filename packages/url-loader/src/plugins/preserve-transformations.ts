@@ -7,8 +7,7 @@ export const preserveTransformationsProps = {
     .boolean()
     .describe(
       JSON.stringify({
-        text: "Array of transformation parameters using the Cloudinary URL API to apply to an asset.",
-        url: "https://cloudinary.com/documentation/transformation_reference",
+        text: "Preserves transformations from a Cloudinary URL when using using a Cloudinary URL as the asset source (src).",
       })
     )
     .optional(),
@@ -21,7 +20,7 @@ export const preserveTransformationsPlugin = {
     const { preserveTransformations = false } = options;
 
     // Try to preserve the original transformations from the Cloudinary URL passed in
-    // to the component. This only works if the URL has a version number on it and otherwise
+    // to the function. This only works if the URL has a version number on it and otherwise
     // will fail to load
 
     if (preserveTransformations) {
