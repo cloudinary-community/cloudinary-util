@@ -20,6 +20,11 @@ export const cropModesEnum = z.enum([
   "imagga_crop",
 ]);
 
+export const extractModesEnum = z.enum([
+  "content",
+  "mask",
+]);
+
 export const flagsEnum = z.enum([
   "animated",
   "any_format",
@@ -116,6 +121,20 @@ export const crop = {
   ),
 };
 
+/** extractMode */
+
+const extractModeSchema = extractModesEnum;
+
+export const extractMode = {
+  schema: extractModeSchema
+    .default('content')
+    .describe(JSON.stringify({
+      text: "Whether to keep the content of the extracted area, or to replace it with a mask.",
+      url: "https://cloudinary.com/documentation/transformation_reference#e_extract",
+    }),
+  ),
+};
+
 /** Flags */
 
 export const flags = {
@@ -187,6 +206,28 @@ export const height = {
     JSON.stringify({
       text: "A qualifier that determines the height of a transformed asset or an overlay.",
       url: "https://cloudinary.com/documentation/transformation_reference#h_height",
+    }),
+  ),
+};
+
+/** Multiple */
+
+const multipleSchema = z.boolean();
+
+export const multiple = {
+  schema: multipleSchema.describe(
+    JSON.stringify({
+      text: "Should generative AI features detect multiple instances.",
+    }),
+  ),
+};
+
+/** Prompt */
+
+export const prompt = {
+  schema: z.string().describe(
+    JSON.stringify({
+      text: "Natural language descriptions used for generative AI capabilities.",
     }),
   ),
 };
