@@ -35,7 +35,7 @@ export function parseUrl(src: string): ParseUrl | undefined {
 
   if (!hasVersion) {
     throw new Error(
-      `Failed to parse URL - Invalid src: Does not include version (Ex: /v1234/)`
+      `Failed to parse URL - Invalid src: Does not include version (Ex: /v1234/)`,
     );
   }
 
@@ -68,7 +68,7 @@ export function parseUrl(src: string): ParseUrl | undefined {
 
   if (parts.host === CLOUDINARY_DEFAULT_HOST && !parts.cloudName) {
     throw new Error(
-      "Failed to parse URL - Invalid src: Cloudinary URL delivered from res.cloudinary.com must include Cloud Name (ex: res.cloudinary.com/<Cloud Name>/image/...)"
+      "Failed to parse URL - Invalid src: Cloudinary URL delivered from res.cloudinary.com must include Cloud Name (ex: res.cloudinary.com/<Cloud Name>/image/...)",
     );
   }
 
@@ -147,4 +147,39 @@ export function getFormat(src: string) {
 export function normalizeNumberParameter(param: number | string | undefined) {
   if (typeof param !== "string") return param;
   return parseInt(param);
+}
+
+export interface PollForProcessingImageOptions {
+  /**
+   * The image src to check, should be a Cloudinary URL.
+   */
+  src: string;
+}
+
+/**
+ * Poll for an image that hasn't finished processing.
+ * Will call itself recurisvely until an image is found, or it fails to fetch.
+ */
+export async function pollForProcessingImage(
+  options: PollForProcessingImageOptions,
+): Promise<boolean> {
+  try {
+    await new Promise((resolve, reject) => {
+      fetch(options.src).then((res) => {
+        if (!res.ok) {
+          reject(res);
+          return;
+        }
+        resolve(res);
+      });
+    });
+  } catch (e: any) {
+    if (e.status === 423) {
+      return await pollForProcessingImage(options);
+    }
+
+    return false;
+  }
+
+  return true;
 }
