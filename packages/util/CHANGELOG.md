@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v3.3.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.2.0...@cloudinary-util/util-v3.3.0) (2024-08-28)
+
+
+### Features
+
+* add pollForProcessingImage ([#187](https://github.com/cloudinary-community/cloudinary-util/issues/187)) ([8b7a1c7](https://github.com/cloudinary-community/cloudinary-util/commit/8b7a1c7b0a0bae9b32c8fbd8ac53960caf340c94))
+
 # [@cloudinary-util/util-v3.2.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.1.0...@cloudinary-util/util-v3.2.0) (2024-08-07)
 
 
