@@ -43,5 +43,14 @@
   },
   "publishConfig": {
     "access": "public"
-  }
+  },
+  "repository": {
+		"type": "git",
+		"url": "git+https://github.com/cloudinary-community/cloudinary-util.git"
+	},
+	"keywords": [],
+	"bugs": {
+		"url": "https://github.com/cloudinary-community/cloudinary-util/issues"
+	},
+	"homepage": "https://github.com/cloudinary-community/cloudinary-util"
 }
