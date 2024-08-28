@@ -4,6 +4,7 @@ import { effectsProps } from "../plugins/effects.js";
 import { flagsProps } from "../plugins/flags.js";
 import { namedTransformationsProps } from "../plugins/named-transformations.js";
 import { overlaysProps } from "../plugins/overlays.js";
+import { preserveTransformationsProps } from "../plugins/preserve-transformations.js";
 import { rawTransformationsProps } from "../plugins/raw-transformations.js";
 import { removeBackgroundProps } from "../plugins/remove-background.js";
 import { sanitizeProps } from "../plugins/sanitize.js";
@@ -101,6 +102,7 @@ export const assetOptionsSchema = z.object({
   ...flagsProps,
   ...namedTransformationsProps,
   ...overlaysProps,
+  ...preserveTransformationsProps,
   ...rawTransformationsProps,
   ...removeBackgroundProps,
   ...sanitizeProps,

@@ -1,4 +1,4 @@
-import { vi, describe, it, expect, afterEach } from 'vitest';
+import { afterEach, describe, expect, it, vi } from 'vitest';
 
 import { constructCloudinaryUrl } from '../../src/lib/cloudinary';
 
@@ -568,6 +568,36 @@ describe('Cloudinary', () => {
         expect(url).not.toContain(`?_a`);
       });
 
+    });
+
+    /* Raw Transformations */
+
+    describe('preserveTransformations', () => {
+      it('should preserve transformations with additional properties', () => {
+        const cloudName = 'customtestcloud';
+        const publicId = 'turtle';
+        const version = 1234;
+        const transformations = ['c_limit,w_100', 'f_auto', 'q_auto'];
+        const existingUrl = `https://res.cloudinary.com/${cloudName}/image/upload/${transformations.join('/')}/v${version}/${publicId}`;
+
+        const opacity = 12;
+        const shear = '40:10';
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: existingUrl,
+            opacity,
+            effects: [{ shear }],
+            preserveTransformations: true
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        expect(url).toContain(`image/upload/${transformations.join('/')}/o_${opacity}/e_shear:${shear}/v${version}/${publicId}`);
+      });
     });
 
     /* Raw Transformations */
