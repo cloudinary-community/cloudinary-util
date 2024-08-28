@@ -157,7 +157,7 @@ export interface CloudinaryUploadWidgetInfo {
 export interface CloudinaryUploadWidgetInstanceMethods {
   close: (options?: CloudinaryUploadWidgetInstanceMethodCloseOptions) => void;
   destroy: (
-    options?: CloudinaryUploadWidgetInstanceMethodDestroyOptions
+    options?: CloudinaryUploadWidgetInstanceMethodDestroyOptions,
   ) => Promise<void>;
   hide: () => void;
   isDestroyed: () => boolean;
@@ -166,7 +166,7 @@ export interface CloudinaryUploadWidgetInstanceMethods {
   minimize: () => void;
   open: (
     widgetSource?: CloudinaryUploadWidgetSources,
-    options?: CloudinaryUploadWidgetInstanceMethodOpenOptions
+    options?: CloudinaryUploadWidgetInstanceMethodOpenOptions,
   ) => void;
   show: () => void;
   update: (options: CloudinaryUploadWidgetInstanceMethodUpdateOptions) => void;
@@ -221,3 +221,13 @@ export type CloudinaryUploadWidgetError =
     }
   | string
   | null;
+
+export type CloudinaryUploadWidget = CloudinaryUploadWidgetInstanceMethods;
+
+export type CloudinaryCreateUploadWidget = (
+  options: CloudinaryUploadWidgetOptions,
+  callback: (
+    error: CloudinaryUploadWidgetError | null,
+    results: CloudinaryUploadWidgetResults,
+  ) => void,
+) => CloudinaryUploadWidget;
