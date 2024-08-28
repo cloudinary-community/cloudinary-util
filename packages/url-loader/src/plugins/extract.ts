@@ -35,13 +35,15 @@ export const extractPlugin = {
 
     const properties = [];
 
-    if ( typeof extract === 'object' && !Array.isArray(extract) ) {
+    if ( typeof extract === 'string' ) {
+      properties.push(`prompt_${extract}`);
+    } else if ( Array.isArray(extract) ) {
+      properties.push(`prompt_${formatPrompts(extract)}`);
+    } else if ( typeof extract === 'object' && !Array.isArray(extract) ) {
+      const prompt = formatPrompts(extract.prompt);
 
-      if ( typeof extract.prompt === 'string' ) {
-        properties.push(`prompt_${extract.prompt}`);
-      } else if ( Array.isArray(extract.prompt) ) {
-        const prompts = extract.prompt.filter(prompt => typeof prompt === 'string').join(';');
-        properties.push(`prompt_(${prompts})`);
+      if ( prompt ) {
+        properties.push(`prompt_${prompt}`);
       }
 
       if ( extract.invert === true ) {
@@ -55,12 +57,6 @@ export const extractPlugin = {
       if ( extract.multiple === true ) {
         properties.push('multiple_true');
       }
-
-    } else if ( typeof extract === 'string' ) {
-      properties.push(`prompt_${extract}`);
-    } else if ( Array.isArray(extract) ) {
-      const prompts = extract.filter(prompt => typeof prompt === 'string').join(';');
-      properties.push(`prompt_(${prompts})`);
     }
 
     if ( properties.length > 0 ) {
@@ -71,3 +67,17 @@ export const extractPlugin = {
     return {};
   },
 } satisfies TransformationPlugin<ImageOptions>;
+
+/**
+ * formatPrompts
+ */
+
+function formatPrompts(prompt: string | Array<string> | undefined) {
+  if ( typeof prompt === 'string' ) return prompt;
+
+  if ( Array.isArray(prompt) ) {
+    return `(${prompt.filter(prompt => typeof prompt === 'string').join(';')})`;
+  }
+
+  return undefined;
+}
