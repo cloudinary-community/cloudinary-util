@@ -164,23 +164,15 @@ export async function pollForProcessingImage(
   options: PollForProcessingImageOptions,
 ): Promise<boolean> {
   try {
-    await new Promise((resolve, reject) => {
-      fetch(options.src).then((res) => {
-        if (!res.ok) {
-          reject(res);
-          return;
-        }
-        resolve(res);
-      });
-    });
-  } catch (e: any) {
-    if (e.status === 423) {
-      await new Promise((resolve) => setTimeout(resolve, 250));
+    const response = await fetch(options.src);
+
+    if (response.status === 423) {
+      await new Promise((resolve) => setTimeout(resolve, 500));
       return await pollForProcessingImage(options);
     }
 
+    return response.ok;
+  } catch {
     return false;
   }
-
-  return true;
 }
