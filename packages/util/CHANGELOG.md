@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v3.3.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.3.1...@cloudinary-util/util-v3.3.2) (2024-08-28)
+
+
+### Bug Fixes
+
+* update pollForProcessingImage style ([#189](https://github.com/cloudinary-community/cloudinary-util/issues/189)) ([72826a0](https://github.com/cloudinary-community/cloudinary-util/commit/72826a01c5c485f27dc0244f89e2b1ffbb8e3f14))
+
 # [@cloudinary-util/util-v3.3.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.3.0...@cloudinary-util/util-v3.3.1) (2024-08-28)
 
 
