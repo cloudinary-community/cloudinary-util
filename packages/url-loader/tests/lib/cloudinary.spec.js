@@ -902,6 +902,12 @@ describe('Cloudinary', () => {
             // in practice, but this is simply testing that it works applies correctly
 
             enhance: true,
+            extract: {
+              prompt: 'the woman on the left',
+              multiple: true,
+              mode: 'mask', 
+              invert: true
+            },
             recolor: {
               prompt: 'duck',
               to: 'blue',
@@ -931,6 +937,7 @@ describe('Cloudinary', () => {
           assetType,
           `upload`,
           'e_enhance',
+          'e_extract:prompt_the%20woman%20on%20the%20left;invert_true;mode_mask;multiple_true',
           'e_gen_recolor:prompt_duck;to-color_blue;multiple_true',
           `e_background_removal`,
           `e_gen_remove:prompt_apple;multiple_true;remove-shadow_true`,

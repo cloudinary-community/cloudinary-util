@@ -11,6 +11,7 @@ import { croppingPlugin } from "../plugins/cropping.js";
 import { defaultImagePlugin } from "../plugins/default-image.js";
 import { effectsPlugin } from "../plugins/effects.js";
 import { enhancePlugin } from "../plugins/enhance.js";
+import { extractPlugin } from "../plugins/extract.js";
 import { fillBackgroundPlugin } from "../plugins/fill-background.js";
 import { flagsPlugin } from "../plugins/flags.js";
 import { namedTransformationsPlugin } from "../plugins/named-transformations.js";
@@ -46,6 +47,7 @@ export const transformationPlugins = [
   // thus their plugins *must* come first in the chain
 
   enhancePlugin,
+  extractPlugin,
   recolorPlugin,
   removeBackgroundPlugin,
   removePlugin,
