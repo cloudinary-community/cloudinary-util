@@ -175,6 +175,7 @@ export async function pollForProcessingImage(
     });
   } catch (e: any) {
     if (e.status === 423) {
+      await new Promise((resolve) => setTimeout(resolve, 250));
       return await pollForProcessingImage(options);
     }
 
