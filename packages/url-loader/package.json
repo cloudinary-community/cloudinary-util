@@ -1,6 +1,6 @@
 {
   "name": "@cloudinary-util/url-loader",
-  "version": "5.7.1",
+  "version": "5.8.0",
   "type": "module",
   "main": "./dist/index.cjs",
   "types": "./dist/index.d.cts",
@@ -45,12 +45,12 @@
     "access": "public"
   },
   "repository": {
-		"type": "git",
-		"url": "git+https://github.com/cloudinary-community/cloudinary-util.git"
-	},
-	"keywords": [],
-	"bugs": {
-		"url": "https://github.com/cloudinary-community/cloudinary-util/issues"
-	},
-	"homepage": "https://github.com/cloudinary-community/cloudinary-util"
+    "type": "git",
+    "url": "git+https://github.com/cloudinary-community/cloudinary-util.git"
+  },
+  "keywords": [],
+  "bugs": {
+    "url": "https://github.com/cloudinary-community/cloudinary-util/issues"
+  },
+  "homepage": "https://github.com/cloudinary-community/cloudinary-util"
 }

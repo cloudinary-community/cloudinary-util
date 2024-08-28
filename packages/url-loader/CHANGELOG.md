@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.8.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.7.1...@cloudinary-util/url-loader-v5.8.0) (2024-08-28)
+
+
+### Features
+
+* Adds preserveTransformations to URL Loader ([#184](https://github.com/cloudinary-community/cloudinary-util/issues/184)) ([56e7f79](https://github.com/cloudinary-community/cloudinary-util/commit/56e7f79a5f19cda80c4d5a661553741c5f4c181c)), closes [#183](https://github.com/cloudinary-community/cloudinary-util/issues/183)
+
 # [@cloudinary-util/url-loader-v5.7.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.7.0...@cloudinary-util/url-loader-v5.7.1) (2024-08-26)
 
 
