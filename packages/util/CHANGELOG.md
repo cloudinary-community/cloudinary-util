@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v3.3.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.3.0...@cloudinary-util/util-v3.3.1) (2024-08-28)
+
+
+### Bug Fixes
+
+* add delay to pollForProcessingImage ([#188](https://github.com/cloudinary-community/cloudinary-util/issues/188)) ([f720c0f](https://github.com/cloudinary-community/cloudinary-util/commit/f720c0ffaaf5267fc83ec90954f2650dcd5ee88f))
+
 # [@cloudinary-util/util-v3.3.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.2.0...@cloudinary-util/util-v3.3.0) (2024-08-28)
 
 
