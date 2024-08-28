@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.9.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.8.0...@cloudinary-util/url-loader-v5.9.0) (2024-08-28)
+
+
+### Features
+
+* Extract ([#190](https://github.com/cloudinary-community/cloudinary-util/issues/190)) ([3b0896f](https://github.com/cloudinary-community/cloudinary-util/commit/3b0896f1916cd1bd1c76ebd6a1656d6d1e9002fc)), closes [#168](https://github.com/cloudinary-community/cloudinary-util/issues/168)
+
 # [@cloudinary-util/url-loader-v5.8.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.7.1...@cloudinary-util/url-loader-v5.8.0) (2024-08-28)
 
 
