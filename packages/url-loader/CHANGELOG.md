@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.9.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.9.0...@cloudinary-util/url-loader-v5.9.1) (2024-08-30)
+
+
+### Bug Fixes
+
+* updating how config options are exported ([dcffee0](https://github.com/cloudinary-community/cloudinary-util/commit/dcffee02ce906d1edbb8a1bfbe1bd15166af6231))
+
 # [@cloudinary-util/url-loader-v5.9.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.8.0...@cloudinary-util/url-loader-v5.9.0) (2024-08-28)
 
 
