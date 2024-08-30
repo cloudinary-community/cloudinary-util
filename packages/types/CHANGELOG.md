@@ -1,3 +1,15 @@
+# [@cloudinary-util/types-v1.5.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.4.0...@cloudinary-util/types-v1.5.0) (2024-08-30)
+
+
+### Bug Fixes
+
+* top level type import ([933e124](https://github.com/cloudinary-community/cloudinary-util/commit/933e124d92c8b782933d376d5e7bc4d12274c49e))
+
+
+### Features
+
+* adding Cloudinary Resource type ([e3ad47e](https://github.com/cloudinary-community/cloudinary-util/commit/e3ad47ef1718f560de37b3206f20dde7abdab784))
+
 # [@cloudinary-util/types-v1.4.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.3.2...@cloudinary-util/types-v1.4.0) (2024-08-21)
 
 
