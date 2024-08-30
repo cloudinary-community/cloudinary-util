@@ -1,5 +1,5 @@
 export type {
-  CloudinaryResource, CloudinaryResourceResourceType, CloudinaryResourceType
+  CloudinaryResource, CloudinaryResourceAccessMode, CloudinaryResourceResourceType, CloudinaryResourceType
 } from "./types/resources.js";
 
 export type {

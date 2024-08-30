@@ -1,9 +1,10 @@
-export type CloudinaryResourceType = "upload" | "private" | "authenticated";
+export type CloudinaryResourceAccessMode = "public" | "authenticated" | (string & {});
 export type CloudinaryResourceResourceType = "image" | "video" | "raw" | "auto";
+export type CloudinaryResourceType = "upload" | "private" | "authenticated";
 
 export interface CloudinaryResource {
   access_control: Array<string>;
-  access_mode: "public" | "authenticated" | (string & {});
+  access_mode: CloudinaryResourceAccessMode;
   asset_id: string;
   bytes: number;
   context: Record<string, Record<string, string>>;
