@@ -1,4 +1,8 @@
 export type {
+  CloudinaryResource, CloudinaryResourceResourceType, CloudinaryResourceType
+} from "./types/resources.js";
+
+export type {
   CloudinaryUploadWidgetError,
   CloudinaryUploadWidgetInfo,
   CloudinaryUploadWidgetInstanceMethodCloseOptions,

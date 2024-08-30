@@ -1,3 +1,5 @@
+import { type CloudinaryResource } from './resources.js';
+
 // Sourced from: https://cloudinary.com/documentation/upload_widget_reference
 
 type CustomURL = `https://${string}.${string}`;
@@ -120,36 +122,17 @@ export interface CloudinaryUploadWidgetResults {
   info?: string | CloudinaryUploadWidgetInfo;
 }
 
-export interface CloudinaryUploadWidgetInfo {
-  access_mode: "public" | "authenticated";
+export interface CloudinaryUploadWidgetInfo extends CloudinaryResource {
   api_key: string;
-  asset_id: string;
   batchId: string;
-  bytes: number;
-  context: Record<string, Record<string, string>>;
-  created_at: string;
   etag: string;
-  folder: string;
-  format: string;
-  height: number;
   hook_execution: Record<string, unknown>;
   id: string;
-  info: Record<string, unknown>;
   original_filename: string;
   pages: number;
   path: string;
   placeholder: boolean;
-  public_id: string;
-  resource_type: "image" | "raw" | "video" | "auto";
-  secure_url: string;
-  signature: string;
-  tags: string[];
   thumbnail_url: string;
-  type: "upload" | "private" | "authenticated";
-  url: string;
-  version: number;
-  width: number;
-  [key: string]: unknown;
 }
 
 // Instance Methods
