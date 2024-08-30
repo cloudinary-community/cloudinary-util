@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.5.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.0...@cloudinary-util/types-v1.5.1) (2024-08-30)
+
+
+### Bug Fixes
+
+* moving access mode type from resource to its own definition ([7f449fd](https://github.com/cloudinary-community/cloudinary-util/commit/7f449fd6d4e1b94d2c2bcc2859922555bd6f79f8))
+
 # [@cloudinary-util/types-v1.5.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.4.0...@cloudinary-util/types-v1.5.0) (2024-08-30)
 
 
