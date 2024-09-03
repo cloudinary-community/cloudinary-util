@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.10.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.9.1...@cloudinary-util/url-loader-v5.10.0) (2024-09-03)
+
+
+### Features
+
+* Crop by X and Y Coordinates ([#192](https://github.com/cloudinary-community/cloudinary-util/issues/192)) ([091b73d](https://github.com/cloudinary-community/cloudinary-util/commit/091b73db2dd45e523d1c989ef6ca48785ad1e9f5))
+
 # [@cloudinary-util/url-loader-v5.9.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.9.0...@cloudinary-util/url-loader-v5.9.1) (2024-08-30)
 
 
