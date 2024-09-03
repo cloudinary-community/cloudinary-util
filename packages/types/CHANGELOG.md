@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.5.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.1...@cloudinary-util/types-v1.5.2) (2024-09-03)
+
+
+### Bug Fixes
+
+* add more upload widget types ([#191](https://github.com/cloudinary-community/cloudinary-util/issues/191)) ([b1cb91a](https://github.com/cloudinary-community/cloudinary-util/commit/b1cb91a78bb6c4879ee26b37f1fd89392f2c5090))
+
 # [@cloudinary-util/types-v1.5.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.0...@cloudinary-util/types-v1.5.1) (2024-08-30)
 
 
