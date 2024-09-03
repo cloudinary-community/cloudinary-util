@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.5.3](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.2...@cloudinary-util/types-v1.5.3) (2024-09-03)
+
+
+### Bug Fixes
+
+* export the new widget types ([#193](https://github.com/cloudinary-community/cloudinary-util/issues/193)) ([8ec71be](https://github.com/cloudinary-community/cloudinary-util/commit/8ec71be305de51d2d8340ac7346676768aeea57c)), closes [#191](https://github.com/cloudinary-community/cloudinary-util/issues/191)
+
 # [@cloudinary-util/types-v1.5.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.1...@cloudinary-util/types-v1.5.2) (2024-09-03)
 
 
