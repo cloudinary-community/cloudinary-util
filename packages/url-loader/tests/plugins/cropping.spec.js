@@ -66,7 +66,6 @@ describe('Cropping plugin', () => {
         type: 'thumb'
       }
     };
-
     const { options: { resize } } = plugin({ cldAsset: cldImage, options });
     expect(resize).toContain(`c_${options.crop.type},w_${options.crop.width},h_${options.crop.height},g_auto`);
   });
@@ -234,4 +233,72 @@ describe('Cropping plugin', () => {
     const { options: { resize } } = plugin({ cldAsset: cldImage, options });
     expect(resize).toBeUndefined();
   });
+
+  it('should apply coordinates-based cropping with x and y with no default gravity', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      width: 123,
+      height: 321,
+      crop: {
+        type: 'crop',
+        x: 50,
+        y: 100
+      }
+    };
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
+    expect(resize).toBe(`c_${options.crop.type},w_${options.width},h_${options.height},x_${options.crop.x},y_${options.crop.y}`);
+  });
+
+  it('should apply coordinates-based cropping with custom gravity', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      width: 123,
+      height: 321,
+      crop: {
+        type: 'crop',
+        x: 4321,
+        y: 1234,
+        gravity: 'south'
+      }
+    };
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
+    expect(resize).toBe(`c_${options.crop.type},w_${options.width},h_${options.height},x_${options.crop.x},y_${options.crop.y},g_${options.crop.gravity}`);
+  });
+
+  it('should apply coordinates-based cropping with custom width and height', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      width: 123,
+      height: 321,
+      crop: {
+        type: 'crop',
+        x: 100,
+        y: 100,
+        width: 567,
+        height: 765,
+        gravity: 'south'
+      }
+    };
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
+    expect(resize).toBe(`c_${options.crop.type},w_${options.crop.width},h_${options.crop.height},x_${options.crop.x},y_${options.crop.y},g_${options.crop.gravity}`);
+  });
+
+  it('should crop by coordinates in 2 stages with width', () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      width: 900,
+      height: 600,
+      crop: {
+        type: 'fill',
+        x: 5687,
+        y: 6543,
+        source: true
+      }
+    };
+
+    const { options: { resize } } = plugin({ cldAsset: cldImage, options });
+    expect(resize).toContain(`c_limit,w_${options.width}`);
+    expect(cldImage.toURL()).toContain(`image/upload/c_${options.crop.type},w_${options.width},h_${options.height},x_${options.crop.x},y_${options.crop.y}`);
+  });
 });
+

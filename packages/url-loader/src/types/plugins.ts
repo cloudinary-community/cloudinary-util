@@ -6,6 +6,8 @@ import {
   gravity,
   height,
   width,
+  x,
+  y,
   zoom,
 } from "../constants/parameters.js";
 import type { AssetOptions } from "./asset.js";
@@ -39,6 +41,8 @@ export const pluginOptionsSchema = z.object({
   height: height.schema.optional(),
   format: format.schema.optional(),
   resize: z.string().optional(),
+  x: x.schema.optional(),
+  y: y.schema.optional(),
   width: width.schema.optional(),
   zoom: zoom.schema.optional(),
 });
