@@ -140,7 +140,7 @@ export interface CloudinaryUploadWidgetInfo extends CloudinaryResource {
 export interface CloudinaryUploadWidgetInstanceMethods {
   close: (options?: CloudinaryUploadWidgetInstanceMethodCloseOptions) => void;
   destroy: (
-    options?: CloudinaryUploadWidgetInstanceMethodDestroyOptions
+    options?: CloudinaryUploadWidgetInstanceMethodDestroyOptions,
   ) => Promise<void>;
   hide: () => void;
   isDestroyed: () => boolean;
@@ -149,7 +149,7 @@ export interface CloudinaryUploadWidgetInstanceMethods {
   minimize: () => void;
   open: (
     widgetSource?: CloudinaryUploadWidgetSources,
-    options?: CloudinaryUploadWidgetInstanceMethodOpenOptions
+    options?: CloudinaryUploadWidgetInstanceMethodOpenOptions,
   ) => void;
   show: () => void;
   update: (options: CloudinaryUploadWidgetInstanceMethodUpdateOptions) => void;
@@ -204,3 +204,21 @@ export type CloudinaryUploadWidgetError =
     }
   | string
   | null;
+
+/**
+ * A Cloudinary Upload Widget instance.
+ * @see https://cloudinary.com/documentation/upload_widget
+ */
+export type CloudinaryUploadWidget = CloudinaryUploadWidgetInstanceMethods;
+
+/**
+ * This type represents the `window.cloudinary.createUploadWidget` function.
+ * @see https://cloudinary.com/documentation/upload_widget#how_to_set_up_and_integrate_the_upload_widget_into_your_site_or_app
+ */
+export type CloudinaryCreateUploadWidget = (
+  options: CloudinaryUploadWidgetOptions,
+  callback: (
+    error: CloudinaryUploadWidgetError | null,
+    results: CloudinaryUploadWidgetResults,
+  ) => void,
+) => CloudinaryUploadWidget;

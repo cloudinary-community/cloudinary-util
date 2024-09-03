@@ -1,8 +1,13 @@
 export type {
-  CloudinaryResource, CloudinaryResourceAccessMode, CloudinaryResourceResourceType, CloudinaryResourceType
+  CloudinaryResource,
+  CloudinaryResourceAccessMode,
+  CloudinaryResourceResourceType,
+  CloudinaryResourceType,
 } from "./types/resources.js";
 
 export type {
+  CloudinaryCreateUploadWidget,
+  CloudinaryUploadWidget,
   CloudinaryUploadWidgetError,
   CloudinaryUploadWidgetInfo,
   CloudinaryUploadWidgetInstanceMethodCloseOptions,
@@ -12,7 +17,7 @@ export type {
   CloudinaryUploadWidgetInstanceMethods,
   CloudinaryUploadWidgetOptions,
   CloudinaryUploadWidgetResults,
-  CloudinaryUploadWidgetSources
+  CloudinaryUploadWidgetSources,
 } from "./types/cloudinary-upload-widget.js";
 
 export type {
@@ -20,10 +25,12 @@ export type {
   CloudinaryVideoPlayerOptionPosterOptions,
   CloudinaryVideoPlayerOptions,
   CloudinaryVideoPlayerOptionsColors,
-  CloudinaryVideoPlayerOptionsLogo
+  CloudinaryVideoPlayerOptionsLogo,
 } from "./types/cloudinary-video-player.js";
 
 export type {
-  CloudinaryAssetConfiguration, CloudinaryAssetConfigurationAuthToken, CloudinaryAssetConfigurationCloud, CloudinaryAssetConfigurationUrl
+  CloudinaryAssetConfiguration,
+  CloudinaryAssetConfigurationAuthToken,
+  CloudinaryAssetConfigurationCloud,
+  CloudinaryAssetConfigurationUrl,
 } from "./types/configuration.js";
-

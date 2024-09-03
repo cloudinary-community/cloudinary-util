@@ -1,3 +1,24 @@
+# [@cloudinary-util/types-v1.5.3](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.2...@cloudinary-util/types-v1.5.3) (2024-09-03)
+
+
+### Bug Fixes
+
+* export the new widget types ([#193](https://github.com/cloudinary-community/cloudinary-util/issues/193)) ([8ec71be](https://github.com/cloudinary-community/cloudinary-util/commit/8ec71be305de51d2d8340ac7346676768aeea57c)), closes [#191](https://github.com/cloudinary-community/cloudinary-util/issues/191)
+
+# [@cloudinary-util/types-v1.5.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.1...@cloudinary-util/types-v1.5.2) (2024-09-03)
+
+
+### Bug Fixes
+
+* add more upload widget types ([#191](https://github.com/cloudinary-community/cloudinary-util/issues/191)) ([b1cb91a](https://github.com/cloudinary-community/cloudinary-util/commit/b1cb91a78bb6c4879ee26b37f1fd89392f2c5090))
+
+# [@cloudinary-util/types-v1.5.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.0...@cloudinary-util/types-v1.5.1) (2024-08-30)
+
+
+### Bug Fixes
+
+* moving access mode type from resource to its own definition ([7f449fd](https://github.com/cloudinary-community/cloudinary-util/commit/7f449fd6d4e1b94d2c2bcc2859922555bd6f79f8))
+
 # [@cloudinary-util/types-v1.5.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.4.0...@cloudinary-util/types-v1.5.0) (2024-08-30)
 
 
