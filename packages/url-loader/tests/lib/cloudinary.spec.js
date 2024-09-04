@@ -30,7 +30,7 @@ describe('Cloudinary', () => {
           }
         }
       });
-      expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/upload/c_limit,w_100/f_auto/q_auto/turtle`);
+      expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/upload/c_limit,w_100/f_auto/q_auto/v1/turtle`);
     });
 
     it('should create a Cloudinary video URL', () => {
@@ -49,7 +49,7 @@ describe('Cloudinary', () => {
           }
         }
       });
-      expect(url).toContain(`https://res.cloudinary.com/${cloudName}/${assetType}/upload/c_limit,w_100/f_auto/q_auto/turtle`);
+      expect(url).toContain(`https://res.cloudinary.com/${cloudName}/${assetType}/upload/c_limit,w_100/f_auto/q_auto/v1/turtle`);
     });
 
     /* Optimization */
@@ -74,7 +74,7 @@ describe('Cloudinary', () => {
             }
           }
         });
-        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/upload/c_limit,w_100/f_${format}/q_${quality}/turtle`);
+        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/upload/c_limit,w_100/f_${format}/q_${quality}/v1/turtle`);
       });
 
       it('should not include quality or format in URL', () => {
@@ -108,7 +108,7 @@ describe('Cloudinary', () => {
         const publicId = 'myimage';
         const dpr = '2.0';
 
-        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr}/f_auto/q_auto/${publicId}?_a=`;
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr}/f_auto/q_auto/v1/${publicId}?_a=`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -133,7 +133,7 @@ describe('Cloudinary', () => {
         const publicId = 'myimage';
         const dpr = 2;
 
-        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr.toFixed(1)}/f_auto/q_auto/${publicId}?_a=`;
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr.toFixed(1)}/f_auto/q_auto/v1/${publicId}?_a=`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -157,7 +157,7 @@ describe('Cloudinary', () => {
         const publicId = 'myimage';
         const dpr = 'auto';
 
-        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr}/f_auto/q_auto/${publicId}?_a=`;
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr}/f_auto/q_auto/v1/${publicId}?_a=`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -203,7 +203,7 @@ describe('Cloudinary', () => {
             }
           }
         });
-        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_${crop},w_${width},h_${height},g_auto/f_auto/q_auto/${publicId}`);
+        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_${crop},w_${width},h_${height},g_auto/f_auto/q_auto/v1/${publicId}`);
       });
 
       it('should create a Cloudinary URL with a aspect ratio, custom crop, zoom, and default gravity', () => {
@@ -228,7 +228,7 @@ describe('Cloudinary', () => {
           }
         });
 
-        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_${crop},ar_${aspectRatio},g_auto,z_${zoom}/f_auto/q_auto/${publicId}`);
+        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_${crop},ar_${aspectRatio},g_auto,z_${zoom}/f_auto/q_auto/v1/${publicId}`);
       });
 
     });
@@ -254,7 +254,7 @@ describe('Cloudinary', () => {
             }
           }
         });
-        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/f_auto/q_auto/${src}`);
+        expect(url).toContain(`https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/f_auto/q_auto/v1/${src}`);
       });
 
       it('should create a Cloudinary URL from a Cloudinary source', () => {
@@ -481,6 +481,23 @@ describe('Cloudinary', () => {
         // dynamically by SDK and Next.js version
         expect(url).toContain(`/v${version}/`);
       });
+
+      it('should add a default version to a URL', () => {
+        const cloudName = 'customtestcloud';
+
+        const url = constructCloudinaryUrl({
+          options: {
+            src: 'turtle',
+          },
+          config: {
+            cloud: {
+              cloudName
+            }
+          }
+        });
+        
+        expect(url).toContain(`/v1/`);
+      })
     });
 
     /* Analytics */
@@ -619,7 +636,7 @@ describe('Cloudinary', () => {
             }
           }
         });
-        expect(url).toContain(`image/upload/${rawTransformations.join('/')}/f_auto/q_auto/${src}`);
+        expect(url).toContain(`image/upload/${rawTransformations.join('/')}/f_auto/q_auto/v1/${src}`);
       });
 
       it('should not apply f_auto,q_auto if exists in raw transformations', () => {
@@ -639,7 +656,7 @@ describe('Cloudinary', () => {
           }
         });
 
-        expect(url).toContain(`image/upload/${rawTransformations.join('/')}/${src}`);
+        expect(url).toContain(`image/upload/${rawTransformations.join('/')}/v1/${src}`);
       });
 
       it('should not apply f_auto if exists in raw transformations with / joined segments', () => {
@@ -663,7 +680,7 @@ describe('Cloudinary', () => {
           }
         });
 
-        expect(url).toContain(`image/upload/${rawTransformations.join('/')}/c_limit,w_${width}/q_${quality}/${src}`);
+        expect(url).toContain(`image/upload/${rawTransformations.join('/')}/c_limit,w_${width}/q_${quality}/v1/${src}`);
       });
 
     })
@@ -757,7 +774,7 @@ describe('Cloudinary', () => {
             }
           }
         });
-        expect(url).toContain(`${assetType}/upload/f_auto/q_auto/${src}`);
+        expect(url).toContain(`${assetType}/upload/f_auto/q_auto/v1/${src}`);
       });
 
     })
@@ -795,7 +812,7 @@ describe('Cloudinary', () => {
             }
           }
         });
-        expect(url).toContain(`${assetType}/upload/o_${opacity},e_shear:${shear}/e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}/f_auto/q_auto/${src}`);
+        expect(url).toContain(`${assetType}/upload/o_${opacity},e_shear:${shear}/e_cartoonify:${cartoonify},e_gradient_fade,r_${radius}/f_auto/q_auto/v1/${src}`);
     });
 
 
@@ -958,6 +975,7 @@ describe('Cloudinary', () => {
           `c_${crop},w_${width},h_${height},g_auto,z_${zoom}`,
           `f_auto:animated`, // Effect of zoompan
           `q_auto`,
+          'v1',
           src
         ].join('/'));
     });
