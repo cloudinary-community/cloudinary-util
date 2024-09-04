@@ -26,6 +26,8 @@ export type {
   CloudinaryVideoPlayerOptions,
   CloudinaryVideoPlayerOptionsColors,
   CloudinaryVideoPlayerOptionsLogo,
+  CloudinaryVideoPlayerPlaylistByTagOptions,
+  CloudinaryVideoPlayerPlaylistOptions,
 } from "./types/cloudinary-video-player.js";
 
 export type {
