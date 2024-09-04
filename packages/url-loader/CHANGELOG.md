@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.10.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.0...@cloudinary-util/url-loader-v5.10.1) (2024-09-04)
+
+
+### Bug Fixes
+
+* default the version to 1 when constructing a cld url ([#195](https://github.com/cloudinary-community/cloudinary-util/issues/195)) ([204da50](https://github.com/cloudinary-community/cloudinary-util/commit/204da50bb490b53ff5c53b5bdb1e7351a63b58bb)), closes [#181](https://github.com/cloudinary-community/cloudinary-util/issues/181)
+
 # [@cloudinary-util/url-loader-v5.10.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.9.1...@cloudinary-util/url-loader-v5.10.0) (2024-09-03)
 
 
