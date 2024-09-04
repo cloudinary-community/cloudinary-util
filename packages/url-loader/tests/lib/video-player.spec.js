@@ -263,7 +263,7 @@ describe('video-player', () => {
 
         const playerOptions = getVideoPlayerOptions(options, config);
 
-        expect(playerOptions.posterOptions.publicId).toContain(`https://res.cloudinary.com/${config.cloud.cloudName}/image/upload/e_tint:${options.poster.tint}/f_auto/q_auto/${options.poster.src}`);
+        expect(playerOptions.posterOptions.publicId).toContain(`https://res.cloudinary.com/${config.cloud.cloudName}/image/upload/e_tint:${options.poster.tint}/f_auto/q_auto/v1/${options.poster.src}`);
       });
     })
   });
