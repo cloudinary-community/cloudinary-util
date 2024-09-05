@@ -129,9 +129,7 @@ export interface CloudinaryUploadWidgetInfo extends CloudinaryResource {
   hook_execution: Record<string, unknown>;
   id: string;
   original_filename: string;
-  pages: number;
   path: string;
-  placeholder: boolean;
   thumbnail_url: string;
 }
 
