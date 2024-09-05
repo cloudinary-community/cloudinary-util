@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.5.4](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.3...@cloudinary-util/types-v1.5.4) (2024-09-05)
+
+
+### Bug Fixes
+
+* add video player types ([#194](https://github.com/cloudinary-community/cloudinary-util/issues/194)) ([f7f9e6e](https://github.com/cloudinary-community/cloudinary-util/commit/f7f9e6edaaa7963c97ef923653b62af7182c7272))
+
 # [@cloudinary-util/types-v1.5.3](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.2...@cloudinary-util/types-v1.5.3) (2024-09-03)
 
 
