@@ -20,6 +20,7 @@ jobs:
       - uses: actions/setup-node@v2
         with:
           node-version: ${{ matrix.node }}
+          cache: 'pnpm'
 
       - run: pnpm install
 
@@ -50,6 +51,7 @@ jobs:
       - uses: actions/setup-node@v3
         with:
           node-version: ${{ matrix.node }}
+          cache: 'pnpm'
           # https://github.com/pnpm/pnpm/issues/3141
           registry-url: 'https://registry.npmjs.org'
 
