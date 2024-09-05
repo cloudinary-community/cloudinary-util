@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.5.5](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.4...@cloudinary-util/types-v1.5.5) (2024-09-05)
+
+
+### Bug Fixes
+
+* fixing resource type, adding more fields, reorganizing ([466dd1b](https://github.com/cloudinary-community/cloudinary-util/commit/466dd1b9efe702e8630e21d72e77081a010e96a6))
+
 # [@cloudinary-util/types-v1.5.4](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.3...@cloudinary-util/types-v1.5.4) (2024-09-05)
 
 
