@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.5.6](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.5...@cloudinary-util/types-v1.5.6) (2024-09-06)
+
+
+### Bug Fixes
+
+* making resource types optional that aren't potentially always there ([7d0b6ce](https://github.com/cloudinary-community/cloudinary-util/commit/7d0b6ce397a6e01087d96aef2c399a067ec998ee))
+
 # [@cloudinary-util/types-v1.5.5](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.4...@cloudinary-util/types-v1.5.5) (2024-09-05)
 
 
