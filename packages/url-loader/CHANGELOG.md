@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.10.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.1...@cloudinary-util/url-loader-v5.10.2) (2024-09-06)
+
+
+### Bug Fixes
+
+* updating type of radius property to include number ([f5c260f](https://github.com/cloudinary-community/cloudinary-util/commit/f5c260ffe97fb977c9d5bb79251aa77e33ea9b1d))
+
 # [@cloudinary-util/url-loader-v5.10.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.0...@cloudinary-util/url-loader-v5.10.1) (2024-09-04)
 
 
