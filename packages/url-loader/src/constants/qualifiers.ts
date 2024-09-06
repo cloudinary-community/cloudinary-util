@@ -438,7 +438,7 @@ export const effects = {
   },
   radius: {
     qualifier: "r",
-    schema: z.string().describe(
+    schema: z.union([ z.string(), z.number() ]).describe(
       JSON.stringify({
         text: "Rounds the corners of an image or video.",
         url: "https://cloudinary.com/documentation/transformation_reference#r_round_corners",
