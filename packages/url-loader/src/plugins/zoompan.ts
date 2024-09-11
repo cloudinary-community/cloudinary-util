@@ -17,7 +17,7 @@ export const zoompanProps = {
       JSON.stringify({
         text: "Applies zooming and/or panning to an image, resulting in a video or animated image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_zoompan",
-      }),
+      })
     )
     .optional(),
 };

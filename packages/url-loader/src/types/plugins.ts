@@ -1,7 +1,5 @@
 import { z } from "zod";
 import {
-  aspectRatio,
-  crop,
   format,
   gravity,
   height,
@@ -11,6 +9,8 @@ import {
   zoom,
 } from "../constants/parameters.js";
 import type { Preserve } from "../lib/utils.js";
+import { aspectRatio } from "../parameters/aspectRatio.js";
+import { crop } from "../parameters/crop.js";
 import type { AssetOptions } from "./asset.js";
 import type { ImageOptions } from "./image.js";
 import type { VideoOptions } from "./video.js";

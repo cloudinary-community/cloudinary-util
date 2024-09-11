@@ -1,17 +1,10 @@
 import { convertColorHexToRgb, testColorIsHex } from "@cloudinary-util/util";
 import { z } from "zod";
 
+import { aspectRatio } from "../parameters/aspectRatio.js";
+import { crop } from "../parameters/crop.js";
 import type { Qualifier } from "../types/qualifiers.js";
-import {
-  angle,
-  aspectRatio,
-  crop,
-  gravity,
-  height,
-  width,
-  x,
-  y,
-} from "./parameters.js";
+import { angle, gravity, height, width, x, y } from "./parameters.js";
 
 const convertersColors = [
   {
@@ -438,7 +431,7 @@ export const effects = {
   },
   radius: {
     qualifier: "r",
-    schema: z.union([ z.string(), z.number() ]).describe(
+    schema: z.union([z.string(), z.number()]).describe(
       JSON.stringify({
         text: "Rounds the corners of an image or video.",
         url: "https://cloudinary.com/documentation/transformation_reference#r_round_corners",

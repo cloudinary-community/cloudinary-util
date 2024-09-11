@@ -1,6 +1,8 @@
 import { z } from "zod";
 import * as parameters from "../constants/parameters.js";
 import { normalizeNumberParameter } from "../lib/transformations.js";
+import * as aspectRatioJs from "../parameters/aspectRatio.js";
+import * as cropJs from "../parameters/crop.js";
 import type { PluginResults, TransformationPlugin } from "../types/plugins.js";
 
 const cropsAspectRatio = ["auto", "crop", "fill", "lfill", "fill_pad", "thumb"];
@@ -10,8 +12,8 @@ const cropsWithZoom = ["crop", "thumb"];
 const DEFAULT_CROP = "limit";
 
 const cropOptionsSchema = z.object({
-  aspectRatio: parameters.aspectRatio.schema.optional(),
-  type: parameters.crop.schema,
+  aspectRatio: aspectRatioJs.aspectRatio.schema.optional(),
+  type: cropJs.crop.schema,
   gravity: parameters.gravity.schema.optional(),
   height: parameters.height.schema.optional(),
   width: parameters.width.schema.optional(),
@@ -24,13 +26,9 @@ const cropOptionsSchema = z.object({
 type CropOptions = z.infer<typeof cropOptionsSchema>;
 
 export const croppingProps = {
-  aspectRatio: parameters.aspectRatio.schema.optional(),
+  aspectRatio: aspectRatioJs.aspectRatio.schema.optional(),
   crop: z
-    .union([
-      parameters.crop.schema,
-      cropOptionsSchema,
-      z.array(cropOptionsSchema),
-    ])
+    .union([cropJs.crop.schema, cropOptionsSchema, z.array(cropOptionsSchema)])
     .default(DEFAULT_CROP)
     .optional(),
   gravity: parameters.gravity.schema.optional(),
@@ -183,14 +181,17 @@ function collectTransformations(collectOptions: CropOptions) {
 
   const hasDefinedDimensions = height || width;
   const hasValidAspectRatio = aspectRatio && cropsAspectRatio.includes(crop);
-  const hasXCoordinate = typeof x === 'number' || typeof x === 'string';
-  const hasYCoordinate = typeof y === 'number' || typeof y === 'string';
+  const hasXCoordinate = typeof x === "number" || typeof x === "string";
+  const hasYCoordinate = typeof y === "number" || typeof y === "string";
   const hasDefinedCoordinates = hasXCoordinate || hasYCoordinate;
 
   // Only apply a crop if we're defining some type of dimension attribute
   // where the crop would make sense
 
-  if (crop && (hasDefinedDimensions || hasValidAspectRatio || hasDefinedCoordinates)) {
+  if (
+    crop &&
+    (hasDefinedDimensions || hasValidAspectRatio || hasDefinedCoordinates)
+  ) {
     transformations.push(`c_${crop}`);
   }
 
@@ -212,11 +213,11 @@ function collectTransformations(collectOptions: CropOptions) {
     transformations.push(`h_${height}`);
   }
 
-  if ( hasXCoordinate ) {
+  if (hasXCoordinate) {
     transformations.push(`x_${x}`);
   }
 
-  if ( hasYCoordinate ) {
+  if (hasYCoordinate) {
     transformations.push(`y_${y}`);
   }
 
@@ -225,7 +226,7 @@ function collectTransformations(collectOptions: CropOptions) {
   // If the user is providing x or y coordinates, we also don't want
   // to default to auto, as that will skew the intuitive results
 
-  if (!gravity && cropsGravityAuto.includes(crop) && !hasDefinedCoordinates ) {
+  if (!gravity && cropsGravityAuto.includes(crop) && !hasDefinedCoordinates) {
     gravity = "auto";
   }
 

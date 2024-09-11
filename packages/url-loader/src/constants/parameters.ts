@@ -2,28 +2,7 @@ import { z } from "zod";
 
 /** enum */
 
-export const cropModesEnum = z.enum([
-  "auto",
-  "fill",
-  "lfill",
-  "fill_pad",
-  "crop",
-  "thumb",
-  "scale",
-  "fit",
-  "limit",
-  "mfit",
-  "pad",
-  "lpad",
-  "mpad",
-  "imagga_scale",
-  "imagga_crop",
-]);
-
-export const extractModesEnum = z.enum([
-  "content",
-  "mask",
-]);
+export const extractModesEnum = z.enum(["content", "mask"]);
 
 export const flagsEnum = z.enum([
   "animated",
@@ -77,47 +56,7 @@ export const angle = {
     JSON.stringify({
       text: "Rotates or flips an asset by the specified number of degrees or automatically according to its orientation or available metadata.",
       url: "https://cloudinary.com/documentation/transformation_reference#a_angle",
-    }),
-  ),
-};
-
-/** Aspect Ratio */
-
-export const aspectRatioModesEnum = z.enum([
-  "vflip",
-  "hflip",
-  "ignore",
-  "auto_right",
-  "auto_left",
-]);
-
-const aspectRatioSchema = z.union([
-  z.number(),
-  aspectRatioModesEnum,
-  z.intersection(z.string(), z.object({})) // Quirk to allow enum + string
-]);
-
-export const aspectRatio = {
-  qualifier: "ar",
-  schema: aspectRatioSchema.describe(
-    JSON.stringify({
-      text: "Crops or resizes the asset to a new aspect ratio.",
-      url: "https://cloudinary.com/documentation/transformation_reference#ar_aspect_ratio",
-    }),
-  ),
-};
-
-/** Crop */
-
-const cropSchema = cropModesEnum;
-
-export const crop = {
-  qualifier: "c",
-  schema: cropSchema.describe(
-    JSON.stringify({
-      text: "Mode to use when cropping an asset.",
-      url: "https://cloudinary.com/documentation/transformation_reference#c_crop_resize",
-    }),
+    })
   ),
 };
 
@@ -126,12 +65,11 @@ export const crop = {
 const extractModeSchema = extractModesEnum;
 
 export const extractMode = {
-  schema: extractModeSchema
-    .default('content')
-    .describe(JSON.stringify({
+  schema: extractModeSchema.default("content").describe(
+    JSON.stringify({
       text: "Whether to keep the content of the extracted area, or to replace it with a mask.",
       url: "https://cloudinary.com/documentation/transformation_reference#e_extract",
-    }),
+    })
   ),
 };
 
@@ -143,7 +81,7 @@ export const flags = {
     JSON.stringify({
       text: "Alters the regular behavior of another transformation or the overall delivery behavior.",
       url: "https://cloudinary.com/documentation/transformation_reference#fl_flag",
-    }),
+    })
   ),
 };
 
@@ -156,7 +94,7 @@ export const format = {
     JSON.stringify({
       text: "Converts (if necessary) and delivers an asset in the specified format regardless of the file extension used in the delivery URL.",
       url: "https://cloudinary.com/documentation/transformation_reference#f_format",
-    }),
+    })
   ),
 };
 
@@ -180,10 +118,10 @@ const gravitySchema = z.union([
     "south",
     "south_east",
     "south_west",
-    "west"
+    "west",
   ]),
   // Quirk to allow enum + string
-  z.intersection(z.string(), z.object({}))
+  z.intersection(z.string(), z.object({})),
 ]);
 
 export const gravity = {
@@ -192,7 +130,7 @@ export const gravity = {
     JSON.stringify({
       text: "Determines which part of an asset to focus on. Note: Default of auto is applied for supported crop modes only.",
       url: "https://cloudinary.com/documentation/transformation_reference#g_gravity",
-    }),
+    })
   ),
 };
 
@@ -206,7 +144,7 @@ export const height = {
     JSON.stringify({
       text: "A qualifier that determines the height of a transformed asset or an overlay.",
       url: "https://cloudinary.com/documentation/transformation_reference#h_height",
-    }),
+    })
   ),
 };
 
@@ -218,7 +156,7 @@ export const multiple = {
   schema: multipleSchema.describe(
     JSON.stringify({
       text: "Should generative AI features detect multiple instances.",
-    }),
+    })
   ),
 };
 
@@ -228,7 +166,7 @@ export const prompt = {
   schema: z.string().describe(
     JSON.stringify({
       text: "Natural language descriptions used for generative AI capabilities.",
-    }),
+    })
   ),
 };
 
@@ -242,7 +180,7 @@ export const width = {
     JSON.stringify({
       text: "A qualifier that sets the desired width of an asset using a specified value, or automatically based on the available width.",
       url: "https://cloudinary.com/documentation/transformation_reference#w_width",
-    }),
+    })
   ),
 };
 
@@ -254,7 +192,7 @@ export const x = {
     JSON.stringify({
       text: "Adjusts the starting location or offset of the x axis.",
       url: "https://cloudinary.com/documentation/transformation_reference#x_y_coordinates",
-    }),
+    })
   ),
 };
 
@@ -266,7 +204,7 @@ export const y = {
     JSON.stringify({
       text: "Adjusts the starting location or offset of the y axis.",
       url: "https://cloudinary.com/documentation/transformation_reference#x_y_coordinates",
-    }),
+    })
   ),
 };
 
@@ -279,6 +217,6 @@ export const zoom = {
     JSON.stringify({
       text: "Controls how close to crop to the detected coordinates when using face-detection, custom-coordinate, or object-specific gravity.",
       url: "https://cloudinary.com/documentation/transformation_reference#z_zoom",
-    }),
+    })
   ),
 };

@@ -1,6 +1,7 @@
 import { z } from "zod";
-import { crop, gravity } from "../constants/parameters.js";
+import { gravity } from "../constants/parameters.js";
 import { normalizeNumberParameter } from "../lib/transformations.js";
+import { crop } from "../parameters/crop.js";
 import type { ImageOptions } from "../types/image.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
