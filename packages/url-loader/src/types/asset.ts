@@ -15,7 +15,7 @@ import { versionProps } from "../plugins/version.js";
 
 // Asset Options
 
-export const assetOptionsSchema = z.object({
+export const _assetOptionsSchema = z.object({
   assetType: z
     .string()
     .default("image")
@@ -112,6 +112,8 @@ export const assetOptionsSchema = z.object({
   ...versionProps,
 });
 
-const { _output } = assetOptionsSchema;
+const { _output } = _assetOptionsSchema;
 
 export interface AssetOptions extends Preserve<typeof _output> {}
+
+export const assetOptionsSchema: z.ZodType<AssetOptions> = _assetOptionsSchema;

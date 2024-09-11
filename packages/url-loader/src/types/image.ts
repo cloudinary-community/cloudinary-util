@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { Preserve } from "../lib/utils.js";
+import { mergeSchemas, type Preserve } from "../lib/utils.js";
 import { defaultImageProps } from "../plugins/default-image.js";
 import { enhanceProps } from "../plugins/enhance.js";
 import { extractProps } from "../plugins/extract.js";
@@ -12,7 +12,8 @@ import { restoreProps } from "../plugins/restore.js";
 import { zoompanProps } from "../plugins/zoompan.js";
 import { assetOptionsSchema } from "./asset.js";
 
-export const imageOptionsSchema = assetOptionsSchema.merge(
+export const imageOptionsSchema = mergeSchemas(
+  assetOptionsSchema,
   z.object({
     // Spreading plugins instead of extend or merge to avoid excessive schema warning
     // https://github.com/microsoft/TypeScript/issues/34933#issuecomment-1772787785

@@ -41,6 +41,7 @@ import type {
   PluginResults,
   TransformationPlugin,
 } from "../types/plugins.js";
+import type { Preserve } from "./utils.js";
 
 export const transformationPlugins = [
   // Some features *must* be the first transformation applied
@@ -96,7 +97,7 @@ const constructUrlOptionsSchema = z
  * @description Builds a full Cloudinary URL using transformation plugins specified by options
  */
 
-export const constructUrlPropsSchema = z.object({
+const _constructUrlPropsSchema = z.object({
   analytics: z
     .union([analyticsOptionsSchema, z.boolean()])
     .describe(
@@ -118,9 +119,12 @@ export const constructUrlPropsSchema = z.object({
   options: constructUrlOptionsSchema,
 });
 
-const urlProps = constructUrlPropsSchema._output;
+const { _output } = _constructUrlPropsSchema;
 
-export type ConstructUrlProps = typeof urlProps;
+export interface ConstructUrlProps extends Preserve<typeof _output> {}
+
+export const constructUrlPropsSchema: z.ZodType<ConstructUrlProps> =
+  _constructUrlPropsSchema;
 
 export function constructCloudinaryUrl({
   options,

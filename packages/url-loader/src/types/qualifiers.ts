@@ -8,7 +8,7 @@ export const qualifierConvertersSchema = z.object({
 
 export type QualiferConverters = z.infer<typeof qualifierConvertersSchema>;
 
-export const qualifierSchema = z.object({
+const _qualifierSchema = z.object({
   location: z.string().optional(),
   order: z.number().optional(),
   prefix: z.string().optional(),
@@ -17,6 +17,8 @@ export const qualifierSchema = z.object({
   schema: z.any(),
 });
 
-const { _output } = qualifierSchema;
+const { _output } = _qualifierSchema;
 
 export interface Qualifier extends Preserve<typeof _output> {}
+
+export const qualifierSchema: z.ZodType<Qualifier> = _qualifierSchema;
