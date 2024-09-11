@@ -22,13 +22,22 @@ export type CloudinaryResourceDeliveryType =
   | "youtube"
   | (string & {});
 
+export interface CloudinaryResourceContext {
+  custom?: {
+    alt?: string;
+    caption?: string;
+    [key: string]: unknown;
+  };
+  [key: string]: unknown;
+}
+
 export interface CloudinaryResource {
   access_control?: Array<string>;
   access_mode?: CloudinaryResourceAccessMode;
   asset_id: string;
   backup?: boolean;
   bytes: number;
-  context?: object;
+  context?: CloudinaryResourceContext;
   colors?: [string, number][];
   coordinates?: object;
   created_at: string;
