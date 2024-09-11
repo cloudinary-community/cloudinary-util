@@ -1,5 +1,5 @@
 import { z } from "zod";
-import type { Identity } from "../lib/utils.js";
+import type { Preserve } from "../lib/utils.js";
 import { croppingProps } from "../plugins/cropping.js";
 import { effectsProps } from "../plugins/effects.js";
 import { flagsProps } from "../plugins/flags.js";
@@ -112,6 +112,6 @@ export const assetOptionsSchema = z.object({
   ...versionProps,
 });
 
-const assetOptionsType = assetOptionsSchema._output;
+const { _output } = assetOptionsSchema;
 
-export interface AssetOptions extends Identity<typeof assetOptionsType> {}
+export interface AssetOptions extends Preserve<typeof _output> {}

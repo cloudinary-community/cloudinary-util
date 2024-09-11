@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { Preserve } from "../lib/utils.js";
 
 export const qualifierConvertersSchema = z.object({
   convert: z.function().args(z.any()).returns(z.any()),
@@ -16,4 +17,6 @@ export const qualifierSchema = z.object({
   schema: z.any(),
 });
 
-export type Qualifier = z.infer<typeof qualifierSchema>;
+const { _output } = qualifierSchema;
+
+export interface Qualifier extends Preserve<typeof _output> {}

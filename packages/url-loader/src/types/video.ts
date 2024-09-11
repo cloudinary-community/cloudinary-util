@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { Preserve } from "../lib/utils.js";
 import { abrProps } from "../plugins/abr.js";
 import { assetOptionsSchema } from "./asset.js";
 
@@ -10,6 +11,6 @@ export const videoOptionsSchema = assetOptionsSchema.merge(
   })
 );
 
-// declare const videoOptions: typeof videoOptionsSchema._output;
+const { _output } = assetOptionsSchema;
 
-export type VideoOptions = typeof videoOptionsSchema._output;
+export interface VideoOptions extends Preserve<typeof _output> {}

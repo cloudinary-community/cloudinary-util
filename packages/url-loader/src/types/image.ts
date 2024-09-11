@@ -1,4 +1,5 @@
 import { z } from "zod";
+import type { Preserve } from "../lib/utils.js";
 import { defaultImageProps } from "../plugins/default-image.js";
 import { enhanceProps } from "../plugins/enhance.js";
 import { extractProps } from "../plugins/extract.js";
@@ -28,6 +29,6 @@ export const imageOptionsSchema = assetOptionsSchema.merge(
   })
 );
 
-type _ImageOptions = z.infer<typeof imageOptionsSchema>;
+const { _output } = imageOptionsSchema;
 
-export interface ImageOptions extends _ImageOptions {}
+export interface ImageOptions extends Preserve<typeof _output> {}

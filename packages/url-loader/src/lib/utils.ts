@@ -1,1 +1,1 @@
-export type Identity<T> = T;
+export type Preserve<T> = T;

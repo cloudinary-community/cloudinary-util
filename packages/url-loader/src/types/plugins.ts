@@ -10,6 +10,7 @@ import {
   y,
   zoom,
 } from "../constants/parameters.js";
+import type { Preserve } from "../lib/utils.js";
 import type { AssetOptions } from "./asset.js";
 import type { ImageOptions } from "./image.js";
 import type { VideoOptions } from "./video.js";
@@ -47,7 +48,9 @@ export const pluginOptionsSchema = z.object({
   zoom: zoom.schema.optional(),
 });
 
-export type PluginOptions = z.infer<typeof pluginOptionsSchema>;
+const { _output } = pluginOptionsSchema;
+
+export interface PluginOptions extends Preserve<typeof _output> {}
 
 export interface PluginResults {
   options?: PluginOptions;
