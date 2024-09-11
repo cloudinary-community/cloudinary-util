@@ -1,8 +1,9 @@
 import { z } from "zod";
+import { aspectRatio } from "../constants/aspectRatio.js";
+import { crop } from "../constants/crop.js";
 import * as parameters from "../constants/parameters.js";
 import { normalizeNumberParameter } from "../lib/transformations.js";
-import * as aspectRatioJs from "../parameters/aspectRatio.js";
-import * as cropJs from "../parameters/crop.js";
+import type { Preserve } from "../lib/utils.js";
 import type { PluginResults, TransformationPlugin } from "../types/plugins.js";
 
 const cropsAspectRatio = ["auto", "crop", "fill", "lfill", "fill_pad", "thumb"];
@@ -11,9 +12,9 @@ const cropsWithZoom = ["crop", "thumb"];
 
 const DEFAULT_CROP = "limit";
 
-const cropOptionsSchema = z.object({
-  aspectRatio: aspectRatioJs.aspectRatio.schema.optional(),
-  type: cropJs.crop.schema,
+const _cropOptionsSchema = z.object({
+  aspectRatio: aspectRatio.schema.optional(),
+  type: crop.schema,
   gravity: parameters.gravity.schema.optional(),
   height: parameters.height.schema.optional(),
   width: parameters.width.schema.optional(),
@@ -23,14 +24,26 @@ const cropOptionsSchema = z.object({
   source: z.boolean().optional(),
 });
 
-type CropOptions = z.infer<typeof cropOptionsSchema>;
+const { _output } = _cropOptionsSchema;
+
+export interface CropOptions extends Preserve<typeof _output> {}
+
+export const cropOptionsSchema: z.ZodType<CropOptions> = _cropOptionsSchema;
+
+const _cropProp = z
+  .union([crop.schema, cropOptionsSchema, z.array(cropOptionsSchema)])
+  .default(DEFAULT_CROP)
+  .optional();
+
+const { _output: cropPropOutput } = _cropProp;
+
+export type CropProp = typeof cropPropOutput;
+
+export const cropProp: z.ZodType<CropProp> = _cropProp;
 
 export const croppingProps = {
-  aspectRatio: aspectRatioJs.aspectRatio.schema.optional(),
-  crop: z
-    .union([cropJs.crop.schema, cropOptionsSchema, z.array(cropOptionsSchema)])
-    .default(DEFAULT_CROP)
-    .optional(),
+  aspectRatio: aspectRatio.schema.optional(),
+  crop: cropProp,
   gravity: parameters.gravity.schema.optional(),
   zoom: parameters.zoom.schema.optional(),
 };

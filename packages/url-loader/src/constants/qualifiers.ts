@@ -1,9 +1,9 @@
 import { convertColorHexToRgb, testColorIsHex } from "@cloudinary-util/util";
 import { z } from "zod";
 
-import { aspectRatio } from "../parameters/aspectRatio.js";
-import { crop } from "../parameters/crop.js";
 import type { Qualifier } from "../types/qualifiers.js";
+import { aspectRatio } from "./aspectRatio.js";
+import { crop } from "./crop.js";
 import { angle, gravity, height, width, x, y } from "./parameters.js";
 
 const convertersColors = [

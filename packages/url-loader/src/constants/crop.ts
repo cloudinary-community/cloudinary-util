@@ -20,9 +20,9 @@ const _cropModesSchema = z.enum([
 
 const { _output } = _cropModesSchema;
 
-export type CropModesSchema = typeof _output;
+export type CropMode = typeof _output;
 
-const cropModesSchema: z.ZodType<CropModesSchema> = _cropModesSchema;
+const cropModesSchema: z.ZodType<CropMode> = _cropModesSchema;
 
 export const crop = {
   qualifier: "c",

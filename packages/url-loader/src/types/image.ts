@@ -12,7 +12,7 @@ import { restoreProps } from "../plugins/restore.js";
 import { zoompanProps } from "../plugins/zoompan.js";
 import { assetOptionsSchema } from "./asset.js";
 
-export const imageOptionsSchema = mergeSchemas(
+const _imageOptionsSchema = mergeSchemas(
   assetOptionsSchema,
   z.object({
     // Spreading plugins instead of extend or merge to avoid excessive schema warning
@@ -30,6 +30,8 @@ export const imageOptionsSchema = mergeSchemas(
   })
 );
 
-const { _output } = imageOptionsSchema;
+const { _output } = _imageOptionsSchema;
 
 export interface ImageOptions extends Preserve<typeof _output> {}
+
+export const imageOptionsSchema: z.ZodType<ImageOptions> = _imageOptionsSchema;

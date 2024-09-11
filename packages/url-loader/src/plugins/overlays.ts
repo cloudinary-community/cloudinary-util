@@ -1,5 +1,6 @@
 import { encodeBase64, objectHasKey, sortByKey } from "@cloudinary-util/util";
 import { z } from "zod";
+import { crop } from "../constants/crop.js";
 import {
   angle,
   flags,
@@ -17,7 +18,6 @@ import {
   text as qualifiersText,
 } from "../constants/qualifiers.js";
 import { constructTransformation } from "../lib/transformations.js";
-import { crop } from "../parameters/crop.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 import type { Qualifier } from "../types/qualifiers.js";
 
