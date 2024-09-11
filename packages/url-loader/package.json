@@ -20,7 +20,7 @@
     "dist/**"
   ],
   "scripts": {
-    "build": "tsx ./build.ts",
+    "build": "pnpm tsup src/index.ts src/schema.ts --format esm,cjs --dts --clean",
     "dev": "tsup src/index.ts src/schema.ts --format esm,cjs --watch --dts",
     "lint": "TIMING=1 eslint \"src/**/*.ts*\"",
     "lint:attw": "attw --pack . --exclude-entrypoints \"schema\"",
