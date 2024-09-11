@@ -1,5 +1,6 @@
 import { z } from "zod";
 import { promptArrayToString } from "../lib/transformations.js";
+import type { Preserve } from "../lib/utils.js";
 import type { ImageOptions } from "../types/image.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
@@ -8,7 +9,7 @@ const imageOptionsRemovePromptSchema = z.union([
   z.array(z.string()),
 ]);
 
-const imageOptionsRemoveSchema = z.object({
+const _imageOptionsRemoveSchema = z.object({
   prompt: imageOptionsRemovePromptSchema.optional(),
   region: z
     .union([z.array(z.number()), z.array(z.array(z.number()))])
@@ -16,6 +17,13 @@ const imageOptionsRemoveSchema = z.object({
   multiple: z.boolean().optional(),
   removeShadow: z.boolean().optional(),
 });
+
+const { _output } = _imageOptionsRemoveSchema;
+
+export interface ImageOptionsRemove extends Preserve<typeof _output> {}
+
+export const imageOptionsRemoveSchema: z.ZodType<ImageOptionsRemove> =
+  _imageOptionsRemoveSchema;
 
 export const removeProps = {
   remove: z

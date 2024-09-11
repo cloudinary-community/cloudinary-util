@@ -1,7 +1,8 @@
 import { z } from "zod";
-import type { TransformationPlugin } from "../types/plugins.js";
 import { effects as qualifiersEffects } from "../constants/qualifiers.js";
 import { constructTransformation } from "../lib/transformations.js";
+import type { Preserve } from "../lib/utils.js";
+import type { TransformationPlugin } from "../types/plugins.js";
 
 const effectProps = {
   angle: qualifiersEffects.angle.schema.optional(),
@@ -55,13 +56,21 @@ const effectProps = {
   vignette: qualifiersEffects.vignette.schema.optional(),
 };
 
+const _effectPropsSchema = z.object(effectProps);
+
+const { _output } = _effectPropsSchema;
+
+export interface EffectProps extends Preserve<typeof _output> {}
+
+export const effectPropsSchema: z.ZodType<EffectProps> = _effectPropsSchema;
+
 export const effectsProps = {
   effects: z
-    .array(z.object(effectProps))
+    .array(effectPropsSchema)
     .describe(
       JSON.stringify({
         text: "Array of objects specifying transformations to be applied to asset.",
-      }),
+      })
     )
     .optional(),
   ...effectProps,
@@ -117,7 +126,7 @@ export const effectsPlugin = {
             value: options?.[key],
             converters,
           });
-        },
+        }
       );
     }
 

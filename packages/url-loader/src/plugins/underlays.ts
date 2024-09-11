@@ -15,16 +15,25 @@ import {
   position as qualifiersPosition,
   primary as qualifiersPrimary,
 } from "../constants/qualifiers.js";
+import type { Preserve } from "../lib/utils.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-const underlayPositionSchema = z.object({
+const _underlayPositionSchema = z.object({
   angle: angle.schema.optional(),
   gravity: gravity.schema.optional(),
   x: x.schema.optional(),
   y: y.schema.optional(),
 });
 
-const underlaySchema = z.object({
+const _underlayPositionOutput = _underlayPositionSchema._output;
+
+export interface UnderlayPosition
+  extends Preserve<typeof _underlayPositionOutput> {}
+
+export const underlayPositionSchema: z.ZodType<UnderlayPosition> =
+  _underlayPositionSchema;
+
+const _underlaySchema = z.object({
   appliedEffects: z.array(z.object({})).optional(),
   appliedFlags: flags.schema.optional(),
   effects: z.array(z.object({})).optional(),
@@ -37,6 +46,12 @@ const underlaySchema = z.object({
   url: z.string().optional(),
   width: width.schema.optional(),
 });
+
+const { _output } = _underlaySchema;
+
+export interface Underlay extends Preserve<typeof _output> {}
+
+export const underlaySchema: z.ZodType<Underlay> = _underlaySchema;
 
 export const underlaysProps = {
   underlay: z

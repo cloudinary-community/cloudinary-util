@@ -18,10 +18,11 @@ import {
   text as qualifiersText,
 } from "../constants/qualifiers.js";
 import { constructTransformation } from "../lib/transformations.js";
+import type { Preserve } from "../lib/utils.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 import type { Qualifier } from "../types/qualifiers.js";
 
-const overlayTextSchema = z.object({
+const _overlayTextSchema = z.object({
   alignment: z.string().optional(),
   antialias: z.string().optional(),
   border: z.string().optional(),
@@ -37,14 +38,28 @@ const overlayTextSchema = z.object({
   text: z.string(), // Required if using object format
 });
 
-const overlayPositionSchema = z.object({
+const _overlayTextOutput = _overlayTextSchema._output;
+
+export interface OverlayText extends Preserve<typeof _overlayTextOutput> {}
+
+export const overlayTextSchema: z.ZodType<OverlayText> = _overlayTextSchema;
+
+const _overlayPositionSchema = z.object({
   angle: angle.schema.optional(),
   gravity: gravity.schema.optional(),
   x: x.schema.optional(),
   y: y.schema.optional(),
 });
 
-const overlaySchema = z.object({
+const _overlayPositionOutput = _overlayPositionSchema._output;
+
+export interface OverlayPosition
+  extends Preserve<typeof _overlayPositionOutput> {}
+
+export const overlayPositionSchema: z.ZodType<OverlayPosition> =
+  _overlayPositionSchema;
+
+const _overlaySchema = z.object({
   appliedEffects: z.array(z.object({})).optional(),
   appliedFlags: flags.schema.optional(),
   effects: z.array(z.object({})).optional(),
@@ -57,6 +72,12 @@ const overlaySchema = z.object({
   url: z.string().optional(),
   width: width.schema.optional(),
 });
+
+const _overlayOutput = _overlaySchema._output;
+
+export interface Overlay extends Preserve<typeof _overlayOutput> {}
+
+export const overlaySchema: z.ZodType<Overlay> = _overlaySchema;
 
 export const DEFAULT_TEXT_OPTIONS = {
   color: "black",

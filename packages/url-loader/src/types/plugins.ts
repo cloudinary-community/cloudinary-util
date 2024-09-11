@@ -35,7 +35,7 @@ export interface TransformationPlugin<Options extends AllOptions = AllOptions> {
   props: object;
 }
 
-export const pluginOptionsSchema = z.object({
+const _pluginOptionsSchema = z.object({
   aspectRatio: aspectRatio.schema.optional(),
   crop: crop.schema.optional(),
   gravity: gravity.schema.optional(),
@@ -48,9 +48,12 @@ export const pluginOptionsSchema = z.object({
   zoom: zoom.schema.optional(),
 });
 
-const { _output } = pluginOptionsSchema;
+const { _output } = _pluginOptionsSchema;
 
 export interface PluginOptions extends Preserve<typeof _output> {}
+
+export const pluginOptionsSchema: z.ZodType<PluginOptions> =
+  _pluginOptionsSchema;
 
 export interface PluginResults {
   options?: PluginOptions;

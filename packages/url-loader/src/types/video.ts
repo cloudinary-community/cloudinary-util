@@ -3,7 +3,7 @@ import { mergeSchemas, type Preserve } from "../lib/utils.js";
 import { abrProps } from "../plugins/abr.js";
 import { assetOptionsSchema } from "./asset.js";
 
-export const videoOptionsSchema = mergeSchemas(
+const _videoOptionsSchema = mergeSchemas(
   assetOptionsSchema,
   z.object({
     // Spreading plugins instead of extend or merge to avoid excessive schema warning
@@ -12,6 +12,8 @@ export const videoOptionsSchema = mergeSchemas(
   })
 );
 
-const { _output } = videoOptionsSchema;
+const { _output } = _videoOptionsSchema;
 
 export interface VideoOptions extends Preserve<typeof _output> {}
+
+export const videoOptionsSchema: z.ZodType<VideoOptions> = _videoOptionsSchema;
