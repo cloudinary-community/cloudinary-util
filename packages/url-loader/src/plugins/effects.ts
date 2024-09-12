@@ -4,7 +4,7 @@ import { constructTransformation } from "../lib/transformations.js";
 import type { Preserve } from "../lib/utils.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-const effectProps = {
+const _effectPropsObjectSchema = z.object({
   angle: qualifiersEffects.angle.schema.optional(),
   art: qualifiersEffects.art.schema.optional(),
   autoBrightness: qualifiersEffects.autoBrightness.schema.optional(),
@@ -54,26 +54,30 @@ const effectProps = {
   vectorize: qualifiersEffects.vectorize.schema.optional(),
   vibrance: qualifiersEffects.vibrance.schema.optional(),
   vignette: qualifiersEffects.vignette.schema.optional(),
-};
+});
 
-const _effectPropsSchema = z.object(effectProps);
+const { _output } = _effectPropsObjectSchema;
 
-const { _output } = _effectPropsSchema;
+export interface EffectObjectProps extends Preserve<typeof _output> {}
 
-export interface EffectProps extends Preserve<typeof _output> {}
+const effectPropsObjectSchema = _effectPropsObjectSchema;
 
-export const effectPropsSchema: z.ZodType<EffectProps> = _effectPropsSchema;
+const effectsArrayPropSchema = z
+  .array(effectPropsObjectSchema)
+  .describe(
+    JSON.stringify({
+      text: "Array of objects specifying transformations to be applied to asset.",
+    })
+  )
+  .optional();
+
+export interface EffectsProps extends EffectObjectProps {
+  effects?: EffectObjectProps[];
+}
 
 export const effectsProps = {
-  effects: z
-    .array(effectPropsSchema)
-    .describe(
-      JSON.stringify({
-        text: "Array of objects specifying transformations to be applied to asset.",
-      })
-    )
-    .optional(),
-  ...effectProps,
+  effects: effectsArrayPropSchema,
+  ...effectPropsObjectSchema.shape,
 };
 
 export const effectsPlugin = {
