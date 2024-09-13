@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.10.3](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.2...@cloudinary-util/url-loader-v5.10.3) (2024-09-13)
+
+
+### Bug Fixes
+
+* reordering to force deploy ([443e1f7](https://github.com/cloudinary-community/cloudinary-util/commit/443e1f75da6963ce52d236913c786cdcb1d504fa))
+
 # [@cloudinary-util/url-loader-v5.10.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.1...@cloudinary-util/url-loader-v5.10.2) (2024-09-06)
 
 
