@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.5.8](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.7...@cloudinary-util/types-v1.5.8) (2024-09-13)
+
+
+### Bug Fixes
+
+* adding textTracks types to video player ([3b766a3](https://github.com/cloudinary-community/cloudinary-util/commit/3b766a37a3ffec17507a79c1bd6e4a7f01fdfa39))
+
 # [@cloudinary-util/types-v1.5.7](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.6...@cloudinary-util/types-v1.5.7) (2024-09-11)
 
 
