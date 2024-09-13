@@ -22,9 +22,10 @@ export type {
   CloudinaryVideoPlayerOptionPosterOptions,
   CloudinaryVideoPlayerOptions,
   CloudinaryVideoPlayerOptionsColors,
-  CloudinaryVideoPlayerOptionsLogo,
-  CloudinaryVideoPlayerPlaylistByTagOptions,
-  CloudinaryVideoPlayerPlaylistOptions
+  CloudinaryVideoPlayerOptionsLogo, CloudinaryVideoPlayerPlaylistByTagOptions,
+  CloudinaryVideoPlayerPlaylistOptions, CloudinaryVideoPlayerTextTracks, CloudinaryVideoPlayerTextTracksTrack, CloudinaryVideoPlayerTextTracksTrackOptions, CloudinaryVideoPlayerTextTracksTrackOptionsBox,
+  CloudinaryVideoPlayerTextTracksTrackOptionsGravity,
+  CloudinaryVideoPlayerTextTracksTrackOptionsTheme
 } from "./types/cloudinary-video-player.js";
 
 export type {
