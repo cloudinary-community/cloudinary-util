@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.5.7](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.6...@cloudinary-util/types-v1.5.7) (2024-09-11)
+
+
+### Bug Fixes
+
+* adding type definition for resource context ([2ef1311](https://github.com/cloudinary-community/cloudinary-util/commit/2ef13118602f1efc39a85a7e05fa958c6e1cd2f1))
+
 # [@cloudinary-util/types-v1.5.6](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.5...@cloudinary-util/types-v1.5.6) (2024-09-06)
 
 
