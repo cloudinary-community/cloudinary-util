@@ -4,20 +4,20 @@ import { z } from "zod";
 
 export const cropModesEnum = z.enum([
   "auto",
-  "fill",
-  "lfill",
-  "fill_pad",
   "crop",
-  "thumb",
-  "scale",
+  "fill",
+  "fill_pad",
   "fit",
-  "limit",
-  "mfit",
-  "pad",
-  "lpad",
-  "mpad",
-  "imagga_scale",
   "imagga_crop",
+  "imagga_scale",
+  "lfill",
+  "limit",
+  "lpad",
+  "mfit",
+  "mpad",
+  "pad",
+  "scale",
+  "thumb",
 ]);
 
 export const extractModesEnum = z.enum([
