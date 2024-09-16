@@ -344,6 +344,7 @@ export interface CloudinaryVideoPlayerTextTracksTrackOptions {
   gravity?: CloudinaryVideoPlayerTextTracksTrackOptionsGravity;
   style?: Record<string, string | number>;
   theme?: CloudinaryVideoPlayerTextTracksTrackOptionsTheme;
+  wordHighlightStyle?: Record<string, string | number>;
 }
 
 export interface CloudinaryVideoPlayerTextTracksTrack {
@@ -357,8 +358,9 @@ export interface CloudinaryVideoPlayerTextTracksTrack {
 }
 
 export interface CloudinaryVideoPlayerTextTracks {
-  subtitles?: CloudinaryVideoPlayerTextTracksTrack;
   captions?: CloudinaryVideoPlayerTextTracksTrack;
+  options?: CloudinaryVideoPlayerTextTracksTrackOptions
+  subtitles?: CloudinaryVideoPlayerTextTracksTrack | Array<CloudinaryVideoPlayerTextTracksTrack>;
 }
 
 export interface CloudinaryVideoPlayerOptions
