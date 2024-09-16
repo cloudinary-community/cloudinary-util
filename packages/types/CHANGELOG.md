@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.5.9](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.8...@cloudinary-util/types-v1.5.9) (2024-09-16)
+
+
+### Bug Fixes
+
+* fixing player text track options ([a03577d](https://github.com/cloudinary-community/cloudinary-util/commit/a03577d60589626d9b1d6eed098e7afb07eaf0d1))
+
 # [@cloudinary-util/types-v1.5.8](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.7...@cloudinary-util/types-v1.5.8) (2024-09-13)
 
 
