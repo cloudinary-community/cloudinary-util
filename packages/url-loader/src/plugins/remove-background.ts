@@ -9,7 +9,7 @@ export const removeBackgroundProps = {
       JSON.stringify({
         text: "Removes the background of an image using the Cloudinary AI Background Removal Add-On (Required).",
         url: "https://cloudinary.com/documentation/cloudinary_ai_background_removal_addon",
-      })
+      }),
     )
     .optional(),
 };

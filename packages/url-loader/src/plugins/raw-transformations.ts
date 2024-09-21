@@ -11,7 +11,7 @@ export const rawTransformationsProps = {
       JSON.stringify({
         text: "Array of transformation parameters using the Cloudinary URL API to apply to an asset.",
         url: "https://cloudinary.com/documentation/transformation_reference",
-      })
+      }),
     )
     .optional(),
 };

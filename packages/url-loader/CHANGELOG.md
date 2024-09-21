@@ -1,137 +1,119 @@
 # [@cloudinary-util/url-loader-v5.10.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.1...@cloudinary-util/url-loader-v5.10.2) (2024-09-06)
 
-
 ### Bug Fixes
 
-* updating type of radius property to include number ([f5c260f](https://github.com/cloudinary-community/cloudinary-util/commit/f5c260ffe97fb977c9d5bb79251aa77e33ea9b1d))
+- updating type of radius property to include number ([f5c260f](https://github.com/cloudinary-community/cloudinary-util/commit/f5c260ffe97fb977c9d5bb79251aa77e33ea9b1d))
 
 # [@cloudinary-util/url-loader-v5.10.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.0...@cloudinary-util/url-loader-v5.10.1) (2024-09-04)
 
-
 ### Bug Fixes
 
-* default the version to 1 when constructing a cld url ([#195](https://github.com/cloudinary-community/cloudinary-util/issues/195)) ([204da50](https://github.com/cloudinary-community/cloudinary-util/commit/204da50bb490b53ff5c53b5bdb1e7351a63b58bb)), closes [#181](https://github.com/cloudinary-community/cloudinary-util/issues/181)
+- default the version to 1 when constructing a cld url ([#195](https://github.com/cloudinary-community/cloudinary-util/issues/195)) ([204da50](https://github.com/cloudinary-community/cloudinary-util/commit/204da50bb490b53ff5c53b5bdb1e7351a63b58bb)), closes [#181](https://github.com/cloudinary-community/cloudinary-util/issues/181)
 
 # [@cloudinary-util/url-loader-v5.10.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.9.1...@cloudinary-util/url-loader-v5.10.0) (2024-09-03)
 
-
 ### Features
 
-* Crop by X and Y Coordinates ([#192](https://github.com/cloudinary-community/cloudinary-util/issues/192)) ([091b73d](https://github.com/cloudinary-community/cloudinary-util/commit/091b73db2dd45e523d1c989ef6ca48785ad1e9f5))
+- Crop by X and Y Coordinates ([#192](https://github.com/cloudinary-community/cloudinary-util/issues/192)) ([091b73d](https://github.com/cloudinary-community/cloudinary-util/commit/091b73db2dd45e523d1c989ef6ca48785ad1e9f5))
 
 # [@cloudinary-util/url-loader-v5.9.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.9.0...@cloudinary-util/url-loader-v5.9.1) (2024-08-30)
 
-
 ### Bug Fixes
 
-* updating how config options are exported ([dcffee0](https://github.com/cloudinary-community/cloudinary-util/commit/dcffee02ce906d1edbb8a1bfbe1bd15166af6231))
+- updating how config options are exported ([dcffee0](https://github.com/cloudinary-community/cloudinary-util/commit/dcffee02ce906d1edbb8a1bfbe1bd15166af6231))
 
 # [@cloudinary-util/url-loader-v5.9.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.8.0...@cloudinary-util/url-loader-v5.9.0) (2024-08-28)
 
-
 ### Features
 
-* Extract ([#190](https://github.com/cloudinary-community/cloudinary-util/issues/190)) ([3b0896f](https://github.com/cloudinary-community/cloudinary-util/commit/3b0896f1916cd1bd1c76ebd6a1656d6d1e9002fc)), closes [#168](https://github.com/cloudinary-community/cloudinary-util/issues/168)
+- Extract ([#190](https://github.com/cloudinary-community/cloudinary-util/issues/190)) ([3b0896f](https://github.com/cloudinary-community/cloudinary-util/commit/3b0896f1916cd1bd1c76ebd6a1656d6d1e9002fc)), closes [#168](https://github.com/cloudinary-community/cloudinary-util/issues/168)
 
 # [@cloudinary-util/url-loader-v5.8.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.7.1...@cloudinary-util/url-loader-v5.8.0) (2024-08-28)
 
-
 ### Features
 
-* Adds preserveTransformations to URL Loader ([#184](https://github.com/cloudinary-community/cloudinary-util/issues/184)) ([56e7f79](https://github.com/cloudinary-community/cloudinary-util/commit/56e7f79a5f19cda80c4d5a661553741c5f4c181c)), closes [#183](https://github.com/cloudinary-community/cloudinary-util/issues/183)
+- Adds preserveTransformations to URL Loader ([#184](https://github.com/cloudinary-community/cloudinary-util/issues/184)) ([56e7f79](https://github.com/cloudinary-community/cloudinary-util/commit/56e7f79a5f19cda80c4d5a661553741c5f4c181c)), closes [#183](https://github.com/cloudinary-community/cloudinary-util/issues/183)
 
 # [@cloudinary-util/url-loader-v5.7.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.7.0...@cloudinary-util/url-loader-v5.7.1) (2024-08-26)
 
-
 ### Bug Fixes
 
-* added all the gravity types as a Zod enum ([#172](https://github.com/cloudinary-community/cloudinary-util/issues/172)) ([d667e24](https://github.com/cloudinary-community/cloudinary-util/commit/d667e249e8644aa2d04ee98a6df7ac8881908207)), closes [#170](https://github.com/cloudinary-community/cloudinary-util/issues/170)
+- added all the gravity types as a Zod enum ([#172](https://github.com/cloudinary-community/cloudinary-util/issues/172)) ([d667e24](https://github.com/cloudinary-community/cloudinary-util/commit/d667e249e8644aa2d04ee98a6df7ac8881908207)), closes [#170](https://github.com/cloudinary-community/cloudinary-util/issues/170)
 
 # [@cloudinary-util/url-loader-v5.7.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.6.1...@cloudinary-util/url-loader-v5.7.0) (2024-08-21)
 
-
 ### Features
 
-* v5.7.0 ([#179](https://github.com/cloudinary-community/cloudinary-util/issues/179)) ([21abfb8](https://github.com/cloudinary-community/cloudinary-util/commit/21abfb8f8c048e9b5335be673c8da1b20a7cc83a))
+- v5.7.0 ([#179](https://github.com/cloudinary-community/cloudinary-util/issues/179)) ([21abfb8](https://github.com/cloudinary-community/cloudinary-util/commit/21abfb8f8c048e9b5335be673c8da1b20a7cc83a))
 
 # [@cloudinary-util/url-loader-v5.7.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.6.1...@cloudinary-util/url-loader-v5.7.0-beta.1) (2024-08-21)
 
-
 ### Features
 
-* Using /types to import Config Options ([#178](https://github.com/cloudinary-community/cloudinary-util/issues/178)) ([d3763e6](https://github.com/cloudinary-community/cloudinary-util/commit/d3763e65af42493dfdcd4010cbd0ded96acdd063))
+- Using /types to import Config Options ([#178](https://github.com/cloudinary-community/cloudinary-util/issues/178)) ([d3763e6](https://github.com/cloudinary-community/cloudinary-util/commit/d3763e65af42493dfdcd4010cbd0ded96acdd063))
 
 # [@cloudinary-util/url-loader-v5.6.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.6.0...@cloudinary-util/url-loader-v5.6.1) (2024-08-21)
 
-
 ### Bug Fixes
 
-* Fixes undefined aspect ratio `undefined:undefined` with no width or height ([#177](https://github.com/cloudinary-community/cloudinary-util/issues/177)) ([f12adaa](https://github.com/cloudinary-community/cloudinary-util/commit/f12adaaaf21ac63977684eebaf39e0b896e85058)), closes [#176](https://github.com/cloudinary-community/cloudinary-util/issues/176)
+- Fixes undefined aspect ratio `undefined:undefined` with no width or height ([#177](https://github.com/cloudinary-community/cloudinary-util/issues/177)) ([f12adaa](https://github.com/cloudinary-community/cloudinary-util/commit/f12adaaaf21ac63977684eebaf39e0b896e85058)), closes [#176](https://github.com/cloudinary-community/cloudinary-util/issues/176)
 
 # [@cloudinary-util/url-loader-v5.6.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.5.0...@cloudinary-util/url-loader-v5.6.0) (2024-08-07)
 
-
 ### Bug Fixes
 
-* falsy check for replacebackground ([5574e39](https://github.com/cloudinary-community/cloudinary-util/commit/5574e39c1d245dbccb52a3e44a1e79eb906df9c0))
-
+- falsy check for replacebackground ([5574e39](https://github.com/cloudinary-community/cloudinary-util/commit/5574e39c1d245dbccb52a3e44a1e79eb906df9c0))
 
 ### Features
 
-* url-loader@5.6.0 ([#166](https://github.com/cloudinary-community/cloudinary-util/issues/166)) ([26736af](https://github.com/cloudinary-community/cloudinary-util/commit/26736afe7c9e32bad971beb273c71a9519c36944)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
+- url-loader@5.6.0 ([#166](https://github.com/cloudinary-community/cloudinary-util/issues/166)) ([26736af](https://github.com/cloudinary-community/cloudinary-util/commit/26736afe7c9e32bad971beb273c71a9519c36944)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
 
 # [@cloudinary-util/url-loader-v5.6.0-beta.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.6.0-beta.1...@cloudinary-util/url-loader-v5.6.0-beta.2) (2024-08-06)
 
-
 ### Bug Fixes
 
-* updating enum value to allow for both the list of values and string ([1b4c403](https://github.com/cloudinary-community/cloudinary-util/commit/1b4c403a7b27a1883e7e9aec21c56fbbd099767a))
+- updating enum value to allow for both the list of values and string ([1b4c403](https://github.com/cloudinary-community/cloudinary-util/commit/1b4c403a7b27a1883e7e9aec21c56fbbd099767a))
 
 # [@cloudinary-util/url-loader-v5.6.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.5.0...@cloudinary-util/url-loader-v5.6.0-beta.1) (2024-08-02)
 
-
 ### Features
 
-* force version ([cb63bff](https://github.com/cloudinary-community/cloudinary-util/commit/cb63bff1efa23eb2968c2b8b0094235987a68012))
-* getUploadWidgetOptions, generateSignatureCallback, generateUploadWidgetResultCallback ([#165](https://github.com/cloudinary-community/cloudinary-util/issues/165)) ([4e3adc4](https://github.com/cloudinary-community/cloudinary-util/commit/4e3adc4317022ceb8031cda5372b5419ba8bafe7)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
+- force version ([cb63bff](https://github.com/cloudinary-community/cloudinary-util/commit/cb63bff1efa23eb2968c2b8b0094235987a68012))
+- getUploadWidgetOptions, generateSignatureCallback, generateUploadWidgetResultCallback ([#165](https://github.com/cloudinary-community/cloudinary-util/issues/165)) ([4e3adc4](https://github.com/cloudinary-community/cloudinary-util/commit/4e3adc4317022ceb8031cda5372b5419ba8bafe7)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
 
 # [@cloudinary-util/url-loader-v5.5.0-beta.3](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.5.0-beta.2...@cloudinary-util/url-loader-v5.5.0-beta.3) (2024-08-02)
 
-
 ### Features
 
-* Generative Replace Background ([#167](https://github.com/cloudinary-community/cloudinary-util/issues/167)) ([4129214](https://github.com/cloudinary-community/cloudinary-util/commit/412921423f69bc7ead546f62543784bce3d30bf6))
+- Generative Replace Background ([#167](https://github.com/cloudinary-community/cloudinary-util/issues/167)) ([4129214](https://github.com/cloudinary-community/cloudinary-util/commit/412921423f69bc7ead546f62543784bce3d30bf6))
 
 # [@cloudinary-util/url-loader-v5.5.0-beta.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.5.0-beta.1...@cloudinary-util/url-loader-v5.5.0-beta.2) (2024-08-02)
 
 ### Features
 
-* force version ([cb63bff](https://github.com/cloudinary-community/cloudinary-util/commit/cb63bff1efa23eb2968c2b8b0094235987a68012))
+- force version ([cb63bff](https://github.com/cloudinary-community/cloudinary-util/commit/cb63bff1efa23eb2968c2b8b0094235987a68012))
 
 # [@cloudinary-util/url-loader-v5.5.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.4.0...@cloudinary-util/url-loader-v5.5.0-beta.1) (2024-08-02)
 
-
 ### Features
 
-* getUploadWidgetOptions, generateSignatureCallback, generateUploadWidgetResultCallback ([#165](https://github.com/cloudinary-community/cloudinary-util/issues/165)) ([4e3adc4](https://github.com/cloudinary-community/cloudinary-util/commit/4e3adc4317022ceb8031cda5372b5419ba8bafe7)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
+- getUploadWidgetOptions, generateSignatureCallback, generateUploadWidgetResultCallback ([#165](https://github.com/cloudinary-community/cloudinary-util/issues/165)) ([4e3adc4](https://github.com/cloudinary-community/cloudinary-util/commit/4e3adc4317022ceb8031cda5372b5419ba8bafe7)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
 
 # [@cloudinary-util/url-loader-v5.4.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.3.1...@cloudinary-util/url-loader-v5.4.0-beta.1) (2024-08-02)
 
-
 ### Features
 
-* getUploadWidgetOptions, generateSignatureCallback, generateUploadWidgetResultCallback ([#165](https://github.com/cloudinary-community/cloudinary-util/issues/165)) ([4e3adc4](https://github.com/cloudinary-community/cloudinary-util/commit/4e3adc4317022ceb8031cda5372b5419ba8bafe7)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
+- getUploadWidgetOptions, generateSignatureCallback, generateUploadWidgetResultCallback ([#165](https://github.com/cloudinary-community/cloudinary-util/issues/165)) ([4e3adc4](https://github.com/cloudinary-community/cloudinary-util/commit/4e3adc4317022ceb8031cda5372b5419ba8bafe7)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
 
 # [@cloudinary-util/url-loader-v5.5.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.4.0...@cloudinary-util/url-loader-v5.5.0) (2024-08-02)
 
-* Generative Replace Background ([#167](https://github.com/cloudinary-community/cloudinary-util/issues/167)) ([4129214](https://github.com/cloudinary-community/cloudinary-util/commit/412921423f69bc7ead546f62543784bce3d30bf6))
+- Generative Replace Background ([#167](https://github.com/cloudinary-community/cloudinary-util/issues/167)) ([4129214](https://github.com/cloudinary-community/cloudinary-util/commit/412921423f69bc7ead546f62543784bce3d30bf6))
 
 # [@cloudinary-util/url-loader-v5.4.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.3.1...@cloudinary-util/url-loader-v5.4.0-beta.1) (2024-07-09)
 
-
 ### Features
 
-* Improve plugin types, modernize monorepo structure ([#161](https://github.com/cloudinary-community/cloudinary-util/issues/161)) ([8ad6066](https://github.com/cloudinary-community/cloudinary-util/commit/8ad60661d4b3c78c08e9dd1939171a689eeb7b08))
+- Improve plugin types, modernize monorepo structure ([#161](https://github.com/cloudinary-community/cloudinary-util/issues/161)) ([8ad6066](https://github.com/cloudinary-community/cloudinary-util/commit/8ad60661d4b3c78c08e9dd1939171a689eeb7b08))
 
 # [@cloudinary-util/url-loader-v5.3.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.3.0...@cloudinary-util/url-loader-v5.3.1) (2024-05-24)
 

@@ -8,7 +8,7 @@ export const preserveTransformationsProps = {
     .describe(
       JSON.stringify({
         text: "Preserves transformations from a Cloudinary URL when using using a Cloudinary URL as the asset source (src).",
-      })
+      }),
     )
     .optional(),
 };
@@ -25,12 +25,16 @@ export const preserveTransformationsPlugin = {
 
     if (preserveTransformations) {
       try {
-        const transformations = getTransformations(options.src).map(t => t.join(','));
+        const transformations = getTransformations(options.src).map((t) =>
+          t.join(","),
+        );
         transformations.flat().forEach((transformation) => {
           cldAsset.addTransformation(transformation);
         });
-      } catch(e) {
-        console.warn(`Failed to preserve transformations: ${(e as Error).message}`)
+      } catch (e) {
+        console.warn(
+          `Failed to preserve transformations: ${(e as Error).message}`,
+        );
       }
     }
 

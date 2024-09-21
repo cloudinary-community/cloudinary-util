@@ -30,6 +30,6 @@ export const crop = {
     JSON.stringify({
       text: "Mode to use when cropping an asset.",
       url: "https://cloudinary.com/documentation/transformation_reference#c_crop_resize",
-    })
+    }),
   ),
 };

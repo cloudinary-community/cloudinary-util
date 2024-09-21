@@ -89,7 +89,7 @@ export const effects = {
       JSON.stringify({
         text: "Applies the selected artistic filter.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_art",
-      })
+      }),
     ),
   },
   autoBrightness: {
@@ -99,7 +99,7 @@ export const effects = {
       JSON.stringify({
         text: "Automatically adjusts the image brightness and blends the result with the original image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_auto_brightness",
-      })
+      }),
     ),
   },
   autoColor: {
@@ -109,7 +109,7 @@ export const effects = {
       JSON.stringify({
         text: "Automatically adjusts the image color balance and blends the result with the original image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_auto_color",
-      })
+      }),
     ),
   },
   autoContrast: {
@@ -119,7 +119,7 @@ export const effects = {
       JSON.stringify({
         text: "Automatically adjusts the image contrast and blends the result with the original image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_auto_contrast",
-      })
+      }),
     ),
   },
   assistColorblind: {
@@ -129,7 +129,7 @@ export const effects = {
       JSON.stringify({
         text: "Applies stripes or color adjustment to help people with common color blind conditions to differentiate between colors that are similar for them.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_assist_colorblind",
-      })
+      }),
     ),
   },
   background: {
@@ -138,7 +138,7 @@ export const effects = {
       JSON.stringify({
         text: "Applies a background to empty or transparent areas.",
         url: "https://cloudinary.com/documentation/transformation_reference#b_background",
-      })
+      }),
     ),
   },
   blackwhite: {
@@ -148,7 +148,7 @@ export const effects = {
       JSON.stringify({
         text: "Converts an image to black and white.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_blackwhite",
-      })
+      }),
     ),
   },
   blur: {
@@ -158,7 +158,7 @@ export const effects = {
       JSON.stringify({
         text: "Applies a blurring filter to an asset.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_blur",
-      })
+      }),
     ),
   },
   blurFaces: {
@@ -168,7 +168,7 @@ export const effects = {
       JSON.stringify({
         text: "Blurs all detected faces in an image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_blur_faces",
-      })
+      }),
     ),
   },
   blurRegion: {
@@ -178,7 +178,7 @@ export const effects = {
       JSON.stringify({
         text: "Applies a blurring filter to the region of an image specified by x, y, width and height, or an area of text. If no region is specified, the whole image is blurred.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_blur_region",
-      })
+      }),
     ),
   },
   border: {
@@ -187,7 +187,7 @@ export const effects = {
       JSON.stringify({
         text: "Adds a solid border around an image or video.",
         url: "https://cloudinary.com/documentation/transformation_reference#bo_border",
-      })
+      }),
     ),
   },
   brightness: {
@@ -197,7 +197,7 @@ export const effects = {
       JSON.stringify({
         text: "Adjusts the image or video brightness.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_brightness",
-      })
+      }),
     ),
   },
   brightnessHSB: {
@@ -207,7 +207,7 @@ export const effects = {
       JSON.stringify({
         text: "Adjusts image brightness modulation in HSB to prevent artifacts in some images.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_brightness_hsb",
-      })
+      }),
     ),
   },
   cartoonify: {
@@ -217,7 +217,7 @@ export const effects = {
       JSON.stringify({
         text: "Applies a cartoon effect to an image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_cartoonify",
-      })
+      }),
     ),
   },
   color: {
@@ -226,7 +226,7 @@ export const effects = {
       JSON.stringify({
         text: "A qualifier that specifies the color to use with the corresponding transformation.",
         url: "https://cloudinary.com/documentation/transformation_reference#co_color",
-      })
+      }),
     ),
     converters: convertersColors,
   },
@@ -237,7 +237,7 @@ export const effects = {
       JSON.stringify({
         text: "Colorizes an image. By default, gray is used for colorization. You can specify a different color using the color qualifier.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_colorize",
-      })
+      }),
     ),
   },
   contrast: {
@@ -247,7 +247,7 @@ export const effects = {
       JSON.stringify({
         text: "Adjusts an image or video contrast.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_contrast",
-      })
+      }),
     ),
   },
   displace: {
@@ -257,7 +257,7 @@ export const effects = {
       JSON.stringify({
         text: "Displaces the pixels in an image according to the color channels of the pixels in another specified image (a gradient map specified with the overlay parameter).",
         url: "https://cloudinary.com/documentation/transformation_reference#e_displace",
-      })
+      }),
     ),
   },
   distort: {
@@ -267,7 +267,7 @@ export const effects = {
       JSON.stringify({
         text: "Distorts an image to a new shape by either adjusting its corners or by warping it into an arc.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_distort",
-      })
+      }),
     ),
   },
   fillLight: {
@@ -277,7 +277,7 @@ export const effects = {
       JSON.stringify({
         text: "Adjusts the fill light and optionally blends the result with the original image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_fill_light",
-      })
+      }),
     ),
   },
   gamma: {
@@ -287,7 +287,7 @@ export const effects = {
       JSON.stringify({
         text: "Adjusts the image or video gamma level.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_gamma",
-      })
+      }),
     ),
   },
   gradientFade: {
@@ -297,7 +297,7 @@ export const effects = {
       JSON.stringify({
         text: "Applies a gradient fade effect from the edge of an image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_gradient_fade",
-      })
+      }),
     ),
   },
   grayscale: {
@@ -307,7 +307,7 @@ export const effects = {
       JSON.stringify({
         text: "Converts an image to grayscale (multiple shades of gray).",
         url: "https://cloudinary.com/documentation/transformation_reference#e_grayscale",
-      })
+      }),
     ),
   },
   hue: {
@@ -317,7 +317,7 @@ export const effects = {
       JSON.stringify({
         text: "Adjusts an image's hue.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_hue",
-      })
+      }),
     ),
   },
   improve: {
@@ -327,7 +327,7 @@ export const effects = {
       JSON.stringify({
         text: "Adjusts an image's colors, contrast and brightness to improve its appearance.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_improve",
-      })
+      }),
     ),
   },
   loop: {
@@ -337,7 +337,7 @@ export const effects = {
       JSON.stringify({
         text: "Loops a video or animated image the specified number of times.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_loop",
-      })
+      }),
     ),
   },
   multiply: {
@@ -347,7 +347,7 @@ export const effects = {
       JSON.stringify({
         text: "A qualifier that blends image layers using the multiply blend mode",
         url: "https://cloudinary.com/documentation/transformation_reference#e_multiply",
-      })
+      }),
     ),
   },
   negate: {
@@ -357,7 +357,7 @@ export const effects = {
       JSON.stringify({
         text: "https://cloudinary.com/documentation/transformation_reference#e_negate",
         url: "https://cloudinary.com/documentation/transformation_reference#e_negate",
-      })
+      }),
     ),
   },
   noise: {
@@ -367,7 +367,7 @@ export const effects = {
       JSON.stringify({
         text: "https://cloudinary.com/documentation/transformation_reference#e_noise",
         url: "https://cloudinary.com/documentation/transformation_reference#e_noise",
-      })
+      }),
     ),
   },
   oilPaint: {
@@ -377,7 +377,7 @@ export const effects = {
       JSON.stringify({
         text: "https://cloudinary.com/documentation/transformation_reference#e_oil_paint",
         url: "https://cloudinary.com/documentation/transformation_reference#e_oil_paint",
-      })
+      }),
     ),
   },
   opacity: {
@@ -386,7 +386,7 @@ export const effects = {
       JSON.stringify({
         text: "Adjusts the opacity of an asset and makes it semi-transparent.",
         url: "https://cloudinary.com/documentation/transformation_reference#o_opacity",
-      })
+      }),
     ),
   },
   outline: {
@@ -396,7 +396,7 @@ export const effects = {
       JSON.stringify({
         text: "Adds an outline effect to an image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_outline",
-      })
+      }),
     ),
   },
   pixelate: {
@@ -406,7 +406,7 @@ export const effects = {
       JSON.stringify({
         text: "Applies a pixelation effect.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_pixelate",
-      })
+      }),
     ),
   },
   pixelateFaces: {
@@ -416,7 +416,7 @@ export const effects = {
       JSON.stringify({
         text: "Pixelates all detected faces in an image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_pixelate_faces",
-      })
+      }),
     ),
   },
   pixelateRegion: {
@@ -426,7 +426,7 @@ export const effects = {
       JSON.stringify({
         text: "Pixelates the region of an image specified by x, y, width and height, or an area of text.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_pixelate_region",
-      })
+      }),
     ),
   },
   radius: {
@@ -435,7 +435,7 @@ export const effects = {
       JSON.stringify({
         text: "Rounds the corners of an image or video.",
         url: "https://cloudinary.com/documentation/transformation_reference#r_round_corners",
-      })
+      }),
     ),
   },
   redeye: {
@@ -445,7 +445,7 @@ export const effects = {
       JSON.stringify({
         text: "Automatically removes red eyes in an image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_redeye",
-      })
+      }),
     ),
   },
   replaceColor: {
@@ -455,7 +455,7 @@ export const effects = {
       JSON.stringify({
         text: "Maps an input color and those similar to the input color to corresponding shades of a specified output color.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_replace_color",
-      })
+      }),
     ),
   },
   saturation: {
@@ -465,7 +465,7 @@ export const effects = {
       JSON.stringify({
         text: "Adjusts an image or video saturation level.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_saturation",
-      })
+      }),
     ),
   },
   screen: {
@@ -475,7 +475,7 @@ export const effects = {
       JSON.stringify({
         text: "A qualifier that blends image layers using the screen blend mode.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_screen",
-      })
+      }),
     ),
   },
   sepia: {
@@ -485,7 +485,7 @@ export const effects = {
       JSON.stringify({
         text: "Changes the color scheme of an image to sepia.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_sepia",
-      })
+      }),
     ),
   },
   shadow: {
@@ -495,7 +495,7 @@ export const effects = {
       JSON.stringify({
         text: "Adds a gray shadow to the bottom right of an image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_shadow",
-      })
+      }),
     ),
   },
   sharpen: {
@@ -505,7 +505,7 @@ export const effects = {
       JSON.stringify({
         text: "Applies a sharpening filter.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_sharpen",
-      })
+      }),
     ),
   },
   shear: {
@@ -515,7 +515,7 @@ export const effects = {
       JSON.stringify({
         text: "Skews an image according to the two specified values in degrees.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_shear",
-      })
+      }),
     ),
   },
   simulateColorblind: {
@@ -525,7 +525,7 @@ export const effects = {
       JSON.stringify({
         text: "Simulates the way an image would appear to someone with the specified color blind condition.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_simulate_colorblind",
-      })
+      }),
     ),
   },
   tint: {
@@ -535,7 +535,7 @@ export const effects = {
       JSON.stringify({
         text: "Blends an image with one or more tint colors at a specified intensity.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_tint",
-      })
+      }),
     ),
   },
   trim: {
@@ -545,7 +545,7 @@ export const effects = {
       JSON.stringify({
         text: "Detects and removes image edges whose color is similar to the corner pixels.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_trim",
-      })
+      }),
     ),
   },
   unsharpMask: {
@@ -555,7 +555,7 @@ export const effects = {
       JSON.stringify({
         text: "Applies an unsharp mask filter to an image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_unsharp_mask",
-      })
+      }),
     ),
   },
   vectorize: {
@@ -565,7 +565,7 @@ export const effects = {
       JSON.stringify({
         text: "Vectorizes an image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_vectorize",
-      })
+      }),
     ),
   },
   vibrance: {
@@ -575,7 +575,7 @@ export const effects = {
       JSON.stringify({
         text: "Applies a vibrance filter to an image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_vibrance",
-      })
+      }),
     ),
   },
   vignette: {
@@ -585,7 +585,7 @@ export const effects = {
       JSON.stringify({
         text: "Applies a vignette effect to an image.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_vignette",
-      })
+      }),
     ),
   },
 } as const;

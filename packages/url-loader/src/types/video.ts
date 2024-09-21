@@ -9,7 +9,7 @@ const _videoOptionsSchema = mergeSchemas(
     // Spreading plugins instead of extend or merge to avoid excessive schema warning
     // https://github.com/microsoft/TypeScript/issues/34933#issuecomment-1772787785
     ...abrProps,
-  })
+  }),
 );
 
 const { _output } = _videoOptionsSchema;

@@ -23,7 +23,7 @@ export interface PluginSettings<Options extends AllOptions = AllOptions> {
 }
 
 export type PluginFunction<Options extends AllOptions = AllOptions> = (
-  settings: PluginSettings<Options>
+  settings: PluginSettings<Options>,
 ) => PluginResults;
 
 export type AssetType = "image" | "images" | "video" | "videos";

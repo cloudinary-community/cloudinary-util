@@ -38,7 +38,7 @@ export interface GetVideoPlayerOptionsLogo {
 
 export function getVideoPlayerOptions(
   options: GetVideoPlayerOptions,
-  config: ConfigOptions
+  config: ConfigOptions,
 ) {
   const {
     autoplay,
@@ -63,7 +63,7 @@ export function getVideoPlayerOptions(
 
   if (!cloudName) {
     throw new Error(
-      "A Cloudinary Cloud name is required, please make sure your environment variable is set and configured in your environment."
+      "A Cloudinary Cloud name is required, please make sure your environment variable is set and configured in your environment.",
     );
   }
 
@@ -85,7 +85,7 @@ export function getVideoPlayerOptions(
 
   if (!publicId) {
     throw new Error(
-      "Video Player requires a src, please make sure to configure your src as a public ID or Cloudinary URL."
+      "Video Player requires a src, please make sure to configure your src as a public ID or Cloudinary URL.",
     );
   }
 
@@ -163,7 +163,11 @@ export function getVideoPlayerOptions(
     ...otherCldVidPlayerOptions,
   };
 
-  if ( playerOptions.width && playerOptions.height && !playerOptions.aspectRatio ) {
+  if (
+    playerOptions.width &&
+    playerOptions.height &&
+    !playerOptions.aspectRatio
+  ) {
     playerOptions.aspectRatio = `${playerOptions.width}:${playerOptions.height}`;
   }
 

@@ -26,6 +26,6 @@ export const aspectRatio = {
     JSON.stringify({
       text: "Crops or resizes the asset to a new aspect ratio.",
       url: "https://cloudinary.com/documentation/transformation_reference#ar_aspect_ratio",
-    })
+    }),
   ),
 };

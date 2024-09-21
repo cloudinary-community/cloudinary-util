@@ -21,7 +21,7 @@ export const fillBackgroundProps = {
       JSON.stringify({
         text: "Uses Generative Fill to extended padded image with AI",
         url: "https://cloudinary.com/documentation/transformation_reference#b_gen_fill",
-      })
+      }),
     )
     .optional(),
 };
@@ -48,7 +48,7 @@ export const fillBackgroundPlugin = {
     if (!aspectRatio) {
       if (process.env.NODE_ENV === "development") {
         console.warn(
-          `Could not determine aspect ratio based on available options to use fillBackground. Please specify width and height or an aspect ratio.`
+          `Could not determine aspect ratio based on available options to use fillBackground. Please specify width and height or an aspect ratio.`,
         );
       }
       return {};

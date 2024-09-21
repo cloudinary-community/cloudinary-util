@@ -23,7 +23,7 @@ export const _assetOptionsSchema = z.object({
       JSON.stringify({
         text: "The type of asset to deliver.",
         url: "https://cloudinary.com/documentation/image_transformations#transformation_url_structure",
-      })
+      }),
     )
     .optional(),
   deliveryType: z
@@ -33,7 +33,7 @@ export const _assetOptionsSchema = z.object({
       JSON.stringify({
         text: "Delivery method of the asset.",
         url: "https://cloudinary.com/documentation/image_transformations#delivery_types",
-      })
+      }),
     )
     .optional(),
   dpr: z
@@ -42,7 +42,7 @@ export const _assetOptionsSchema = z.object({
       JSON.stringify({
         text: "Delivery method of the asset.",
         url: "https://cloudinary.com/documentation/image_transformations#delivery_types",
-      })
+      }),
     )
     .optional(),
   format: z
@@ -52,7 +52,7 @@ export const _assetOptionsSchema = z.object({
       JSON.stringify({
         text: "Converts (if necessary) and delivers an asset in the specified format.",
         url: "https://cloudinary.com/documentation/transformation_reference#f_format",
-      })
+      }),
     )
     .optional(),
   height: z
@@ -60,7 +60,7 @@ export const _assetOptionsSchema = z.object({
     .describe(
       JSON.stringify({
         text: "Height of the given asset.",
-      })
+      }),
     )
     .optional(),
   quality: z
@@ -70,13 +70,13 @@ export const _assetOptionsSchema = z.object({
       JSON.stringify({
         text: "Quality of the delivered asset",
         url: "https://cloudinary.com/documentation/transformation_reference#q_quality",
-      })
+      }),
     )
     .optional(),
   src: z.string().describe(
     JSON.stringify({
       text: "Cloudinary Public ID or versioned Cloudinary URL (/v1234/)",
-    })
+    }),
   ),
   strictTransformations: z
     .boolean()
@@ -84,7 +84,7 @@ export const _assetOptionsSchema = z.object({
       JSON.stringify({
         text: "Gives you the ability to have more control over what transformations are permitted to be used from your Cloudinary account.",
         url: "https://cloudinary.com/documentation/control_access_to_media#strict_transformations",
-      })
+      }),
     )
     .optional(),
   width: z
@@ -92,7 +92,7 @@ export const _assetOptionsSchema = z.object({
     .describe(
       JSON.stringify({
         text: "Width of the given asset.",
-      })
+      }),
     )
     .optional(),
 

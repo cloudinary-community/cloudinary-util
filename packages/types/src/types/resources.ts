@@ -1,5 +1,13 @@
-export type CloudinaryResourceAccessMode = "public" | "authenticated" | (string & {});
-export type CloudinaryResourceResourceType = "image" | "video" | "raw" | "auto" | (string & {});
+export type CloudinaryResourceAccessMode =
+  | "public"
+  | "authenticated"
+  | (string & {});
+export type CloudinaryResourceResourceType =
+  | "image"
+  | "video"
+  | "raw"
+  | "auto"
+  | (string & {});
 export type CloudinaryResourceDeliveryType =
   | "animoto"
   | "asset"

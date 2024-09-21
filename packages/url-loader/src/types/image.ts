@@ -27,7 +27,7 @@ const _imageOptionsSchema = mergeSchemas(
     ...replaceBackgroundProps,
     ...restoreProps,
     ...zoompanProps,
-  })
+  }),
 );
 
 const { _output } = _imageOptionsSchema;

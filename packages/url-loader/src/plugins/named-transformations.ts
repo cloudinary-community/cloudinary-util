@@ -11,7 +11,7 @@ export const namedTransformationsProps = {
       JSON.stringify({
         text: "Named transformations to apply to asset.",
         url: "https://cloudinary.com/documentation/image_transformations#named_transformations",
-      })
+      }),
     )
     .optional(),
   /**
@@ -23,7 +23,7 @@ export const namedTransformationsProps = {
       JSON.stringify({
         text: "Deprecated: use namedTransformations instead",
         url: "https://cloudinary.com/documentation/image_transformations#named_transformations",
-      })
+      }),
     )
     .optional(),
 };
@@ -37,7 +37,7 @@ export const namedTransformationsPlugin = {
 
     if (transformations && process.env.NODE_ENVIRONMENT === "development") {
       console.warn(
-        "The transformations prop is deprecated. Please use namedTransformations instead."
+        "The transformations prop is deprecated. Please use namedTransformations instead.",
       );
     }
 

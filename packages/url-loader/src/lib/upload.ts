@@ -1,4 +1,4 @@
-import type { CloudinaryUploadWidgetOptions } from '@cloudinary-util/types';
+import type { CloudinaryUploadWidgetOptions } from "@cloudinary-util/types";
 
 /**
  * generateSignature
@@ -10,24 +10,32 @@ export interface GenerateSignatureCallback {
   signatureEndpoint: string;
 }
 
-export function generateSignatureCallback({ signatureEndpoint, fetch: fetcher }: GenerateSignatureCallback): CloudinaryUploadWidgetOptions["uploadSignature"] {
-  return function generateSignature(callback: (signature: string | null, error?: unknown) => void, paramsToSign: object) {
-    if ( typeof signatureEndpoint === 'undefined' ) {
-      throw Error('Failed to generate signature: signatureEndpoint property undefined.')
+export function generateSignatureCallback({
+  signatureEndpoint,
+  fetch: fetcher,
+}: GenerateSignatureCallback): CloudinaryUploadWidgetOptions["uploadSignature"] {
+  return function generateSignature(
+    callback: (signature: string | null, error?: unknown) => void,
+    paramsToSign: object,
+  ) {
+    if (typeof signatureEndpoint === "undefined") {
+      throw Error(
+        "Failed to generate signature: signatureEndpoint property undefined.",
+      );
     }
-    
-    if ( typeof fetcher === 'undefined' ) {
-      throw Error('Failed to generate signature: fetch property undefined.')
+
+    if (typeof fetcher === "undefined") {
+      throw Error("Failed to generate signature: fetch property undefined.");
     }
 
     fetcher(signatureEndpoint, {
-      method: 'POST',
+      method: "POST",
       body: JSON.stringify({
         paramsToSign,
       }),
       headers: {
-        'Content-Type': 'application/json'
-      }
+        "Content-Type": "application/json",
+      },
     })
       .then((response: { json: Function }) => response.json())
       .then((result: { signature: string }) => {
@@ -35,6 +43,6 @@ export function generateSignatureCallback({ signatureEndpoint, fetch: fetcher }:
       })
       .catch((error: unknown) => {
         callback(null, error);
-      })
-  }
+      });
+  };
 }

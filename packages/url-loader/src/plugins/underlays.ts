@@ -60,7 +60,7 @@ export const underlaysProps = {
       JSON.stringify({
         text: "Public ID of image that is applied under the base image.",
         url: "https://cloudinary.com/documentation/transformation_reference#l_layer",
-      })
+      }),
     )
     .optional(),
   underlays: z
@@ -69,7 +69,7 @@ export const underlaysProps = {
       JSON.stringify({
         text: "Image layers that are applied under the base image.",
         url: "https://cloudinary.com/documentation/transformation_reference#l_layer",
-      })
+      }),
     )
     .optional(),
 };
@@ -125,7 +125,7 @@ export const underlaysPlugin = {
 
       let layerTransformation = `${typeQualifier}_${publicId.replace(
         /\//g,
-        ":"
+        ":",
       )}`;
 
       // Begin organizing transformations based on what it is and the location
@@ -160,7 +160,7 @@ export const underlaysPlugin = {
             if (!objectHasKey(qualifiersPosition, key)) return;
             const { qualifier } = qualifiersPosition[key as string];
             applied.push(`${qualifier}_${position[key]}`);
-          }
+          },
         );
       }
 

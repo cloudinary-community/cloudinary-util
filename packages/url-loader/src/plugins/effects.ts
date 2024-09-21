@@ -67,7 +67,7 @@ const effectsArrayPropSchema = z
   .describe(
     JSON.stringify({
       text: "Array of objects specifying transformations to be applied to asset.",
-    })
+    }),
   )
   .optional();
 
@@ -130,7 +130,7 @@ export const effectsPlugin = {
             value: options?.[key],
             converters,
           });
-        }
+        },
       );
     }
 

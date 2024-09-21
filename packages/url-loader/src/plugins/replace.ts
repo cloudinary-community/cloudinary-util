@@ -17,7 +17,7 @@ export const replaceProps = {
       JSON.stringify({
         text: "Uses generative AI to replace parts of your image with something else.",
         url: "https://cloudinary.com/documentation/transformation_reference#e_gen_replace",
-      })
+      }),
     )
     .optional(),
 };
