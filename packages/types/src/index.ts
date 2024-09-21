@@ -1,6 +1,7 @@
 export type {
   CloudinaryResource,
   CloudinaryResourceAccessMode,
+  CloudinaryResourceContext,
   CloudinaryResourceDeliveryType,
   CloudinaryResourceResourceType,
 } from "./types/resources.js";
@@ -28,6 +29,12 @@ export type {
   CloudinaryVideoPlayerOptionsLogo,
   CloudinaryVideoPlayerPlaylistByTagOptions,
   CloudinaryVideoPlayerPlaylistOptions,
+  CloudinaryVideoPlayerTextTracks,
+  CloudinaryVideoPlayerTextTracksTrack,
+  CloudinaryVideoPlayerTextTracksTrackOptions,
+  CloudinaryVideoPlayerTextTracksTrackOptionsBox,
+  CloudinaryVideoPlayerTextTracksTrackOptionsGravity,
+  CloudinaryVideoPlayerTextTracksTrackOptionsTheme,
 } from "./types/cloudinary-video-player.js";
 
 export type {

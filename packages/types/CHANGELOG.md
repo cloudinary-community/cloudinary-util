@@ -1,3 +1,24 @@
+# [@cloudinary-util/types-v1.5.9](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.8...@cloudinary-util/types-v1.5.9) (2024-09-16)
+
+
+### Bug Fixes
+
+* fixing player text track options ([a03577d](https://github.com/cloudinary-community/cloudinary-util/commit/a03577d60589626d9b1d6eed098e7afb07eaf0d1))
+
+# [@cloudinary-util/types-v1.5.8](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.7...@cloudinary-util/types-v1.5.8) (2024-09-13)
+
+
+### Bug Fixes
+
+* adding textTracks types to video player ([3b766a3](https://github.com/cloudinary-community/cloudinary-util/commit/3b766a37a3ffec17507a79c1bd6e4a7f01fdfa39))
+
+# [@cloudinary-util/types-v1.5.7](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.6...@cloudinary-util/types-v1.5.7) (2024-09-11)
+
+
+### Bug Fixes
+
+* adding type definition for resource context ([2ef1311](https://github.com/cloudinary-community/cloudinary-util/commit/2ef13118602f1efc39a85a7e05fa958c6e1cd2f1))
+
 # [@cloudinary-util/types-v1.5.6](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.5...@cloudinary-util/types-v1.5.6) (2024-09-06)
 
 ### Bug Fixes

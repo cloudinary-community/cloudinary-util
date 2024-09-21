@@ -246,7 +246,7 @@ export interface CloudinaryVideoPlayer {
 
    * @param source publicId or rawURL
    * @param options Source Options
-   * 
+   *
    * @see https://cloudinary.com/documentation/video_player_api_reference#source
    */
   source: (source: string, options?: unknown) => CloudinaryVideoPlayer;
@@ -309,6 +309,60 @@ export interface CloudinaryVideoPlayerOptionsLogo {
   logoOnclickUrl?: string;
   showLogo?: boolean;
 }
+
+export interface CloudinaryVideoPlayerTextTracksTrackOptionsBox {
+  height?: string | number;
+  width?: string | number;
+  x?: string | number;
+  y?: string | number;
+}
+
+export type CloudinaryVideoPlayerTextTracksTrackOptionsGravity =
+  | "top"
+  | "right"
+  | "bottom"
+  | "left"
+  | "center"
+  | "top-right"
+  | "bottom-right"
+  | "bottom-left"
+  | "top-left"
+  | (string & {});
+
+export type CloudinaryVideoPlayerTextTracksTrackOptionsTheme =
+  | "default"
+  | "videojs-default"
+  | "yellow-outlined"
+  | "player-colors"
+  | "3d"
+  | (string & {});
+
+export interface CloudinaryVideoPlayerTextTracksTrackOptions {
+  box?: CloudinaryVideoPlayerTextTracksTrackOptionsBox;
+  fontFace?: string;
+  fontSize?: string;
+  gravity?: CloudinaryVideoPlayerTextTracksTrackOptionsGravity;
+  style?: Record<string, string | number>;
+  theme?: CloudinaryVideoPlayerTextTracksTrackOptionsTheme;
+  wordHighlightStyle?: Record<string, string | number>;
+}
+
+export interface CloudinaryVideoPlayerTextTracksTrack {
+  default?: boolean;
+  label?: string;
+  language?: string;
+  maxWords?: number;
+  options?: CloudinaryVideoPlayerTextTracksTrackOptions;
+  url?: string;
+  wordHighlight?: boolean;
+}
+
+export interface CloudinaryVideoPlayerTextTracks {
+  captions?: CloudinaryVideoPlayerTextTracksTrack;
+  options?: CloudinaryVideoPlayerTextTracksTrackOptions
+  subtitles?: CloudinaryVideoPlayerTextTracksTrack | Array<CloudinaryVideoPlayerTextTracksTrack>;
+}
+
 export interface CloudinaryVideoPlayerOptions
   extends CloudinaryVideoPlayerOptionsLogo {
   width?: string | number;
@@ -366,6 +420,7 @@ export interface CloudinaryVideoPlayerOptions
   publicId: string;
   sourceTransformation?: object;
   sourceTypes?: Array<string>;
+  textTracks?: CloudinaryVideoPlayerTextTracks;
   transformation?: Array<object> | object;
 
   // ------------ Ads And Analytics Props ------------
