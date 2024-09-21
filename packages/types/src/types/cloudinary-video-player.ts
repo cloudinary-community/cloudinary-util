@@ -138,7 +138,7 @@ export interface CloudinaryVideoPlayer {
    * @see https://cloudinary.com/documentation/video_player_api_reference#posteroptions
    */
   posterOptions: (
-    options?: CloudinaryVideoPlayerOptionPosterOptions,
+    options?: CloudinaryVideoPlayerOptionPosterOptions
   ) => CloudinaryVideoPlayerOptionPosterOptions | CloudinaryVideoPlayer;
 
   /**
@@ -155,7 +155,7 @@ export interface CloudinaryVideoPlayer {
    * @see https://cloudinary.com/documentation/video_player_api_reference#sourcetransformation
    */
   sourceTransformation: (
-    transformations?: Record<string, unknown>,
+    transformations?: Record<string, unknown>
   ) => Record<string, unknown> | CloudinaryVideoPlayer;
 
   /**
@@ -205,7 +205,7 @@ export interface CloudinaryVideoPlayer {
    */
   sourcesByTag: (
     tag: string,
-    options?: CloudinaryVideoPlayerPlaylistByTagOptions,
+    options?: CloudinaryVideoPlayerPlaylistByTagOptions
   ) => unknown;
 
   /**
@@ -221,7 +221,7 @@ export interface CloudinaryVideoPlayer {
    */
   playlistByTag: (
     tag: string,
-    options?: CloudinaryVideoPlayerPlaylistByTagOptions,
+    options?: CloudinaryVideoPlayerPlaylistByTagOptions
   ) => unknown;
 
   /**
@@ -235,7 +235,7 @@ export interface CloudinaryVideoPlayer {
    */
   playlist: (
     sources: string[],
-    options?: CloudinaryVideoPlayerPlaylistOptions,
+    options?: CloudinaryVideoPlayerPlaylistOptions
   ) => CloudinaryVideoPlayer;
 
   /**
