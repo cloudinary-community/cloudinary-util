@@ -302,6 +302,13 @@ export interface CloudinaryVideoPlayer {
    * @see https://cloudinary.com/documentation/video_player_api_reference#fluid
    */
   fluid: (fluid?: boolean) => boolean;
+
+  videojs: {
+    cloudinary: {
+      dispose: () => void;
+    }
+  }
+
 }
 
 export interface CloudinaryVideoPlayerOptionsLogo {
