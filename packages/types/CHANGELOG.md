@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.5.10](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.9...@cloudinary-util/types-v1.5.10) (2024-10-04)
+
+
+### Bug Fixes
+
+* Adds videojs dispose method to Video Player type ([2fd75c1](https://github.com/cloudinary-community/cloudinary-util/commit/2fd75c1c6ceac2496f2fa258d466e1e0d2d1f9cd))
+
 # [@cloudinary-util/types-v1.5.9](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.8...@cloudinary-util/types-v1.5.9) (2024-09-16)
 
 
