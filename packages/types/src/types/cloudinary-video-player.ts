@@ -442,6 +442,7 @@ export interface CloudinaryVideoPlayerOptions
   };
   analytics?: boolean;
   allowUsageReport?: boolean;
+  cloudinaryAnalytics?: boolean | object;
 
   // ------------ Delivery ------------
   cloud_name?: string;
