@@ -8,24 +8,24 @@ import { z } from "zod";
 
 import { abrPlugin } from "../plugins/abr.js";
 import { croppingPlugin } from "../plugins/cropping.js";
-import { defaultImagePlugin } from "../plugins/default-image.js";
+import { DefaultImage } from "../plugins/default-image.js";
 import { effectsPlugin } from "../plugins/effects.js";
-import { enhancePlugin } from "../plugins/enhance.js";
-import { extractPlugin } from "../plugins/extract.js";
-import { fillBackgroundPlugin } from "../plugins/fill-background.js";
-import { flagsPlugin } from "../plugins/flags.js";
-import { namedTransformationsPlugin } from "../plugins/named-transformations.js";
-import { overlaysPlugin } from "../plugins/overlays.js";
-import { preserveTransformationsPlugin } from "../plugins/preserve-transformations.js";
-import { rawTransformationsPlugin } from "../plugins/raw-transformations.js";
+import { Enhance } from "../plugins/enhance.js";
+import { Extract } from "../plugins/extract.js";
+import { FillBackground } from "../plugins/fill-background.js";
+import { Flags } from "../plugins/flags.js";
+import { NamedTransformations } from "../plugins/named-transformations.js";
+import { Overlays } from "../plugins/overlays.js";
+import { PreserveTransformations } from "../plugins/preserve-transformations.js";
+import { RawTransformations } from "../plugins/raw-transformations.js";
 import { recolorPlugin } from "../plugins/recolor.js";
-import { removeBackgroundPlugin } from "../plugins/remove-background.js";
-import { removePlugin } from "../plugins/remove.js";
+import { RemoveBackground } from "../plugins/remove-background.js";
+import { Remove } from "../plugins/remove.js";
 import { replaceBackgroundPlugin } from "../plugins/replace-background.js";
 import { replacePlugin } from "../plugins/replace.js";
 import { restorePlugin } from "../plugins/restore.js";
-import { sanitizePlugin } from "../plugins/sanitize.js";
-import { seoPlugin } from "../plugins/seo.js";
+import { Sanitize } from "../plugins/sanitize.js";
+import { Seo } from "../plugins/seo.js";
 import { underlaysPlugin } from "../plugins/underlays.js";
 import { zoompanPlugin } from "../plugins/zoompan.js";
 
@@ -34,7 +34,7 @@ import { configOptionsSchema } from "../types/config.js";
 import { imageOptionsSchema } from "../types/image.js";
 import { videoOptionsSchema } from "../types/video.js";
 
-import { versionPlugin } from "../plugins/version.js";
+import { Version } from "../plugins/version.js";
 import type {
   AssetType,
   PluginOptions,
@@ -46,11 +46,11 @@ export const transformationPlugins = [
   // Some features *must* be the first transformation applied
   // thus their plugins *must* come first in the chain
 
-  enhancePlugin,
-  extractPlugin,
+  Enhance,
+  Extract,
   recolorPlugin,
-  removeBackgroundPlugin,
-  removePlugin,
+  RemoveBackground,
+  Remove,
   replacePlugin,
   replaceBackgroundPlugin,
   restorePlugin,
@@ -65,20 +65,20 @@ export const transformationPlugins = [
   // other arguments to avoid conflicting with
   // added options via the component
 
-  preserveTransformationsPlugin,
-  rawTransformationsPlugin,
+  PreserveTransformations,
+  RawTransformations,
 
   abrPlugin,
-  defaultImagePlugin,
+  DefaultImage,
   effectsPlugin,
-  fillBackgroundPlugin,
-  flagsPlugin,
-  overlaysPlugin,
-  sanitizePlugin,
-  namedTransformationsPlugin,
-  seoPlugin,
+  FillBackground,
+  Flags,
+  Overlays,
+  Sanitize,
+  NamedTransformations,
+  Seo,
   underlaysPlugin,
-  versionPlugin,
+  Version,
   zoompanPlugin,
 ];
 
@@ -197,7 +197,7 @@ export function constructCloudinaryUrl({
 
   // Begin creating a new Cloudinary image instance and configure
 
-  let cldAsset: any = undefined;
+  let cldAsset: CloudinaryImage | CloudinaryVideo | undefined;
 
   if (["image", "images"].includes(options.assetType)) {
     cldAsset = cld.image(publicId);
@@ -221,7 +221,7 @@ export function constructCloudinaryUrl({
       const attemptedUse =
         pluginProps
           .map((prop) => optionsKeys.includes(prop))
-          .filter((isUsed) => !!isUsed).length > 0;
+          .filter((isUsed) => isUsed).length > 0;
 
       if (!supportedAssetType) {
         if (attemptedUse) {

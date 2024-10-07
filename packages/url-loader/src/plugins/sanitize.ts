@@ -1,15 +1,17 @@
 import type { ImageOptions } from "../types/image.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export interface SanitizeOptions {
-  /**
-   * @description Runs a sanitizer on SVG images.
-   * @url https://cloudinary.com/documentation/transformation_reference#fl_sanitize
-   */
-  sanitize?: boolean;
+export declare namespace Sanitize {
+  export interface Options {
+    /**
+     * @description Runs a sanitizer on SVG images.
+     * @url https://cloudinary.com/documentation/transformation_reference#fl_sanitize
+     */
+    sanitize?: boolean;
+  }
 }
 
-export const sanitizePlugin = {
+export const Sanitize = {
   assetTypes: ["image", "images"],
   plugin: ({ cldAsset, options }) => {
     const { sanitize = true } = options;

@@ -1,14 +1,16 @@
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export interface SeoOptions {
-  /**
-   * @description Configures the URL to include an SEO-friendly suffix in the URL
-   * @url https://cloudinary.com/documentation/advanced_url_delivery_options#seo_friendly_media_asset_urls
-   */
-  seoSuffix?: string;
+export declare namespace Seo {
+  export interface Options {
+    /**
+     * @description Configures the URL to include an SEO-friendly suffix in the URL
+     * @url https://cloudinary.com/documentation/advanced_url_delivery_options#seo_friendly_media_asset_urls
+     */
+    seoSuffix?: string;
+  }
 }
 
-export const seoPlugin = {
+export const Seo = {
   assetTypes: ["image", "images", "video", "videos"],
   plugin: ({ cldAsset, options }) => {
     const { seoSuffix } = options;

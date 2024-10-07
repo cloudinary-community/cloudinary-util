@@ -1,9 +1,9 @@
 import { Cloudinary } from "@cloudinary/url-gen";
 import { describe, expect, it } from "vitest";
 
-import { sanitizePlugin } from "../../src/plugins/sanitize.js";
+import { Sanitize } from "../../src/plugins/sanitize.js";
 
-const { plugin } = sanitizePlugin;
+const { plugin } = Sanitize;
 
 const cld = new Cloudinary({
   cloud: {

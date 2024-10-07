@@ -2,15 +2,17 @@ import { getFormat } from "@cloudinary-util/util";
 import type { ImageOptions } from "../types/image.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export interface DefaultImageOptions {
-  /**
-   * @description Configures the default image to use in case the given public ID is not available. Must include file extension.
-   * @url https://cloudinary.com/documentation/transformation_reference#d_default_image
-   */
-  defaultImage?: string;
+export declare namespace DefaultImage {
+  export interface Options {
+    /**
+     * @description Configures the default image to use in case the given public ID is not available. Must include file extension.
+     * @url https://cloudinary.com/documentation/transformation_reference#d_default_image
+     */
+    defaultImage?: string;
+  }
 }
 
-export const defaultImagePlugin = {
+export const DefaultImage = {
   assetTypes: ["image", "images"],
   plugin: (settings) => {
     const { cldAsset, options } = settings;

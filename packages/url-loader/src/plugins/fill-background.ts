@@ -5,21 +5,23 @@ import type { TransformationPlugin } from "../types/plugins.js";
 
 const defaultCrop = "pad";
 
-export interface FillBackgroundObject {
-  crop?: CropMode;
-  gravity?: Gravity;
-  prompt?: Prompt;
+export declare namespace FillBackground {
+  export interface Options {
+    /**
+     * @description Uses Generative Fill to extended padded image with AI
+     * @url https://cloudinary.com/documentation/transformation_reference#b_gen_fill
+     */
+    fillBackground?: boolean | NestedOptions;
+  }
+
+  export interface NestedOptions {
+    crop?: CropMode;
+    gravity?: Gravity;
+    prompt?: Prompt;
+  }
 }
 
-export interface FillBackgroundOptions {
-  /**
-   * @description Uses Generative Fill to extended padded image with AI
-   * @url https://cloudinary.com/documentation/transformation_reference#b_gen_fill
-   */
-  fillBackground?: boolean | FillBackgroundOptions;
-}
-
-export const fillBackgroundPlugin = {
+export const FillBackground = {
   assetTypes: ["image", "images"],
   plugin: (settings) => {
     const { cldAsset, options } = settings;

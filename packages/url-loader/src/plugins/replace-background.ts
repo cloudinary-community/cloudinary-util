@@ -1,17 +1,19 @@
 import type { ImageOptions } from "../types/image.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export interface ReplaceBackgroundOptionsObject {
-  prompt?: string;
-  seed?: number;
-}
+export declare namespace ReplaceBackground {
+  export interface Options {
+    /**
+     * @description Replaces the background of an image with an AI-generated background.
+     * @url https://cloudinary.com/documentation/transformation_reference#e_gen_background_replace
+     */
+    replaceBackground?: NestedOptions;
+  }
 
-export interface ReplaceBackgroundOptions {
-  /**
-   * @description Replaces the background of an image with an AI-generated background.
-   * @url https://cloudinary.com/documentation/transformation_reference#e_gen_background_replace
-   */
-  replaceBackground?: string | ReplaceBackgroundOptionsObject;
+  export interface NestedOptions {
+    prompt?: string;
+    seed?: number;
+  }
 }
 
 export const replaceBackgroundPlugin = {

@@ -1,14 +1,16 @@
 import { getTransformations } from "@cloudinary-util/util";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export interface PreserveTransformationsOptions {
-  /**
-   * @description Preserves transformations from a Cloudinary URL when using using a Cloudinary URL as the asset source (src).
-   */
-  preserveTransformations?: boolean;
+export declare namespace PreserveTransformations {
+  export interface Options {
+    /**
+     * @description Preserves transformations from a Cloudinary URL when using using a Cloudinary URL as the asset source (src).
+     */
+    preserveTransformations?: boolean;
+  }
 }
 
-export const preserveTransformationsPlugin = {
+export const PreserveTransformations = {
   assetTypes: ["image", "images", "video", "videos"],
   plugin: ({ cldAsset, options }) => {
     const { preserveTransformations = false } = options;

@@ -2,22 +2,24 @@ import type { ExtractMode, Multiple, Prompt } from "../constants/parameters.js";
 import type { ImageOptions } from "../types/image.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export interface ExtractOptionsObject {
-  prompt?: Prompt;
-  invert?: boolean;
-  mode?: ExtractMode;
-  multiple?: Multiple;
+export declare namespace Extract {
+  export interface Options {
+    /**
+     * @description Extracts an area or multiple areas of an image, described in natural language.
+     * @url https://cloudinary.com/documentation/transformation_reference#e_extract
+     */
+    extract?: Prompt | NestedOptions;
+  }
+
+  export interface NestedOptions {
+    prompt?: Prompt;
+    invert?: boolean;
+    mode?: ExtractMode;
+    multiple?: Multiple;
+  }
 }
 
-export interface ExtractOptions {
-  /**
-   * @description Extracts an area or multiple areas of an image, described in natural language.
-   * @url https://cloudinary.com/documentation/transformation_reference#e_extract
-   */
-  extract?: Prompt | ExtractOptionsObject;
-}
-
-export const extractPlugin = {
+export const Extract = {
   assetTypes: ["image", "images"],
   plugin: (settings) => {
     const { cldAsset, options } = settings;

@@ -1,18 +1,20 @@
 import type { ImageOptions } from "../types/image.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export interface ReplaceOptionsObject {
-  from: string;
-  to: string;
-  preserveGeometry?: boolean;
-}
+export declare namespace Replace {
+  export interface Options {
+    /**
+     * @description Uses generative AI to replace parts of your image with something else.
+     * @url https://cloudinary.com/documentation/transformation_reference#e_gen_replace
+     */
+    replace?: NestedOptions | readonly string[] | readonly boolean[];
+  }
 
-export interface ReplaceOptions {
-  /**
-   * @description Uses generative AI to replace parts of your image with something else.
-   * @url https://cloudinary.com/documentation/transformation_reference#e_gen_replace
-   */
-  replace?: ReplaceOptionsObject | readonly string[] | readonly boolean[];
+  export interface NestedOptions {
+    from: string;
+    to: string;
+    preserveGeometry?: boolean;
+  }
 }
 
 export const replacePlugin = {

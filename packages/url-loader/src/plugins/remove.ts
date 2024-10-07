@@ -3,22 +3,24 @@ import { promptArrayToString } from "../lib/transformations.js";
 import type { ImageOptions } from "../types/image.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export interface RemoveOptionsObject {
-  prompt?: Prompt;
-  region?: number[] | number[][];
-  multiple?: boolean;
-  removeShadow?: boolean;
+export declare namespace Remove {
+  export interface Options {
+    /**
+     * @description Applies zooming and/or panning to an image, resulting in a video or animated image.
+     * @url https://cloudinary.com/documentation/transformation_reference#e_zoompan
+     */
+    remove?: Prompt | NestedOptions;
+  }
+
+  export interface NestedOptions {
+    prompt?: Prompt;
+    region?: number[] | number[][];
+    multiple?: boolean;
+    removeShadow?: boolean;
+  }
 }
 
-export interface RemoveOptions {
-  /**
-   * @description Applies zooming and/or panning to an image, resulting in a video or animated image.
-   * @url https://cloudinary.com/documentation/transformation_reference#e_zoompan
-   */
-  remove?: Prompt | RemoveOptionsObject;
-}
-
-export const removePlugin = {
+export const Remove = {
   assetTypes: ["image", "images"],
   plugin: ({ cldAsset, options }) => {
     const { remove } = options;

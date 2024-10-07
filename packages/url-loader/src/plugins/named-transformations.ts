@@ -1,20 +1,22 @@
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export interface NamedTransformationsOptions {
-  /**
-   * @description Named transformations to apply to asset.
-   * @url https://cloudinary.com/documentation/image_transformations#named_transformations
-   */
-  namedTransformations?: string | readonly string[];
-  /**
-   * @deprecated use {@link `namedTransformations`} instead
-   * @description: Deprecated: use namedTransformations instead
-   * @url https://cloudinary.com/documentation/image_transformations#named_transformations
-   */
-  transformations?: string | readonly string[];
+export declare namespace NamedTransformations {
+  export interface Options {
+    /**
+     * @description Named transformations to apply to asset.
+     * @url https://cloudinary.com/documentation/image_transformations#named_transformations
+     */
+    namedTransformations?: string | readonly string[];
+    /**
+     * @deprecated use {@link `namedTransformations`} instead
+     * @description: Deprecated: use namedTransformations instead
+     * @url https://cloudinary.com/documentation/image_transformations#named_transformations
+     */
+    transformations?: string | readonly string[];
+  }
 }
 
-export const namedTransformationsPlugin = {
+export const NamedTransformations = {
   strict: true,
   assetTypes: ["image", "images", "video", "videos"],
   plugin: ({ cldAsset, options }) => {

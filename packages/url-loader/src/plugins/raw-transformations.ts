@@ -1,14 +1,16 @@
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export interface RawTransformationsOptions {
-  /**
-   * @description Array of transformation parameters using the Cloudinary URL API to apply to an asset.
-   * @url https://cloudinary.com/documentation/transformation_reference
-   */
-  rawTransformations?: string | readonly string[];
+export declare namespace RawTransformations {
+  export interface Options {
+    /**
+     * @description Array of transformation parameters using the Cloudinary URL API to apply to an asset.
+     * @url https://cloudinary.com/documentation/transformation_reference
+     */
+    rawTransformations?: string | readonly string[];
+  }
 }
 
-export const rawTransformationsPlugin = {
+export const RawTransformations = {
   assetTypes: ["image", "images", "video", "videos"],
   plugin: ({ cldAsset, options }) => {
     let { rawTransformations = [] } = options;
@@ -17,7 +19,7 @@ export const rawTransformationsPlugin = {
       rawTransformations = [rawTransformations];
     }
 
-    rawTransformations.forEach((transformation: RawTransformationsOptions) => {
+    rawTransformations.forEach((transformation: RawTransformations.Options) => {
       cldAsset.addTransformation(transformation);
     });
 

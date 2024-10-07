@@ -3,18 +3,20 @@ import { promptArrayToString } from "../lib/transformations.js";
 import type { ImageOptions } from "../types/image.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export interface ImageRecolorOptionsObject {
-  prompt?: Prompt;
-  to?: string;
-  multiple?: boolean;
-}
+export declare namespace Recolor {
+  export interface Options {
+    /**
+     * @description Uses generative AI to recolor parts of your image, maintaining the relative shading.
+     * @url https://cloudinary.com/documentation/transformation_reference#e_gen_recolor
+     */
+    recolor?: string | NestedOptions;
+  }
 
-export interface RecolorOptions {
-  /**
-   * @description Uses generative AI to recolor parts of your image, maintaining the relative shading.
-   * @url https://cloudinary.com/documentation/transformation_reference#e_gen_recolor
-   */
-  recolor?: string | ImageRecolorOptionsObject;
+  export interface NestedOptions {
+    prompt?: Prompt;
+    to?: string;
+    multiple?: boolean;
+  }
 }
 
 export const recolorPlugin = {

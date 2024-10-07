@@ -1,11 +1,13 @@
 import type { Flags } from "../constants/parameters.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export interface FlagsOptions {
-  flags?: Flags;
+export declare namespace Flags {
+  export interface Options {
+    flags?: Flags;
+  }
 }
 
-export const flagsPlugin = {
+export const Flags = {
   assetTypes: ["image", "images", "video", "videos"],
   plugin: (settings) => {
     const { cldAsset, options } = settings;

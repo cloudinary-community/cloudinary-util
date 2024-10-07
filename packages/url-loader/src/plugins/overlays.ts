@@ -1,5 +1,4 @@
 import { encodeBase64, objectHasKey, sortByKey } from "@cloudinary-util/util";
-import type { z } from "zod";
 import type {
   Angle,
   CropMode,
@@ -20,41 +19,43 @@ import { constructTransformation } from "../lib/transformations.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 import type { Qualifier } from "../types/qualifiers.js";
 
-export interface OverlayTextOptions {
-  text: string;
-  alignment?: string;
-  antialias?: string;
-  border?: string;
-  color?: string;
-  fontFamily?: string;
-  fontSize?: number;
-  fontStyle?: string | number;
-  fontWeight?: string;
-  hinting?: string | number;
-  letterSpacing?: string | number;
-  lineSpacing?: string | number;
-  stroke?: string;
-}
+export declare namespace Overlays {
+  export interface Options {
+    appliedEffects?: object[];
+    appliedFlags?: Flags;
+    effects?: object[];
+    crop?: CropMode;
+    flags?: Flags;
+    height?: Height;
+    position?: PositionOptions;
+    publicId?: string;
+    text?: string | TextOptions;
+    url?: string;
+    width?: Width;
+  }
 
-export interface OverlayPositionOptions {
-  angle?: Angle;
-  gravity?: Gravity;
-  x?: X;
-  y?: Y;
-}
+  export interface TextOptions {
+    text: string;
+    alignment?: string;
+    antialias?: string;
+    border?: string;
+    color?: string;
+    fontFamily?: string;
+    fontSize?: number;
+    fontStyle?: string | number;
+    fontWeight?: string;
+    hinting?: string | number;
+    letterSpacing?: string | number;
+    lineSpacing?: string | number;
+    stroke?: string;
+  }
 
-export interface OverlayOptions {
-  appliedEffects?: object[];
-  appliedFlags?: Flags;
-  effects?: object[];
-  crop?: CropMode;
-  flags?: Flags;
-  height?: Height;
-  position?: OverlayPositionOptions;
-  publicId?: string;
-  text?: string | OverlayTextOptions;
-  url?: string;
-  width?: Width;
+  export interface PositionOptions {
+    angle?: Angle;
+    gravity?: Gravity;
+    x?: X;
+    y?: Y;
+  }
 }
 
 export const DEFAULT_TEXT_OPTIONS = {
@@ -64,25 +65,7 @@ export const DEFAULT_TEXT_OPTIONS = {
   fontWeight: "bold",
 };
 
-export interface OverlaysOptions {
-  /**
-   * @description Image or text layer that is applied on top of the base image.
-   * @url https://cloudinary.com/documentation/transformation_reference#l_layer
-   */
-  overlay?: OverlayOptions;
-  /**
-   * @description Image or text layers that are applied on top of the base image.
-   * @url https://cloudinary.com/documentation/transformation_reference#l_layer
-   */
-  overlays?: OverlayOptions[];
-  /**
-   * @description Text to be overlaid on asset.
-   * @url https://cloudinary.com/documentation/image_transformations#transformation_url_structure
-   */
-  text?: string;
-}
-
-export const overlaysPlugin = {
+export const Overlays = {
   assetTypes: ["image", "images", "video", "videos"],
   plugin: ({ cldAsset, options }) => {
     const { text, overlays = [] } = options;
@@ -116,7 +99,7 @@ export const overlaysPlugin = {
       flags: layerFlags = [],
       appliedFlags = [],
       ...options
-    }: OverlayOptions) {
+    }: Overlays.Options) {
       const hasPublicId = typeof publicId === "string";
       const hasUrl = typeof url === "string";
       const hasText = typeof text === "object" || typeof text === "string";

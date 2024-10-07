@@ -1,14 +1,16 @@
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export interface VersionOptions {
-  /**
-   * @description Custom version number to apply to asset URL.
-   * @url https://cloudinary.com/documentation/advanced_url_delivery_options#asset_versions
-   */
-  version?: number | string;
+export declare namespace Version {
+  export interface Options {
+    /**
+     * @description Custom version number to apply to asset URL.
+     * @url https://cloudinary.com/documentation/advanced_url_delivery_options#asset_versions
+     */
+    version?: number | string;
+  }
 }
 
-export const versionPlugin = {
+export const Version = {
   assetTypes: ["image", "images", "video", "videos"],
   plugin: ({ cldAsset, options }) => {
     const { version } = options;
