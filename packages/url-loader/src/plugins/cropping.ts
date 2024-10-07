@@ -17,6 +17,15 @@ const cropsWithZoom = ["crop", "thumb"];
 
 const DEFAULT_CROP = "limit";
 
+export declare namespace Cropping {
+  export interface Options {
+    aspectRatio?: AspectRatio;
+    crop?: CropMode | SingleCropOptions | SingleCropOptions[];
+    gravity?: Gravity;
+    zoom?: Zoom;
+  }
+}
+
 export interface SingleCropOptions {
   type: CropMode;
   aspectRatio?: AspectRatio;
@@ -29,12 +38,7 @@ export interface SingleCropOptions {
   source?: boolean;
 }
 
-export interface CropOptions {
-  aspectRatio?: AspectRatio;
-  crop?: CropMode | SingleCropOptions | SingleCropOptions[];
-  gravity?: Gravity;
-  zoom?: Zoom;
-}
+export interface CropOptions {}
 
 export const croppingPlugin = {
   assetTypes: ["image", "images", "video", "videos"],

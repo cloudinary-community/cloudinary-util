@@ -1,21 +1,17 @@
-import { z } from "zod";
 import type { TransformationPlugin } from "../types/plugins.js";
 import type { VideoOptions } from "../types/video.js";
 
-export const abrProps = {
-  streamingProfile: z
-    .string()
-    .describe(
-      JSON.stringify({
-        text: "The streaming profile to apply when delivering a video using adaptive bitrate streaming.",
-        url: "https://cloudinary.com/documentation/transformation_reference#sp_streaming_profile",
-      })
-    )
-    .optional(),
-};
+export declare namespace Abr {
+  export interface Options {
+    /**
+     * @description The streaming profile to apply when delivering a video using adaptive bitrate streaming.
+     * @url https://cloudinary.com/documentation/transformation_reference#sp_streaming_profile
+     */
+    streamingProfile?: string;
+  }
+}
 
-export const abrPlugin = {
-  props: abrProps,
+export const Abr = {
   assetTypes: ["video", "videos"],
   plugin: (settings) => {
     const { cldAsset, options } = settings;

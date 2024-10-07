@@ -6,7 +6,7 @@ import {
 } from "@cloudinary/url-gen";
 import { z } from "zod";
 
-import { abrPlugin } from "../plugins/abr.js";
+import { Abr } from "../plugins/abr.js";
 import { croppingPlugin } from "../plugins/cropping.js";
 import { DefaultImage } from "../plugins/default-image.js";
 import { effectsPlugin } from "../plugins/effects.js";
@@ -68,7 +68,7 @@ export const transformationPlugins = [
   PreserveTransformations,
   RawTransformations,
 
-  abrPlugin,
+  Abr,
   DefaultImage,
   effectsPlugin,
   FillBackground,
