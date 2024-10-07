@@ -1,32 +1,25 @@
-import { z } from "zod";
-import { crop, gravity } from "../constants/parameters.js";
+import type { CropMode, Gravity, Prompt } from "../constants/parameters.js";
 import { normalizeNumberParameter } from "../lib/transformations.js";
 import type { ImageOptions } from "../types/image.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
 const defaultCrop = "pad";
 
-export const fillBackgroundProps = {
-  fillBackground: z
-    .union([
-      z.boolean(),
-      z.object({
-        crop: crop.schema.optional(),
-        gravity: gravity.schema.optional(),
-        prompt: z.string().optional(),
-      }),
-    ])
-    .describe(
-      JSON.stringify({
-        text: "Uses Generative Fill to extended padded image with AI",
-        url: "https://cloudinary.com/documentation/transformation_reference#b_gen_fill",
-      })
-    )
-    .optional(),
-};
+export interface FillBackgroundObject {
+  crop?: CropMode;
+  gravity?: Gravity;
+  prompt?: Prompt;
+}
+
+export interface FillBackgroundOptions {
+  /**
+   * @description Uses Generative Fill to extended padded image with AI
+   * @url https://cloudinary.com/documentation/transformation_reference#b_gen_fill
+   */
+  fillBackground?: boolean | FillBackgroundOptions;
+}
 
 export const fillBackgroundPlugin = {
-  props: fillBackgroundProps,
   assetTypes: ["image", "images"],
   plugin: (settings) => {
     const { cldAsset, options } = settings;

@@ -1,33 +1,23 @@
-import { z } from "zod";
+import type { Prompt } from "../constants/parameters.js";
 import { promptArrayToString } from "../lib/transformations.js";
 import type { ImageOptions } from "../types/image.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-const imageOptionsRecolorPromptSchema = z.union([
-  z.string(),
-  z.array(z.string()),
-]);
+export interface ImageRecolorOptionsObject {
+  prompt?: Prompt;
+  to?: string;
+  multiple?: boolean;
+}
 
-const imageOptionsRecolorSchema = z.object({
-  prompt: imageOptionsRecolorPromptSchema.optional(),
-  to: z.string().optional(),
-  multiple: z.boolean().optional(),
-});
-
-export const recolorProps = {
-  recolor: z
-    .union([imageOptionsRecolorPromptSchema, imageOptionsRecolorSchema])
-    .describe(
-      JSON.stringify({
-        text: "Uses generative AI to recolor parts of your image, maintaining the relative shading.",
-        url: "https://cloudinary.com/documentation/transformation_reference#e_gen_recolor",
-      })
-    )
-    .optional(),
-};
+export interface RecolorOptions {
+  /**
+   * @description Uses generative AI to recolor parts of your image, maintaining the relative shading.
+   * @url https://cloudinary.com/documentation/transformation_reference#e_gen_recolor
+   */
+  recolor?: string | ImageRecolorOptionsObject;
+}
 
 export const recolorPlugin = {
-  props: recolorProps,
   assetTypes: ["image", "images"],
   plugin: (settings) => {
     const { cldAsset, options } = settings;

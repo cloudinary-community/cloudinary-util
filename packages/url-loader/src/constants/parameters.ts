@@ -144,7 +144,7 @@ export type Multiple = boolean;
 /**
  *  @description Natural language descriptions used for generative AI capabilities.
  */
-export type Prompt = string;
+export type Prompt = string | readonly string[];
 
 /**
  *  @description A qualifier that sets the desired width of an asset using a specified value, or automatically based on the available width.

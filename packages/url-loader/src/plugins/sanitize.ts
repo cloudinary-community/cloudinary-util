@@ -1,21 +1,15 @@
-import { z } from "zod";
 import type { ImageOptions } from "../types/image.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export const sanitizeProps = {
-  sanitize: z
-    .boolean()
-    .describe(
-      JSON.stringify({
-        text: "Runs a sanitizer on SVG images.",
-        url: "https://cloudinary.com/documentation/transformation_reference#fl_sanitize",
-      })
-    )
-    .optional(),
-};
+export interface SanitizeOptions {
+  /**
+   * @description Runs a sanitizer on SVG images.
+   * @url https://cloudinary.com/documentation/transformation_reference#fl_sanitize
+   */
+  sanitize?: boolean;
+}
 
 export const sanitizePlugin = {
-  props: sanitizeProps,
   assetTypes: ["image", "images"],
   plugin: ({ cldAsset, options }) => {
     const { sanitize = true } = options;

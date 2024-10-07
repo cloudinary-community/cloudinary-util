@@ -1,15 +1,14 @@
 import { encodeBase64, objectHasKey, sortByKey } from "@cloudinary-util/util";
-import { z } from "zod";
-import {
-  angle,
-  crop,
-  flags,
-  flagsEnum,
-  gravity,
-  height,
-  width,
-  x,
-  y,
+import type { z } from "zod";
+import type {
+  Angle,
+  CropMode,
+  Flags,
+  Gravity,
+  Height,
+  Width,
+  X,
+  Y,
 } from "../constants/parameters.js";
 import {
   effects as qualifiersEffects,
@@ -21,42 +20,42 @@ import { constructTransformation } from "../lib/transformations.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 import type { Qualifier } from "../types/qualifiers.js";
 
-const overlayTextSchema = z.object({
-  alignment: z.string().optional(),
-  antialias: z.string().optional(),
-  border: z.string().optional(),
-  color: z.string().optional(),
-  fontFamily: z.string().optional(),
-  fontSize: z.number().optional(),
-  fontStyle: z.union([z.string(), z.number()]).optional(),
-  fontWeight: z.string().optional(),
-  hinting: z.union([z.string(), z.number()]).optional(),
-  letterSpacing: z.union([z.string(), z.number()]).optional(),
-  lineSpacing: z.union([z.string(), z.number()]).optional(),
-  stroke: z.string().optional(),
-  text: z.string(), // Required if using object format
-});
+export interface OverlayTextOptions {
+  text: string;
+  alignment?: string;
+  antialias?: string;
+  border?: string;
+  color?: string;
+  fontFamily?: string;
+  fontSize?: number;
+  fontStyle?: string | number;
+  fontWeight?: string;
+  hinting?: string | number;
+  letterSpacing?: string | number;
+  lineSpacing?: string | number;
+  stroke?: string;
+}
 
-const overlayPositionSchema = z.object({
-  angle: angle.schema.optional(),
-  gravity: gravity.schema.optional(),
-  x: x.schema.optional(),
-  y: y.schema.optional(),
-});
+export interface OverlayPositionOptions {
+  angle?: Angle;
+  gravity?: Gravity;
+  x?: X;
+  y?: Y;
+}
 
-const overlaySchema = z.object({
-  appliedEffects: z.array(z.object({})).optional(),
-  appliedFlags: flags.schema.optional(),
-  effects: z.array(z.object({})).optional(),
-  crop: crop.schema.optional(),
-  flags: flags.schema.optional(),
-  height: height.schema.optional(),
-  position: overlayPositionSchema.optional(),
-  publicId: z.string().optional(),
-  text: z.union([z.string(), overlayTextSchema]).optional(),
-  url: z.string().optional(),
-  width: width.schema.optional(),
-});
+export interface OverlayOptions {
+  appliedEffects?: object[];
+  appliedFlags?: Flags;
+  effects?: object[];
+  crop?: CropMode;
+  flags?: Flags;
+  height?: Height;
+  position?: OverlayPositionOptions;
+  publicId?: string;
+  text?: string | OverlayTextOptions;
+  url?: string;
+  width?: Width;
+}
 
 export const DEFAULT_TEXT_OPTIONS = {
   color: "black",
@@ -65,37 +64,25 @@ export const DEFAULT_TEXT_OPTIONS = {
   fontWeight: "bold",
 };
 
-export const overlaysProps = {
-  overlay: overlaySchema
-    .describe(
-      JSON.stringify({
-        text: "Image or text layer that is applied on top of the base image.",
-        url: "https://cloudinary.com/documentation/transformation_reference#l_layer",
-      })
-    )
-    .optional(),
-  overlays: z
-    .array(overlaySchema)
-    .describe(
-      JSON.stringify({
-        text: "Image or text layers that are applied on top of the base image.",
-        url: "https://cloudinary.com/documentation/transformation_reference#l_layer",
-      })
-    )
-    .optional(),
-  text: z
-    .string()
-    .describe(
-      JSON.stringify({
-        text: "Text to be overlaid on asset.",
-        url: "https://cloudinary.com/documentation/image_transformations#transformation_url_structure",
-      })
-    )
-    .optional(),
-};
+export interface OverlaysOptions {
+  /**
+   * @description Image or text layer that is applied on top of the base image.
+   * @url https://cloudinary.com/documentation/transformation_reference#l_layer
+   */
+  overlay?: OverlayOptions;
+  /**
+   * @description Image or text layers that are applied on top of the base image.
+   * @url https://cloudinary.com/documentation/transformation_reference#l_layer
+   */
+  overlays?: OverlayOptions[];
+  /**
+   * @description Text to be overlaid on asset.
+   * @url https://cloudinary.com/documentation/image_transformations#transformation_url_structure
+   */
+  text?: string;
+}
 
 export const overlaysPlugin = {
-  props: overlaysProps,
   assetTypes: ["image", "images", "video", "videos"],
   plugin: ({ cldAsset, options }) => {
     const { text, overlays = [] } = options;
@@ -119,12 +106,6 @@ export const overlaysPlugin = {
       });
     }
 
-    /**
-     * applyOverlay
-     */
-
-    type ApplyOverlaySettings = z.infer<typeof overlaySchema>;
-
     function applyOverlay({
       publicId,
       url,
@@ -135,7 +116,7 @@ export const overlaysPlugin = {
       flags: layerFlags = [],
       appliedFlags = [],
       ...options
-    }: ApplyOverlaySettings) {
+    }: OverlayOptions) {
       const hasPublicId = typeof publicId === "string";
       const hasUrl = typeof url === "string";
       const hasText = typeof text === "object" || typeof text === "string";

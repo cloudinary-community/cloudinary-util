@@ -1,29 +1,20 @@
-import { z } from "zod";
-import { effects as qualifiersEffects } from "../constants/qualifiers.js";
 import type { ImageOptions } from "../types/image.js";
 import type { PluginOptions, TransformationPlugin } from "../types/plugins.js";
 
-export const zoompanProps = {
-  zoompan: z
-    .union([
-      z.string(),
-      z.boolean(),
-      z.object({
-        loop: qualifiersEffects.loop.schema.optional(),
-        options: z.string(),
-      }),
-    ])
-    .describe(
-      JSON.stringify({
-        text: "Applies zooming and/or panning to an image, resulting in a video or animated image.",
-        url: "https://cloudinary.com/documentation/transformation_reference#e_zoompan",
-      }),
-    )
-    .optional(),
-};
+export interface ZoompanOptionsObject {
+  loop?: Loop;
+  options: string;
+}
+
+export interface ZoompanOptions {
+  /**
+   * @description Applies zooming and/or panning to an image, resulting in a video or animated image.
+   * @url https://cloudinary.com/documentation/transformation_reference#e_zoompan
+   */
+  zoompan?: string | boolean | ZoompanOptionsObject;
+}
 
 export const zoompanPlugin = {
-  props: zoompanProps,
   assetTypes: ["image", "images"],
   plugin: ({ cldAsset, options }) => {
     const { zoompan = false } = options;

@@ -1,23 +1,14 @@
-import { z } from "zod";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-const RawTransformationSchema = z.string();
-type RawTransformation = z.infer<typeof RawTransformationSchema>;
-
-export const rawTransformationsProps = {
-  rawTransformations: z
-    .union([RawTransformationSchema, z.array(RawTransformationSchema)])
-    .describe(
-      JSON.stringify({
-        text: "Array of transformation parameters using the Cloudinary URL API to apply to an asset.",
-        url: "https://cloudinary.com/documentation/transformation_reference",
-      })
-    )
-    .optional(),
-};
+export interface RawTransformationsOptions {
+  /**
+   * @description Array of transformation parameters using the Cloudinary URL API to apply to an asset.
+   * @url https://cloudinary.com/documentation/transformation_reference
+   */
+  rawTransformations?: string | readonly string[];
+}
 
 export const rawTransformationsPlugin = {
-  props: rawTransformationsProps,
   assetTypes: ["image", "images", "video", "videos"],
   plugin: ({ cldAsset, options }) => {
     let { rawTransformations = [] } = options;
@@ -26,7 +17,7 @@ export const rawTransformationsPlugin = {
       rawTransformations = [rawTransformations];
     }
 
-    rawTransformations.forEach((transformation: RawTransformation) => {
+    rawTransformations.forEach((transformation: RawTransformationsOptions) => {
       cldAsset.addTransformation(transformation);
     });
 

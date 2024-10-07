@@ -1,35 +1,20 @@
-import { z } from "zod";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-const NamedTransformationSchema = z.string();
-type NamedTransformation = z.infer<typeof NamedTransformationSchema>;
-
-export const namedTransformationsProps = {
-  namedTransformations: z
-    .union([NamedTransformationSchema, z.array(NamedTransformationSchema)])
-    .describe(
-      JSON.stringify({
-        text: "Named transformations to apply to asset.",
-        url: "https://cloudinary.com/documentation/image_transformations#named_transformations",
-      })
-    )
-    .optional(),
+export interface NamedTransformationsOptions {
+  /**
+   * @description Named transformations to apply to asset.
+   * @url https://cloudinary.com/documentation/image_transformations#named_transformations
+   */
+  namedTransformations?: string | readonly string[];
   /**
    * @deprecated use {@link `namedTransformations`} instead
+   * @description: Deprecated: use namedTransformations instead
+   * @url https://cloudinary.com/documentation/image_transformations#named_transformations
    */
-  transformations: z
-    .union([NamedTransformationSchema, z.array(NamedTransformationSchema)])
-    .describe(
-      JSON.stringify({
-        text: "Deprecated: use namedTransformations instead",
-        url: "https://cloudinary.com/documentation/image_transformations#named_transformations",
-      })
-    )
-    .optional(),
-};
+  transformations?: string | readonly string[];
+}
 
 export const namedTransformationsPlugin = {
-  props: namedTransformationsProps,
   strict: true,
   assetTypes: ["image", "images", "video", "videos"],
   plugin: ({ cldAsset, options }) => {
@@ -47,7 +32,7 @@ export const namedTransformationsPlugin = {
       _namedTransformations = [_namedTransformations];
     }
 
-    _namedTransformations.forEach((transformation: NamedTransformation) => {
+    _namedTransformations.forEach((transformation: string) => {
       cldAsset.addTransformation(`t_${transformation}`);
     });
 

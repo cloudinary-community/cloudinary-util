@@ -1,20 +1,14 @@
-import { z } from "zod";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export const seoProps = {
-  seoSuffix: z
-    .string()
-    .describe(
-      JSON.stringify({
-        text: "Configures the URL to include an SEO-friendly suffix in the URL",
-        url: "https://cloudinary.com/documentation/advanced_url_delivery_options#seo_friendly_media_asset_urls",
-      })
-    )
-    .optional(),
-};
+export interface SeoOptions {
+  /**
+   * @description Configures the URL to include an SEO-friendly suffix in the URL
+   * @url https://cloudinary.com/documentation/advanced_url_delivery_options#seo_friendly_media_asset_urls
+   */
+  seoSuffix?: string;
+}
 
 export const seoPlugin = {
-  props: seoProps,
   assetTypes: ["image", "images", "video", "videos"],
   plugin: ({ cldAsset, options }) => {
     const { seoSuffix } = options;

@@ -1,29 +1,21 @@
-import { z } from "zod";
 import type { ImageOptions } from "../types/image.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-export const replaceProps = {
-  replace: z
-    .union([
-      z.array(z.string()),
-      z.array(z.boolean()),
-      z.object({
-        to: z.string(),
-        from: z.string(),
-        preserveGeometry: z.boolean().optional(),
-      }),
-    ])
-    .describe(
-      JSON.stringify({
-        text: "Uses generative AI to replace parts of your image with something else.",
-        url: "https://cloudinary.com/documentation/transformation_reference#e_gen_replace",
-      })
-    )
-    .optional(),
-};
+export interface ReplaceOptionsObject {
+  from: string;
+  to: string;
+  preserveGeometry?: boolean;
+}
+
+export interface ReplaceOptions {
+  /**
+   * @description Uses generative AI to replace parts of your image with something else.
+   * @url https://cloudinary.com/documentation/transformation_reference#e_gen_replace
+   */
+  replace?: ReplaceOptionsObject | readonly string[] | readonly boolean[];
+}
 
 export const replacePlugin = {
-  props: replaceProps,
   assetTypes: ["image", "images"],
   plugin: ({ cldAsset, options }) => {
     const { replace = null } = options;

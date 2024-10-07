@@ -1,36 +1,24 @@
-import { z } from "zod";
+import type { Prompt } from "../constants/parameters.js";
 import { promptArrayToString } from "../lib/transformations.js";
 import type { ImageOptions } from "../types/image.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-const imageOptionsRemovePromptSchema = z.union([
-  z.string(),
-  z.array(z.string()),
-]);
+export interface RemoveOptionsObject {
+  prompt?: Prompt;
+  region?: number[] | number[][];
+  multiple?: boolean;
+  removeShadow?: boolean;
+}
 
-const imageOptionsRemoveSchema = z.object({
-  prompt: imageOptionsRemovePromptSchema.optional(),
-  region: z
-    .union([z.array(z.number()), z.array(z.array(z.number()))])
-    .optional(),
-  multiple: z.boolean().optional(),
-  removeShadow: z.boolean().optional(),
-});
-
-export const removeProps = {
-  remove: z
-    .union([imageOptionsRemovePromptSchema, imageOptionsRemoveSchema])
-    .describe(
-      JSON.stringify({
-        text: "Applies zooming and/or panning to an image, resulting in a video or animated image.",
-        url: "https://cloudinary.com/documentation/transformation_reference#e_zoompan",
-      })
-    )
-    .optional(),
-};
+export interface RemoveOptions {
+  /**
+   * @description Applies zooming and/or panning to an image, resulting in a video or animated image.
+   * @url https://cloudinary.com/documentation/transformation_reference#e_zoompan
+   */
+  remove?: Prompt | RemoveOptionsObject;
+}
 
 export const removePlugin = {
-  props: removeProps,
   assetTypes: ["image", "images"],
   plugin: ({ cldAsset, options }) => {
     const { remove } = options;

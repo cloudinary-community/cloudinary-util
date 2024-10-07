@@ -1,15 +1,11 @@
-import * as parameters from "../constants/parameters.js";
-
+import type { Flags } from "../constants/parameters.js";
 import type { TransformationPlugin } from "../types/plugins.js";
 
-const { flagsEnum } = parameters;
-
-export const flagsProps = {
-  flags: parameters.flags.schema.optional(),
-};
+export interface FlagsOptions {
+  flags?: Flags;
+}
 
 export const flagsPlugin = {
-  props: flagsProps,
   assetTypes: ["image", "images", "video", "videos"],
   plugin: (settings) => {
     const { cldAsset, options } = settings;
