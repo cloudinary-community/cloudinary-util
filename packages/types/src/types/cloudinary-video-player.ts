@@ -442,7 +442,7 @@ export interface CloudinaryVideoPlayerOptions
   };
   analytics?: boolean;
   allowUsageReport?: boolean;
-  cloudinaryAnalytics?: boolean | object;
+  cloudinaryAnalytics?: boolean | CustomData;
 
   // ------------ Delivery ------------
   cloud_name?: string;
@@ -483,4 +483,12 @@ export interface CloudinaryVideoPlayerOptionPosterOptions {
    * RGBA hex, or a named color.
    */
   posterColor?: string;
+}
+
+export interface CustomData {
+  customData1?: string;
+  customData2?: string;
+  customData3?: string;
+  customData4?: string;
+  customData5?: string;
 }
