@@ -442,7 +442,7 @@ export interface CloudinaryVideoPlayerOptions
   };
   analytics?: boolean;
   allowUsageReport?: boolean;
-  CloudinaryVideoPlayerOptionsCloudinaryAnalytics?: boolean | CloudinaryVideoPlayerOptionsCloudinaryAnalyticsCustomData;
+  cloudinaryAnalytics?: boolean | CloudinaryVideoPlayerOptionsCloudinaryAnalytics;
 
   // ------------ Delivery ------------
   cloud_name?: string;
@@ -485,11 +485,11 @@ export interface CloudinaryVideoPlayerOptionPosterOptions {
   posterColor?: string;
 }
 
-export interface CloudinaryVideoPlayerOptionsCloudinaryAnalyticsCustomData {
-  customData: CloudinaryVideoPlayerOptionsCloudinaryAnalyticsCustomDataKeys;
+export interface CloudinaryVideoPlayerOptionsCloudinaryAnalytics {
+  customData: CloudinaryVideoPlayerOptionsCloudinaryAnalyticsCustomData;
 }
 
-export interface CloudinaryVideoPlayerOptionsCloudinaryAnalyticsCustomDataKeys {
+export interface CloudinaryVideoPlayerOptionsCloudinaryAnalyticsCustomData {
   customData1?: string;
   customData2?: string;
   customData3?: string;
