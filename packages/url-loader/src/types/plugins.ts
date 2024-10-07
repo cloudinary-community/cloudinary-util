@@ -31,7 +31,7 @@ export interface TransformationPlugin<Options extends AllOptions = AllOptions> {
   assetTypes: Array<AssetType>;
   plugin: PluginFunction<Options>;
   strict?: boolean;
-  props: object;
+  props?: object;
 }
 
 export const pluginOptionsSchema = z.object({

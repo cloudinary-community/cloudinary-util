@@ -1,5 +1,13 @@
-import { z } from "zod";
-import * as parameters from "../constants/parameters.js";
+import type {
+  AspectRatio,
+  CropMode,
+  Gravity,
+  Height,
+  Width,
+  X,
+  Y,
+  Zoom,
+} from "../constants/parameters.js";
 import { normalizeNumberParameter } from "../lib/transformations.js";
 import type { PluginResults, TransformationPlugin } from "../types/plugins.js";
 
@@ -9,41 +17,31 @@ const cropsWithZoom = ["crop", "thumb"];
 
 const DEFAULT_CROP = "limit";
 
-const cropOptionsSchema = z.object({
-  aspectRatio: parameters.aspectRatio.schema.optional(),
-  type: parameters.crop.schema,
-  gravity: parameters.gravity.schema.optional(),
-  height: parameters.height.schema.optional(),
-  width: parameters.width.schema.optional(),
-  x: parameters.x.schema.optional(),
-  y: parameters.y.schema.optional(),
-  zoom: parameters.zoom.schema.optional(),
-  source: z.boolean().optional(),
-});
+export interface SingleCropOptions {
+  type: CropMode;
+  aspectRatio?: AspectRatio;
+  gravity?: Gravity;
+  height?: Height;
+  width?: Width;
+  x?: X;
+  y?: Y;
+  zoom?: Zoom;
+  source?: boolean;
+}
 
-type CropOptions = z.infer<typeof cropOptionsSchema>;
-
-export const croppingProps = {
-  aspectRatio: parameters.aspectRatio.schema.optional(),
-  crop: z
-    .union([
-      parameters.crop.schema,
-      cropOptionsSchema,
-      z.array(cropOptionsSchema),
-    ])
-    .default(DEFAULT_CROP)
-    .optional(),
-  gravity: parameters.gravity.schema.optional(),
-  zoom: parameters.zoom.schema.optional(),
-};
+export interface CropOptions {
+  aspectRatio?: AspectRatio;
+  crop?: CropMode | SingleCropOptions | SingleCropOptions[];
+  gravity?: Gravity;
+  zoom?: Zoom;
+}
 
 export const croppingPlugin = {
-  props: croppingProps,
   assetTypes: ["image", "images", "video", "videos"],
   plugin: (settings) => {
     const { cldAsset, options } = settings;
 
-    let crops: Array<CropOptions> = [];
+    let crops: Array<SingleCropOptions> = [];
 
     // Normalize the data that we're working with for simpler processing
 
@@ -167,7 +165,7 @@ export const croppingPlugin = {
  * @description Given the avialable crop options, returns an array of transformation strings
  */
 
-function collectTransformations(collectOptions: CropOptions) {
+function collectTransformations(collectOptions: SingleCropOptions) {
   // Default the crop to "limit" to avoid upscaling
   // This avoid further distorting the image since the browser will resize in that case.
   // If caller wants actual resize, can explicitly pass in "scale".
@@ -183,14 +181,17 @@ function collectTransformations(collectOptions: CropOptions) {
 
   const hasDefinedDimensions = height || width;
   const hasValidAspectRatio = aspectRatio && cropsAspectRatio.includes(crop);
-  const hasXCoordinate = typeof x === 'number' || typeof x === 'string';
-  const hasYCoordinate = typeof y === 'number' || typeof y === 'string';
+  const hasXCoordinate = typeof x === "number" || typeof x === "string";
+  const hasYCoordinate = typeof y === "number" || typeof y === "string";
   const hasDefinedCoordinates = hasXCoordinate || hasYCoordinate;
 
   // Only apply a crop if we're defining some type of dimension attribute
   // where the crop would make sense
 
-  if (crop && (hasDefinedDimensions || hasValidAspectRatio || hasDefinedCoordinates)) {
+  if (
+    crop &&
+    (hasDefinedDimensions || hasValidAspectRatio || hasDefinedCoordinates)
+  ) {
     transformations.push(`c_${crop}`);
   }
 
@@ -212,11 +213,11 @@ function collectTransformations(collectOptions: CropOptions) {
     transformations.push(`h_${height}`);
   }
 
-  if ( hasXCoordinate ) {
+  if (hasXCoordinate) {
     transformations.push(`x_${x}`);
   }
 
-  if ( hasYCoordinate ) {
+  if (hasYCoordinate) {
     transformations.push(`y_${y}`);
   }
 
@@ -225,7 +226,7 @@ function collectTransformations(collectOptions: CropOptions) {
   // If the user is providing x or y coordinates, we also don't want
   // to default to auto, as that will skew the intuitive results
 
-  if (!gravity && cropsGravityAuto.includes(crop) && !hasDefinedCoordinates ) {
+  if (!gravity && cropsGravityAuto.includes(crop) && !hasDefinedCoordinates) {
     gravity = "auto";
   }
 
