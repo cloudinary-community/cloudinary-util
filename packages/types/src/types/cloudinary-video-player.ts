@@ -442,7 +442,7 @@ export interface CloudinaryVideoPlayerOptions
   };
   analytics?: boolean;
   allowUsageReport?: boolean;
-  cloudinaryAnalytics?: boolean | CustomData;
+  CloudinaryVideoPlayerOptionsCloudinaryAnalytics?: boolean | CloudinaryVideoPlayerOptionsCloudinaryAnalyticsCustomData;
 
   // ------------ Delivery ------------
   cloud_name?: string;
@@ -485,7 +485,11 @@ export interface CloudinaryVideoPlayerOptionPosterOptions {
   posterColor?: string;
 }
 
-export interface CustomData {
+export interface CloudinaryVideoPlayerOptionsCloudinaryAnalyticsCustomData {
+  customData: CloudinaryVideoPlayerOptionsCloudinaryAnalyticsCustomDataKeys;
+}
+
+export interface CloudinaryVideoPlayerOptionsCloudinaryAnalyticsCustomDataKeys {
   customData1?: string;
   customData2?: string;
   customData3?: string;
