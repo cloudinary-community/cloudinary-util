@@ -23,16 +23,13 @@ import { RemoveBackground } from "../plugins/remove-background.js";
 import { Remove } from "../plugins/remove.js";
 import { replaceBackgroundPlugin } from "../plugins/replace-background.js";
 import { replacePlugin } from "../plugins/replace.js";
-import { restorePlugin } from "../plugins/restore.js";
+import { Restore } from "../plugins/restore.js";
 import { Sanitize } from "../plugins/sanitize.js";
 import { Seo } from "../plugins/seo.js";
 import { Underlays } from "../plugins/underlays.js";
 import { Zoompan } from "../plugins/zoompan.js";
-
 import { analyticsOptionsSchema } from "../types/analytics.js";
 import { configOptionsSchema } from "../types/config.js";
-import { imageOptionsSchema } from "../types/image.js";
-import { videoOptionsSchema } from "../types/video.js";
 
 import { Version } from "../plugins/version.js";
 import type {
@@ -53,7 +50,7 @@ export const transformationPlugins = [
   Remove,
   replacePlugin,
   replaceBackgroundPlugin,
-  restorePlugin,
+  Restore,
 
   // Cropping needs to be before any other general transformations
   // as it provides the option of 2-step resizing where someone
@@ -199,7 +196,7 @@ export function constructCloudinaryUrl({
 
   // Begin creating a new Cloudinary image instance and configure
 
-  let cldAsset: CloudinaryImage | CloudinaryVideo | undefined;
+  let cldAsset: CldAsset | undefined;
 
   if (["image", "images"].includes(options.assetType)) {
     cldAsset = cld.image(publicId);

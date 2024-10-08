@@ -18,6 +18,24 @@ import type { Qualifier } from "../types/qualifiers.js";
 
 export declare namespace Overlays {
   export interface Options {
+    /**
+     * @description Image or text layer that is applied on top of the base image.
+     * @url https://cloudinary.com/documentation/transformation_reference#l_layer
+     */
+    overlay?: NestedOptions;
+    /**
+     * @description Image or text layers that are applied on top of the base image.
+     * @url https://cloudinary.com/documentation/transformation_reference#l_layer
+     */
+    overlays?: readonly NestedOptions[];
+    /**
+     * @description Text to be overlaid on asset.
+     * @url https://cloudinary.com/documentation/image_transformations#transformation_url_structure
+     */
+    text?: string;
+  }
+
+  export interface NestedOptions {
     appliedEffects?: object[];
     appliedFlags?: ListableFlags;
     effects?: object[];
@@ -122,7 +140,7 @@ export const Overlays = plugin({
       const primary: Array<string> = [];
       const applied: Array<string> = [];
 
-      // Gemeral options
+      // General options
 
       (Object.keys(options) as Array<keyof typeof options>).forEach((key) => {
         if (!objectHasKey(qualifiersPrimary, key)) return;

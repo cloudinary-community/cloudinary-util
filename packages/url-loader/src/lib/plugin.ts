@@ -19,8 +19,6 @@ export interface PluginDefinition<When extends ApplyWhen = ApplyWhen> {
   strict?: boolean;
 }
 
-const name: OptionName = "";
-
 export type OptionsFor<When extends ApplyWhen> = When extends keyof AllOptions
   ? // if the plugin applies based on a single key being defined, we know it will be
     // present in the options passed to apply
