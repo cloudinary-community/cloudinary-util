@@ -1,6 +1,6 @@
 import { plugin } from "../lib/plugin.js";
 
-export declare namespace RemoveBackground {
+export declare namespace RemoveBackgroundPlugin {
   export interface Options {
     /**
      * @description Removes the background of an image using the Cloudinary AI Background Removal Add-On (Required).
@@ -10,7 +10,7 @@ export declare namespace RemoveBackground {
   }
 }
 
-export const RemoveBackground = plugin({
+export const RemoveBackgroundPlugin = plugin({
   assetTypes: ["image", "images"],
   apply: (cldAsset, options) => {
     const { removeBackground = false } = options;

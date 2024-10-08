@@ -2,7 +2,7 @@ import type { Prompt } from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
 import { promptArrayToString } from "../lib/transformations.js";
 
-export declare namespace Recolor {
+export declare namespace RecolorPlugin {
   export interface Options {
     /**
      * @description Uses generative AI to recolor parts of your image, maintaining the relative shading.
@@ -18,7 +18,7 @@ export declare namespace Recolor {
   }
 }
 
-export const recolorPlugin = plugin({
+export const RecolorPlugin = plugin({
   assetTypes: ["image", "images"],
   apply: (cldAsset, options) => {
     const { recolor } = options;

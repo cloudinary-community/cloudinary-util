@@ -69,3 +69,6 @@ export function sortByKey(
 
   return newArray;
 }
+
+export const isArray: (data: unknown) => data is readonly unknown[] =
+  Array.isArray;

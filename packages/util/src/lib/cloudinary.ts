@@ -35,7 +35,7 @@ export function parseUrl(src: string): ParseUrl | undefined {
 
   if (!hasVersion) {
     throw new Error(
-      `Failed to parse URL - Invalid src: Does not include version (Ex: /v1234/)`,
+      `Failed to parse URL - Invalid src: Does not include version (Ex: /v1234/)`
     );
   }
 
@@ -68,7 +68,7 @@ export function parseUrl(src: string): ParseUrl | undefined {
 
   if (parts.host === CLOUDINARY_DEFAULT_HOST && !parts.cloudName) {
     throw new Error(
-      "Failed to parse URL - Invalid src: Cloudinary URL delivered from res.cloudinary.com must include Cloud Name (ex: res.cloudinary.com/<Cloud Name>/image/...)",
+      "Failed to parse URL - Invalid src: Cloudinary URL delivered from res.cloudinary.com must include Cloud Name (ex: res.cloudinary.com/<Cloud Name>/image/...)"
     );
   }
 
@@ -161,7 +161,7 @@ export interface PollForProcessingImageOptions {
  * Will call itself recurisvely until an image is found, or it fails to fetch.
  */
 export async function pollForProcessingImage(
-  options: PollForProcessingImageOptions,
+  options: PollForProcessingImageOptions
 ): Promise<boolean> {
   try {
     const response = await fetch(options.src);

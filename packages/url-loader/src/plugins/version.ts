@@ -1,6 +1,6 @@
 import { plugin } from "../lib/plugin.js";
 
-export declare namespace Version {
+export declare namespace VersionPlugin {
   export interface Options {
     /**
      * @description Custom version number to apply to asset URL.
@@ -10,7 +10,7 @@ export declare namespace Version {
   }
 }
 
-export const Version = plugin({
+export const VersionPlugin = plugin({
   assetTypes: ["image", "images", "video", "videos"],
   apply: (cldAsset, options) => {
     const { version } = options;

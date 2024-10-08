@@ -1,6 +1,6 @@
 import { plugin } from "../lib/plugin.js";
 
-export declare namespace Sanitize {
+export declare namespace SanitizePlugin {
   export interface Options {
     /**
      * @description Runs a sanitizer on SVG images.
@@ -10,7 +10,7 @@ export declare namespace Sanitize {
   }
 }
 
-export const Sanitize = plugin({
+export const SanitizePlugin = plugin({
   assetTypes: ["image", "images"],
   apply: (cldAsset, options) => {
     const { sanitize = true } = options;

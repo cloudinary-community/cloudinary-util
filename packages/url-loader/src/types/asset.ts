@@ -1,29 +1,29 @@
-import type { Cropping } from "../plugins/cropping.js";
-import type { Effects } from "../plugins/effects.js";
-import type { Flags } from "../plugins/flags.js";
-import type { NamedTransformations } from "../plugins/named-transformations.js";
-import type { Overlays } from "../plugins/overlays.js";
-import type { PreserveTransformations } from "../plugins/preserve-transformations.js";
-import type { RawTransformations } from "../plugins/raw-transformations.js";
-import type { RemoveBackground } from "../plugins/remove-background.js";
-import type { Sanitize } from "../plugins/sanitize.js";
-import type { Seo } from "../plugins/seo.js";
-import type { Underlays } from "../plugins/underlays.js";
-import type { Version } from "../plugins/version.js";
+import type { CroppingPlugin } from "../plugins/cropping.js";
+import type { EffectsPlugin } from "../plugins/effects.js";
+import type { FlagsPlugin } from "../plugins/flags.js";
+import type { NamedTransformationsPlugin } from "../plugins/named-transformations.js";
+import type { OverlaysPlugin } from "../plugins/overlays.js";
+import type { PreserveTransformationsPlugin } from "../plugins/preserve-transformations.js";
+import type { RawTransformationsPlugin } from "../plugins/raw-transformations.js";
+import type { RemoveBackgroundPlugin } from "../plugins/remove-background.js";
+import type { SanitizePlugin } from "../plugins/sanitize.js";
+import type { SeoPlugin } from "../plugins/seo.js";
+import type { UnderlaysPlugin } from "../plugins/underlays.js";
+import type { VersionPlugin } from "../plugins/version.js";
 
 export interface AssetOptions
-  extends Cropping.Options,
-    Effects.Options,
-    Flags.Options,
-    NamedTransformations.Options,
-    Overlays.Options,
-    PreserveTransformations.Options,
-    RawTransformations.Options,
-    RemoveBackground.Options,
-    Sanitize.Options,
-    Seo.Options,
-    Underlays.Options,
-    Version.Options {
+  extends CroppingPlugin.Options,
+    EffectsPlugin.Options,
+    FlagsPlugin.Options,
+    NamedTransformationsPlugin.Options,
+    OverlaysPlugin.Options,
+    PreserveTransformationsPlugin.Options,
+    RawTransformationsPlugin.Options,
+    RemoveBackgroundPlugin.Options,
+    SanitizePlugin.Options,
+    SeoPlugin.Options,
+    UnderlaysPlugin.Options,
+    VersionPlugin.Options {
   /**
    * @description The type of asset to deliver.
    * @url https://cloudinary.com/documentation/image_transformations#transformation_url_structure

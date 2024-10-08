@@ -12,9 +12,9 @@ export type OptionName = keyof AllOptions;
 
 export type ApplyWhen = OptionName | ((opts: AllOptions) => boolean);
 
-export interface PluginDefinition<When extends ApplyWhen = ApplyWhen> {
+export interface PluginDefinition<When extends ApplyWhen> {
   assetTypes: Array<AssetType>;
-  apply: PluginApplication;
+  apply: PluginApplication<When>;
   applyWhen?: When;
   strict?: boolean;
 }
@@ -25,15 +25,13 @@ export type OptionsFor<When extends ApplyWhen> = When extends keyof AllOptions
     AllOptions & { [k in When]: {} }
   : AllOptions;
 
-export type PluginApplication<When extends ApplyWhen = ApplyWhen> = (
+export type PluginApplication<When extends ApplyWhen> = (
   cldAsset: CldAsset,
   options: OptionsFor<When>
 ) => PluginResults;
 
-export type Plugin<When extends ApplyWhen = ApplyWhen> = Required<
-  PluginDefinition<When>
->;
+export type Plugin<When extends ApplyWhen> = Required<PluginDefinition<When>>;
 
 export const plugin = <When extends ApplyWhen>(
   def: PluginDefinition<When>
-): Plugin<When> => ({ strict: false, ...def });
+): Plugin<When> => ({ strict: false, ...def }) as never;

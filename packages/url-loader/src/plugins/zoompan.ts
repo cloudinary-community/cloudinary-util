@@ -1,7 +1,7 @@
 import { plugin } from "../lib/plugin.js";
 import type { PluginOptions } from "../types/plugins.js";
 
-export declare namespace Zoompan {
+export declare namespace ZoompanPlugin {
   export interface Options {
     /**
      * @description Applies zooming and/or panning to an image, resulting in a video or animated image.
@@ -16,7 +16,7 @@ export declare namespace Zoompan {
   }
 }
 
-export const Zoompan = plugin({
+export const ZoompanPlugin = plugin({
   assetTypes: ["image", "images"],
   apply: (cldAsset, options) => {
     const { zoompan = false } = options;

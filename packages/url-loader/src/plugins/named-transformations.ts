@@ -1,6 +1,6 @@
 import { plugin } from "../lib/plugin.js";
 
-export declare namespace NamedTransformations {
+export declare namespace NamedTransformationsPlugin {
   export interface Options {
     /**
      * @description Named transformations to apply to asset.
@@ -16,7 +16,7 @@ export declare namespace NamedTransformations {
   }
 }
 
-export const NamedTransformations = plugin({
+export const NamedTransformationsPlugin = plugin({
   strict: true,
   assetTypes: ["image", "images", "video", "videos"],
   apply: (cldAsset, options) => {

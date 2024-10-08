@@ -2,7 +2,7 @@ import type { Prompt } from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
 import { promptArrayToString } from "../lib/transformations.js";
 
-export declare namespace Remove {
+export declare namespace RemovePlugin {
   export interface Options {
     /**
      * @description Applies zooming and/or panning to an image, resulting in a video or animated image.
@@ -19,7 +19,7 @@ export declare namespace Remove {
   }
 }
 
-export const Remove = plugin({
+export const RemovePlugin = plugin({
   assetTypes: ["image", "images"],
   apply: (cldAsset, options) => {
     const { remove } = options;

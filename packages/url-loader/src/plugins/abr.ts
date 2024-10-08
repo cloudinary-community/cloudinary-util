@@ -1,6 +1,6 @@
 import { plugin } from "../lib/plugin.js";
 
-export declare namespace Abr {
+export declare namespace AbrPlugin {
   export interface Options {
     /**
      * @description The streaming profile to apply when delivering a video using adaptive bitrate streaming.
@@ -10,7 +10,7 @@ export declare namespace Abr {
   }
 }
 
-export const Abr = plugin({
+export const AbrPlugin = plugin({
   assetTypes: ["video", "videos"],
   apply: (asset, opts) => {
     if (typeof opts.streamingProfile === "string") {

@@ -1,6 +1,6 @@
 import { plugin } from "../lib/plugin.js";
 
-export declare namespace Replace {
+export declare namespace ReplacePlugin {
   export interface Options {
     /**
      * @description Uses generative AI to replace parts of your image with something else.
@@ -16,7 +16,7 @@ export declare namespace Replace {
   }
 }
 
-export const replacePlugin = plugin({
+export const ReplacePlugin = plugin({
   assetTypes: ["image", "images"],
   apply: (cldAsset, options) => {
     const { replace = null } = options;

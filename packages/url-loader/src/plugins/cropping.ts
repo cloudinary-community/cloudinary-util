@@ -1,3 +1,4 @@
+import { normalizeNumberParameter } from "@cloudinary-util/util";
 import type {
   AspectRatio,
   CropMode,
@@ -9,7 +10,6 @@ import type {
   Zoom,
 } from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
-import { normalizeNumberParameter } from "../lib/transformations.js";
 import type { PluginResults } from "../types/plugins.js";
 
 const cropsAspectRatio = ["auto", "crop", "fill", "lfill", "fill_pad", "thumb"];
@@ -18,7 +18,7 @@ const cropsWithZoom = ["crop", "thumb"];
 
 const DEFAULT_CROP = "limit";
 
-export declare namespace Cropping {
+export declare namespace CroppingPlugin {
   export interface Options {
     aspectRatio?: AspectRatio;
     crop?: CropMode | NestedOptions | NestedOptions[];
@@ -39,12 +39,11 @@ export declare namespace Cropping {
   }
 }
 
-export const Cropping = plugin({
+export const CroppingPlugin = plugin({
   assetTypes: ["image", "images", "video", "videos"],
   // crop is applied even if the crop key is undefined
-  applyWhen: () => true,
   apply: (asset, opts) => {
-    let crops: Array<Cropping.NestedOptions> = [];
+    let crops: Array<CroppingPlugin.NestedOptions> = [];
 
     // Normalize the data that we're working with for simpler processing
 
@@ -162,7 +161,7 @@ export const Cropping = plugin({
  * @description Given the avialable crop options, returns an array of transformation strings
  */
 
-function collectTransformations(collectOptions: Cropping.NestedOptions) {
+function collectTransformations(collectOptions: CroppingPlugin.NestedOptions) {
   // Default the crop to "limit" to avoid upscaling
   // This avoid further distorting the image since the browser will resize in that case.
   // If caller wants actual resize, can explicitly pass in "scale".

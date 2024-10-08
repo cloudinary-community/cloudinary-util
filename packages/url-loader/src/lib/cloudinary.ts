@@ -6,32 +6,32 @@ import {
 } from "@cloudinary/url-gen";
 import { z } from "zod";
 
-import { Abr } from "../plugins/abr.js";
-import { Cropping } from "../plugins/cropping.js";
+import { AbrPlugin } from "../plugins/abr.js";
+import { CroppingPlugin } from "../plugins/cropping.js";
 import { DefaultImage } from "../plugins/default-image.js";
-import { effectsPlugin } from "../plugins/effects.js";
-import { Enhance } from "../plugins/enhance.js";
-import { Extract } from "../plugins/extract.js";
-import { FillBackground } from "../plugins/fill-background.js";
-import { Flags } from "../plugins/flags.js";
-import { NamedTransformations } from "../plugins/named-transformations.js";
-import { Overlays } from "../plugins/overlays.js";
-import { PreserveTransformations } from "../plugins/preserve-transformations.js";
-import { RawTransformations } from "../plugins/raw-transformations.js";
-import { recolorPlugin } from "../plugins/recolor.js";
-import { RemoveBackground } from "../plugins/remove-background.js";
-import { Remove } from "../plugins/remove.js";
+import { EffectsPlugin } from "../plugins/effects.js";
+import { EnhancePlugin } from "../plugins/enhance.js";
+import { ExtractPlugin } from "../plugins/extract.js";
+import { FillBackgroundPlugin } from "../plugins/fill-background.js";
+import { FlagsPlugin } from "../plugins/flags.js";
+import { NamedTransformationsPlugin } from "../plugins/named-transformations.js";
+import { OverlaysPlugin } from "../plugins/overlays.js";
+import { PreserveTransformationsPlugin } from "../plugins/preserve-transformations.js";
+import { RawTransformationsPlugin } from "../plugins/raw-transformations.js";
+import { RecolorPlugin } from "../plugins/recolor.js";
+import { RemoveBackgroundPlugin } from "../plugins/remove-background.js";
+import { RemovePlugin } from "../plugins/remove.js";
 import { replaceBackgroundPlugin } from "../plugins/replace-background.js";
-import { replacePlugin } from "../plugins/replace.js";
-import { Restore } from "../plugins/restore.js";
-import { Sanitize } from "../plugins/sanitize.js";
-import { Seo } from "../plugins/seo.js";
-import { Underlays } from "../plugins/underlays.js";
-import { Zoompan } from "../plugins/zoompan.js";
+import { ReplacePlugin } from "../plugins/replace.js";
+import { RestorePlugin } from "../plugins/restore.js";
+import { SanitizePlugin } from "../plugins/sanitize.js";
+import { SeoPlugin } from "../plugins/seo.js";
+import { UnderlaysPlugin } from "../plugins/underlays.js";
+import { ZoompanPlugin } from "../plugins/zoompan.js";
 import { analyticsOptionsSchema } from "../types/analytics.js";
 import { configOptionsSchema } from "../types/config.js";
 
-import { Version } from "../plugins/version.js";
+import { VersionPlugin } from "../plugins/version.js";
 import type {
   AssetType,
   PluginOptions,
@@ -45,12 +45,12 @@ export const transformationPlugins = [
 
   Enhance,
   Extract,
-  recolorPlugin,
-  RemoveBackground,
-  Remove,
-  replacePlugin,
+  RecolorPlugin,
+  RemoveBackgroundPlugin,
+  RemovePlugin,
+  ReplacePlugin,
   replaceBackgroundPlugin,
-  Restore,
+  RestorePlugin,
 
   // Cropping needs to be before any other general transformations
   // as it provides the option of 2-step resizing where someone
@@ -62,21 +62,21 @@ export const transformationPlugins = [
   // other arguments to avoid conflicting with
   // added options via the component
 
-  PreserveTransformations,
-  RawTransformations,
+  PreserveTransformationsPlugin,
+  RawTransformationsPlugin,
 
-  Abr,
+  AbrPlugin,
   DefaultImage,
-  effectsPlugin,
-  FillBackground,
-  Flags,
+  EffectsPlugin,
+  FillBackgroundPlugin,
+  FlagsPlugin,
   Overlays,
-  Sanitize,
+  SanitizePlugin,
   NamedTransformations,
-  Seo,
-  Underlays,
-  Version,
-  Zoompan,
+  SeoPlugin,
+  UnderlaysPlugin,
+  VersionPlugin,
+  ZoompanPlugin,
 ];
 
 const constructUrlOptionsSchema = z

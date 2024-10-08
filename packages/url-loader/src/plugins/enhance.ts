@@ -1,6 +1,6 @@
 import { plugin } from "../lib/plugin.js";
 
-export declare namespace Enhance {
+export declare namespace EnhancePlugin {
   export interface Options {
     /**
      * @description Uses AI to analyze an image and make adjustments to enhance the appeal of the image.
@@ -10,7 +10,7 @@ export declare namespace Enhance {
   }
 }
 
-export const Enhance = plugin({
+export const EnhancePlugin = plugin({
   assetTypes: ["image", "images"],
   apply: (cldAsset, options) => {
     const { enhance = false } = options;

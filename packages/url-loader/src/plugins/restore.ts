@@ -1,6 +1,6 @@
 import { plugin } from "../lib/plugin.js";
 
-export declare namespace Restore {
+export declare namespace RestorePlugin {
   export interface Options {
     /**
      * @description Uses generative AI to restore details in poor quality images or images that may have become degraded through repeated processing and compression.
@@ -10,7 +10,7 @@ export declare namespace Restore {
   }
 }
 
-export const Restore = plugin({
+export const RestorePlugin = plugin({
   assetTypes: ["image", "images"],
   apply: (cldAsset, options) => {
     const { restore = false } = options;

@@ -16,7 +16,7 @@ import { plugin } from "../lib/plugin.js";
 import { constructTransformation } from "../lib/transformations.js";
 import type { Qualifier } from "../types/qualifiers.js";
 
-export declare namespace Overlays {
+export declare namespace OverlaysPlugin {
   export interface Options {
     /**
      * @description Image or text layer that is applied on top of the base image.
@@ -73,7 +73,7 @@ export const DEFAULT_TEXT_OPTIONS = {
   fontWeight: "bold",
 };
 
-export const Overlays = plugin({
+export const OverlaysPlugin = plugin({
   assetTypes: ["image", "images", "video", "videos"],
   apply: (cldAsset, options) => {
     const { text, overlays = [] } = options;
@@ -107,7 +107,7 @@ export const Overlays = plugin({
       flags: layerFlags = [],
       appliedFlags = [],
       ...options
-    }: Overlays.Options) {
+    }: OverlaysPlugin.Options) {
       const hasPublicId = typeof publicId === "string";
       const hasUrl = typeof url === "string";
       const hasText = typeof text === "object" || typeof text === "string";

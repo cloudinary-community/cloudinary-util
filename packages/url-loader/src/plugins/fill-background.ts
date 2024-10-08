@@ -1,10 +1,10 @@
+import { normalizeNumberParameter } from "@cloudinary-util/util";
 import type { CropMode, Gravity, Prompt } from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
-import { normalizeNumberParameter } from "../lib/transformations.js";
 
 const defaultCrop = "pad";
 
-export declare namespace FillBackground {
+export declare namespace FillBackgroundPlugin {
   export interface Options {
     /**
      * @description Uses Generative Fill to extended padded image with AI
@@ -20,7 +20,7 @@ export declare namespace FillBackground {
   }
 }
 
-export const FillBackground = plugin({
+export const FillBackgroundPlugin = plugin({
   assetTypes: ["image", "images"],
   apply: (cldAsset, options) => {
     const { fillBackground } = options;

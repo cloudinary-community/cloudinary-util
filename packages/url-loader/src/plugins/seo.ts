@@ -1,6 +1,6 @@
 import { plugin } from "../lib/plugin.js";
 
-export declare namespace Seo {
+export declare namespace SeoPlugin {
   export interface Options {
     /**
      * @description Configures the URL to include an SEO-friendly suffix in the URL
@@ -10,7 +10,7 @@ export declare namespace Seo {
   }
 }
 
-export const Seo = plugin({
+export const SeoPlugin = plugin({
   assetTypes: ["image", "images", "video", "videos"],
   apply: (cldAsset, options) => {
     const { seoSuffix } = options;

@@ -1,12 +1,12 @@
 import { plugin } from "../lib/plugin.js";
 
-export declare namespace Flags {
+export declare namespace FlagsPlugin {
   export interface Options {
     flags?: Flags;
   }
 }
 
-export const Flags = plugin({
+export const FlagsPlugin = plugin({
   assetTypes: ["image", "images", "video", "videos"],
   apply: (cldAsset, options) => {
     const { flags = [] } = options;

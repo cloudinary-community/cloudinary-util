@@ -5,9 +5,8 @@ import {
 import { plugin } from "../lib/plugin.js";
 import { constructTransformation } from "../lib/transformations.js";
 
-export declare namespace Effects {
-  export interface NestableOptions
-    extends Omit<QualifierOptions, "displace" | "hue" | "noise"> {}
+export declare namespace EffectsPlugin {
+  export interface NestableOptions extends QualifierOptions {}
 
   export interface Options extends NestableOptions {
     /**
@@ -17,7 +16,7 @@ export declare namespace Effects {
   }
 }
 
-export const effectsPlugin = plugin({
+export const EffectsPlugin = plugin({
   assetTypes: ["image", "images", "video", "videos"],
   apply: (cldAsset, options) => {
     // Handle any top-level effect props

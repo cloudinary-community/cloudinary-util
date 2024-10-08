@@ -1,7 +1,7 @@
 import type { ExtractMode, Multiple, Prompt } from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
 
-export declare namespace Extract {
+export declare namespace ExtractPlugin {
   export interface Options {
     /**
      * @description Extracts an area or multiple areas of an image, described in natural language.
@@ -18,20 +18,17 @@ export declare namespace Extract {
   }
 }
 
-export const Extract = plugin({
+export const ExtractPlugin = plugin({
   assetTypes: ["image", "images"],
-  apply: (cldAsset, options) => {
-    const { extract } = options;
-
-    if (!extract || typeof extract === "undefined") return {};
-
+  applyWhen: "extract",
+  apply: (cldAsset, { extract }) => {
     const properties = [];
 
     if (typeof extract === "string") {
       properties.push(`prompt_${extract}`);
-    } else if (Array.isArray(extract)) {
+    } else if (isArray(extract)) {
       properties.push(`prompt_${formatPrompts(extract)}`);
-    } else if (typeof extract === "object" && !Array.isArray(extract)) {
+    } else {
       const prompt = formatPrompts(extract.prompt);
 
       if (prompt) {

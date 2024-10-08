@@ -12,7 +12,7 @@ import {
 } from "../constants/qualifiers.js";
 import { plugin } from "../lib/plugin.js";
 
-export declare namespace Underlays {
+export declare namespace UnderlaysPlugin {
   export interface Options {
     /**
      * @description Public ID of image that is applied under the base image.
@@ -41,7 +41,7 @@ export declare namespace Underlays {
   }
 }
 
-export const Underlays = plugin({
+export const UnderlaysPlugin = plugin({
   assetTypes: ["image", "images", "video", "videos"],
   apply: (cldAsset, options) => {
     const { underlay, underlays = [] } = options;
@@ -53,7 +53,7 @@ export const Underlays = plugin({
     }
 
     if (typeof underlay === "string") {
-      const underlayOptions: Underlays.NestedOptions = {
+      const underlayOptions: UnderlaysPlugin.NestedOptions = {
         publicId: underlay,
         crop: "fill",
         width: "1.0",
@@ -76,7 +76,7 @@ export const Underlays = plugin({
       flags: layerFlags = [],
       appliedFlags = [],
       ...options
-    }: Underlays.NestedOptions) {
+    }: UnderlaysPlugin.NestedOptions) {
       const hasPublicId = typeof publicId === "string";
       const hasPosition = typeof position === "object";
 

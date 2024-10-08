@@ -1,6 +1,6 @@
 import { plugin } from "../lib/plugin.js";
 
-export declare namespace RawTransformations {
+export declare namespace RawTransformationsPlugin {
   export interface Options {
     /**
      * @description Array of transformation parameters using the Cloudinary URL API to apply to an asset.
@@ -10,7 +10,7 @@ export declare namespace RawTransformations {
   }
 }
 
-export const RawTransformations = plugin({
+export const RawTransformationsPlugin = plugin({
   assetTypes: ["image", "images", "video", "videos"],
   apply: (cldAsset, options) => {
     let { rawTransformations = [] } = options;
@@ -19,9 +19,11 @@ export const RawTransformations = plugin({
       rawTransformations = [rawTransformations];
     }
 
-    rawTransformations.forEach((transformation: RawTransformations.Options) => {
-      cldAsset.addTransformation(transformation);
-    });
+    rawTransformations.forEach(
+      (transformation: RawTransformationsPlugin.Options) => {
+        cldAsset.addTransformation(transformation);
+      }
+    );
 
     return {};
   },

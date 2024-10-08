@@ -1,22 +1,24 @@
 import type { DefaultImage } from "../plugins/default-image.js";
-import type { Enhance } from "../plugins/enhance.js";
-import type { FillBackground } from "../plugins/fill-background.js";
-import type { Recolor } from "../plugins/recolor.js";
-import type { Remove } from "../plugins/remove.js";
+import type { EnhancePlugin } from "../plugins/enhance.js";
+import type { ExtractPlugin } from "../plugins/extract.js";
+import type { FillBackgroundPlugin } from "../plugins/fill-background.js";
+import type { RecolorPlugin } from "../plugins/recolor.js";
+import type { RemovePlugin } from "../plugins/remove.js";
 import type { ReplaceBackground } from "../plugins/replace-background.js";
-import type { Replace } from "../plugins/replace.js";
-import type { Restore } from "../plugins/restore.js";
-import type { Zoompan } from "../plugins/zoompan.js";
+import type { ReplacePlugin } from "../plugins/replace.js";
+import type { RestorePlugin } from "../plugins/restore.js";
+import type { ZoompanPlugin } from "../plugins/zoompan.js";
 import type { AssetOptions } from "./asset.js";
 
 export interface ImageOptions
   extends AssetOptions,
     DefaultImage.Options,
-    Enhance.Options,
-    FillBackground.Options,
-    Recolor.Options,
-    Remove.Options,
-    Replace.Options,
+    EnhancePlugin.Options,
+    ExtractPlugin.Options,
+    FillBackgroundPlugin.Options,
+    RecolorPlugin.Options,
+    RemovePlugin.Options,
+    ReplacePlugin.Options,
     ReplaceBackground.Options,
-    Restore.Options,
-    Zoompan.Options {}
+    RestorePlugin.Options,
+    ZoompanPlugin.Options {}
