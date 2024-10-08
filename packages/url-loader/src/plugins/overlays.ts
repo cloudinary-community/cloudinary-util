@@ -107,7 +107,7 @@ export const OverlaysPlugin = plugin({
       flags: layerFlags = [],
       appliedFlags = [],
       ...options
-    }: OverlaysPlugin.Options) {
+    }: OverlaysPlugin.NestedOptions) {
       const hasPublicId = typeof publicId === "string";
       const hasUrl = typeof url === "string";
       const hasText = typeof text === "object" || typeof text === "string";

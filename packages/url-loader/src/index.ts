@@ -38,15 +38,17 @@ export { effects, position, primary, text } from "./constants/qualifiers.js";
 // General Types
 
 export type {
-  AnalyticsOptions,
-  CloudinaryAnalyticsOptions,
-} from "./types/analytics.js";
-export type { AssetOptions } from "./types/asset.js";
+  CloudinaryAssetConfiguration as CloudinaryConfigurationOptions,
+  CloudinaryAssetConfiguration as ConfigOptions,
+} from "@cloudinary-util/types";
+
 export type {
-  CloudinaryConfigurationOptions,
-  ConfigOptions,
-} from "./types/config.js";
+  IAnalyticsOptions as AnalyticsOptions,
+  IAnalyticsOptions as CloudinaryAnalyticsOptions,
+} from "@cloudinary/url-gen/sdkAnalytics/interfaces/IAnalyticsOptions";
+
+export type { AssetOptions } from "./types/asset.js";
 export type { ImageOptions } from "./types/image.js";
 export type { PluginOptions, PluginResults } from "./types/plugins.js";
-export type { QualiferConverters, Qualifier } from "./types/qualifiers.js";
+export type { Qualifier, QualifierConverters } from "./types/qualifiers.js";
 export type { VideoOptions } from "./types/video.js";
