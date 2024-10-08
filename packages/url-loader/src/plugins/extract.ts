@@ -1,6 +1,5 @@
 import type { ExtractMode, Multiple, Prompt } from "../constants/parameters.js";
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
 export declare namespace Extract {
   export interface Options {
@@ -19,10 +18,9 @@ export declare namespace Extract {
   }
 }
 
-export const Extract = {
+export const Extract = plugin({
   assetTypes: ["image", "images"],
-  apply: (settings) => {
-    const { cldAsset, options } = settings;
+  apply: (cldAsset, options) => {
     const { extract } = options;
 
     if (!extract || typeof extract === "undefined") return {};
@@ -60,7 +58,7 @@ export const Extract = {
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});
 
 /**
  * formatPrompts

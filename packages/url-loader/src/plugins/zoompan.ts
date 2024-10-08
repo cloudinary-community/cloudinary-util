@@ -1,22 +1,24 @@
-import type { ImageOptions } from "../types/image.js";
-import type { PluginOptions, TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
+import type { PluginOptions } from "../types/plugins.js";
 
-export interface ZoompanOptionsObject {
-  loop?: Loop;
-  options: string;
+export declare namespace Zoompan {
+  export interface Options {
+    /**
+     * @description Applies zooming and/or panning to an image, resulting in a video or animated image.
+     * @url https://cloudinary.com/documentation/transformation_reference#e_zoompan
+     */
+    zoompan?: string | boolean | NestedOptions;
+  }
+
+  export interface NestedOptions {
+    loop?: Loop;
+    options: string;
+  }
 }
 
-export interface ZoompanOptions {
-  /**
-   * @description Applies zooming and/or panning to an image, resulting in a video or animated image.
-   * @url https://cloudinary.com/documentation/transformation_reference#e_zoompan
-   */
-  zoompan?: string | boolean | ZoompanOptionsObject;
-}
-
-export const zoompanPlugin = {
+export const Zoompan = plugin({
   assetTypes: ["image", "images"],
-  apply: ({ cldAsset, options }) => {
+  apply: (cldAsset, options) => {
     const { zoompan = false } = options;
 
     const overrides: PluginOptions = {
@@ -65,4 +67,4 @@ export const zoompanPlugin = {
       options: overrides,
     };
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});

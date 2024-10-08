@@ -1,4 +1,4 @@
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
 export declare namespace Version {
   export interface Options {
@@ -10,9 +10,9 @@ export declare namespace Version {
   }
 }
 
-export const Version = {
+export const Version = plugin({
   assetTypes: ["image", "images", "video", "videos"],
-  apply: ({ cldAsset, options }) => {
+  apply: (cldAsset, options) => {
     const { version } = options;
 
     if (typeof version === "string" || typeof version === "number") {
@@ -23,4 +23,4 @@ export const Version = {
 
     return {};
   },
-} satisfies TransformationPlugin;
+});

@@ -1,5 +1,5 @@
 import { getTransformations } from "@cloudinary-util/util";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
 export declare namespace PreserveTransformations {
   export interface Options {
@@ -10,9 +10,9 @@ export declare namespace PreserveTransformations {
   }
 }
 
-export const PreserveTransformations = {
+export const PreserveTransformations = plugin({
   assetTypes: ["image", "images", "video", "videos"],
-  apply: ({ cldAsset, options }) => {
+  apply: (cldAsset, options) => {
     const { preserveTransformations = false } = options;
 
     // Try to preserve the original transformations from the Cloudinary URL passed in
@@ -36,4 +36,4 @@ export const PreserveTransformations = {
 
     return {};
   },
-} satisfies TransformationPlugin;
+});

@@ -1,13 +1,10 @@
 import { encodeBase64, objectHasKey, sortByKey } from "@cloudinary-util/util";
 import type {
-  Angle,
   CropMode,
-  Flags,
-  Gravity,
   Height,
+  ListableFlags,
+  PositionOptions,
   Width,
-  X,
-  Y,
 } from "../constants/parameters.js";
 import {
   effects as qualifiersEffects,
@@ -15,17 +12,17 @@ import {
   primary as qualifiersPrimary,
   text as qualifiersText,
 } from "../constants/qualifiers.js";
+import { plugin } from "../lib/plugin.js";
 import { constructTransformation } from "../lib/transformations.js";
-import type { TransformationPlugin } from "../types/plugins.js";
 import type { Qualifier } from "../types/qualifiers.js";
 
 export declare namespace Overlays {
   export interface Options {
     appliedEffects?: object[];
-    appliedFlags?: Flags;
+    appliedFlags?: ListableFlags;
     effects?: object[];
     crop?: CropMode;
-    flags?: Flags;
+    flags?: ListableFlags;
     height?: Height;
     position?: PositionOptions;
     publicId?: string;
@@ -49,13 +46,6 @@ export declare namespace Overlays {
     lineSpacing?: string | number;
     stroke?: string;
   }
-
-  export interface PositionOptions {
-    angle?: Angle;
-    gravity?: Gravity;
-    x?: X;
-    y?: Y;
-  }
 }
 
 export const DEFAULT_TEXT_OPTIONS = {
@@ -65,9 +55,9 @@ export const DEFAULT_TEXT_OPTIONS = {
   fontWeight: "bold",
 };
 
-export const Overlays = {
+export const Overlays = plugin({
   assetTypes: ["image", "images", "video", "videos"],
-  apply: ({ cldAsset, options }) => {
+  apply: (cldAsset, options) => {
     const { text, overlays = [] } = options;
 
     const type = "overlay";
@@ -379,4 +369,4 @@ export const Overlays = {
 
     return {};
   },
-} satisfies TransformationPlugin;
+});

@@ -1,7 +1,6 @@
 import type { Prompt } from "../constants/parameters.js";
+import { plugin } from "../lib/plugin.js";
 import { promptArrayToString } from "../lib/transformations.js";
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
 
 export declare namespace Recolor {
   export interface Options {
@@ -19,10 +18,9 @@ export declare namespace Recolor {
   }
 }
 
-export const recolorPlugin = {
+export const recolorPlugin = plugin({
   assetTypes: ["image", "images"],
-  apply: (settings) => {
-    const { cldAsset, options } = settings;
+  apply: (cldAsset, options) => {
     const { recolor } = options;
 
     const recolorOptions: Record<string, string | undefined> = {
@@ -70,4 +68,4 @@ export const recolorPlugin = {
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});

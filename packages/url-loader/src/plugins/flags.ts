@@ -1,5 +1,4 @@
-import type { Flags } from "../constants/parameters.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
 export declare namespace Flags {
   export interface Options {
@@ -7,10 +6,9 @@ export declare namespace Flags {
   }
 }
 
-export const Flags = {
+export const Flags = plugin({
   assetTypes: ["image", "images", "video", "videos"],
-  apply: (settings) => {
-    const { cldAsset, options } = settings;
+  apply: (cldAsset, options) => {
     const { flags = [] } = options;
 
     // First iteration of adding flags follows the same pattern
@@ -52,4 +50,4 @@ export const Flags = {
 
     return {};
   },
-} satisfies TransformationPlugin;
+});

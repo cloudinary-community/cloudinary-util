@@ -1,5 +1,4 @@
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
 export interface RestoreOptions {
   /**
@@ -9,9 +8,9 @@ export interface RestoreOptions {
   restore?: boolean;
 }
 
-export const restorePlugin = {
+export const restorePlugin = plugin({
   assetTypes: ["image", "images"],
-  apply: ({ cldAsset, options }) => {
+  apply: (cldAsset, options) => {
     const { restore = false } = options;
 
     if (restore) {
@@ -20,4 +19,4 @@ export const restorePlugin = {
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});

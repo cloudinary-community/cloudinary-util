@@ -97,7 +97,7 @@ export type Flag =
  *  @url https://cloudinary.com/documentation/transformation_reference#fl_flag
  *  @qualifier fl
  */
-export type Flags = Flag | Array<Flag>;
+export type ListableFlags = Flag | Array<Flag>;
 
 /**
  * @description Converts (if necessary) and delivers an asset in the specified format regardless of the file extension used in the delivery URL.
@@ -174,3 +174,10 @@ export type Y = number | string;
  * @url https://cloudinary.com/documentation/transformation_reference#z_zoom
  */
 export type Zoom = string;
+
+export interface PositionOptions {
+  angle?: Angle;
+  gravity?: Gravity;
+  x?: X;
+  y?: Y;
+}

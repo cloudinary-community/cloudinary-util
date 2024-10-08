@@ -1,5 +1,4 @@
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
 export declare namespace Sanitize {
   export interface Options {
@@ -11,9 +10,9 @@ export declare namespace Sanitize {
   }
 }
 
-export const Sanitize = {
+export const Sanitize = plugin({
   assetTypes: ["image", "images"],
-  apply: ({ cldAsset, options }) => {
+  apply: (cldAsset, options) => {
     const { sanitize = true } = options;
 
     const shouldApplySanitizer: boolean =
@@ -26,4 +25,4 @@ export const Sanitize = {
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});

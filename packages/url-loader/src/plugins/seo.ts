@@ -1,4 +1,4 @@
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
 export declare namespace Seo {
   export interface Options {
@@ -10,9 +10,9 @@ export declare namespace Seo {
   }
 }
 
-export const Seo = {
+export const Seo = plugin({
   assetTypes: ["image", "images", "video", "videos"],
-  apply: ({ cldAsset, options }) => {
+  apply: (cldAsset, options) => {
     const { seoSuffix } = options;
 
     if (typeof seoSuffix === "string") {
@@ -27,4 +27,4 @@ export const Seo = {
 
     return {};
   },
-} satisfies TransformationPlugin;
+});

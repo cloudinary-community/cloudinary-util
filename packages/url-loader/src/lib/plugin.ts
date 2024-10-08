@@ -14,8 +14,8 @@ export type ApplyWhen = OptionName | ((opts: AllOptions) => boolean);
 
 export interface PluginDefinition<When extends ApplyWhen = ApplyWhen> {
   assetTypes: Array<AssetType>;
-  applyWhen: When;
   apply: PluginApplication;
+  applyWhen?: When;
   strict?: boolean;
 }
 

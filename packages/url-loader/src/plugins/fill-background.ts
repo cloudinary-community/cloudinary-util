@@ -1,7 +1,6 @@
 import type { CropMode, Gravity, Prompt } from "../constants/parameters.js";
+import { plugin } from "../lib/plugin.js";
 import { normalizeNumberParameter } from "../lib/transformations.js";
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
 
 const defaultCrop = "pad";
 
@@ -21,10 +20,9 @@ export declare namespace FillBackground {
   }
 }
 
-export const FillBackground = {
+export const FillBackground = plugin({
   assetTypes: ["image", "images"],
-  apply: (settings) => {
-    const { cldAsset, options } = settings;
+  apply: (cldAsset, options) => {
     const { fillBackground } = options;
 
     if (typeof fillBackground === "undefined") return {};
@@ -76,4 +74,4 @@ export const FillBackground = {
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});

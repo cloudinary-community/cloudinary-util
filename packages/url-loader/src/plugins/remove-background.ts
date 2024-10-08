@@ -1,5 +1,4 @@
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
 export declare namespace RemoveBackground {
   export interface Options {
@@ -11,14 +10,13 @@ export declare namespace RemoveBackground {
   }
 }
 
-export const RemoveBackground = {
+export const RemoveBackground = plugin({
   assetTypes: ["image", "images"],
-  apply: (settings) => {
-    const { cldAsset, options } = settings;
+  apply: (cldAsset, options) => {
     const { removeBackground = false } = options;
     if (removeBackground) {
       cldAsset.effect("e_background_removal");
     }
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});

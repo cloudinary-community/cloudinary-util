@@ -1,4 +1,4 @@
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
 export declare namespace NamedTransformations {
   export interface Options {
@@ -16,10 +16,10 @@ export declare namespace NamedTransformations {
   }
 }
 
-export const NamedTransformations = {
+export const NamedTransformations = plugin({
   strict: true,
   assetTypes: ["image", "images", "video", "videos"],
-  apply: ({ cldAsset, options }) => {
+  apply: (cldAsset, options) => {
     const { transformations, namedTransformations } = options;
 
     if (transformations && process.env.NODE_ENVIRONMENT === "development") {
@@ -40,4 +40,4 @@ export const NamedTransformations = {
 
     return {};
   },
-} satisfies TransformationPlugin;
+});

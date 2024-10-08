@@ -1,5 +1,4 @@
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
 export declare namespace ReplaceBackground {
   export interface Options {
@@ -16,10 +15,9 @@ export declare namespace ReplaceBackground {
   }
 }
 
-export const replaceBackgroundPlugin = {
+export const replaceBackgroundPlugin = plugin({
   assetTypes: ["image", "images"],
-  apply: (settings) => {
-    const { cldAsset, options } = settings;
+  apply: (cldAsset, options) => {
     const { replaceBackground } = options;
 
     if (!replaceBackground || typeof replaceBackground === "undefined")
@@ -49,4 +47,4 @@ export const replaceBackgroundPlugin = {
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});

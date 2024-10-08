@@ -1,68 +1,49 @@
 import { objectHasKey } from "@cloudinary-util/util";
-import { z } from "zod";
-import {
-  angle,
-  crop,
-  flags,
-  flagsEnum,
-  gravity,
-  height,
-  width,
-  x,
-  y,
+import type {
+  CropMode,
+  Height,
+  ListableFlags,
+  PositionOptions,
+  Width,
 } from "../constants/parameters.js";
 import {
   position as qualifiersPosition,
   primary as qualifiersPrimary,
 } from "../constants/qualifiers.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
-const underlayPositionSchema = z.object({
-  angle: angle.schema.optional(),
-  gravity: gravity.schema.optional(),
-  x: x.schema.optional(),
-  y: y.schema.optional(),
-});
+export declare namespace Underlays {
+  export interface Options {
+    /**
+     * @description Public ID of image that is applied under the base image.
+     * @url https://cloudinary.com/documentation/transformation_reference#l_layer
+     */
+    underlay?: string;
+    /**
+     * @description Image layers that are applied under the base image.
+     * @url https://cloudinary.com/documentation/transformation_reference#l_layer
+     */
+    underlays?: readonly NestedOptions[];
+  }
 
-const underlaySchema = z.object({
-  appliedEffects: z.array(z.object({})).optional(),
-  appliedFlags: flags.schema.optional(),
-  effects: z.array(z.object({})).optional(),
-  crop: crop.schema.optional(),
-  flags: flags.schema.optional(),
-  height: height.schema.optional(),
-  position: underlayPositionSchema.optional(),
-  publicId: z.string().optional(),
-  type: z.string().optional(),
-  url: z.string().optional(),
-  width: width.schema.optional(),
-});
+  export interface NestedOptions {
+    appliedEffects?: readonly object[];
+    appliedFlags?: ListableFlags;
+    effects?: readonly object[];
+    crop?: CropMode;
+    flags?: ListableFlags;
+    height?: Height;
+    position?: PositionOptions;
+    publicId?: string;
+    type?: string;
+    url?: string;
+    width?: Width;
+  }
+}
 
-export const underlaysProps = {
-  underlay: z
-    .string()
-    .describe(
-      JSON.stringify({
-        text: "Public ID of image that is applied under the base image.",
-        url: "https://cloudinary.com/documentation/transformation_reference#l_layer",
-      })
-    )
-    .optional(),
-  underlays: z
-    .array(underlaySchema)
-    .describe(
-      JSON.stringify({
-        text: "Image layers that are applied under the base image.",
-        url: "https://cloudinary.com/documentation/transformation_reference#l_layer",
-      })
-    )
-    .optional(),
-};
-
-export const underlaysPlugin = {
-  props: underlaysProps,
+export const Underlays = plugin({
   assetTypes: ["image", "images", "video", "videos"],
-  apply: ({ cldAsset, options }) => {
+  apply: (cldAsset, options) => {
     const { underlay, underlays = [] } = options;
 
     const typeQualifier = "u";
@@ -72,7 +53,7 @@ export const underlaysPlugin = {
     }
 
     if (typeof underlay === "string") {
-      const underlayOptions: ApplyUnderlaySettings = {
+      const underlayOptions: Underlays.NestedOptions = {
         publicId: underlay,
         crop: "fill",
         width: "1.0",
@@ -87,8 +68,6 @@ export const underlaysPlugin = {
      * applyUnderlay
      */
 
-    type ApplyUnderlaySettings = z.infer<typeof underlaySchema>;
-
     function applyUnderlay({
       publicId,
       type,
@@ -97,7 +76,7 @@ export const underlaysPlugin = {
       flags: layerFlags = [],
       appliedFlags = [],
       ...options
-    }: ApplyUnderlaySettings) {
+    }: Underlays.NestedOptions) {
       const hasPublicId = typeof publicId === "string";
       const hasPosition = typeof position === "object";
 
@@ -210,4 +189,4 @@ export const underlaysPlugin = {
 
     return {};
   },
-} satisfies TransformationPlugin;
+});

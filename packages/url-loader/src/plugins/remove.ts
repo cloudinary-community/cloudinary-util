@@ -1,7 +1,6 @@
 import type { Prompt } from "../constants/parameters.js";
+import { plugin } from "../lib/plugin.js";
 import { promptArrayToString } from "../lib/transformations.js";
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
 
 export declare namespace Remove {
   export interface Options {
@@ -20,9 +19,9 @@ export declare namespace Remove {
   }
 }
 
-export const Remove = {
+export const Remove = plugin({
   assetTypes: ["image", "images"],
-  apply: ({ cldAsset, options }) => {
+  apply: (cldAsset, options) => {
     const { remove } = options;
 
     const removeOptions: Record<string, string | undefined> = {
@@ -81,7 +80,7 @@ export const Remove = {
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});
 
 /**
  * regionArrayToString

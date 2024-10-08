@@ -12,7 +12,6 @@ export declare namespace Enhance {
 
 export const Enhance = plugin({
   assetTypes: ["image", "images"],
-  props: {},
   apply: (cldAsset, options) => {
     const { enhance = false } = options;
 

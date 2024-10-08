@@ -1,4 +1,4 @@
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
 export declare namespace RawTransformations {
   export interface Options {
@@ -10,9 +10,9 @@ export declare namespace RawTransformations {
   }
 }
 
-export const RawTransformations = {
+export const RawTransformations = plugin({
   assetTypes: ["image", "images", "video", "videos"],
-  apply: ({ cldAsset, options }) => {
+  apply: (cldAsset, options) => {
     let { rawTransformations = [] } = options;
 
     if (!Array.isArray(rawTransformations)) {
@@ -25,4 +25,4 @@ export const RawTransformations = {
 
     return {};
   },
-} satisfies TransformationPlugin;
+});

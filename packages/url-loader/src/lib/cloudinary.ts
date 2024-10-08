@@ -26,8 +26,8 @@ import { replacePlugin } from "../plugins/replace.js";
 import { restorePlugin } from "../plugins/restore.js";
 import { Sanitize } from "../plugins/sanitize.js";
 import { Seo } from "../plugins/seo.js";
-import { underlaysPlugin } from "../plugins/underlays.js";
-import { zoompanPlugin } from "../plugins/zoompan.js";
+import { Underlays } from "../plugins/underlays.js";
+import { Zoompan } from "../plugins/zoompan.js";
 
 import { analyticsOptionsSchema } from "../types/analytics.js";
 import { configOptionsSchema } from "../types/config.js";
@@ -77,9 +77,9 @@ export const transformationPlugins = [
   Sanitize,
   NamedTransformations,
   Seo,
-  underlaysPlugin,
+  Underlays,
   Version,
-  zoompanPlugin,
+  Zoompan,
 ];
 
 const constructUrlOptionsSchema = z

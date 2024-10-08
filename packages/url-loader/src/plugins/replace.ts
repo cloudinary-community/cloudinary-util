@@ -1,5 +1,4 @@
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
 export declare namespace Replace {
   export interface Options {
@@ -17,9 +16,9 @@ export declare namespace Replace {
   }
 }
 
-export const replacePlugin = {
+export const replacePlugin = plugin({
   assetTypes: ["image", "images"],
-  apply: ({ cldAsset, options }) => {
+  apply: (cldAsset, options) => {
     const { replace = null } = options;
 
     if (replace) {
@@ -49,4 +48,4 @@ export const replacePlugin = {
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});
