@@ -25,7 +25,8 @@
     "test": "vitest run"
   },
   "devDependencies": {
-    "@types/node": "^17.0.12"
+    "@types/node": "^17.0.12",
+    "@types/node-fetch": "^2.6.11"
   },
   "publishConfig": {
     "access": "public"
