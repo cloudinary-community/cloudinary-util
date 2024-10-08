@@ -20,32 +20,30 @@ const DEFAULT_CROP = "limit";
 export declare namespace Cropping {
   export interface Options {
     aspectRatio?: AspectRatio;
-    crop?: CropMode | SingleCropOptions | SingleCropOptions[];
+    crop?: CropMode | NestedOptions | NestedOptions[];
     gravity?: Gravity;
     zoom?: Zoom;
   }
-}
 
-export interface SingleCropOptions {
-  type: CropMode;
-  aspectRatio?: AspectRatio;
-  gravity?: Gravity;
-  height?: Height;
-  width?: Width;
-  x?: X;
-  y?: Y;
-  zoom?: Zoom;
-  source?: boolean;
+  export interface NestedOptions {
+    type: CropMode;
+    aspectRatio?: AspectRatio;
+    gravity?: Gravity;
+    height?: Height;
+    width?: Width;
+    x?: X;
+    y?: Y;
+    zoom?: Zoom;
+    source?: boolean;
+  }
 }
-
-export interface CropOptions {}
 
 export const croppingPlugin = {
   assetTypes: ["image", "images", "video", "videos"],
   plugin: (settings) => {
     const { cldAsset, options } = settings;
 
-    let crops: Array<SingleCropOptions> = [];
+    let crops: Array<Cropping.NestedOptions> = [];
 
     // Normalize the data that we're working with for simpler processing
 
@@ -169,7 +167,7 @@ export const croppingPlugin = {
  * @description Given the avialable crop options, returns an array of transformation strings
  */
 
-function collectTransformations(collectOptions: SingleCropOptions) {
+function collectTransformations(collectOptions: Cropping.NestedOptions) {
   // Default the crop to "limit" to avoid upscaling
   // This avoid further distorting the image since the browser will resize in that case.
   // If caller wants actual resize, can explicitly pass in "scale".
