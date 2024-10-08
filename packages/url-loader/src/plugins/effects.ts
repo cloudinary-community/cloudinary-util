@@ -12,12 +12,12 @@ export declare namespace EffectsPlugin {
     /**
      * @description Array of objects specifying transformations to be applied to asset.
      */
-    effects?: readonly NestableOptions[];
+    effects?: ReadonlyArray<NestableOptions>;
   }
 }
 
 export const EffectsPlugin = plugin({
-  assetTypes: ["image", "images", "video", "videos"],
+  supports: "all",
   apply: (cldAsset, options) => {
     // Handle any top-level effect props
 

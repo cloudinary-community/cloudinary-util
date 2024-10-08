@@ -21,7 +21,7 @@ export declare namespace RemovePlugin {
 }
 
 export const RemovePlugin = plugin({
-  assetTypes: ["image", "images"],
+  supports: "image",
   apply: (cldAsset, options) => {
     const { remove } = options;
 

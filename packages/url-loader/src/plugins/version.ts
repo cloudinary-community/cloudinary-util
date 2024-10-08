@@ -11,7 +11,7 @@ export declare namespace VersionPlugin {
 }
 
 export const VersionPlugin = plugin({
-  assetTypes: ["image", "images", "video", "videos"],
+  supports: "all",
   apply: (cldAsset, options) => {
     const { version } = options;
 

@@ -7,19 +7,19 @@ export declare namespace NamedTransformationsPlugin {
      * @description Named transformations to apply to asset.
      * @url https://cloudinary.com/documentation/image_transformations#named_transformations
      */
-    namedTransformations?: string | readonly string[];
+    namedTransformations?: string | ReadonlyArray<string>;
     /**
      * @deprecated use {@link `namedTransformations`} instead
      * @description: Deprecated: use namedTransformations instead
      * @url https://cloudinary.com/documentation/image_transformations#named_transformations
      */
-    transformations?: string | readonly string[];
+    transformations?: string | ReadonlyArray<string>;
   }
 }
 
 export const NamedTransformationsPlugin = plugin({
   strict: true,
-  assetTypes: ["image", "images", "video", "videos"],
+  supports: "all",
   apply: (cldAsset, options) => {
     const { transformations, namedTransformations } = options;
 

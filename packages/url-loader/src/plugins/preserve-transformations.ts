@@ -11,7 +11,7 @@ export declare namespace PreserveTransformationsPlugin {
 }
 
 export const PreserveTransformationsPlugin = plugin({
-  assetTypes: ["image", "images", "video", "videos"],
+  supports: "all",
   apply: (cldAsset, options) => {
     const { preserveTransformations = false } = options;
 

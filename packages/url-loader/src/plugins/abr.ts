@@ -11,7 +11,7 @@ export declare namespace AbrPlugin {
 }
 
 export const AbrPlugin = plugin({
-  assetTypes: ["video", "videos"],
+  supports: "video",
   apply: (asset, opts) => {
     if (typeof opts.streamingProfile === "string") {
       asset.addTransformation(`sp_${opts.streamingProfile}`);

@@ -105,11 +105,7 @@ export interface ConstructUrlProps {
   options: OptionsInput;
 }
 
-// publicID is being used internally but is not exposed by the class
-// map over the asset so TS doesn't complain about the private property
-type withPublicId<asset> = Omit<asset, never> & { publicID: string };
-
-export type CldAsset = withPublicId<CloudinaryImage | CloudinaryVideo>;
+export type CldAsset = CloudinaryImage | CloudinaryVideo;
 
 export function constructCloudinaryUrl({
   options,

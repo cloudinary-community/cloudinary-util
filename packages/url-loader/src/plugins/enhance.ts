@@ -11,7 +11,7 @@ export declare namespace EnhancePlugin {
 }
 
 export const EnhancePlugin = plugin({
-  assetTypes: ["image", "images"],
+  supports: "image",
   apply: (cldAsset, options) => {
     if (options.enhance) {
       cldAsset.addTransformation("e_enhance");

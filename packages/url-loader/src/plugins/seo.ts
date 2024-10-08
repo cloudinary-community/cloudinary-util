@@ -11,7 +11,7 @@ export declare namespace SeoPlugin {
 }
 
 export const SeoPlugin = plugin({
-  assetTypes: ["image", "images", "video", "videos"],
+  supports: "all",
   apply: (cldAsset, options) => {
     const { seoSuffix } = options;
 

@@ -3,6 +3,8 @@
 export {
   constructCloudinaryUrl,
   transformationPlugins,
+  type AnalyticsOptions,
+  type ConfigOptions,
   type ConstructUrlProps,
 } from "./lib/cloudinary.js";
 
@@ -33,13 +35,20 @@ export {
 
 // Transformation definitions
 
-export { effects, position, primary, text } from "./constants/qualifiers.js";
+export {
+  effects,
+  position as position,
+  primary as primary,
+  text,
+} from "./constants/qualifiers.js";
 
 // General Types
 
 export type { AssetOptions } from "./types/asset.js";
-export type { AnalyticsOptions, ConfigOptions } from "./types/cloudinary.js";
 export type { ImageOptions } from "./types/image.js";
 export type { PluginOptions, PluginResults } from "./types/plugins.js";
-export type { Qualifier, QualifierConverters } from "./types/qualifiers.js";
+export type {
+  QualifierConfig as Qualifier,
+  QualifierConverters,
+} from "./types/qualifiers.js";
 export type { VideoOptions } from "./types/video.js";

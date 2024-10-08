@@ -11,7 +11,7 @@ export declare namespace SanitizePlugin {
 }
 
 export const SanitizePlugin = plugin({
-  assetTypes: ["image", "images"],
+  supports: "image",
   apply: (cldAsset, options) => {
     const { sanitize = true } = options;
 

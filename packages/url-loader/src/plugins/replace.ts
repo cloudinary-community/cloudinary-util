@@ -7,7 +7,7 @@ export declare namespace ReplacePlugin {
      * @description Uses generative AI to replace parts of your image with something else.
      * @url https://cloudinary.com/documentation/transformation_reference#e_gen_replace
      */
-    replace?: NestedOptions | readonly string[] | readonly boolean[];
+    replace?: NestedOptions | ReadonlyArray<string> | ReadonlyArray<boolean>;
   }
 
   export interface NestedOptions {
@@ -18,7 +18,7 @@ export declare namespace ReplacePlugin {
 }
 
 export const ReplacePlugin = plugin({
-  assetTypes: ["image", "images"],
+  supports: "image",
   apply: (cldAsset, options) => {
     const { replace = null } = options;
 

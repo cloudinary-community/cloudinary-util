@@ -6,18 +6,17 @@ import type { CldAsset } from "./cloudinary.js";
 
 interface AllOptions extends AssetOptions, ImageOptions, VideoOptions {}
 
-export type AssetType = "image" | "images" | "video" | "videos";
+export type SupportedAssetKind = "image" | "video" | "all";
 
 export type OptionName = keyof AllOptions;
 
 export type ApplyWhen = OptionName | ((opts: AllOptions) => boolean);
 
 export interface PluginDefinition<
-  asset extends AssetType,
+  asset extends SupportedAssetKind,
   when extends ApplyWhen,
 > {
-  assetTypes: Array<AssetType>;
-  assetType?: AssetType;
+  supports: SupportedAssetKind;
   apply: PluginApplication<asset, when>;
   applyWhen?: when;
   strict?: boolean;
@@ -33,14 +32,18 @@ export type OptionsFor<when extends ApplyWhen> = when extends keyof AllOptions
   : AllOptions;
 
 export type PluginApplication<
-  asset extends AssetType,
+  asset extends SupportedAssetKind,
   when extends ApplyWhen,
 > = (cldAsset: CldAsset, options: OptionsFor<when>) => PluginResults;
 
-export type Plugin<asset extends AssetType, when extends ApplyWhen> = Required<
-  PluginDefinition<asset, when>
->;
+export type Plugin<
+  asset extends SupportedAssetKind,
+  when extends ApplyWhen,
+> = Required<PluginDefinition<asset, when>>;
 
-export const plugin = <asset extends AssetType, when extends ApplyWhen>(
+export const plugin = <
+  asset extends SupportedAssetKind,
+  when extends ApplyWhen,
+>(
   def: PluginDefinition<asset, when>
 ): Plugin<asset, when> => ({ strict: false, ...def }) as never;

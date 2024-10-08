@@ -1,12 +1,12 @@
 export interface QualifierConverters {
-  convert: (value: unknown) => unknown;
-  test: (value: unknown) => boolean;
+  convert: (value: any) => unknown;
+  test: (value: any) => boolean;
 }
 
-export interface Qualifier {
+export interface QualifierConfig {
   location?: string;
   order?: number;
   prefix?: string;
   qualifier?: string | boolean;
-  converters?: readonly QualifierConverters[];
+  converters?: ReadonlyArray<QualifierConverters>;
 }

@@ -24,7 +24,7 @@ export declare namespace ExtractPlugin {
 }
 
 export const ExtractPlugin = plugin({
-  assetTypes: ["image", "images"],
+  supports: "image",
   applyWhen: "extract",
   apply: (cldAsset, { extract }) => {
     const properties = [];

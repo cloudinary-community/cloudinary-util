@@ -70,5 +70,22 @@ export function sortByKey(
   return newArray;
 }
 
-export const isArray: (data: unknown) => data is readonly unknown[] =
+export const isArray: (data: unknown) => data is ReadonlyArray<unknown> =
   Array.isArray;
+
+// extracts entries mimicking Object.entries, accounting for whether the
+// object is an array
+export type entryOf<o> = {
+  [k in keyof o]-?: [k, o[k] & ({} | null)];
+}[o extends ReadonlyArray<unknown> ? keyof o & number : keyof o] &
+  unknown;
+
+/**
+ * Object.entries wrapper providing narrowed types for objects with known sets
+ * of keys, e.g. those defined internally as configs
+ *
+ * @param o the object to get narrowed entries from
+ * @returns a narrowed array of entries based on that object's type
+ */
+export const entriesOf: <o extends object>(o: o) => entryOf<o>[] =
+  Object.entries as never;

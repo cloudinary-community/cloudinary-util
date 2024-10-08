@@ -10,7 +10,7 @@ interface ConstructTransformationSettings {
   prefix?: string;
   qualifier?: string | boolean;
   value?: string | number | boolean;
-  converters?: readonly QualifierConverters[];
+  converters?: ReadonlyArray<QualifierConverters>;
 }
 
 export function constructTransformation({
@@ -52,6 +52,6 @@ export function constructTransformation({
  * promptArrayToString
  */
 
-export function promptArrayToString(promptArray: readonly string[]) {
+export function promptArrayToString(promptArray: ReadonlyArray<string>) {
   return `(${promptArray.join(";")})`;
 }

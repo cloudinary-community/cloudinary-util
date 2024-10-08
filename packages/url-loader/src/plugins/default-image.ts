@@ -12,7 +12,7 @@ export declare namespace DefaultImage {
 }
 
 export const DefaultImage = plugin({
-  assetTypes: ["image", "images"],
+  supports: "image",
   apply: (asset, opts) => {
     const { defaultImage } = opts;
 

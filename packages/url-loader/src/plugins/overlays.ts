@@ -8,7 +8,7 @@ import type {
   CropMode,
   Height,
   ListableFlags,
-  PositionOptions,
+  PositionalOptions,
   Width,
 } from "../constants/parameters.js";
 import {
@@ -19,7 +19,7 @@ import {
 } from "../constants/qualifiers.js";
 import { plugin } from "../lib/plugin.js";
 import { constructTransformation } from "../lib/transformations.js";
-import type { Qualifier } from "../types/qualifiers.js";
+import type { QualifierConfig } from "../types/qualifiers.js";
 
 export declare namespace OverlaysPlugin {
   export interface Options {
@@ -32,7 +32,7 @@ export declare namespace OverlaysPlugin {
      * @description Image or text layers that are applied on top of the base image.
      * @url https://cloudinary.com/documentation/transformation_reference#l_layer
      */
-    overlays?: readonly NestedOptions[];
+    overlays?: ReadonlyArray<NestedOptions>;
     /**
      * @description Text to be overlaid on asset.
      * @url https://cloudinary.com/documentation/image_transformations#transformation_url_structure
@@ -47,7 +47,7 @@ export declare namespace OverlaysPlugin {
     crop?: CropMode;
     flags?: ListableFlags;
     height?: Height;
-    position?: PositionOptions;
+    position?: PositionalOptions;
     publicId?: string;
     text?: string | TextOptions;
     url?: string;
@@ -79,7 +79,7 @@ export const DEFAULT_TEXT_OPTIONS = {
 };
 
 export const OverlaysPlugin = plugin({
-  assetTypes: ["image", "images", "video", "videos"],
+  supports: "all",
   apply: (cldAsset, options) => {
     const { text, overlays = [] } = options;
 
@@ -150,7 +150,7 @@ export const OverlaysPlugin = plugin({
       (Object.keys(options) as Array<keyof typeof options>).forEach((key) => {
         if (!objectHasKey(qualifiersPrimary, key)) return;
 
-        const { qualifier, converters } = qualifiersPrimary[key];
+        const { qualifier, converters } = qualifiersPrimary[key]!;
 
         const transformation = constructTransformation({
           qualifier,
@@ -259,7 +259,7 @@ export const OverlaysPlugin = plugin({
         const textTransformations: Array<string> = [];
 
         if (typeof text === "object") {
-          interface TextOption extends Qualifier {
+          interface TextOption extends QualifierConfig {
             key: string;
             value: any;
             order: number;
@@ -330,18 +330,14 @@ export const OverlaysPlugin = plugin({
       // Positioning
 
       if (hasPosition) {
-        Object.keys(position).forEach((key) => {
-          if (
-            !objectHasKey(qualifiersPosition, key) ||
-            !objectHasKey(position, key)
-          )
-            return;
+        Object.entries(position).forEach(([key, value]) => {
+          if (!objectHasKey(qualifiersPosition, key)) return;
 
           const { qualifier, converters } = qualifiersPosition[key];
 
           const transformation = constructTransformation({
             qualifier,
-            value: position[key],
+            value,
             converters,
           });
 

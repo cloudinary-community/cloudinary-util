@@ -9,7 +9,7 @@ export declare namespace FlagsPlugin {
 }
 
 export const FlagsPlugin = plugin({
-  assetTypes: ["image", "images", "video", "videos"],
+  supports: "all",
   applyWhen: "flags",
   apply: (cldAsset, { flags }) => {
     // First iteration of adding flags follows the same pattern

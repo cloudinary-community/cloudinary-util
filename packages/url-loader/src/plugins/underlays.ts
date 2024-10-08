@@ -1,9 +1,9 @@
-import { isArray, objectHasKey } from "@cloudinary-util/util";
+import { entriesOf, isArray, objectHasKey } from "@cloudinary-util/util";
 import type {
   CropMode,
   Height,
   ListableFlags,
-  PositionOptions,
+  PositionalOptions,
   Width,
 } from "../constants/parameters.js";
 import {
@@ -23,17 +23,17 @@ export declare namespace UnderlaysPlugin {
      * @description Image layers that are applied under the base image.
      * @url https://cloudinary.com/documentation/transformation_reference#l_layer
      */
-    underlays?: readonly NestedOptions[];
+    underlays?: ReadonlyArray<NestedOptions>;
   }
 
   export interface NestedOptions {
-    appliedEffects?: readonly object[];
+    appliedEffects?: ReadonlyArray<object>;
     appliedFlags?: ListableFlags;
-    effects?: readonly object[];
+    effects?: ReadonlyArray<object>;
     crop?: CropMode;
     flags?: ListableFlags;
     height?: Height;
-    position?: PositionOptions;
+    position?: PositionalOptions;
     publicId?: string;
     type?: string;
     url?: string;
@@ -42,7 +42,7 @@ export declare namespace UnderlaysPlugin {
 }
 
 export const UnderlaysPlugin = plugin({
-  assetTypes: ["image", "images", "video", "videos"],
+  supports: "all",
   apply: (cldAsset, options) => {
     const { underlay, underlays = [] } = options;
 
@@ -100,10 +100,10 @@ export const UnderlaysPlugin = plugin({
 
       // Gemeral options
 
-      (Object.keys(options) as Array<keyof typeof options>).forEach((key) => {
+      entriesOf(options).forEach(([key, value]) => {
         if (!objectHasKey(qualifiersPrimary, key)) return;
-        const { qualifier } = qualifiersPrimary[key];
-        primary.push(`${qualifier}_${options[key]}`);
+        const { qualifier } = qualifiersPrimary[key]!;
+        primary.push(`${qualifier}_${value}`);
       });
 
       // Layer effects
@@ -119,13 +119,11 @@ export const UnderlaysPlugin = plugin({
       // Positioning
 
       if (hasPosition) {
-        (Object.keys(position) as Array<keyof typeof position>).forEach(
-          (key) => {
-            if (!objectHasKey(qualifiersPosition, key)) return;
-            const { qualifier } = qualifiersPosition[key as string];
-            applied.push(`${qualifier}_${position[key]}`);
-          }
-        );
+        entriesOf(position).forEach(([key, value]) => {
+          if (!objectHasKey(qualifiersPosition, key)) return;
+          const { qualifier } = qualifiersPosition[key]!;
+          applied.push(`${qualifier}_${value}`);
+        });
       }
 
       // Layer Flags

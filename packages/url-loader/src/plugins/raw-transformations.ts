@@ -7,12 +7,12 @@ export declare namespace RawTransformationsPlugin {
      * @description Array of transformation parameters using the Cloudinary URL API to apply to an asset.
      * @url https://cloudinary.com/documentation/transformation_reference
      */
-    rawTransformations?: string | readonly string[];
+    rawTransformations?: string | ReadonlyArray<string>;
   }
 }
 
 export const RawTransformationsPlugin = plugin({
-  assetTypes: ["image", "images", "video", "videos"],
+  supports: "all",
   apply: (cldAsset, options) => {
     let { rawTransformations = [] } = options;
 

@@ -40,7 +40,7 @@ export declare namespace CroppingPlugin {
 }
 
 export const CroppingPlugin = plugin({
-  assetTypes: ["image", "images", "video", "videos"],
+  supports: "all",
   // crop is applied even if the crop key is undefined
   apply: (asset, opts) => {
     let crops: Array<CroppingPlugin.NestedOptions> = [];

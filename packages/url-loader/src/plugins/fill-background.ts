@@ -25,7 +25,7 @@ export declare namespace FillBackgroundPlugin {
 }
 
 export const FillBackgroundPlugin = plugin({
-  assetTypes: ["image", "images"],
+  supports: "image",
   apply: (cldAsset, options) => {
     const { fillBackground } = options;
 

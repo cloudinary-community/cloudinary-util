@@ -1,31 +1,47 @@
 import { convertColorHexToRgb, testColorIsHex } from "@cloudinary-util/util";
 
-import type { Qualifier } from "../types/qualifiers.js";
-import type { Angle } from "./parameters.js";
+import type { OptionName } from "../lib/plugin.js";
+import type {
+  QualifierConfig,
+  QualifierConverters,
+} from "../types/qualifiers.js";
+import type { Angle, PositionalOptions } from "./parameters.js";
 
-const convertersColors = [
+const convertersColors: QualifierConverters[] = [
   {
     test: testColorIsHex,
     convert: convertColorHexToRgb,
   },
 ];
 
-export const primary: Record<string, Qualifier> = {
-  aspectRatio,
-  crop,
-  gravity,
-  height,
-  width,
-} as const;
+export const primary: { [k in OptionName]?: QualifierConfig } = {
+  aspectRatio: {
+    qualifier: "ar",
+  },
+  crop: {
+    qualifier: "c",
+  },
+  gravity: {
+    qualifier: "g",
+  },
+  height: {
+    qualifier: "h",
+  },
+  width: { qualifier: "w" },
+};
 
-export const position: Record<string, Qualifier> = {
-  angle,
-  gravity,
-  x,
-  y,
-} as const;
+export const position: { [k in keyof PositionalOptions]-?: QualifierConfig } = {
+  angle: {
+    qualifier: "a",
+  },
+  gravity: {
+    qualifier: "g",
+  },
+  x: { qualifier: "x" },
+  y: { qualifier: "y" },
+};
 
-export const text: Record<string, Qualifier> = {
+export const text = {
   alignment: {
     qualifier: false,
     order: 6,
@@ -75,7 +91,7 @@ export const text: Record<string, Qualifier> = {
     qualifier: false,
     order: 5,
   },
-} as const;
+} as const satisfies Record<string, QualifierConfig | undefined>;
 
 export interface QualifierOptions {
   angle?: Angle;
@@ -387,8 +403,10 @@ export interface QualifierOptions {
   vignette?: boolean | string;
 }
 
-export const effects: { [k in keyof QualifierOptions]-?: Qualifier } = {
-  angle,
+export const effects = {
+  angle: {
+    qualifier: "a",
+  },
   art: {
     prefix: "e",
     qualifier: "art",
@@ -589,4 +607,4 @@ export const effects: { [k in keyof QualifierOptions]-?: Qualifier } = {
     prefix: "e",
     qualifier: "vignette",
   },
-};
+} as const satisfies { [k in keyof QualifierOptions]-?: QualifierConfig };

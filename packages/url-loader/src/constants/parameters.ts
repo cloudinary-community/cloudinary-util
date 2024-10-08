@@ -1,9 +1,6 @@
-export declare namespace Option {}
-
 /**
  *  @description Mode to use when cropping an asset.
  *  @url https://cloudinary.com/documentation/transformation_reference#c_crop_resize
- *  @qualifier c
  */
 export type CropMode =
   | "auto"
@@ -31,7 +28,6 @@ export type ExtractMode = "content" | "mask";
 /**
  *  @description Rotates or flips an asset by the specified number of degrees or automatically according to its orientation or available metadata.
  *  @url https://cloudinary.com/documentation/transformation_reference#a_angle
- *  @qualifier a
  */
 export type Angle = string | number;
 
@@ -47,7 +43,6 @@ export type AspectRatioMode =
 /**
  *  @description Crops or resizes the asset to a new aspect ratio.
  *  @url https://cloudinary.com/documentation/transformation_reference#ar_aspect_ratio
- *  @qualifier ar
  */
 export type AspectRatio = AspectRatioMode | number | (string & {});
 
@@ -111,7 +106,6 @@ export type Format = string;
 /**
  *  @description Determines which part of an asset to focus on. Note: Default of auto is applied for supported crop modes only.
  *  @url https://cloudinary.com/documentation/transformation_reference#g_gravity
- *  @qualifier g
  */
 export type Gravity =
   | "auto"
@@ -134,7 +128,6 @@ export type Gravity =
 /**
  *  @description A qualifier that determines the height of a transformed asset or an overlay.
  *  @url https://cloudinary.com/documentation/transformation_reference#h_height
- *  @qualifier h
  */
 export type Height = number | string;
 
@@ -146,26 +139,23 @@ export type Multiple = boolean;
 /**
  *  @description Natural language descriptions used for generative AI capabilities.
  */
-export type ListablePrompts = string | readonly string[];
+export type ListablePrompts = string | ReadonlyArray<string>;
 
 /**
  *  @description A qualifier that sets the desired width of an asset using a specified value, or automatically based on the available width.
  *  @url https://cloudinary.com/documentation/transformation_reference#w_width
- *  @qualifier w
  */
 export type Width = number | string;
 
 /**
  *  @description Adjusts the starting location or offset of the x axis.
  *  @url https://cloudinary.com/documentation/transformation_reference#x_y_coordinates
- *  @qualifier x
  */
 export type X = number | string;
 
 /**
  *  @description Adjusts the starting location or offset of the y axis.
  *  @url https://cloudinary.com/documentation/transformation_reference#x_y_coordinates
- *  @qualifier y
  */
 export type Y = number | string;
 
@@ -177,7 +167,10 @@ export type Y = number | string;
  */
 export type Zoom = string;
 
-export interface PositionOptions {
+// this was originally called PositionOptions but it conflicts with a
+// DOM type, leading to confusing results if e.g. the import is deleted,
+// the type falls back to the global
+export interface PositionalOptions {
   angle?: Angle;
   gravity?: Gravity;
   x?: X;

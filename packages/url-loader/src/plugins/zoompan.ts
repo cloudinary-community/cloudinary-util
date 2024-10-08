@@ -1,3 +1,4 @@
+import type { QualifierOptions } from "../constants/qualifiers.js";
 import { plugin } from "../lib/plugin.js";
 import type { PluginOptions } from "../types/plugins.js";
 
@@ -11,13 +12,13 @@ export declare namespace ZoompanPlugin {
   }
 
   export interface NestedOptions {
-    loop?: Loop;
+    loop?: QualifierOptions["loop"];
     options: string;
   }
 }
 
 export const ZoompanPlugin = plugin({
-  assetTypes: ["image", "images"],
+  supports: "image",
   apply: (cldAsset, options) => {
     const { zoompan = false } = options;
 
