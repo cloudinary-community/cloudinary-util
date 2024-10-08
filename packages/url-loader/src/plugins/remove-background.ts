@@ -13,8 +13,7 @@ export declare namespace RemoveBackgroundPlugin {
 export const RemoveBackgroundPlugin = plugin({
   assetTypes: ["image", "images"],
   apply: (cldAsset, options) => {
-    const { removeBackground = false } = options;
-    if (removeBackground) {
+    if (options.removeBackground) {
       cldAsset.effect("e_background_removal");
     }
     return {};

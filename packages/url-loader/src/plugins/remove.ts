@@ -1,4 +1,5 @@
-import type { Prompt } from "../constants/parameters.js";
+import { isArray } from "@cloudinary-util/util";
+import type { ListablePrompts } from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
 import { promptArrayToString } from "../lib/transformations.js";
 
@@ -8,11 +9,11 @@ export declare namespace RemovePlugin {
      * @description Applies zooming and/or panning to an image, resulting in a video or animated image.
      * @url https://cloudinary.com/documentation/transformation_reference#e_zoompan
      */
-    remove?: Prompt | NestedOptions;
+    remove?: ListablePrompts | NestedOptions;
   }
 
   export interface NestedOptions {
-    prompt?: Prompt;
+    prompt?: ListablePrompts;
     region?: number[] | number[][];
     multiple?: boolean;
     removeShadow?: boolean;
@@ -33,7 +34,7 @@ export const RemovePlugin = plugin({
 
     if (typeof remove === "string") {
       removeOptions.prompt = remove;
-    } else if (Array.isArray(remove)) {
+    } else if (isArray(remove)) {
       removeOptions.prompt = promptArrayToString(remove);
     } else if (typeof remove === "object") {
       const hasPrompt =

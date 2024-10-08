@@ -7,15 +7,10 @@ import {
 import { z } from "zod";
 
 import { AbrPlugin } from "../plugins/abr.js";
-import { CroppingPlugin } from "../plugins/cropping.js";
 import { DefaultImage } from "../plugins/default-image.js";
 import { EffectsPlugin } from "../plugins/effects.js";
-import { EnhancePlugin } from "../plugins/enhance.js";
-import { ExtractPlugin } from "../plugins/extract.js";
 import { FillBackgroundPlugin } from "../plugins/fill-background.js";
 import { FlagsPlugin } from "../plugins/flags.js";
-import { NamedTransformationsPlugin } from "../plugins/named-transformations.js";
-import { OverlaysPlugin } from "../plugins/overlays.js";
 import { PreserveTransformationsPlugin } from "../plugins/preserve-transformations.js";
 import { RawTransformationsPlugin } from "../plugins/raw-transformations.js";
 import { RecolorPlugin } from "../plugins/recolor.js";
@@ -32,12 +27,7 @@ import { analyticsOptionsSchema } from "../types/analytics.js";
 import { configOptionsSchema } from "../types/config.js";
 
 import { VersionPlugin } from "../plugins/version.js";
-import type {
-  AssetType,
-  PluginOptions,
-  PluginResults,
-  TransformationPlugin,
-} from "../types/plugins.js";
+import type { PluginOptions, PluginResults } from "../types/plugins.js";
 
 export const transformationPlugins = [
   // Some features *must* be the first transformation applied

@@ -20,9 +20,12 @@ export interface PluginDefinition<When extends ApplyWhen> {
 }
 
 export type OptionsFor<When extends ApplyWhen> = When extends keyof AllOptions
-  ? // if the plugin applies based on a single key being defined, we know it will be
-    // present in the options passed to apply
-    AllOptions & { [k in When]: {} }
+  ? AllOptions extends When
+    ? // do nothing if it wasn't inferred and fell back to the base constraint
+      AllOptions
+    : // if the plugin applies based on a single key being defined, we know it will be
+      // present in the options passed to apply
+      AllOptions & { [k in When]: {} }
   : AllOptions;
 
 export type PluginApplication<When extends ApplyWhen> = (

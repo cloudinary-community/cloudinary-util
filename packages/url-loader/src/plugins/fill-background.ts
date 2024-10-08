@@ -1,5 +1,9 @@
 import { normalizeNumberParameter } from "@cloudinary-util/util";
-import type { CropMode, Gravity, Prompt } from "../constants/parameters.js";
+import type {
+  CropMode,
+  Gravity,
+  ListablePrompts,
+} from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
 
 const defaultCrop = "pad";
@@ -16,7 +20,7 @@ export declare namespace FillBackgroundPlugin {
   export interface NestedOptions {
     crop?: CropMode;
     gravity?: Gravity;
-    prompt?: Prompt;
+    prompt?: ListablePrompts;
   }
 }
 

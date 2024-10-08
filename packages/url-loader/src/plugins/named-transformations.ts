@@ -1,3 +1,4 @@
+import { isArray } from "@cloudinary-util/util";
 import { plugin } from "../lib/plugin.js";
 
 export declare namespace NamedTransformationsPlugin {
@@ -30,7 +31,7 @@ export const NamedTransformationsPlugin = plugin({
 
     let _namedTransformations = namedTransformations || transformations || [];
 
-    if (!Array.isArray(_namedTransformations)) {
+    if (!isArray(_namedTransformations)) {
       _namedTransformations = [_namedTransformations];
     }
 

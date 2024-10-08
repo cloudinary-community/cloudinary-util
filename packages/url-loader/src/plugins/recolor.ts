@@ -1,4 +1,4 @@
-import type { Prompt } from "../constants/parameters.js";
+import type { ListablePrompts } from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
 import { promptArrayToString } from "../lib/transformations.js";
 
@@ -12,7 +12,7 @@ export declare namespace RecolorPlugin {
   }
 
   export interface NestedOptions {
-    prompt?: Prompt;
+    prompt?: ListablePrompts;
     to?: string;
     multiple?: boolean;
   }

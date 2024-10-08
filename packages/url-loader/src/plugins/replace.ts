@@ -1,3 +1,4 @@
+import { isArray } from "@cloudinary-util/util";
 import { plugin } from "../lib/plugin.js";
 
 export declare namespace ReplacePlugin {
@@ -26,7 +27,7 @@ export const ReplacePlugin = plugin({
         to: string,
         preserveGeometry: boolean = false;
 
-      if (Array.isArray(replace)) {
+      if (isArray(replace)) {
         from = replace[0] as string;
         to = replace[1] as string;
         preserveGeometry = (replace[2] as boolean) || false;

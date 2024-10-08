@@ -1,4 +1,9 @@
-import type { ExtractMode, Multiple, Prompt } from "../constants/parameters.js";
+import { isArray } from "@cloudinary-util/util";
+import type {
+  ExtractMode,
+  ListablePrompts,
+  Multiple,
+} from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
 
 export declare namespace ExtractPlugin {
@@ -7,11 +12,11 @@ export declare namespace ExtractPlugin {
      * @description Extracts an area or multiple areas of an image, described in natural language.
      * @url https://cloudinary.com/documentation/transformation_reference#e_extract
      */
-    extract?: Prompt | NestedOptions;
+    extract?: ListablePrompts | NestedOptions;
   }
 
   export interface NestedOptions {
-    prompt?: Prompt;
+    prompt?: ListablePrompts;
     invert?: boolean;
     mode?: ExtractMode;
     multiple?: Multiple;
@@ -61,11 +66,11 @@ export const ExtractPlugin = plugin({
  * formatPrompts
  */
 
-function formatPrompts(prompt: string | Array<string> | undefined) {
-  if (typeof prompt === "string") return prompt;
+function formatPrompts(prompts: ListablePrompts | undefined) {
+  if (typeof prompts === "string") return prompt;
 
-  if (Array.isArray(prompt)) {
-    return `(${prompt.filter((prompt) => typeof prompt === "string").join(";")})`;
+  if (isArray(prompts)) {
+    return `(${prompts.filter((prompt) => typeof prompt === "string").join(";")})`;
   }
 
   return undefined;

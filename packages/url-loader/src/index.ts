@@ -47,10 +47,6 @@ export type {
   ConfigOptions,
 } from "./types/config.js";
 export type { ImageOptions } from "./types/image.js";
-export type {
-  PluginOptions,
-  PluginResults,
-  PluginSettings,
-} from "./types/plugins.js";
+export type { PluginOptions, PluginResults } from "./types/plugins.js";
 export type { QualiferConverters, Qualifier } from "./types/qualifiers.js";
 export type { VideoOptions } from "./types/video.js";

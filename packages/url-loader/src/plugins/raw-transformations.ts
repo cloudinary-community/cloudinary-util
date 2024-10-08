@@ -1,3 +1,4 @@
+import { isArray } from "@cloudinary-util/util";
 import { plugin } from "../lib/plugin.js";
 
 export declare namespace RawTransformationsPlugin {
@@ -15,7 +16,7 @@ export const RawTransformationsPlugin = plugin({
   apply: (cldAsset, options) => {
     let { rawTransformations = [] } = options;
 
-    if (!Array.isArray(rawTransformations)) {
+    if (!isArray(rawTransformations)) {
       rawTransformations = [rawTransformations];
     }
 
