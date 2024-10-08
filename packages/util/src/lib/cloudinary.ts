@@ -170,9 +170,24 @@ export async function pollForProcessingImage(
       await new Promise((resolve) => setTimeout(resolve, 500));
       return await pollForProcessingImage(options);
     }
+    
+    if (!response.ok) {
+      console.error({
+        error: true,
+        status: response.status,
+        cldError: response.headers.get('x-cld-error') || 'Unknown error',
+      });
+      return false;
+    }
 
-    return response.ok;
-  } catch {
+    return true;
+  } catch (error) {
+    console.error({
+      error: true,
+      status: 500,
+      cldError: (error as Error).message || 'Network error',
+    });
     return false;
   }
 }
+
