@@ -160,9 +160,15 @@ export interface PollForProcessingImageOptions {
  * Poll for an image that hasn't finished processing.
  * Will call itself recurisvely until an image is found, or it fails to fetch.
  */
+export interface PollForProcessingImageResponse {
+  status: number;
+  success: boolean;
+  error?: string;
+}
+
 export async function pollForProcessingImage(
   options: PollForProcessingImageOptions,
-): Promise<boolean> {
+): Promise<PollForProcessingImageResponse> {
   try {
     const response = await fetch(options.src);
 
@@ -170,24 +176,24 @@ export async function pollForProcessingImage(
       await new Promise((resolve) => setTimeout(resolve, 500));
       return await pollForProcessingImage(options);
     }
-    
+
     if (!response.ok) {
-      console.error({
-        error: true,
+      return {
+        success: false,
         status: response.status,
-        cldError: response.headers.get('x-cld-error') || 'Unknown error',
-      });
-      return false;
+        error: response.headers.get('x-cld-error') || 'Unknown error',
+      };
     }
 
-    return true;
+    return {
+      success: true,
+      status: response.status,
+    };
   } catch (error) {
-    console.error({
-      error: true,
+    return {
+      success: false,
       status: 500,
-      cldError: (error as Error).message || 'Network error',
-    });
-    return false;
+      error: (error as Error).message || 'Network error',
+    };
   }
 }
-
