@@ -1,5 +1,4 @@
-import type { TransformationPlugin } from "../types/plugins.js";
-import type { VideoOptions } from "../types/video.js";
+import { plugin } from "../lib/plugin.js";
 
 export declare namespace Abr {
   export interface Options {
@@ -11,16 +10,13 @@ export declare namespace Abr {
   }
 }
 
-export const Abr = {
+export const Abr = plugin({
   assetTypes: ["video", "videos"],
-  plugin: (settings) => {
-    const { cldAsset, options } = settings;
-    const { streamingProfile } = options;
-
-    if (typeof streamingProfile === "string") {
-      cldAsset.addTransformation(`sp_${streamingProfile}`);
+  apply: (asset, opts) => {
+    if (typeof opts.streamingProfile === "string") {
+      asset.addTransformation(`sp_${opts.streamingProfile}`);
     }
 
     return {};
   },
-} satisfies TransformationPlugin<VideoOptions>;
+});

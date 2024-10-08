@@ -7,7 +7,7 @@ import {
 import { z } from "zod";
 
 import { Abr } from "../plugins/abr.js";
-import { croppingPlugin } from "../plugins/cropping.js";
+import { Cropping } from "../plugins/cropping.js";
 import { DefaultImage } from "../plugins/default-image.js";
 import { effectsPlugin } from "../plugins/effects.js";
 import { Enhance } from "../plugins/enhance.js";
@@ -59,7 +59,7 @@ export const transformationPlugins = [
   // as it provides the option of 2-step resizing where someone
   // can resize the "base" canvas as well as the final resize
   // mechanism commonly used for responsive resizing
-  croppingPlugin,
+  Cropping,
 
   // Raw transformations should always come before
   // other arguments to avoid conflicting with
@@ -119,6 +119,8 @@ export const constructUrlPropsSchema = z.object({
 });
 
 export type ConstructUrlProps = z.infer<typeof constructUrlPropsSchema>;
+
+export type CldAsset = CloudinaryImage | CloudinaryVideo;
 
 export function constructCloudinaryUrl({
   options,
@@ -212,7 +214,7 @@ export function constructCloudinaryUrl({
   const pluginEffects: PluginOptions = {};
 
   transformationPlugins.forEach(
-    ({ plugin, assetTypes, props, strict }: TransformationPlugin) => {
+    ({ apply: plugin, assetTypes, props, strict }: TransformationPlugin) => {
       const supportedAssetType =
         options?.assetType !== undefined &&
         assetTypes.includes(options.assetType as AssetType);

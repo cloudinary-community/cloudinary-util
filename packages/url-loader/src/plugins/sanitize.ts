@@ -13,7 +13,7 @@ export declare namespace Sanitize {
 
 export const Sanitize = {
   assetTypes: ["image", "images"],
-  plugin: ({ cldAsset, options }) => {
+  apply: ({ cldAsset, options }) => {
     const { sanitize = true } = options;
 
     const shouldApplySanitizer: boolean =

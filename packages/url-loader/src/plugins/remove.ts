@@ -22,7 +22,7 @@ export declare namespace Remove {
 
 export const Remove = {
   assetTypes: ["image", "images"],
-  plugin: ({ cldAsset, options }) => {
+  apply: ({ cldAsset, options }) => {
     const { remove } = options;
 
     const removeOptions: Record<string, string | undefined> = {

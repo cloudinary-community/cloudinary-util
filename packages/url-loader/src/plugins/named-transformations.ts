@@ -19,7 +19,7 @@ export declare namespace NamedTransformations {
 export const NamedTransformations = {
   strict: true,
   assetTypes: ["image", "images", "video", "videos"],
-  plugin: ({ cldAsset, options }) => {
+  apply: ({ cldAsset, options }) => {
     const { transformations, namedTransformations } = options;
 
     if (transformations && process.env.NODE_ENVIRONMENT === "development") {

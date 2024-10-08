@@ -67,7 +67,7 @@ export const DEFAULT_TEXT_OPTIONS = {
 
 export const Overlays = {
   assetTypes: ["image", "images", "video", "videos"],
-  plugin: ({ cldAsset, options }) => {
+  apply: ({ cldAsset, options }) => {
     const { text, overlays = [] } = options;
 
     const type = "overlay";

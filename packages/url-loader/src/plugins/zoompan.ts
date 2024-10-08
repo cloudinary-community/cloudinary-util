@@ -16,7 +16,7 @@ export interface ZoompanOptions {
 
 export const zoompanPlugin = {
   assetTypes: ["image", "images"],
-  plugin: ({ cldAsset, options }) => {
+  apply: ({ cldAsset, options }) => {
     const { zoompan = false } = options;
 
     const overrides: PluginOptions = {

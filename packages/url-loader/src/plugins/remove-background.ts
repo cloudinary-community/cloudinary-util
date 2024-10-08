@@ -13,7 +13,7 @@ export declare namespace RemoveBackground {
 
 export const RemoveBackground = {
   assetTypes: ["image", "images"],
-  plugin: (settings) => {
+  apply: (settings) => {
     const { cldAsset, options } = settings;
     const { removeBackground = false } = options;
     if (removeBackground) {

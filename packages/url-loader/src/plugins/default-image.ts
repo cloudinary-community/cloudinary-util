@@ -1,6 +1,5 @@
 import { getFormat } from "@cloudinary-util/util";
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
 export declare namespace DefaultImage {
   export interface Options {
@@ -12,11 +11,11 @@ export declare namespace DefaultImage {
   }
 }
 
-export const DefaultImage = {
+export const DefaultImage = plugin({
   assetTypes: ["image", "images"],
-  plugin: (settings) => {
-    const { cldAsset, options } = settings;
-    const { defaultImage } = options;
+  props: {},
+  apply: (asset, opts) => {
+    const { defaultImage } = opts;
 
     if (typeof defaultImage === "string") {
       if (!getFormat(defaultImage)) {
@@ -25,9 +24,9 @@ export const DefaultImage = {
         );
       }
       const defaultImageId = defaultImage.replace(/\//g, ":");
-      cldAsset.addTransformation(`d_${defaultImageId}`);
+      asset.addTransformation(`d_${defaultImageId}`);
     }
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});

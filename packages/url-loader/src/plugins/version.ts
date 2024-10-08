@@ -12,7 +12,7 @@ export declare namespace Version {
 
 export const Version = {
   assetTypes: ["image", "images", "video", "videos"],
-  plugin: ({ cldAsset, options }) => {
+  apply: ({ cldAsset, options }) => {
     const { version } = options;
 
     if (typeof version === "string" || typeof version === "number") {

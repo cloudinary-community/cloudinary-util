@@ -9,7 +9,7 @@ export declare namespace Flags {
 
 export const Flags = {
   assetTypes: ["image", "images", "video", "videos"],
-  plugin: (settings) => {
+  apply: (settings) => {
     const { cldAsset, options } = settings;
     const { flags = [] } = options;
 

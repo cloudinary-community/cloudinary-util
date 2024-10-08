@@ -12,7 +12,7 @@ export declare namespace PreserveTransformations {
 
 export const PreserveTransformations = {
   assetTypes: ["image", "images", "video", "videos"],
-  plugin: ({ cldAsset, options }) => {
+  apply: ({ cldAsset, options }) => {
     const { preserveTransformations = false } = options;
 
     // Try to preserve the original transformations from the Cloudinary URL passed in

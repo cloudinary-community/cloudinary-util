@@ -19,7 +19,7 @@ export declare namespace Replace {
 
 export const replacePlugin = {
   assetTypes: ["image", "images"],
-  plugin: ({ cldAsset, options }) => {
+  apply: ({ cldAsset, options }) => {
     const { replace = null } = options;
 
     if (replace) {

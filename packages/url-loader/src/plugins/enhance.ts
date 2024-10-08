@@ -1,5 +1,4 @@
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
 export declare namespace Enhance {
   export interface Options {
@@ -11,10 +10,10 @@ export declare namespace Enhance {
   }
 }
 
-export const Enhance = {
+export const Enhance = plugin({
   assetTypes: ["image", "images"],
-  plugin: (settings) => {
-    const { cldAsset, options } = settings;
+  props: {},
+  apply: (cldAsset, options) => {
     const { enhance = false } = options;
 
     if (enhance) {
@@ -23,4 +22,4 @@ export const Enhance = {
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});

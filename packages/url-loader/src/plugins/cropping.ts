@@ -8,8 +8,9 @@ import type {
   Y,
   Zoom,
 } from "../constants/parameters.js";
+import { plugin } from "../lib/plugin.js";
 import { normalizeNumberParameter } from "../lib/transformations.js";
-import type { PluginResults, TransformationPlugin } from "../types/plugins.js";
+import type { PluginResults } from "../types/plugins.js";
 
 const cropsAspectRatio = ["auto", "crop", "fill", "lfill", "fill_pad", "thumb"];
 const cropsGravityAuto = ["auto", "crop", "fill", "lfill", "fill_pad", "thumb"];
@@ -38,39 +39,33 @@ export declare namespace Cropping {
   }
 }
 
-export const croppingPlugin = {
+export const Cropping = plugin({
   assetTypes: ["image", "images", "video", "videos"],
-  plugin: (settings) => {
-    const { cldAsset, options } = settings;
-
+  // crop is applied even if the crop key is undefined
+  applyWhen: () => true,
+  apply: (asset, opts) => {
     let crops: Array<Cropping.NestedOptions> = [];
 
     // Normalize the data that we're working with for simpler processing
 
-    if (
-      typeof options.crop === "string" ||
-      typeof options.crop === "undefined"
-    ) {
+    if (typeof opts.crop === "string" || typeof opts.crop === "undefined") {
       // If we have a type of string or we don't explicitly
       // have a crop set (default is limit) we're using the
       // default pattern of resizing/cropping after all
       // of the transformations
 
       crops.push({
-        aspectRatio: options.aspectRatio,
-        height: options.height,
-        gravity: options.gravity,
-        type: options.crop || DEFAULT_CROP,
-        width: options.width,
-        zoom: options.zoom,
+        aspectRatio: opts.aspectRatio,
+        height: opts.height,
+        gravity: opts.gravity,
+        type: opts.crop || DEFAULT_CROP,
+        width: opts.width,
+        zoom: opts.zoom,
       });
-    } else if (
-      typeof options.crop === "object" &&
-      !Array.isArray(options.crop)
-    ) {
-      crops.push(options.crop);
-    } else if (Array.isArray(options.crop)) {
-      crops = options.crop;
+    } else if (typeof opts.crop === "object" && !Array.isArray(opts.crop)) {
+      crops.push(opts.crop);
+    } else if (Array.isArray(opts.crop)) {
+      crops = opts.crop;
     }
 
     // We always need a post-transformation to resize the image, whether that uses the
@@ -79,12 +74,12 @@ export const croppingPlugin = {
 
     if (crops.length === 1 && crops[0].source === true) {
       crops.push({
-        aspectRatio: options.aspectRatio,
-        width: options.width,
-        height: options.height,
-        gravity: options.gravity,
+        aspectRatio: opts.aspectRatio,
+        width: opts.width,
+        height: opts.height,
+        gravity: opts.gravity,
         type: DEFAULT_CROP,
-        zoom: options.zoom,
+        zoom: opts.zoom,
       });
     }
 
@@ -104,13 +99,13 @@ export const croppingPlugin = {
         typeof cropDimensions.width === "undefined" &&
         typeof crop.aspectRatio === "undefined"
       ) {
-        cropDimensions.width = options.width;
+        cropDimensions.width = opts.width;
 
         // We likely don't want to infer one dimension and not the other
         // so only infer the height if we're already inferring the width
 
         if (typeof cropDimensions.height === "undefined") {
-          cropDimensions.height = options.height;
+          cropDimensions.height = opts.height;
         }
       }
 
@@ -142,7 +137,7 @@ export const croppingPlugin = {
 
     sourceTransformations.forEach((transformation) => {
       if (transformation.length > 0) {
-        cldAsset.addTransformation(transformation.join(","));
+        asset.addTransformation(transformation.join(","));
       }
     });
 
@@ -160,7 +155,7 @@ export const croppingPlugin = {
 
     return results;
   },
-} satisfies TransformationPlugin;
+});
 
 /**
  * CollectTransformations

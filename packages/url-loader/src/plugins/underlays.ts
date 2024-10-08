@@ -62,7 +62,7 @@ export const underlaysProps = {
 export const underlaysPlugin = {
   props: underlaysProps,
   assetTypes: ["image", "images", "video", "videos"],
-  plugin: ({ cldAsset, options }) => {
+  apply: ({ cldAsset, options }) => {
     const { underlay, underlays = [] } = options;
 
     const typeQualifier = "u";

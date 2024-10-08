@@ -10,29 +10,6 @@ import {
   y,
   zoom,
 } from "../constants/parameters.js";
-import type { AssetOptions } from "./asset.js";
-import type { ImageOptions } from "./image.js";
-import type { VideoOptions } from "./video.js";
-
-type AllOptions = AssetOptions | ImageOptions | VideoOptions;
-
-export interface PluginSettings<Options extends AllOptions = AllOptions> {
-  cldAsset: any;
-  options: Options;
-}
-
-export type PluginFunction<Options extends AllOptions = AllOptions> = (
-  settings: PluginSettings<Options>
-) => PluginResults;
-
-export type AssetType = "image" | "images" | "video" | "videos";
-
-export interface TransformationPlugin<Options extends AllOptions = AllOptions> {
-  assetTypes: Array<AssetType>;
-  plugin: PluginFunction<Options>;
-  strict?: boolean;
-  props?: object;
-}
 
 export const pluginOptionsSchema = z.object({
   aspectRatio: aspectRatio.schema.optional(),

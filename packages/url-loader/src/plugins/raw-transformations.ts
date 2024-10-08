@@ -12,7 +12,7 @@ export declare namespace RawTransformations {
 
 export const RawTransformations = {
   assetTypes: ["image", "images", "video", "videos"],
-  plugin: ({ cldAsset, options }) => {
+  apply: ({ cldAsset, options }) => {
     let { rawTransformations = [] } = options;
 
     if (!Array.isArray(rawTransformations)) {

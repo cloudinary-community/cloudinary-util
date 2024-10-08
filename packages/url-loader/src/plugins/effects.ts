@@ -1,7 +1,17 @@
 import { z } from "zod";
-import { effects as qualifiersEffects } from "../constants/qualifiers.js";
+import {
+  effects as qualifiersEffects,
+  type QualifierOptions,
+} from "../constants/qualifiers.js";
+import { plugin } from "../lib/plugin.js";
 import { constructTransformation } from "../lib/transformations.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+
+export declare namespace Effects {
+  export interface NestableOptions
+    extends Omit<QualifierOptions, "displace" | "hue"> {}
+}
+
+// displace, hue vignette
 
 const effectProps = {
   angle: qualifiersEffects.angle.schema.optional(),
@@ -30,8 +40,8 @@ const effectProps = {
   improve: qualifiersEffects.improve.schema.optional(),
   loop: qualifiersEffects.loop.schema.optional(),
   multiply: qualifiersEffects.multiply.schema.optional(),
-  negate: qualifiersEffects.negate.schema.optional(),
-  oilPaint: qualifiersEffects.oilPaint.schema.optional(),
+  // negate: qualifiersEffects.negate.schema.optional(),
+  // oilPaint: qualifiersEffects.oilPaint.schema.optional(),
   opacity: qualifiersEffects.opacity.schema.optional(),
   outline: qualifiersEffects.outline.schema.optional(),
   pixelate: qualifiersEffects.pixelate.schema.optional(),
@@ -53,7 +63,7 @@ const effectProps = {
   vectorize: qualifiersEffects.vectorize.schema.optional(),
   vibrance: qualifiersEffects.vibrance.schema.optional(),
   vignette: qualifiersEffects.vignette.schema.optional(),
-};
+} satisfies { [k in keyof QualifierOptions]-?: unknown };
 
 export interface EffectsOptions {}
 
@@ -69,12 +79,10 @@ export const effectsProps = {
   ...effectProps,
 };
 
-export const effectsPlugin = {
+export const effectsPlugin = plugin({
   props: effectsProps,
   assetTypes: ["image", "images", "video", "videos"],
-  plugin: (settings) => {
-    const { cldAsset, options } = settings;
-
+  apply: (cldAsset, options) => {
     // Handle any top-level effect props
 
     const transformationStrings = constructTransformationString({
@@ -125,4 +133,4 @@ export const effectsPlugin = {
 
     return {};
   },
-} satisfies TransformationPlugin;
+});

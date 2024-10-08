@@ -18,7 +18,7 @@ export declare namespace ReplaceBackground {
 
 export const replaceBackgroundPlugin = {
   assetTypes: ["image", "images"],
-  plugin: (settings) => {
+  apply: (settings) => {
     const { cldAsset, options } = settings;
     const { replaceBackground } = options;
 

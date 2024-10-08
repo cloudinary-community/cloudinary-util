@@ -23,7 +23,7 @@ export declare namespace FillBackground {
 
 export const FillBackground = {
   assetTypes: ["image", "images"],
-  plugin: (settings) => {
+  apply: (settings) => {
     const { cldAsset, options } = settings;
     const { fillBackground } = options;
 

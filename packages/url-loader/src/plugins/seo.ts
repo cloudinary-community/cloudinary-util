@@ -12,7 +12,7 @@ export declare namespace Seo {
 
 export const Seo = {
   assetTypes: ["image", "images", "video", "videos"],
-  plugin: ({ cldAsset, options }) => {
+  apply: ({ cldAsset, options }) => {
     const { seoSuffix } = options;
 
     if (typeof seoSuffix === "string") {

@@ -21,7 +21,7 @@ export declare namespace Recolor {
 
 export const recolorPlugin = {
   assetTypes: ["image", "images"],
-  plugin: (settings) => {
+  apply: (settings) => {
     const { cldAsset, options } = settings;
     const { recolor } = options;
 

@@ -11,7 +11,7 @@ export interface RestoreOptions {
 
 export const restorePlugin = {
   assetTypes: ["image", "images"],
-  plugin: ({ cldAsset, options }) => {
+  apply: ({ cldAsset, options }) => {
     const { restore = false } = options;
 
     if (restore) {

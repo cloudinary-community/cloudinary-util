@@ -21,7 +21,7 @@ export declare namespace Extract {
 
 export const Extract = {
   assetTypes: ["image", "images"],
-  plugin: (settings) => {
+  apply: (settings) => {
     const { cldAsset, options } = settings;
     const { extract } = options;
 
