@@ -1,10 +1,11 @@
+import type { CloudinaryAssetConfiguration } from "@cloudinary-util/types";
 import { objectHasKey, parseUrl, type ParseUrl } from "@cloudinary-util/util";
 import {
   Cloudinary,
   type CloudinaryImage,
   type CloudinaryVideo,
 } from "@cloudinary/url-gen";
-import { z } from "zod";
+import type { IAnalyticsOptions } from "@cloudinary/url-gen/sdkAnalytics/interfaces/IAnalyticsOptions";
 
 import { AbrPlugin } from "../plugins/abr.js";
 import { DefaultImage } from "../plugins/default-image.js";
@@ -23,18 +24,23 @@ import { SanitizePlugin } from "../plugins/sanitize.js";
 import { SeoPlugin } from "../plugins/seo.js";
 import { UnderlaysPlugin } from "../plugins/underlays.js";
 import { ZoompanPlugin } from "../plugins/zoompan.js";
-import { analyticsOptionsSchema } from "../types/analytics.js";
-import { configOptionsSchema } from "../types/config.js";
 
+import { CroppingPlugin } from "../plugins/cropping.js";
+import { EnhancePlugin } from "../plugins/enhance.js";
+import { ExtractPlugin } from "../plugins/extract.js";
+import { NamedTransformationsPlugin } from "../plugins/named-transformations.js";
+import { OverlaysPlugin } from "../plugins/overlays.js";
 import { VersionPlugin } from "../plugins/version.js";
+import type { ImageOptions } from "../types/image.js";
 import type { PluginOptions, PluginResults } from "../types/plugins.js";
+import type { VideoOptions } from "../types/video.js";
 
 export const transformationPlugins = [
   // Some features *must* be the first transformation applied
   // thus their plugins *must* come first in the chain
 
-  Enhance,
-  Extract,
+  EnhancePlugin,
+  ExtractPlugin,
   RecolorPlugin,
   RemoveBackgroundPlugin,
   RemovePlugin,
@@ -46,7 +52,7 @@ export const transformationPlugins = [
   // as it provides the option of 2-step resizing where someone
   // can resize the "base" canvas as well as the final resize
   // mechanism commonly used for responsive resizing
-  Cropping,
+  CroppingPlugin,
 
   // Raw transformations should always come before
   // other arguments to avoid conflicting with
@@ -60,54 +66,50 @@ export const transformationPlugins = [
   EffectsPlugin,
   FillBackgroundPlugin,
   FlagsPlugin,
-  Overlays,
+  OverlaysPlugin,
   SanitizePlugin,
-  NamedTransformations,
+  NamedTransformationsPlugin,
   SeoPlugin,
   UnderlaysPlugin,
   VersionPlugin,
   ZoompanPlugin,
 ];
 
-const constructUrlOptionsSchema = z
-  .union([imageOptionsSchema, videoOptionsSchema])
-  .describe(
-    JSON.stringify({
-      text: "Asset options (Image or Video) that define delivery URL including public ID and transformations.",
-      path: "/url-loader/assetoptions",
-    })
-  );
+export interface AnalyticsOptions extends IAnalyticsOptions {}
+
+export interface ConfigOptions extends CloudinaryAssetConfiguration {}
+
+/**
+ * @description Asset options (Image or Video) that define delivery URL including public ID and transformations.
+ * @path /url-loader/assetoptions
+ */
+export type OptionsInput = ImageOptions | VideoOptions;
 
 /**
  * constructCloudinaryUrl
  * @description Builds a full Cloudinary URL using transformation plugins specified by options
  */
 
-export const constructUrlPropsSchema = z.object({
-  analytics: z
-    .union([analyticsOptionsSchema, z.boolean()])
-    .describe(
-      JSON.stringify({
-        text: "Tech, dependency, and feature identifiers for tracking SDK usage related to Cloudinary.",
-        path: "/url-loader/analyticsoptions",
-      })
-    )
-    .optional(),
-  config: configOptionsSchema
-    .describe(
-      JSON.stringify({
-        text: "Configuration parameters for environment and Cloudinary account.",
-        url: "https://cloudinary.com/documentation/cloudinary_sdks#configuration_parameters",
-        path: "/url-loader/analyticsoptions",
-      })
-    )
-    .optional(),
-  options: constructUrlOptionsSchema,
-});
+export interface ConstructUrlProps {
+  /**
+   * @description Tech, dependency, and feature identifiers for tracking SDK usage related to Cloudinary.
+   * @path /url-loader/analyticsoptions
+   */
+  analytics?: AnalyticsOptions | boolean;
+  /**
+   * @description Configuration parameters for environment and Cloudinary account.
+   * @url https://cloudinary.com/documentation/cloudinary_sdks#configuration_parameters
+   * @path /url-loader/analyticsoptions
+   */
+  config?: ConfigOptions;
+  options: OptionsInput;
+}
 
-export type ConstructUrlProps = z.infer<typeof constructUrlPropsSchema>;
+// publicID is being used internally but is not exposed by the class
+// map over the asset so TS doesn't complain about the private property
+type withPublicId<asset> = Omit<asset, never> & { publicID: string };
 
-export type CldAsset = CloudinaryImage | CloudinaryVideo;
+export type CldAsset = withPublicId<CloudinaryImage | CloudinaryVideo>;
 
 export function constructCloudinaryUrl({
   options,

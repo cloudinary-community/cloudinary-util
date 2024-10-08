@@ -1,4 +1,4 @@
-import { objectHasKey } from "@cloudinary-util/util";
+import { isArray, objectHasKey } from "@cloudinary-util/util";
 import type {
   CropMode,
   Height,
@@ -132,43 +132,19 @@ export const UnderlaysPlugin = plugin({
       // Add flags to the primary layer transformation segment
       // @TODO: accept flag value
 
-      const activeLayerFlags = Array.isArray(layerFlags)
-        ? layerFlags
-        : [layerFlags];
+      const activeLayerFlags = isArray(layerFlags) ? layerFlags : [layerFlags];
 
-      activeLayerFlags.forEach((flag) => {
-        const { success } = flagsEnum.safeParse(flag);
-
-        if (!success) {
-          if (process.env.NODE_ENV === "development") {
-            console.warn(`Invalid flag ${flag}, not applying.`);
-          }
-          return;
-        }
-
-        primary.push(`fl_${flag}`);
-      });
+      activeLayerFlags.forEach((flag) => primary.push(`fl_${flag}`));
 
       // Applied Flags
       // Add flags to the fl_layer_apply transformation segment
       // @TODO: accept flag value
 
-      const activeAppliedFlags = Array.isArray(appliedFlags)
+      const activeAppliedFlags = isArray(appliedFlags)
         ? appliedFlags
         : [appliedFlags];
 
-      activeAppliedFlags.forEach((flag) => {
-        const { success } = flagsEnum.safeParse(flag);
-
-        if (!success) {
-          if (process.env.NODE_ENV === "development") {
-            console.warn(`Invalid flag ${flag}, not applying.`);
-          }
-          return;
-        }
-
-        applied.push(`fl_${flag}`);
-      });
+      activeAppliedFlags.forEach((flag) => applied.push(`fl_${flag}`));
 
       // Add all primary transformations
 

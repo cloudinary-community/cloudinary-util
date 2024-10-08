@@ -26,13 +26,13 @@ export const ZoompanPlugin = plugin({
     };
 
     if (zoompan === true) {
-      cldAsset.effect("e_zoompan");
+      cldAsset.addTransformation("e_zoompan");
     } else if (typeof zoompan === "string") {
       if (zoompan === "loop") {
-        cldAsset.effect("e_zoompan");
-        cldAsset.effect("e_loop");
+        cldAsset.addTransformation("e_zoompan");
+        cldAsset.addTransformation("e_loop");
       } else {
-        cldAsset.effect(`e_zoompan:${zoompan}`);
+        cldAsset.addTransformation(`e_zoompan:${zoompan}`);
       }
     } else if (typeof zoompan === "object") {
       let zoompanEffect = "e_zoompan";
@@ -41,7 +41,7 @@ export const ZoompanPlugin = plugin({
         zoompanEffect = `${zoompanEffect}:${zoompan.options}`;
       }
 
-      cldAsset.effect(zoompanEffect);
+      cldAsset.addTransformation(zoompanEffect);
 
       let loopEffect;
 
@@ -55,7 +55,7 @@ export const ZoompanPlugin = plugin({
       }
 
       if (loopEffect) {
-        cldAsset.effect(loopEffect);
+        cldAsset.addTransformation(loopEffect);
       }
     }
 

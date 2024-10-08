@@ -26,9 +26,11 @@ export const EffectsPlugin = plugin({
       options,
     });
 
-    transformationStrings
-      .filter((t) => !!t)
-      .forEach((transformation) => cldAsset.effect(transformation));
+    transformationStrings.forEach((transformation) => {
+      if (transformation) {
+        cldAsset.addTransformation(transformation);
+      }
+    });
 
     // If we're passing in an effects prop explicitly, treat it as an array of
     // effects that we need to process
@@ -41,7 +43,7 @@ export const EffectsPlugin = plugin({
         })
           .filter((t) => !!t)
           .join(",");
-        cldAsset.effect(transformationString);
+        cldAsset.addTransformation(transformationString);
       });
     }
 

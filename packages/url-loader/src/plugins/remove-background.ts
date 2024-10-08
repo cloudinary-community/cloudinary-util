@@ -14,7 +14,7 @@ export const RemoveBackgroundPlugin = plugin({
   assetTypes: ["image", "images"],
   apply: (cldAsset, options) => {
     if (options.removeBackground) {
-      cldAsset.effect("e_background_removal");
+      cldAsset.addTransformation("e_background_removal");
     }
     return {};
   },

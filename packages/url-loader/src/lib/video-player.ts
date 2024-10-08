@@ -1,10 +1,9 @@
 import type {
+  CloudinaryAssetConfiguration,
   CloudinaryVideoPlayerOptions,
   CloudinaryVideoPlayerOptionsLogo,
 } from "@cloudinary-util/types";
 import { parseUrl } from "@cloudinary-util/util";
-
-import type { ConfigOptions } from "../types/config.js";
 import {
   constructCloudinaryUrl,
   type ConstructUrlProps,
@@ -38,7 +37,7 @@ export interface GetVideoPlayerOptionsLogo {
 
 export function getVideoPlayerOptions(
   options: GetVideoPlayerOptions,
-  config: ConfigOptions
+  config: CloudinaryAssetConfiguration
 ) {
   const {
     autoplay,
@@ -163,7 +162,11 @@ export function getVideoPlayerOptions(
     ...otherCldVidPlayerOptions,
   };
 
-  if ( playerOptions.width && playerOptions.height && !playerOptions.aspectRatio ) {
+  if (
+    playerOptions.width &&
+    playerOptions.height &&
+    !playerOptions.aspectRatio
+  ) {
     playerOptions.aspectRatio = `${playerOptions.width}:${playerOptions.height}`;
   }
 

@@ -14,7 +14,7 @@ export const EnhancePlugin = plugin({
   assetTypes: ["image", "images"],
   apply: (cldAsset, options) => {
     if (options.enhance) {
-      cldAsset.effect("e_enhance");
+      cldAsset.addTransformation("e_enhance");
     }
 
     return {};

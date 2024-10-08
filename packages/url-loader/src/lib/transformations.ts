@@ -1,4 +1,4 @@
-import type { QualiferConverters } from "../types/qualifiers.js";
+import type { QualifierConverters } from "../types/qualifiers.js";
 
 /**
  * constructTransformation
@@ -10,7 +10,7 @@ interface ConstructTransformationSettings {
   prefix?: string;
   qualifier?: string | boolean;
   value?: string | number | boolean;
-  converters?: Array<QualiferConverters>;
+  converters?: readonly QualifierConverters[];
 }
 
 export function constructTransformation({
@@ -52,6 +52,6 @@ export function constructTransformation({
  * promptArrayToString
  */
 
-export function promptArrayToString(promptArray: Array<string>) {
+export function promptArrayToString(promptArray: readonly string[]) {
   return `(${promptArray.join(";")})`;
 }

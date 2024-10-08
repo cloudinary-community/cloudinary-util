@@ -12,29 +12,35 @@ export type OptionName = keyof AllOptions;
 
 export type ApplyWhen = OptionName | ((opts: AllOptions) => boolean);
 
-export interface PluginDefinition<When extends ApplyWhen> {
+export interface PluginDefinition<
+  asset extends AssetType,
+  when extends ApplyWhen,
+> {
   assetTypes: Array<AssetType>;
-  apply: PluginApplication<When>;
-  applyWhen?: When;
+  assetType?: AssetType;
+  apply: PluginApplication<asset, when>;
+  applyWhen?: when;
   strict?: boolean;
 }
 
-export type OptionsFor<When extends ApplyWhen> = When extends keyof AllOptions
-  ? AllOptions extends When
+export type OptionsFor<when extends ApplyWhen> = when extends keyof AllOptions
+  ? AllOptions extends when
     ? // do nothing if it wasn't inferred and fell back to the base constraint
       AllOptions
     : // if the plugin applies based on a single key being defined, we know it will be
       // present in the options passed to apply
-      AllOptions & { [k in When]: {} }
+      AllOptions & { [k in when]: {} }
   : AllOptions;
 
-export type PluginApplication<When extends ApplyWhen> = (
-  cldAsset: CldAsset,
-  options: OptionsFor<When>
-) => PluginResults;
+export type PluginApplication<
+  asset extends AssetType,
+  when extends ApplyWhen,
+> = (cldAsset: CldAsset, options: OptionsFor<when>) => PluginResults;
 
-export type Plugin<When extends ApplyWhen> = Required<PluginDefinition<When>>;
+export type Plugin<asset extends AssetType, when extends ApplyWhen> = Required<
+  PluginDefinition<asset, when>
+>;
 
-export const plugin = <When extends ApplyWhen>(
-  def: PluginDefinition<When>
-): Plugin<When> => ({ strict: false, ...def }) as never;
+export const plugin = <asset extends AssetType, when extends ApplyWhen>(
+  def: PluginDefinition<asset, when>
+): Plugin<asset, when> => ({ strict: false, ...def }) as never;

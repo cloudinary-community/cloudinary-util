@@ -44,7 +44,7 @@ export const ReplacePlugin = plugin({
         properties.push(`preserve-geometry_${preserveGeometry}`);
       }
 
-      cldAsset.effect(properties.join(";"));
+      cldAsset.addTransformation(properties.join(";"));
     }
 
     return {};

@@ -20,11 +20,9 @@ export const RawTransformationsPlugin = plugin({
       rawTransformations = [rawTransformations];
     }
 
-    rawTransformations.forEach(
-      (transformation: RawTransformationsPlugin.Options) => {
-        cldAsset.addTransformation(transformation);
-      }
-    );
+    rawTransformations.forEach((transformation) => {
+      cldAsset.addTransformation(transformation);
+    });
 
     return {};
   },

@@ -17,10 +17,11 @@ export const SanitizePlugin = plugin({
 
     const shouldApplySanitizer: boolean =
       sanitize &&
-      (options.format === "svg" || cldAsset.publicID.endsWith(".svg"));
+      (options.format === "svg" ||
+        (cldAsset as {} as { publicID: string }).publicID.endsWith(".svg"));
 
     if (shouldApplySanitizer) {
-      cldAsset.effect("fl_sanitize");
+      cldAsset.addTransformation("fl_sanitize");
     }
 
     return {};
