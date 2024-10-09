@@ -446,6 +446,7 @@ export interface CloudinaryVideoPlayerOptions
   };
   analytics?: boolean;
   allowUsageReport?: boolean;
+  cloudinaryAnalytics?: boolean | CloudinaryVideoPlayerOptionsCloudinaryAnalytics;
 
   // ------------ Delivery ------------
   cloud_name?: string;
@@ -486,6 +487,18 @@ export interface CloudinaryVideoPlayerOptionPosterOptions {
    * RGBA hex, or a named color.
    */
   posterColor?: string;
+}
+
+export interface CloudinaryVideoPlayerOptionsCloudinaryAnalytics {
+  customData: CloudinaryVideoPlayerOptionsCloudinaryAnalyticsCustomData;
+}
+
+export interface CloudinaryVideoPlayerOptionsCloudinaryAnalyticsCustomData {
+  customData1?: string;
+  customData2?: string;
+  customData3?: string;
+  customData4?: string;
+  customData5?: string;
 }
 
 export type AudioCodecType = string | "none" | "aac" | "vorbis" | "mp3";
