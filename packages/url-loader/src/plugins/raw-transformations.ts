@@ -12,6 +12,7 @@ export declare namespace RawTransformationsPlugin {
 }
 
 export const RawTransformationsPlugin = plugin({
+  name: "RawTransformations",
   supports: "all",
   apply: (cldAsset, options) => {
     let { rawTransformations = [] } = options;

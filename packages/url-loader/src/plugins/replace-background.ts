@@ -16,6 +16,7 @@ export declare namespace ReplaceBackground {
 }
 
 export const replaceBackgroundPlugin = plugin({
+  name: "ReplaceBackground",
   supports: "image",
   apply: (cldAsset, options) => {
     const { replaceBackground } = options;

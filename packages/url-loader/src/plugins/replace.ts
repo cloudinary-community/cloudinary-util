@@ -18,6 +18,7 @@ export declare namespace ReplacePlugin {
 }
 
 export const ReplacePlugin = plugin({
+  name: "Replace",
   supports: "image",
   apply: (cldAsset, options) => {
     const { replace = null } = options;

@@ -11,6 +11,7 @@ export declare namespace RestorePlugin {
 }
 
 export const RestorePlugin = plugin({
+  name: "Restore",
   supports: "image",
   apply: (cldAsset, options) => {
     const { restore = false } = options;

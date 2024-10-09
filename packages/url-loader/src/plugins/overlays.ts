@@ -1,5 +1,6 @@
 import {
   encodeBase64,
+  entriesOf,
   isArray,
   objectHasKey,
   sortByKey,
@@ -79,6 +80,7 @@ export const DEFAULT_TEXT_OPTIONS = {
 };
 
 export const OverlaysPlugin = plugin({
+  name: "Overlays",
   supports: "all",
   apply: (cldAsset, options) => {
     const { text, overlays = [] } = options;
@@ -265,17 +267,17 @@ export const OverlaysPlugin = plugin({
             order: number;
           }
 
-          const textOptions: Array<TextOption> = Object.keys(text)
-            .filter((key) => objectHasKey(qualifiersText, key))
-            .map((key) => {
-              const value = text && objectHasKey(text, key) && text[key];
+          const textOptions: Array<TextOption> = entriesOf(text).flatMap(
+            ([key, value]) => {
+              if (!qualifiersText[key]) return [];
               return {
                 ...qualifiersText[key],
                 key,
                 value,
                 order: qualifiersText[key].order || 99,
               };
-            });
+            }
+          );
 
           const sortedTextOptions = sortByKey(textOptions, "order");
 

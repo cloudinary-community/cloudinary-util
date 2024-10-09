@@ -16,29 +16,35 @@ export interface PluginDefinition<
   asset extends SupportedAssetKind,
   when extends ApplyWhen,
 > {
-  supports: SupportedAssetKind;
+  name: string;
+  supports: asset;
   apply: PluginApplication<asset, when>;
   applyWhen?: when;
   strict?: boolean;
 }
 
-export type OptionsFor<when extends ApplyWhen> = when extends keyof AllOptions
-  ? AllOptions extends when
-    ? // do nothing if it wasn't inferred and fell back to the base constraint
-      AllOptions
-    : // if the plugin applies based on a single key being defined, we know it will be
-      // present in the options passed to apply
-      AllOptions & { [k in when]: {} }
-  : AllOptions;
+type OptionsFor<
+  asset extends SupportedAssetKind,
+  when extends ApplyWhen,
+  options = asset extends "image"
+    ? ImageOptions
+    : asset extends "video"
+      ? VideoOptions
+      : AllOptions,
+> = when extends keyof options
+  ? // if the plugin applies based on a single key being defined, we know it will be
+    // present in the options passed to apply
+    options & { [k in when]: {} }
+  : options;
 
 export type PluginApplication<
   asset extends SupportedAssetKind,
-  when extends ApplyWhen,
-> = (cldAsset: CldAsset, options: OptionsFor<when>) => PluginResults;
+  when extends ApplyWhen = never,
+> = (cldAsset: CldAsset, options: OptionsFor<asset, when>) => PluginResults;
 
-export type Plugin<
-  asset extends SupportedAssetKind,
-  when extends ApplyWhen,
+export type TransformationPlugin<
+  asset extends SupportedAssetKind = SupportedAssetKind,
+  when extends ApplyWhen = ApplyWhen,
 > = Required<PluginDefinition<asset, when>>;
 
 export const plugin = <
@@ -46,4 +52,4 @@ export const plugin = <
   when extends ApplyWhen,
 >(
   def: PluginDefinition<asset, when>
-): Plugin<asset, when> => ({ strict: false, ...def }) as never;
+): TransformationPlugin<asset, when> => ({ strict: false, ...def }) as never;

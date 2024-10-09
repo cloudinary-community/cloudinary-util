@@ -11,6 +11,7 @@ export declare namespace EnhancePlugin {
 }
 
 export const EnhancePlugin = plugin({
+  name: "Enhance",
   supports: "image",
   apply: (cldAsset, options) => {
     if (options.enhance) {

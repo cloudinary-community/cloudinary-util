@@ -6,7 +6,7 @@ export {
   parseUrl,
   pollForProcessingImage,
   type ParseUrl,
-  type PollForProcessingImageOptions
+  type PollForProcessingImageOptions,
 } from "./lib/cloudinary.js";
 export { convertColorHexToRgb, testColorIsHex } from "./lib/colors.js";
 export {
@@ -14,6 +14,6 @@ export {
   entriesOf,
   isArray,
   objectHasKey,
-  sortByKey
+  sortByKey,
+  throwError,
 } from "./lib/util.js";
-

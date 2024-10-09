@@ -40,6 +40,7 @@ export declare namespace CroppingPlugin {
 }
 
 export const CroppingPlugin = plugin({
+  name: "Cropping",
   supports: "all",
   // crop is applied even if the crop key is undefined
   apply: (asset, opts) => {

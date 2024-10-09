@@ -18,6 +18,7 @@ export declare namespace NamedTransformationsPlugin {
 }
 
 export const NamedTransformationsPlugin = plugin({
+  name: "NamedTransformations",
   strict: true,
   supports: "all",
   apply: (cldAsset, options) => {

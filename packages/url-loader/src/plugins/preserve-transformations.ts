@@ -11,6 +11,7 @@ export declare namespace PreserveTransformationsPlugin {
 }
 
 export const PreserveTransformationsPlugin = plugin({
+  name: "PreserveTransformations",
   supports: "all",
   apply: (cldAsset, options) => {
     const { preserveTransformations = false } = options;

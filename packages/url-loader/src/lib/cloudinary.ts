@@ -1,5 +1,11 @@
 import type { CloudinaryAssetConfiguration } from "@cloudinary-util/types";
-import { objectHasKey, parseUrl, type ParseUrl } from "@cloudinary-util/util";
+import {
+  entriesOf,
+  objectHasKey,
+  parseUrl,
+  throwError,
+  type ParseUrl,
+} from "@cloudinary-util/util";
 import {
   Cloudinary,
   type CloudinaryImage,
@@ -34,6 +40,7 @@ import { VersionPlugin } from "../plugins/version.js";
 import type { ImageOptions } from "../types/image.js";
 import type { PluginOptions, PluginResults } from "../types/plugins.js";
 import type { VideoOptions } from "../types/video.js";
+import type { TransformationPlugin } from "./plugin.js";
 
 export const transformationPlugins = [
   // Some features *must* be the first transformation applied
@@ -134,19 +141,6 @@ export function constructCloudinaryUrl({
     options.assetType = "image";
   }
 
-  const propsCheck: Array<string> = [];
-
-  transformationPlugins.forEach(({ props }) => {
-    const pluginProps = Object.keys(props);
-
-    pluginProps.forEach((prop) => {
-      if (propsCheck.includes(prop)) {
-        throw new Error(`Option ${prop} already exists!`);
-      }
-      propsCheck.push(prop);
-    });
-  });
-
   const parsedOptions = {} as Pick<ParseUrl, "seoSuffix" | "version">;
 
   let publicId;
@@ -173,71 +167,51 @@ export function constructCloudinaryUrl({
   // Take all the parsed URL parts and apply them to the options configuration
   // if there isn't an existing override
 
-  (Object.keys(parsedOptions) as Array<keyof typeof parsedOptions>).forEach(
-    (key) => {
-      if (objectHasKey(options, key)) return;
-      options[key] = parsedOptions[key];
-    }
-  );
+  entriesOf(parsedOptions).forEach(([key, value]) => {
+    if (objectHasKey(options, key)) return;
+    options[key] = value as never;
+  });
 
   options.version ??= 1;
 
   // Begin creating a new Cloudinary image instance and configure
 
-  let cldAsset: CldAsset | undefined;
+  const assetType =
+    options.assetType === "images"
+      ? "image"
+      : options.assetType === "videos"
+        ? "video"
+        : options.assetType === "image" || options.assetType === "video"
+          ? options.assetType
+          : throwError(`${options.assetType} is not a valid assetType`);
 
-  if (["image", "images"].includes(options.assetType)) {
-    cldAsset = cld.image(publicId);
-  } else if (["video", "videos"].includes(options.assetType)) {
-    cldAsset = cld.video(publicId);
-  }
-
-  if (typeof cldAsset === "undefined") {
-    throw new Error("Invalid asset type.");
-  }
+  const cldAsset = cld[assetType](publicId);
 
   const pluginEffects: PluginOptions = {};
 
   transformationPlugins.forEach(
-    ({ apply: plugin, assetTypes, props, strict }: TransformationPlugin) => {
-      const supportedAssetType =
-        options?.assetType !== undefined &&
-        assetTypes.includes(options.assetType as AssetType);
-      const pluginProps = Object.keys(props);
-      const optionsKeys = Object.keys(options);
-      const attemptedUse =
-        pluginProps
-          .map((prop) => optionsKeys.includes(prop))
-          .filter((isUsed) => isUsed).length > 0;
+    ({ name, apply, strict, applyWhen, supports }: TransformationPlugin) => {
+      const shouldApply =
+        applyWhen === undefined ||
+        (typeof applyWhen === "string"
+          ? options[applyWhen as never] !== undefined
+          : applyWhen(options));
 
-      if (!supportedAssetType) {
-        if (attemptedUse) {
-          console.warn(
-            `One of the following props [${pluginProps.join(
-              ", "
-            )}] was used with an unsupported asset type [${options?.assetType}]`
-          );
-        }
+      if (!shouldApply) return;
+
+      if (assetType !== supports && supports !== "all") {
+        console.warn(`${name} does not support assetType ${assetType}`);
         return;
       }
 
       if (options.strictTransformations && !strict) {
-        if (attemptedUse) {
-          console.warn(
-            `One of the following props [${pluginProps.join(
-              ", "
-            )}] was used that is not supported with Strict Transformations.`
-          );
-        }
+        console.warn(`${name} does not support Strict Transformations.`);
         return;
       }
 
-      const results: PluginResults = plugin({
-        cldAsset,
-        options,
-      });
+      const results: PluginResults = apply(cldAsset, options);
 
-      const { options: pluginOptions } = results || { options: undefined };
+      const pluginOptions = results?.options ?? { options: undefined };
 
       Object.assign(pluginEffects, pluginOptions);
     }

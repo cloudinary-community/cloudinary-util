@@ -19,6 +19,7 @@ export declare namespace RecolorPlugin {
 }
 
 export const RecolorPlugin = plugin({
+  name: "Recolor",
   supports: "image",
   apply: (cldAsset, options) => {
     const { recolor } = options;

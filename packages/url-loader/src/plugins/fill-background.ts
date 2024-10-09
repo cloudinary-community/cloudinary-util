@@ -25,6 +25,7 @@ export declare namespace FillBackgroundPlugin {
 }
 
 export const FillBackgroundPlugin = plugin({
+  name: "FillBackground",
   supports: "image",
   apply: (cldAsset, options) => {
     const { fillBackground } = options;

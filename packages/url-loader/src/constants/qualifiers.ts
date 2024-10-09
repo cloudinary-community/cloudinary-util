@@ -41,7 +41,7 @@ export const position: { [k in keyof PositionalOptions]-?: QualifierConfig } = {
   y: { qualifier: "y" },
 };
 
-export const text = {
+export const text: Record<string, QualifierConfig | undefined> = {
   alignment: {
     qualifier: false,
     order: 6,
@@ -91,7 +91,7 @@ export const text = {
     qualifier: false,
     order: 5,
   },
-} as const satisfies Record<string, QualifierConfig | undefined>;
+};
 
 export interface QualifierOptions {
   angle?: Angle;

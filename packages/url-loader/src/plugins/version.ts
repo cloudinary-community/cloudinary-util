@@ -11,6 +11,7 @@ export declare namespace VersionPlugin {
 }
 
 export const VersionPlugin = plugin({
+  name: "Version",
   supports: "all",
   apply: (cldAsset, options) => {
     const { version } = options;

@@ -11,6 +11,7 @@ export declare namespace RemoveBackgroundPlugin {
 }
 
 export const RemoveBackgroundPlugin = plugin({
+  name: "RemoveBackground",
   supports: "image",
   apply: (cldAsset, options) => {
     if (options.removeBackground) {

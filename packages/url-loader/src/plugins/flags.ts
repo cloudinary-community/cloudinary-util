@@ -9,6 +9,7 @@ export declare namespace FlagsPlugin {
 }
 
 export const FlagsPlugin = plugin({
+  name: "Flags",
   supports: "all",
   applyWhen: "flags",
   apply: (cldAsset, { flags }) => {

@@ -17,6 +17,7 @@ export declare namespace EffectsPlugin {
 }
 
 export const EffectsPlugin = plugin({
+  name: "Effects",
   supports: "all",
   apply: (cldAsset, options) => {
     // Handle any top-level effect props

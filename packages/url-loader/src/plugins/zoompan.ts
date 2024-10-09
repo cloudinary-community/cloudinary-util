@@ -18,6 +18,7 @@ export declare namespace ZoompanPlugin {
 }
 
 export const ZoompanPlugin = plugin({
+  name: "Zoompan",
   supports: "image",
   apply: (cldAsset, options) => {
     const { zoompan = false } = options;

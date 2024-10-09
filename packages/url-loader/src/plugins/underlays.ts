@@ -42,6 +42,7 @@ export declare namespace UnderlaysPlugin {
 }
 
 export const UnderlaysPlugin = plugin({
+  name: "Underlays",
   supports: "all",
   apply: (cldAsset, options) => {
     const { underlay, underlays = [] } = options;

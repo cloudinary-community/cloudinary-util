@@ -28,7 +28,7 @@ export interface AssetOptions
    * @description The type of asset to deliver.
    * @url https://cloudinary.com/documentation/image_transformations#transformation_url_structure
    */
-  assetType?: string;
+  assetType?: AssetType;
   /**
    * @description Delivery method of the asset.
    * @url https://cloudinary.com/documentation/image_transformations#delivery_types
@@ -67,3 +67,5 @@ export interface AssetOptions
    */
   width?: string | number;
 }
+
+export type AssetType = "image" | "images" | "video" | "videos";

@@ -11,6 +11,7 @@ export declare namespace AbrPlugin {
 }
 
 export const AbrPlugin = plugin({
+  name: "Abr",
   supports: "video",
   apply: (asset, opts) => {
     if (typeof opts.streamingProfile === "string") {

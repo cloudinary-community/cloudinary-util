@@ -11,6 +11,7 @@ export declare namespace SeoPlugin {
 }
 
 export const SeoPlugin = plugin({
+  name: "Seo",
   supports: "all",
   apply: (cldAsset, options) => {
     const { seoSuffix } = options;
