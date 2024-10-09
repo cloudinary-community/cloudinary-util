@@ -6,7 +6,7 @@ import type { QualifierConverters } from "../types/qualifiers.js";
  * @param {object} settings: Configuration including prefix, qualifier, and value
  */
 
-interface ConstructTransformationSettings {
+export interface ConstructTransformationSettings {
   prefix?: string;
   qualifier?: string | boolean;
   value?: string | number | boolean;

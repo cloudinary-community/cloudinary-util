@@ -275,7 +275,7 @@ export function constructCloudinaryUrl({
   }
 
   return cldAsset.toURL({
-    trackedAnalytics: analytics,
+    trackedAnalytics: typeof analytics === "object" ? analytics : undefined,
   });
 }
 

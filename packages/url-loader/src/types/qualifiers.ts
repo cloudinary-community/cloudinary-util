@@ -1,5 +1,7 @@
+import type { ConstructTransformationSettings } from "../lib/transformations.js";
+
 export interface QualifierConverters {
-  convert: (value: any) => unknown;
+  convert: (value: any) => ConstructTransformationSettings["value"];
   test: (value: any) => boolean;
 }
 
