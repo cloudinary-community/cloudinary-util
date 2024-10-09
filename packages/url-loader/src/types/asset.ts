@@ -1,3 +1,4 @@
+import type { SupportedAssetType } from "../lib/plugin.js";
 import type { CroppingPlugin } from "../plugins/cropping.js";
 import type { EffectsPlugin } from "../plugins/effects.js";
 import type { FlagsPlugin } from "../plugins/flags.js";
@@ -11,8 +12,11 @@ import type { SeoPlugin } from "../plugins/seo.js";
 import type { UnderlaysPlugin } from "../plugins/underlays.js";
 import type { VersionPlugin } from "../plugins/version.js";
 
-export interface AssetOptions
-  extends CroppingPlugin.Options,
+export type SupportedAssetTypeInput = SupportedAssetType | "videos" | "images";
+
+export interface AssetOptions<
+  assetType extends SupportedAssetTypeInput = SupportedAssetTypeInput,
+> extends CroppingPlugin.Options,
     EffectsPlugin.Options,
     FlagsPlugin.Options,
     NamedTransformationsPlugin.Options,
@@ -28,7 +32,7 @@ export interface AssetOptions
    * @description The type of asset to deliver.
    * @url https://cloudinary.com/documentation/image_transformations#transformation_url_structure
    */
-  assetType?: AssetType;
+  assetType?: assetType;
   /**
    * @description Delivery method of the asset.
    * @url https://cloudinary.com/documentation/image_transformations#delivery_types
@@ -67,5 +71,3 @@ export interface AssetOptions
    */
   width?: string | number;
 }
-
-export type AssetType = "image" | "images" | "video" | "videos";

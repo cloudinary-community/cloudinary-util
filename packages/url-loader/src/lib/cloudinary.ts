@@ -37,10 +37,11 @@ import { ExtractPlugin } from "../plugins/extract.js";
 import { NamedTransformationsPlugin } from "../plugins/named-transformations.js";
 import { OverlaysPlugin } from "../plugins/overlays.js";
 import { VersionPlugin } from "../plugins/version.js";
+import type { SupportedAssetTypeInput } from "../types/asset.js";
 import type { ImageOptions } from "../types/image.js";
 import type { PluginOptions, PluginResults } from "../types/plugins.js";
 import type { VideoOptions } from "../types/video.js";
-import type { TransformationPlugin } from "./plugin.js";
+import type { OptionsFor, TransformationPlugin } from "./plugin.js";
 
 export const transformationPlugins = [
   // Some features *must* be the first transformation applied
@@ -97,7 +98,9 @@ export type OptionsInput = ImageOptions | VideoOptions;
  * @description Builds a full Cloudinary URL using transformation plugins specified by options
  */
 
-export interface ConstructUrlProps {
+export interface ConstructUrlProps<
+  assetType extends SupportedAssetTypeInput = SupportedAssetTypeInput,
+> {
   /**
    * @description Tech, dependency, and feature identifiers for tracking SDK usage related to Cloudinary.
    * @path /url-loader/analyticsoptions
@@ -109,16 +112,17 @@ export interface ConstructUrlProps {
    * @path /url-loader/analyticsoptions
    */
   config?: ConfigOptions;
-  options: OptionsInput;
+  // prioritize inferring assetType so available options can be derived from it
+  options: { assetType?: assetType } & OptionsFor<assetType>;
 }
 
 export type CldAsset = CloudinaryImage | CloudinaryVideo;
 
-export function constructCloudinaryUrl({
-  options,
-  config = {},
-  analytics,
-}: ConstructUrlProps): string {
+export function constructCloudinaryUrl<
+  // only suggest options applicable to the current
+  // assetType (defaulting to image)
+  assetType extends SupportedAssetTypeInput = "image",
+>({ options, config = {}, analytics }: ConstructUrlProps<assetType>): string {
   // If someone is explicitly passing in undefined for analytics via the analytics option,
   // ensure that the URL Gen SDK option is being passed in as false as well
 
@@ -138,7 +142,7 @@ export function constructCloudinaryUrl({
   }
 
   if (!options?.assetType) {
-    options.assetType = "image";
+    options.assetType = "image" as never;
   }
 
   const parsedOptions = {} as Pick<ParseUrl, "seoSuffix" | "version">;
@@ -176,16 +180,14 @@ export function constructCloudinaryUrl({
 
   // Begin creating a new Cloudinary image instance and configure
 
-  const assetType =
-    options.assetType === "images"
+  const normalizedAssetType =
+    options.assetType === "image" || options.assetType === "images"
       ? "image"
-      : options.assetType === "videos"
+      : options.assetType === "video" || options.assetType === "videos"
         ? "video"
-        : options.assetType === "image" || options.assetType === "video"
-          ? options.assetType
-          : throwError(`${options.assetType} is not a valid assetType`);
+        : throwError(`${options.assetType} is not a valid assetType`);
 
-  const cldAsset = cld[assetType](publicId);
+  const cldAsset = cld[normalizedAssetType](publicId);
 
   const pluginEffects: PluginOptions = {};
 
@@ -199,8 +201,10 @@ export function constructCloudinaryUrl({
 
       if (!shouldApply) return;
 
-      if (assetType !== supports && supports !== "all") {
-        console.warn(`${name} does not support assetType ${assetType}`);
+      if (normalizedAssetType !== supports && supports !== "all") {
+        console.warn(
+          `${name} does not support assetType ${normalizedAssetType}`
+        );
         return;
       }
 

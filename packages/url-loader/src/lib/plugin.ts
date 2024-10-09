@@ -1,4 +1,4 @@
-import type { AssetOptions } from "../types/asset.js";
+import type { AssetOptions, SupportedAssetTypeInput } from "../types/asset.js";
 import type { ImageOptions } from "../types/image.js";
 import type { PluginResults } from "../types/plugins.js";
 import type { VideoOptions } from "../types/video.js";
@@ -6,31 +6,31 @@ import type { CldAsset } from "./cloudinary.js";
 
 interface AllOptions extends AssetOptions, ImageOptions, VideoOptions {}
 
-export type SupportedAssetKind = "image" | "video" | "all";
+export type SupportedAssetType = "image" | "video" | "all";
 
 export type OptionName = keyof AllOptions;
 
 export type ApplyWhen = OptionName | ((opts: AllOptions) => boolean);
 
 export interface PluginDefinition<
-  asset extends SupportedAssetKind,
+  assetType extends SupportedAssetType,
   when extends ApplyWhen,
 > {
   name: string;
-  supports: asset;
-  apply: PluginApplication<asset, when>;
-  applyWhen?: when;
+  supports: assetType;
+  apply: PluginApplication<assetType, when>;
+  applyWhen?: when | undefined;
   strict?: boolean;
 }
 
-type OptionsFor<
-  asset extends SupportedAssetKind,
-  when extends ApplyWhen,
-  options = asset extends "image"
-    ? ImageOptions
-    : asset extends "video"
+export type OptionsFor<
+  assetType extends SupportedAssetTypeInput,
+  when extends ApplyWhen = () => true,
+  options = assetType extends "all"
+    ? AllOptions
+    : assetType extends "video" | "videos"
       ? VideoOptions
-      : AllOptions,
+      : ImageOptions,
 > = when extends keyof options
   ? // if the plugin applies based on a single key being defined, we know it will be
     // present in the options passed to apply
@@ -38,17 +38,17 @@ type OptionsFor<
   : options;
 
 export type PluginApplication<
-  asset extends SupportedAssetKind,
+  assetType extends SupportedAssetType,
   when extends ApplyWhen = never,
-> = (cldAsset: CldAsset, options: OptionsFor<asset, when>) => PluginResults;
+> = (cldAsset: CldAsset, options: OptionsFor<assetType, when>) => PluginResults;
 
 export type TransformationPlugin<
-  asset extends SupportedAssetKind = SupportedAssetKind,
+  assetType extends SupportedAssetType = SupportedAssetType,
   when extends ApplyWhen = ApplyWhen,
-> = Required<PluginDefinition<asset, when>>;
+> = Required<PluginDefinition<assetType, when>>;
 
 export const plugin = <
-  asset extends SupportedAssetKind,
+  asset extends SupportedAssetType,
   when extends ApplyWhen,
 >(
   def: PluginDefinition<asset, when>
