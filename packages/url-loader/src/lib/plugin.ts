@@ -12,6 +12,8 @@ export type OptionName = keyof AllOptions;
 
 export type ApplyWhen = OptionName | ((opts: AllOptions) => boolean);
 
+export type AlwaysApply = () => true;
+
 export interface PluginDefinition<
   assetType extends SupportedAssetType,
   when extends ApplyWhen,
@@ -23,15 +25,26 @@ export interface PluginDefinition<
   strict?: boolean;
 }
 
+export interface TransformationPlugin<
+  assetType extends SupportedAssetType = SupportedAssetType,
+  when extends ApplyWhen = ApplyWhen,
+> {
+  name: string;
+  supports: assetType;
+  apply: PluginApplication<assetType, when>;
+  applyWhen?: when | undefined;
+  strict?: boolean;
+}
+
 export type OptionsFor<
   assetType extends SupportedAssetTypeInput,
-  when extends ApplyWhen = () => true,
+  when extends ApplyWhen = AlwaysApply,
   options = assetType extends "all"
     ? AllOptions
     : assetType extends "video" | "videos"
       ? VideoOptions
       : ImageOptions,
-> = when extends keyof options
+> = [when] extends [keyof options]
   ? // if the plugin applies based on a single key being defined, we know it will be
     // present in the options passed to apply
     options & { [k in when]: {} }
@@ -39,13 +52,8 @@ export type OptionsFor<
 
 export type PluginApplication<
   assetType extends SupportedAssetType,
-  when extends ApplyWhen = never,
+  when extends ApplyWhen = AlwaysApply,
 > = (cldAsset: CldAsset, options: OptionsFor<assetType, when>) => PluginResults;
-
-export type TransformationPlugin<
-  assetType extends SupportedAssetType = SupportedAssetType,
-  when extends ApplyWhen = ApplyWhen,
-> = Required<PluginDefinition<assetType, when>>;
 
 export const plugin = <
   asset extends SupportedAssetType,

@@ -29,6 +29,10 @@ export interface AssetOptions<
     UnderlaysPlugin.Options,
     VersionPlugin.Options {
   /**
+   * @description Cloudinary Public ID or versioned Cloudinary URL (/v1234/)
+   */
+  src: string;
+  /**
    * @description The type of asset to deliver.
    * @url https://cloudinary.com/documentation/image_transformations#transformation_url_structure
    */
@@ -57,10 +61,6 @@ export interface AssetOptions<
    * @url https://cloudinary.com/documentation/transformation_reference#q_quality
    */
   quality?: string | number | string;
-  /**
-   * @description Cloudinary Public ID or versioned Cloudinary URL (/v1234/)
-   */
-  src: string;
   /**
    * @description Gives you the ability to have more control over what transformations are permitted to be used from your Cloudinary account.
    * @url https://cloudinary.com/documentation/control_access_to_media#strict_transformations
