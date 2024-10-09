@@ -78,6 +78,42 @@
       "contributions": [
         "code"
       ]
+    },
+    {
+      "login": "Yash-sudo-web",
+      "name": "Yash Mathur",
+      "avatar_url": "https://avatars.githubusercontent.com/u/69838816?v=4",
+      "profile": "http://yashmathur.live",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "AvaterClasher",
+      "name": "Soumyadip Moni",
+      "avatar_url": "https://avatars.githubusercontent.com/u/116944847?v=4",
+      "profile": "http://soumyadipmoni.vercel.app",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "nooras",
+      "name": "NOORAS FATIMA ANSARI",
+      "avatar_url": "https://avatars.githubusercontent.com/u/30138146?v=4",
+      "profile": "https://noorasfatima.netlify.app/",
+      "contributions": [
+        "code"
+      ]
+    },
+    {
+      "login": "ayan-joshi",
+      "name": "Ayan Joshi",
+      "avatar_url": "https://avatars.githubusercontent.com/u/96243602?v=4",
+      "profile": "https://github.com/ayan-joshi",
+      "contributions": [
+        "code"
+      ]
     }
   ],
   "contributorsPerLine": 7,

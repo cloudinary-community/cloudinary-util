@@ -1,3 +1,17 @@
+# [@cloudinary-util/types-v1.5.11](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.10...@cloudinary-util/types-v1.5.11) (2024-10-07)
+
+
+### Bug Fixes
+
+* Add cloudinaryAnalytics to Video Player types [#171](https://github.com/cloudinary-community/cloudinary-util/issues/171) ([#208](https://github.com/cloudinary-community/cloudinary-util/issues/208)) ([60da2de](https://github.com/cloudinary-community/cloudinary-util/commit/60da2de13ae511fd21805b9e1d510be627ce3de7))
+
+# [@cloudinary-util/types-v1.5.10](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.9...@cloudinary-util/types-v1.5.10) (2024-10-04)
+
+
+### Bug Fixes
+
+* Adds videojs dispose method to Video Player type ([2fd75c1](https://github.com/cloudinary-community/cloudinary-util/commit/2fd75c1c6ceac2496f2fa258d466e1e0d2d1f9cd))
+
 # [@cloudinary-util/types-v1.5.9](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.8...@cloudinary-util/types-v1.5.9) (2024-09-16)
 
 

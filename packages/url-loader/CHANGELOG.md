@@ -1,3 +1,17 @@
+# [@cloudinary-util/url-loader-v5.10.5](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.4...@cloudinary-util/url-loader-v5.10.5) (2024-10-07)
+
+
+### Bug Fixes
+
+* update gravity type in url loader ([#205](https://github.com/cloudinary-community/cloudinary-util/issues/205)) ([afd9a96](https://github.com/cloudinary-community/cloudinary-util/commit/afd9a96997e3ce1ce9673a5a95aa07b53297af51)), closes [#196](https://github.com/cloudinary-community/cloudinary-util/issues/196)
+
+# [@cloudinary-util/url-loader-v5.10.4](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.3...@cloudinary-util/url-loader-v5.10.4) (2024-10-04)
+
+
+### Bug Fixes
+
+* format file url-loader index, force build/deploy ([71a535c](https://github.com/cloudinary-community/cloudinary-util/commit/71a535cf1a2fa6234755127e1201a9e3aad240a6))
+
 # [@cloudinary-util/url-loader-v5.10.3](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.2...@cloudinary-util/url-loader-v5.10.3) (2024-09-13)
 
 
