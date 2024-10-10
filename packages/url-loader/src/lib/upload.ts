@@ -1,5 +1,3 @@
-import type { CloudinaryUploadWidgetOptions } from "@cloudinary-util/types";
-
 /**
  * generateSignature
  * @description Makes a request to an endpoint to sign Cloudinary parameters as part of widget creation
@@ -16,11 +14,11 @@ export function generateSignatureCallback({
 }: GenerateSignatureCallback) {
   return function generateSignature(
     callback: (signature: string | null, error?: unknown) => void,
-    paramsToSign: object,
+    paramsToSign: object
   ) {
     if (typeof signatureEndpoint === "undefined") {
       throw Error(
-        "Failed to generate signature: signatureEndpoint property undefined.",
+        "Failed to generate signature: signatureEndpoint property undefined."
       );
     }
 
