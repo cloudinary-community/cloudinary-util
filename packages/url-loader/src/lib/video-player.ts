@@ -1,10 +1,9 @@
 import type {
+  CloudinaryAssetConfiguration,
   CloudinaryVideoPlayerOptions,
   CloudinaryVideoPlayerOptionsLogo,
 } from "@cloudinary-util/types";
-import { parseUrl } from "@cloudinary-util/util";
-
-import type { ConfigOptions } from "../types/config.js";
+import { isArray, parseUrl } from "@cloudinary-util/util";
 import {
   constructCloudinaryUrl,
   type ConstructUrlProps,
@@ -25,7 +24,7 @@ export type GetVideoPlayerOptions = Omit<
   | "logoOnclickUrl"
 > & {
   logo?: boolean | GetVideoPlayerOptionsLogo;
-  poster?: string | ConstructUrlProps["options"];
+  poster?: string | Partial<ConstructUrlProps["options"]>;
   src: string;
   quality?: string | number;
 };
@@ -38,7 +37,7 @@ export interface GetVideoPlayerOptionsLogo {
 
 export function getVideoPlayerOptions(
   options: GetVideoPlayerOptions,
-  config: ConfigOptions
+  config: CloudinaryAssetConfiguration
 ) {
   const {
     autoplay,
@@ -89,21 +88,17 @@ export function getVideoPlayerOptions(
     );
   }
 
-  // Normalize player transformations as an array
-
-  const playerTransformations = Array.isArray(transformation)
-    ? transformation
-    : [transformation];
-
   // We want to apply a quality transformation which defaults
   // to auto, but we want it to be in the beginning of the
   // transformations array, in the event someone
   // has already passed some in, giving them the opportunity
   // to override if desired
 
-  playerTransformations.unshift({
-    quality,
-  });
+  const playerTransformations = [
+    { quality },
+    // Normalize player transformations as an array
+    ...(isArray(transformation) ? transformation : [transformation]),
+  ];
 
   // Provide an object configuration option for player logos
 
@@ -163,7 +158,11 @@ export function getVideoPlayerOptions(
     ...otherCldVidPlayerOptions,
   };
 
-  if ( playerOptions.width && playerOptions.height && !playerOptions.aspectRatio ) {
+  if (
+    playerOptions.width &&
+    playerOptions.height &&
+    !playerOptions.aspectRatio
+  ) {
     playerOptions.aspectRatio = `${playerOptions.width}:${playerOptions.height}`;
   }
 
@@ -184,10 +183,10 @@ export function getVideoPlayerOptions(
       playerOptions.posterOptions = {
         publicId: constructCloudinaryUrl({
           options: {
-            ...poster,
             src: publicId,
             assetType: "video",
             format: "auto:image",
+            ...poster,
           },
           config,
         }),
@@ -195,7 +194,10 @@ export function getVideoPlayerOptions(
     } else {
       playerOptions.posterOptions = {
         publicId: constructCloudinaryUrl({
-          options: poster,
+          options: {
+            src: publicId,
+            ...poster,
+          },
           config,
         }),
       };
