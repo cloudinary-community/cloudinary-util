@@ -49,7 +49,7 @@ export const UnderlaysPlugin = plugin({
 
     const typeQualifier = "u";
 
-    if (Array.isArray(underlays)) {
+    if (isArray(underlays)) {
       underlays.forEach(applyUnderlay);
     }
 
@@ -90,7 +90,7 @@ export const UnderlaysPlugin = plugin({
 
       let layerTransformation = `${typeQualifier}_${publicId.replace(
         /\//g,
-        ":",
+        ":"
       )}`;
 
       // Begin organizing transformations based on what it is and the location

@@ -1,3 +1,4 @@
+import { isArray } from "@cloudinary-util/util";
 import {
   effects as qualifiersEffects,
   type QualifierOptions,
@@ -36,7 +37,7 @@ export const EffectsPlugin = plugin({
     // If we're passing in an effects prop explicitly, treat it as an array of
     // effects that we need to process
 
-    if (Array.isArray(options?.effects)) {
+    if (isArray(options?.effects)) {
       options?.effects.forEach((effectsSet) => {
         const transformationString = constructTransformationString({
           effects: qualifiersEffects,
@@ -66,7 +67,7 @@ export const EffectsPlugin = plugin({
             value: options?.[key],
             converters,
           });
-        },
+        }
       );
     }
 

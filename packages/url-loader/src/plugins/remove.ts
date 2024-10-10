@@ -39,12 +39,12 @@ export const RemovePlugin = plugin({
       removeOptions.prompt = promptArrayToString(remove);
     } else if (typeof remove === "object") {
       const hasPrompt =
-        typeof remove.prompt === "string" || Array.isArray(remove.prompt);
-      const hasRegion = Array.isArray(remove.region);
+        typeof remove.prompt === "string" || isArray(remove.prompt);
+      const hasRegion = isArray(remove.region);
 
       if (hasPrompt && hasRegion) {
         throw new Error(
-          "Invalid remove options: you can not have both a prompt and a region. More info: https://cloudinary.com/documentation/transformation_reference#e_gen_remove",
+          "Invalid remove options: you can not have both a prompt and a region. More info: https://cloudinary.com/documentation/transformation_reference#e_gen_remove"
         );
       }
 
@@ -52,13 +52,13 @@ export const RemovePlugin = plugin({
 
       if (typeof remove.prompt === "string") {
         removeOptions.prompt = remove.prompt;
-      } else if (Array.isArray(remove.prompt)) {
+      } else if (isArray(remove.prompt)) {
         removeOptions.prompt = promptArrayToString(remove.prompt);
       }
 
       // Region can be an array of numbers, or an array with 1+ arrays of numbers
 
-      if (Array.isArray(remove.region)) {
+      if (isArray(remove.region)) {
         removeOptions.region = regionArrayToString(remove.region);
       }
 
@@ -89,7 +89,7 @@ export const RemovePlugin = plugin({
  */
 
 function regionArrayToString(
-  regionArray: Array<number | Array<number>>,
+  regionArray: Array<number | Array<number>>
 ): string {
   const indexes: Record<number, string> = {
     0: "x",
@@ -100,7 +100,7 @@ function regionArrayToString(
 
   const regionString = regionArray
     .map((region, index) => {
-      if (Array.isArray(region)) {
+      if (isArray(region)) {
         return regionArrayToString(region);
       }
 

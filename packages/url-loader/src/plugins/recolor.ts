@@ -50,7 +50,7 @@ export const RecolorPlugin = plugin({
 
       if (typeof recolor.prompt === "string") {
         recolorOptions.prompt = recolor.prompt;
-      } else if (Array.isArray(recolor.prompt)) {
+      } else if (isArray(recolor.prompt)) {
         recolorOptions.prompt = promptArrayToString(recolor.prompt);
       }
 

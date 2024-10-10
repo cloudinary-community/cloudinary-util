@@ -3,7 +3,7 @@ import type {
   CloudinaryVideoPlayerOptions,
   CloudinaryVideoPlayerOptionsLogo,
 } from "@cloudinary-util/types";
-import { parseUrl } from "@cloudinary-util/util";
+import { isArray, parseUrl } from "@cloudinary-util/util";
 import {
   constructCloudinaryUrl,
   type ConstructUrlProps,
@@ -37,7 +37,7 @@ export interface GetVideoPlayerOptionsLogo {
 
 export function getVideoPlayerOptions(
   options: GetVideoPlayerOptions,
-  config: CloudinaryAssetConfiguration,
+  config: CloudinaryAssetConfiguration
 ) {
   const {
     autoplay,
@@ -62,7 +62,7 @@ export function getVideoPlayerOptions(
 
   if (!cloudName) {
     throw new Error(
-      "A Cloudinary Cloud name is required, please make sure your environment variable is set and configured in your environment.",
+      "A Cloudinary Cloud name is required, please make sure your environment variable is set and configured in your environment."
     );
   }
 
@@ -84,15 +84,9 @@ export function getVideoPlayerOptions(
 
   if (!publicId) {
     throw new Error(
-      "Video Player requires a src, please make sure to configure your src as a public ID or Cloudinary URL.",
+      "Video Player requires a src, please make sure to configure your src as a public ID or Cloudinary URL."
     );
   }
-
-  // Normalize player transformations as an array
-
-  const playerTransformations = Array.isArray(transformation)
-    ? transformation
-    : [transformation];
 
   // We want to apply a quality transformation which defaults
   // to auto, but we want it to be in the beginning of the
@@ -100,9 +94,11 @@ export function getVideoPlayerOptions(
   // has already passed some in, giving them the opportunity
   // to override if desired
 
-  playerTransformations.unshift({
-    quality,
-  });
+  const playerTransformations = [
+    { quality },
+    // Normalize player transformations as an array
+    ...(isArray(transformation) ? transformation : [transformation]),
+  ];
 
   // Provide an object configuration option for player logos
 
