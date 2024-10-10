@@ -23,7 +23,7 @@ import { RawTransformationsPlugin } from "../plugins/raw-transformations.js";
 import { RecolorPlugin } from "../plugins/recolor.js";
 import { RemoveBackgroundPlugin } from "../plugins/remove-background.js";
 import { RemovePlugin } from "../plugins/remove.js";
-import { replaceBackgroundPlugin } from "../plugins/replace-background.js";
+import { ReplaceBackgroundPlugin } from "../plugins/replace-background.js";
 import { ReplacePlugin } from "../plugins/replace.js";
 import { RestorePlugin } from "../plugins/restore.js";
 import { SanitizePlugin } from "../plugins/sanitize.js";
@@ -53,7 +53,7 @@ export const transformationPlugins = [
   RemoveBackgroundPlugin,
   RemovePlugin,
   ReplacePlugin,
-  replaceBackgroundPlugin,
+  ReplaceBackgroundPlugin,
   RestorePlugin,
 
   // Cropping needs to be before any other general transformations
@@ -137,7 +137,7 @@ export function constructCloudinaryUrl<
 
   if (typeof options?.src !== "string") {
     throw Error(
-      `Failed to construct Cloudinary URL: Missing source (src) in options.`
+      `Failed to construct Cloudinary URL: Missing source (src) in options.`,
     );
   }
 
@@ -203,7 +203,7 @@ export function constructCloudinaryUrl<
 
       if (normalizedAssetType !== supports && supports !== "all") {
         console.warn(
-          `${name} does not support assetType ${normalizedAssetType}`
+          `${name} does not support assetType ${normalizedAssetType}`,
         );
         return;
       }
@@ -215,10 +215,10 @@ export function constructCloudinaryUrl<
 
       const results: PluginResults = apply(cldAsset, options);
 
-      const pluginOptions = results?.options ?? { options: undefined };
+      const pluginOptions = results?.options ?? {};
 
       Object.assign(pluginEffects, pluginOptions);
-    }
+    },
   );
 
   // We want to perform any resizing at the end of the end of the transformation
@@ -295,7 +295,7 @@ interface SearchAssetRawTransformationsOptions {
 export function searchAssetRawTransformations(
   query: string,
   asset: CloudinaryImage | CloudinaryVideo,
-  options?: SearchAssetRawTransformationsOptions
+  options?: SearchAssetRawTransformationsOptions,
 ) {
   if (typeof asset.transformation === "undefined") return;
 
@@ -309,7 +309,7 @@ export function searchAssetRawTransformations(
         .toString()
         .split("/")
         .flatMap((seg) => seg.split(","));
-    }
+    },
   );
 
   const matches = transformations.filter((transformation) => {

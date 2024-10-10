@@ -24,7 +24,7 @@ export type GetVideoPlayerOptions = Omit<
   | "logoOnclickUrl"
 > & {
   logo?: boolean | GetVideoPlayerOptionsLogo;
-  poster?: string | ConstructUrlProps["options"];
+  poster?: string | Partial<ConstructUrlProps["options"]>;
   src: string;
   quality?: string | number;
 };
@@ -37,7 +37,7 @@ export interface GetVideoPlayerOptionsLogo {
 
 export function getVideoPlayerOptions(
   options: GetVideoPlayerOptions,
-  config: CloudinaryAssetConfiguration
+  config: CloudinaryAssetConfiguration,
 ) {
   const {
     autoplay,
@@ -62,7 +62,7 @@ export function getVideoPlayerOptions(
 
   if (!cloudName) {
     throw new Error(
-      "A Cloudinary Cloud name is required, please make sure your environment variable is set and configured in your environment."
+      "A Cloudinary Cloud name is required, please make sure your environment variable is set and configured in your environment.",
     );
   }
 
@@ -84,7 +84,7 @@ export function getVideoPlayerOptions(
 
   if (!publicId) {
     throw new Error(
-      "Video Player requires a src, please make sure to configure your src as a public ID or Cloudinary URL."
+      "Video Player requires a src, please make sure to configure your src as a public ID or Cloudinary URL.",
     );
   }
 
@@ -187,10 +187,10 @@ export function getVideoPlayerOptions(
       playerOptions.posterOptions = {
         publicId: constructCloudinaryUrl({
           options: {
-            ...poster,
             src: publicId,
             assetType: "video",
             format: "auto:image",
+            ...poster,
           },
           config,
         }),
@@ -198,7 +198,10 @@ export function getVideoPlayerOptions(
     } else {
       playerOptions.posterOptions = {
         publicId: constructCloudinaryUrl({
-          options: poster,
+          options: {
+            src: publicId,
+            ...poster,
+          },
           config,
         }),
       };

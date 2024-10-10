@@ -1,9 +1,7 @@
 import { Cloudinary } from "@cloudinary/url-gen";
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { replacePlugin } from "../../src/plugins/replace";
-
-const { plugin } = replacePlugin;
+import { ReplacePlugin } from "../../src/plugins/replace.js";
 
 const cld = new Cloudinary({
   cloud: {
@@ -19,16 +17,14 @@ describe("Plugins", () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
+        src: TEST_PUBLIC_ID,
         replace: {
           from: "apple",
           to: "orange",
         },
       };
 
-      plugin({
-        cldAsset: cldImage,
-        options,
-      });
+      ReplacePlugin.apply(cldImage, options);
 
       expect(cldImage.toURL()).toContain(`e_gen_replace:from_apple;to_orange`);
     });
@@ -37,6 +33,7 @@ describe("Plugins", () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
+        src: TEST_PUBLIC_ID,
         replace: {
           from: "apple",
           to: "orange",
@@ -44,13 +41,10 @@ describe("Plugins", () => {
         },
       };
 
-      plugin({
-        cldAsset: cldImage,
-        options,
-      });
+      ReplacePlugin.apply(cldImage, options);
 
       expect(cldImage.toURL()).toContain(
-        `e_gen_replace:from_apple;to_orange;preserve-geometry_true`
+        `e_gen_replace:from_apple;to_orange;preserve-geometry_true`,
       );
     });
 
@@ -58,13 +52,11 @@ describe("Plugins", () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
+        src: TEST_PUBLIC_ID,
         replace: ["apple", "orange"],
       };
 
-      plugin({
-        cldAsset: cldImage,
-        options,
-      });
+      ReplacePlugin.apply(cldImage, options);
 
       expect(cldImage.toURL()).toContain(`e_gen_replace:from_apple;to_orange`);
     });
@@ -73,26 +65,25 @@ describe("Plugins", () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
+        src: TEST_PUBLIC_ID,
         replace: ["apple", "candy bar", "true"],
       };
 
-      plugin({
-        cldAsset: cldImage,
-        options,
-      });
+      ReplacePlugin.apply(cldImage, options);
 
       expect(cldImage.toURL()).toContain(
-        `e_gen_replace:from_apple;to_candy%20bar;preserve-geometry_true`
+        `e_gen_replace:from_apple;to_candy%20bar;preserve-geometry_true`,
       );
     });
 
     it("should not attempt generative replace", () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
-      plugin({
-        cldAsset: cldImage,
-        options: {},
-      });
+      const options = {
+        src: TEST_PUBLIC_ID,
+      };
+
+      ReplacePlugin.apply(cldImage, options);
 
       expect(cldImage.toURL()).not.toContain(`e_gen_replace`);
     });

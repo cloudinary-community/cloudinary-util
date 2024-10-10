@@ -19,7 +19,7 @@ export const SeoPlugin = plugin({
     if (typeof seoSuffix === "string") {
       if (options.deliveryType === "fetch") {
         console.warn(
-          "SEO suffix is not supported with a delivery type of fetch"
+          "SEO suffix is not supported with a delivery type of fetch",
         );
       } else {
         cldAsset.setSuffix(seoSuffix);

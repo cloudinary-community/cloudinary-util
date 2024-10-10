@@ -68,7 +68,7 @@ export const ExtractPlugin = plugin({
  */
 
 function formatPrompts(prompts: ListablePrompts | undefined) {
-  if (typeof prompts === "string") return prompt;
+  if (typeof prompts === "string") return prompts;
 
   if (isArray(prompts)) {
     return `(${prompts.filter((prompt) => typeof prompt === "string").join(";")})`;

@@ -1,3 +1,5 @@
+import type { StringifiablePrimative } from "@cloudinary-util/util";
+
 /**
  *  @description Mode to use when cropping an asset.
  *  @url https://cloudinary.com/documentation/transformation_reference#c_crop_resize
@@ -94,7 +96,11 @@ export type Flag =
  *  @url https://cloudinary.com/documentation/transformation_reference#fl_flag
  *  @qualifier fl
  */
-export type ListableFlags = Flag | Array<Flag>;
+export type FlagsDefinition = ListableFlags | FlagRecord;
+
+export type ListableFlags = Flag | ReadonlyArray<Flag>;
+
+export type FlagRecord = Partial<Record<Flag, StringifiablePrimative>>;
 
 /**
  * @description Converts (if necessary) and delivers an asset in the specified format regardless of the file extension used in the delivery URL.
@@ -190,7 +196,7 @@ export type Y = number | string;
  * @description Controls how close to crop to the detected coordinates when using face-detection, custom-coordinate, or object-specific gravity.
  * @url https://cloudinary.com/documentation/transformation_reference#z_zoom
  */
-export type Zoom = string;
+export type Zoom = number | string;
 
 // this was originally called PositionOptions but it conflicts with a
 // DOM type, leading to confusing results if e.g. the import is deleted,

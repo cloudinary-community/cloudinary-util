@@ -59,5 +59,5 @@ export const plugin = <
   asset extends SupportedAssetType,
   when extends ApplyWhen,
 >(
-  def: PluginDefinition<asset, when>
+  def: PluginDefinition<asset, when>,
 ): TransformationPlugin<asset, when> => ({ strict: false, ...def }) as never;

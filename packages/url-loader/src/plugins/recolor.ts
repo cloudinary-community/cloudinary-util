@@ -1,3 +1,4 @@
+import { isArray } from "@cloudinary-util/util";
 import type { ListablePrompts } from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
 import { promptArrayToString } from "../lib/transformations.js";
@@ -8,7 +9,11 @@ export declare namespace RecolorPlugin {
      * @description Uses generative AI to recolor parts of your image, maintaining the relative shading.
      * @url https://cloudinary.com/documentation/transformation_reference#e_gen_recolor
      */
-    recolor?: string | NestedOptions;
+    recolor?:
+      | string
+      | ReadonlyArray<string>
+      | readonly [ReadonlyArray<string>, ...Array<string>]
+      | NestedOptions;
   }
 
   export interface NestedOptions {
@@ -30,8 +35,8 @@ export const RecolorPlugin = plugin({
       multiple: undefined,
     };
 
-    if (Array.isArray(recolor)) {
-      if (Array.isArray(recolor[0])) {
+    if (isArray(recolor)) {
+      if (isArray(recolor[0])) {
         recolorOptions.prompt = promptArrayToString(recolor[0]);
       } else {
         recolorOptions.prompt = recolor[0];

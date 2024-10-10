@@ -6,7 +6,7 @@
 export function sortByKey(
   array: Array<object> = [],
   key: string,
-  type: string = "asc"
+  type: string = "asc",
 ) {
   function compare(a: object, b: object) {
     let keyA = a[key];

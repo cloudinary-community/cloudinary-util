@@ -11,6 +11,7 @@ import type { SanitizePlugin } from "../plugins/sanitize.js";
 import type { SeoPlugin } from "../plugins/seo.js";
 import type { UnderlaysPlugin } from "../plugins/underlays.js";
 import type { VersionPlugin } from "../plugins/version.js";
+import type { ZoompanPlugin } from "../plugins/zoompan.js";
 
 export type SupportedAssetTypeInput = SupportedAssetType | "videos" | "images";
 
@@ -27,7 +28,8 @@ export interface AssetOptions<
     SanitizePlugin.Options,
     SeoPlugin.Options,
     UnderlaysPlugin.Options,
-    VersionPlugin.Options {
+    VersionPlugin.Options,
+    ZoompanPlugin.Options {
   /**
    * @description Cloudinary Public ID or versioned Cloudinary URL (/v1234/)
    */

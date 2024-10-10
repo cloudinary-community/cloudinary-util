@@ -1,10 +1,10 @@
 import { isArray } from "@cloudinary-util/util";
-import type { ListableFlags } from "../constants/parameters.js";
+import type { FlagsDefinition } from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
 
 export declare namespace FlagsPlugin {
   export interface Options {
-    flags?: ListableFlags;
+    flags?: FlagsDefinition;
   }
 }
 
@@ -19,8 +19,11 @@ export const FlagsPlugin = plugin({
     // the addFlag method. Flags can have additional context and
     // may warrant case-by-case applications
 
+    if (typeof flags === "string") {
+      flags = [flags];
+    }
     if (isArray(flags)) {
-      flags.forEach(cldAsset.addFlag);
+      flags.forEach((flag) => cldAsset.addFlag(flag));
     } else if (typeof flags === "object") {
       Object.entries(flags).forEach(([qualifier, value]) => {
         // The addFlag method encodes some characters, specifically

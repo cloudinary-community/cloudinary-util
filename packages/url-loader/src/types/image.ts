@@ -4,7 +4,7 @@ import type { ExtractPlugin } from "../plugins/extract.js";
 import type { FillBackgroundPlugin } from "../plugins/fill-background.js";
 import type { RecolorPlugin } from "../plugins/recolor.js";
 import type { RemovePlugin } from "../plugins/remove.js";
-import type { ReplaceBackground } from "../plugins/replace-background.js";
+import type { ReplaceBackgroundPlugin } from "../plugins/replace-background.js";
 import type { ReplacePlugin } from "../plugins/replace.js";
 import type { RestorePlugin } from "../plugins/restore.js";
 import type { ZoompanPlugin } from "../plugins/zoompan.js";
@@ -19,6 +19,6 @@ export interface ImageOptions
     RecolorPlugin.Options,
     RemovePlugin.Options,
     ReplacePlugin.Options,
-    ReplaceBackground.Options,
+    ReplaceBackgroundPlugin.Options,
     RestorePlugin.Options,
     ZoompanPlugin.Options {}

@@ -1,9 +1,7 @@
 import { Cloudinary } from "@cloudinary/url-gen";
 import { describe, expect, it } from "vitest";
 
-import { Underlays } from "../../src/plugins/underlays";
-
-const { plugin } = Underlays;
+import { UnderlaysPlugin } from "../../src/plugins/underlays.js";
 
 const cld = new Cloudinary({
   cloud: {
@@ -24,6 +22,7 @@ describe("Plugins", () => {
       const crop = "fill";
 
       const options = {
+        src: TEST_PUBLIC_ID,
         underlays: [
           {
             publicId,
@@ -32,15 +31,12 @@ describe("Plugins", () => {
             crop,
           },
         ],
-      };
+      } as const;
 
-      plugin({
-        cldAsset: cldImage,
-        options,
-      });
+      UnderlaysPlugin.apply(cldImage, options);
 
       expect(cldImage.toURL()).toContain(
-        `u_${publicId.replace(/\//g, ":")},w_${width},h_${height},c_${crop}/fl_layer_apply,fl_no_overflow/${TEST_PUBLIC_ID}`
+        `u_${publicId.replace(/\//g, ":")},w_${width},h_${height},c_${crop}/fl_layer_apply,fl_no_overflow/${TEST_PUBLIC_ID}`,
       );
     });
 
@@ -53,16 +49,14 @@ describe("Plugins", () => {
       const crop = "fill";
 
       const options = {
+        src: TEST_PUBLIC_ID,
         underlay: publicId,
       };
 
-      plugin({
-        cldAsset: cldImage,
-        options,
-      });
+      UnderlaysPlugin.apply(cldImage, options);
 
       expect(cldImage.toURL()).toContain(
-        `u_${publicId.replace(/\//g, ":")},c_${crop},w_${width},h_${height},fl_relative/fl_layer_apply,fl_no_overflow/${TEST_PUBLIC_ID}`
+        `u_${publicId.replace(/\//g, ":")},c_${crop},w_${width},h_${height},fl_relative/fl_layer_apply,fl_no_overflow/${TEST_PUBLIC_ID}`,
       );
     });
   });

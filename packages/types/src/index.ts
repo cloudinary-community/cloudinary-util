@@ -1,5 +1,9 @@
 export type {
-  CloudinaryResource, CloudinaryResourceAccessMode, CloudinaryResourceContext, CloudinaryResourceDeliveryType, CloudinaryResourceResourceType
+  CloudinaryResource,
+  CloudinaryResourceAccessMode,
+  CloudinaryResourceContext,
+  CloudinaryResourceDeliveryType,
+  CloudinaryResourceResourceType,
 } from "./types/resources.js";
 
 export type {
@@ -14,7 +18,7 @@ export type {
   CloudinaryUploadWidgetInstanceMethods,
   CloudinaryUploadWidgetOptions,
   CloudinaryUploadWidgetResults,
-  CloudinaryUploadWidgetSources
+  CloudinaryUploadWidgetSources,
 } from "./types/cloudinary-upload-widget.js";
 
 export type {
@@ -22,16 +26,20 @@ export type {
   CloudinaryVideoPlayerOptionPosterOptions,
   CloudinaryVideoPlayerOptions,
   CloudinaryVideoPlayerOptionsColors,
-  CloudinaryVideoPlayerOptionsLogo, CloudinaryVideoPlayerPlaylistByTagOptions,
-  CloudinaryVideoPlayerPlaylistOptions, CloudinaryVideoPlayerTextTracks, CloudinaryVideoPlayerTextTracksTrack, CloudinaryVideoPlayerTextTracksTrackOptions, CloudinaryVideoPlayerTextTracksTrackOptionsBox,
+  CloudinaryVideoPlayerOptionsLogo,
+  CloudinaryVideoPlayerPlaylistByTagOptions,
+  CloudinaryVideoPlayerPlaylistOptions,
+  CloudinaryVideoPlayerTextTracks,
+  CloudinaryVideoPlayerTextTracksTrack,
+  CloudinaryVideoPlayerTextTracksTrackOptions,
+  CloudinaryVideoPlayerTextTracksTrackOptionsBox,
   CloudinaryVideoPlayerTextTracksTrackOptionsGravity,
-  CloudinaryVideoPlayerTextTracksTrackOptionsTheme
+  CloudinaryVideoPlayerTextTracksTrackOptionsTheme,
 } from "./types/cloudinary-video-player.js";
 
 export type {
   CloudinaryAssetConfiguration,
   CloudinaryAssetConfigurationAuthToken,
   CloudinaryAssetConfigurationCloud,
-  CloudinaryAssetConfigurationUrl
+  CloudinaryAssetConfigurationUrl,
 } from "./types/configuration.js";
-

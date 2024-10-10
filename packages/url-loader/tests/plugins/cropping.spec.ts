@@ -23,7 +23,7 @@ describe("Cropping plugin", () => {
     } as const;
     const result = CroppingPlugin.apply(cldImage, options);
     expect(result.options?.resize).toContain(
-      `c_${options.crop},w_${options.width},h_${options.height},g_${options.gravity}`
+      `c_${options.crop},w_${options.width},h_${options.height},g_${options.gravity}`,
     );
   });
 
@@ -37,7 +37,7 @@ describe("Cropping plugin", () => {
     } as const;
     const result = CroppingPlugin.apply(cldImage, options);
     expect(result.options?.resize).toContain(
-      `c_${options.crop},w_${options.width},h_${options.height},g_auto`
+      `c_${options.crop},w_${options.width},h_${options.height},g_auto`,
     );
   });
 
@@ -52,7 +52,7 @@ describe("Cropping plugin", () => {
     } as const;
     const result = CroppingPlugin.apply(cldImage, options);
     expect(result.options?.resize).toContain(
-      `c_${options.crop},w_${options.width},h_${options.height},g_auto,z_${options.zoom}`
+      `c_${options.crop},w_${options.width},h_${options.height},g_auto,z_${options.zoom}`,
     );
   });
 
@@ -76,9 +76,14 @@ describe("Cropping plugin", () => {
         type: "thumb",
       },
     } as const;
+
     const result = CroppingPlugin.apply(cldImage, options);
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
     expect(result.options?.resize).toContain(
-      `c_${options.crop.type},w_${options.crop.width},h_${options.crop.height},g_auto`
+      `c_${options.crop.type},w_${options.crop.width},h_${options.crop.height},g_auto`,
     );
   });
 
@@ -92,9 +97,14 @@ describe("Cropping plugin", () => {
         type: "thumb",
       },
     } as const;
+
     const result = CroppingPlugin.apply(cldImage, options);
-    expect(result.options?.resize).toContain(
-      `c_${options.crop.type},w_${options.width},h_${options.height},g_auto`
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
+    expect(result.options?.resize as string).toContain(
+      `c_${options.crop.type},w_${options.width},h_${options.height},g_auto`,
     );
   });
 
@@ -109,10 +119,15 @@ describe("Cropping plugin", () => {
         source: true,
       },
     } as const;
+
     const result = CroppingPlugin.apply(cldImage, options);
-    expect(result.options?.resize).toContain(`c_limit,w_${options.width}`);
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
+    expect(result.options.resize).toContain(`c_limit,w_${options.width}`);
     expect(cldImage.toURL()).toContain(
-      `image/upload/c_${options.crop.type},w_${options.width},h_${options.height},g_auto`
+      `image/upload/c_${options.crop.type},w_${options.width},h_${options.height},g_auto`,
     );
   });
 
@@ -128,10 +143,15 @@ describe("Cropping plugin", () => {
         source: true,
       },
     } as const;
+
     const result = CroppingPlugin.apply(cldImage, options);
-    expect(result.options?.resize).toContain(`c_limit,w_${options.width}`);
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
+    expect(result.options.resize).toContain(`c_limit,w_${options.width}`);
     expect(cldImage.toURL()).toContain(
-      `image/upload/c_${options.crop.type},ar_${options.crop.aspectRatio},g_auto`
+      `image/upload/c_${options.crop.type},ar_${options.crop.aspectRatio},g_auto`,
     );
   });
 
@@ -141,11 +161,16 @@ describe("Cropping plugin", () => {
       src: TEST_PUBLIC_ID,
       width: 900,
       crop: {
-        type: "",
+        type: "limit",
         width: 600,
       },
     } as const;
+
     const result = CroppingPlugin.apply(cldImage, options);
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
     expect(result.options?.resize).toContain(`c_limit,w_${options.crop.width}`);
   });
 
@@ -161,10 +186,15 @@ describe("Cropping plugin", () => {
         source: true,
       },
     } as const;
+
     const result = CroppingPlugin.apply(cldImage, options);
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
     expect(result.options?.resize).toContain(`c_limit,w_${options.width}`);
     expect(cldImage.toURL()).toContain(
-      `image/upload/c_${options.crop.type},w_${options.crop.width},h_${options.crop.height},g_auto`
+      `image/upload/c_${options.crop.type},w_${options.crop.width},h_${options.crop.height},g_auto`,
     );
   });
 
@@ -185,8 +215,12 @@ describe("Cropping plugin", () => {
       ],
     } as const;
     const result = CroppingPlugin.apply(cldImage, options);
-    expect(result.options?.resize).toContain(
-      `c_${options.crop[0].type},w_${options.crop[0].width},h_${options.crop[0].height},g_${options.crop[0].gravity},z_${options.crop[0].zoom}`
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
+    expect(result.options.resize).toContain(
+      `c_${options.crop[0].type},w_${options.crop[0].width},h_${options.crop[0].height},g_${options.crop[0].gravity},z_${options.crop[0].zoom}`,
     );
   });
 
@@ -206,12 +240,17 @@ describe("Cropping plugin", () => {
         },
       ],
     } as const;
+
     const result = CroppingPlugin.apply(cldImage, options);
-    expect(result.options?.resize).toContain(
-      `c_${options.crop[1].type},w_${options.width},h_${options.height}`
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
+    expect(result.options.resize).toContain(
+      `c_${options.crop[1].type},w_${options.width},h_${options.height}`,
     );
     expect(cldImage.toURL()).toContain(
-      `image/upload/c_${options.crop[0].type},w_${options.width},h_${options.height},g_auto`
+      `image/upload/c_${options.crop[0].type},w_${options.width},h_${options.height},g_auto`,
     );
   });
 
@@ -222,9 +261,14 @@ describe("Cropping plugin", () => {
       width: 100,
       crop: "fill",
     } as const;
+
     const result = CroppingPlugin.apply(cldImage, options);
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
     expect(result.options?.resize).toContain(
-      `c_${options.crop},w_${options.width},g_auto`
+      `c_${options.crop},w_${options.width},g_auto`,
     );
   });
 
@@ -236,6 +280,10 @@ describe("Cropping plugin", () => {
       crop: "fill",
     } as const;
     const result = CroppingPlugin.apply(cldImage, options);
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
     expect(result.options?.resize).toContain(`c_fill,ar_16:9,g_auto`);
   });
 
@@ -249,8 +297,12 @@ describe("Cropping plugin", () => {
     const result = CroppingPlugin.apply(cldImage, options);
     // for my own sanity that float => string will add the leading 0
     expect(`${options.aspectRatio}`).toMatch("0.5");
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
     expect(result.options?.resize).toContain(
-      `c_fill,ar_${options.aspectRatio},g_auto`
+      `c_fill,ar_${options.aspectRatio},g_auto`,
     );
   });
 
@@ -262,6 +314,7 @@ describe("Cropping plugin", () => {
       crop: "fit",
     } as const;
     const result = CroppingPlugin.apply(cldImage, options);
+
     expect(result.options?.resize).toBeUndefined();
   });
 
@@ -278,8 +331,12 @@ describe("Cropping plugin", () => {
       },
     } as const;
     const result = CroppingPlugin.apply(cldImage, options);
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
     expect(result.options?.resize).toBe(
-      `c_${options.crop.type},w_${options.width},h_${options.height},x_${options.crop.x},y_${options.crop.y}`
+      `c_${options.crop.type},w_${options.width},h_${options.height},x_${options.crop.x},y_${options.crop.y}`,
     );
   });
 
@@ -297,8 +354,12 @@ describe("Cropping plugin", () => {
       },
     } as const;
     const result = CroppingPlugin.apply(cldImage, options);
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
     expect(result.options?.resize).toBe(
-      `c_${options.crop.type},w_${options.width},h_${options.height},x_${options.crop.x},y_${options.crop.y},g_${options.crop.gravity}`
+      `c_${options.crop.type},w_${options.width},h_${options.height},x_${options.crop.x},y_${options.crop.y},g_${options.crop.gravity}`,
     );
   });
 
@@ -318,8 +379,12 @@ describe("Cropping plugin", () => {
       },
     } as const;
     const result = CroppingPlugin.apply(cldImage, options);
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
     expect(result.options?.resize).toBe(
-      `c_${options.crop.type},w_${options.crop.width},h_${options.crop.height},x_${options.crop.x},y_${options.crop.y},g_${options.crop.gravity}`
+      `c_${options.crop.type},w_${options.crop.width},h_${options.crop.height},x_${options.crop.x},y_${options.crop.y},g_${options.crop.gravity}`,
     );
   });
 
@@ -337,9 +402,13 @@ describe("Cropping plugin", () => {
       },
     } as const;
     const result = CroppingPlugin.apply(cldImage, options);
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
     expect(result.options?.resize).toContain(`c_limit,w_${options.width}`);
     expect(cldImage.toURL()).toContain(
-      `image/upload/c_${options.crop.type},w_${options.width},h_${options.height},x_${options.crop.x},y_${options.crop.y}`
+      `image/upload/c_${options.crop.type},w_${options.width},h_${options.height},x_${options.crop.x},y_${options.crop.y}`,
     );
   });
 });

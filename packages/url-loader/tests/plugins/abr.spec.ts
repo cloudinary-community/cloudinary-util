@@ -21,7 +21,7 @@ describe("Plugins", () => {
         streamingProfile,
       });
       expect(cldVideo.toURL()).toContain(
-        `video/upload/sp_${streamingProfile}/${src}`
+        `video/upload/sp_${streamingProfile}/${src}`,
       );
     });
 
@@ -36,7 +36,7 @@ describe("Plugins", () => {
         streamingProfile,
       });
       expect(cldVideo.toURL()).toContain(
-        `video/upload/sp_${streamingProfile}/${src}`
+        `video/upload/sp_${streamingProfile}/${src}`,
       );
     });
   });

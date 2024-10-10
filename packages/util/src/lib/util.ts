@@ -103,3 +103,8 @@ export const throwError: (
 ) => never = (message, ctor = Error) => {
   throw new ctor(message);
 };
+
+/**
+ * @description A primative value that can be interpolated into a string
+ */
+export type StringifiablePrimative = string | number | bigint | boolean;

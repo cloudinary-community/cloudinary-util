@@ -1,6 +1,6 @@
 import { plugin } from "../lib/plugin.js";
 
-export declare namespace ReplaceBackground {
+export declare namespace ReplaceBackgroundPlugin {
   export interface Options {
     /**
      * @description Replaces the background of an image with an AI-generated background.
@@ -15,7 +15,7 @@ export declare namespace ReplaceBackground {
   }
 }
 
-export const replaceBackgroundPlugin = plugin({
+export const ReplaceBackgroundPlugin = plugin({
   name: "ReplaceBackground",
   supports: "image",
   apply: (cldAsset, options) => {

@@ -190,7 +190,7 @@ export interface QualifierOptions {
    * @description Colorizes an image. By default, gray is used for colorization. You can specify a different color using the color qualifier.
    * @url https://cloudinary.com/documentation/transformation_reference#e_colorize
    */
-  colorize?: string;
+  colorize?: number | string;
 
   /**
    * @description Adjusts an image or video contrast.

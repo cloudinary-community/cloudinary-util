@@ -15,7 +15,7 @@ export interface GetUploadWidgetOptions extends CloudinaryUploadWidgetOptions {
 
 export function getUploadWidgetOptions(
   { uploadSignature, ...options }: GetUploadWidgetOptions,
-  config: CloudinaryAssetConfiguration
+  config: CloudinaryAssetConfiguration,
 ) {
   const signed = typeof uploadSignature === "function";
 
@@ -28,19 +28,19 @@ export function getUploadWidgetOptions(
 
   if (!cloudName) {
     throw new Error(
-      "A Cloudinary Cloud name is required, please make sure your environment variable is set and configured in your environment."
+      "A Cloudinary Cloud name is required, please make sure your environment variable is set and configured in your environment.",
     );
   }
 
   if (signed && !apiKey) {
     throw new Error(
-      "A Cloudinary API Key is required for signed requests, please make sure your environment variable is set and configured in your environment."
+      "A Cloudinary API Key is required for signed requests, please make sure your environment variable is set and configured in your environment.",
     );
   }
 
   if (!signed && !options.uploadPreset) {
     throw new Error(
-      "A Cloudinary Upload Preset is required for unsigned uploads. Please specify an uploadPreset or configure signed uploads."
+      "A Cloudinary Upload Preset is required for unsigned uploads. Please specify an uploadPreset or configure signed uploads.",
     );
   }
 
@@ -62,11 +62,11 @@ export function getUploadWidgetOptions(
  */
 
 export type CloudinaryUploadWidgetResultCallback = (
-  results: CloudinaryUploadWidgetResults
+  results: CloudinaryUploadWidgetResults,
 ) => void;
 export type CloudinaryUploadWidgetErrorCallback = (
   error: CloudinaryUploadWidgetError,
-  results: CloudinaryUploadWidgetResults
+  results: CloudinaryUploadWidgetResults,
 ) => void;
 
 export interface GenerateUploadWidgetResultCallback {
@@ -109,11 +109,11 @@ export const UPLOAD_WIDGET_EVENTS: { [key: string]: string } = {
 };
 
 export function generateUploadWidgetResultCallback(
-  options: GenerateUploadWidgetResultCallback
+  options: GenerateUploadWidgetResultCallback,
 ) {
   return function resultCallback(
     error: CloudinaryUploadWidgetError,
-    uploadResult: CloudinaryUploadWidgetResults
+    uploadResult: CloudinaryUploadWidgetResults,
   ) {
     if (error) {
       if (typeof options.onError === "function") {

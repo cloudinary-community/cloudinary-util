@@ -26,7 +26,7 @@ export const NamedTransformationsPlugin = plugin({
 
     if (transformations && process.env.NODE_ENVIRONMENT === "development") {
       console.warn(
-        "The transformations prop is deprecated. Please use namedTransformations instead."
+        "The transformations prop is deprecated. Please use namedTransformations instead.",
       );
     }
 

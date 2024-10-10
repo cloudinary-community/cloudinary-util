@@ -1,4 +1,4 @@
-import { normalizeNumberParameter } from "@cloudinary-util/util";
+import { isArray, normalizeNumberParameter } from "@cloudinary-util/util";
 import type {
   AspectRatio,
   CropMode,
@@ -21,7 +21,7 @@ const DEFAULT_CROP = "limit";
 export declare namespace CroppingPlugin {
   export interface Options {
     aspectRatio?: AspectRatio;
-    crop?: CropMode | NestedOptions | NestedOptions[];
+    crop?: CropMode | NestedOptions | ReadonlyArray<NestedOptions>;
     gravity?: Gravity;
     zoom?: Zoom;
   }
@@ -62,7 +62,7 @@ export const CroppingPlugin = plugin({
         width: opts.width,
         zoom: opts.zoom,
       });
-    } else if (typeof opts.crop === "object" && !Array.isArray(opts.crop)) {
+    } else if (typeof opts.crop === "object" && !isArray(opts.crop)) {
       crops.push(opts.crop);
     } else if (Array.isArray(opts.crop)) {
       crops = opts.crop;
@@ -234,8 +234,8 @@ function collectTransformations(collectOptions: CroppingPlugin.NestedOptions) {
     if (gravity === "auto" && !cropsGravityAuto.includes(crop)) {
       console.warn(
         `Auto gravity can only be used with crop modes: ${cropsGravityAuto.join(
-          ", "
-        )}. Not applying gravity.`
+          ", ",
+        )}. Not applying gravity.`,
       );
     } else {
       transformations.push(`g_${gravity}`);
@@ -248,8 +248,8 @@ function collectTransformations(collectOptions: CroppingPlugin.NestedOptions) {
     if (zoom === "auto" && !cropsWithZoom.includes(crop)) {
       console.warn(
         `Zoom can only be used with crop modes: ${cropsWithZoom.join(
-          ", "
-        )}. Not applying zoom.`
+          ", ",
+        )}. Not applying zoom.`,
       );
     } else {
       transformations.push(`z_${zoom}`);

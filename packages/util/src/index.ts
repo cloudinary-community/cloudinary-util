@@ -16,4 +16,5 @@ export {
   objectHasKey,
   sortByKey,
   throwError,
+  type StringifiablePrimative,
 } from "./lib/util.js";

@@ -44,7 +44,7 @@ export const RemovePlugin = plugin({
 
       if (hasPrompt && hasRegion) {
         throw new Error(
-          "Invalid remove options: you can not have both a prompt and a region. More info: https://cloudinary.com/documentation/transformation_reference#e_gen_remove"
+          "Invalid remove options: you can not have both a prompt and a region. More info: https://cloudinary.com/documentation/transformation_reference#e_gen_remove",
         );
       }
 
@@ -89,7 +89,7 @@ export const RemovePlugin = plugin({
  */
 
 function regionArrayToString(
-  regionArray: Array<number | Array<number>>
+  regionArray: Array<number | Array<number>>,
 ): string {
   const indexes: Record<number, string> = {
     0: "x",

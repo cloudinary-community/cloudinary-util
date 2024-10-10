@@ -66,7 +66,7 @@ export const EffectsPlugin = plugin({
             value: options?.[key],
             converters,
           });
-        }
+        },
       );
     }
 

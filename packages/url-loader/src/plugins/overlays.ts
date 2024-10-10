@@ -25,11 +25,6 @@ import type { QualifierConfig } from "../types/qualifiers.js";
 export declare namespace OverlaysPlugin {
   export interface Options {
     /**
-     * @description Image or text layer that is applied on top of the base image.
-     * @url https://cloudinary.com/documentation/transformation_reference#l_layer
-     */
-    overlay?: NestedOptions;
-    /**
      * @description Image or text layers that are applied on top of the base image.
      * @url https://cloudinary.com/documentation/transformation_reference#l_layer
      */
@@ -38,7 +33,7 @@ export declare namespace OverlaysPlugin {
      * @description Text to be overlaid on asset.
      * @url https://cloudinary.com/documentation/image_transformations#transformation_url_structure
      */
-    text?: string;
+    text?: string | TextOptions;
   }
 
   export interface NestedOptions {
@@ -68,7 +63,7 @@ export declare namespace OverlaysPlugin {
     hinting?: string | number;
     letterSpacing?: string | number;
     lineSpacing?: string | number;
-    stroke?: string;
+    stroke?: boolean;
   }
 }
 
@@ -135,7 +130,7 @@ export const OverlaysPlugin = plugin({
       } else if (hasPublicId) {
         layerTransformation = `${typeQualifier}_${publicId.replace(
           /\//g,
-          ":"
+          ":",
         )}`;
       } else if (hasUrl) {
         layerTransformation = `${typeQualifier}_fetch:${encodeBase64(url)}`;
@@ -276,7 +271,7 @@ export const OverlaysPlugin = plugin({
                 value,
                 order: qualifiersText[key].order || 99,
               };
-            }
+            },
           );
 
           const sortedTextOptions = sortByKey(textOptions, "order");
@@ -319,13 +314,13 @@ export const OverlaysPlugin = plugin({
           )?.forEach((character: string) => {
             layerText = layerText?.replace(
               character,
-              specialCharacters[character]
+              specialCharacters[character],
             );
           });
         }
 
         layerTransformation = `${layerTransformation}:${textTransformations.join(
-          "_"
+          "_",
         )}:${layerText}`;
       }
 
