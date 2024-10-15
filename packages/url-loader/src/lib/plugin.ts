@@ -17,8 +17,9 @@ export type AlwaysApply = () => true;
 export interface PluginDefinition<
   assetType extends SupportedAssetType,
   when extends ApplyWhen,
+  name extends string,
 > {
-  name: string;
+  name: name;
   supports: assetType;
   apply: PluginApplication<assetType, when>;
   applyWhen?: when | undefined;
@@ -28,8 +29,9 @@ export interface PluginDefinition<
 export interface TransformationPlugin<
   assetType extends SupportedAssetType = SupportedAssetType,
   when extends ApplyWhen = ApplyWhen,
+  name extends string = string,
 > {
-  name: string;
+  name: name;
   supports: assetType;
   apply: PluginApplication<assetType, when>;
   applyWhen?: when | undefined;
@@ -58,6 +60,8 @@ export type PluginApplication<
 export const plugin = <
   asset extends SupportedAssetType,
   when extends ApplyWhen,
+  name extends string,
 >(
-  def: PluginDefinition<asset, when>,
-): TransformationPlugin<asset, when> => ({ strict: false, ...def }) as never;
+  def: PluginDefinition<asset, when, name>
+): TransformationPlugin<asset, when, name> =>
+  ({ strict: false, ...def }) as never;

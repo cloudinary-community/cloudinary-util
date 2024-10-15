@@ -31,14 +31,24 @@ import { ExtractPlugin } from "../plugins/extract.js";
 import { NamedTransformationsPlugin } from "../plugins/named-transformations.js";
 import { OverlaysPlugin } from "../plugins/overlays.js";
 import { VersionPlugin } from "../plugins/version.js";
-import type { SupportedAssetTypeInput } from "../types/asset.js";
+import type {
+  BaseAssetOptions,
+  OptionsByPluginName,
+  SupportedAssetTypeInput,
+} from "../types/asset.js";
 import type { ImageOptions } from "../types/image.js";
 import type { PluginOptions, PluginResults } from "../types/plugins.js";
 import type { VideoOptions } from "../types/video.js";
 import type { OptionsFor, TransformationPlugin } from "./plugin.js";
 import { entriesOf, throwError } from "./utils.js";
 
-export const transformationPlugins = [
+const validatePlugins = <const plugins extends readonly TransformationPlugin[]>(
+  ...plugins: plugins extends validatePlugins<plugins>
+    ? plugins
+    : validatePlugins<plugins>
+) => plugins;
+
+export const transformationPlugins = validatePlugins(
   // Some features *must* be the first transformation applied
   // thus their plugins *must* come first in the chain
 
@@ -75,8 +85,8 @@ export const transformationPlugins = [
   SeoPlugin,
   UnderlaysPlugin,
   VersionPlugin,
-  ZoompanPlugin,
-];
+  ZoompanPlugin
+);
 
 export interface AnalyticsOptions extends IAnalyticsOptions {}
 
@@ -317,3 +327,35 @@ export function searchAssetRawTransformations(
 
   return matches.length > 0;
 }
+
+type validatePlugins<
+  remaining extends ReadonlyArray<TransformationPlugin>,
+  validated extends ReadonlyArray<unknown> = [],
+  // initialize opts to the BaseAssetOptions so that if any of those keys are duplicated,
+  // we'll know right away
+  opts = BaseAssetOptions,
+> = remaining extends readonly [
+  infer next extends TransformationPlugin,
+  ...infer rest extends ReadonlyArray<TransformationPlugin>,
+]
+  ? next["name"] extends keyof OptionsByPluginName
+    ? validatePlugins<
+        rest,
+        [
+          ...validated,
+          keyof opts & keyof OptionsByPluginName[next["name"]] extends never
+            ? // if the intersection is never, no options duplicate existing so the plugin is valid
+              next
+            : {
+                duplicatePropertiesMustBeRemoved: keyof opts &
+                  keyof OptionsByPluginName[next["name"]];
+              },
+        ],
+        opts & OptionsByPluginName[next["name"]]
+      >
+    : validatePlugins<
+        rest,
+        [...validated, `${next["name"]} must be added to OptionsByPluginName`],
+        opts
+      >
+  : validated;
