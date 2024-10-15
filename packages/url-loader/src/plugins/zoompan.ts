@@ -20,6 +20,7 @@ export declare namespace ZoompanPlugin {
 export const ZoompanPlugin = plugin({
   name: "Zoompan",
   supports: "image",
+  inferOwnOptions: {} as ZoompanPlugin.Options,
   apply: (cldAsset, options) => {
     const { zoompan = false } = options;
 

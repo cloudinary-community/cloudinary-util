@@ -1,7 +1,7 @@
 import { Cloudinary } from "@cloudinary/url-gen";
 import { afterEach, describe, expect, it, vi } from "vitest";
 
-import { DefaultImage } from "../../src/plugins/default-image.js";
+import { DefaultImagePlugin } from "../../src/plugins/default-image.js";
 
 const cld = new Cloudinary({
   cloud: {
@@ -30,9 +30,9 @@ describe("Default Image plugin", () => {
       height: 100,
       defaultImage: "my-image.jpg",
     };
-    DefaultImage.apply(cldImage, options);
+    DefaultImagePlugin.apply(cldImage, options);
     expect(cldImage.toURL()).toContain(
-      `d_${options.defaultImage}/${TEST_PUBLIC_ID}`,
+      `d_${options.defaultImage}/${TEST_PUBLIC_ID}`
     );
   });
   it("should warn if no format", () => {
@@ -43,12 +43,12 @@ describe("Default Image plugin", () => {
       height: 100,
       defaultImage: "my-image",
     };
-    DefaultImage.apply(cldImage, options);
+    DefaultImagePlugin.apply(cldImage, options);
     expect((console.warn as any).mock.calls[0][0]).toContain(
-      "The defaultImage prop may be missing",
+      "The defaultImage prop may be missing"
     );
     expect(cldImage.toURL()).toContain(
-      `d_${options.defaultImage}/${TEST_PUBLIC_ID}`,
+      `d_${options.defaultImage}/${TEST_PUBLIC_ID}`
     );
   });
 });

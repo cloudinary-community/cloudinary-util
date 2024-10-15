@@ -43,6 +43,7 @@ export declare namespace CroppingPlugin {
 export const CroppingPlugin = plugin({
   name: "Cropping",
   supports: "all",
+  inferOwnOptions: {} as CroppingPlugin.Options,
   // crop is applied even if the crop key is undefined
   apply: (asset, opts) => {
     let crops: Array<CroppingPlugin.NestedOptions> = [];

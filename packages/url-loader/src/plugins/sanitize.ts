@@ -13,6 +13,7 @@ export declare namespace SanitizePlugin {
 export const SanitizePlugin = plugin({
   name: "Sanitize",
   supports: "image",
+  inferOwnOptions: {} as SanitizePlugin.Options,
   apply: (cldAsset, options) => {
     const { sanitize = true } = options;
 

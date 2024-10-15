@@ -8,7 +8,7 @@ import {
 import type { IAnalyticsOptions } from "@cloudinary/url-gen/sdkAnalytics/interfaces/IAnalyticsOptions";
 
 import { AbrPlugin } from "../plugins/abr.js";
-import { DefaultImage } from "../plugins/default-image.js";
+import { DefaultImagePlugin } from "../plugins/default-image.js";
 import { EffectsPlugin } from "../plugins/effects.js";
 import { FillBackgroundPlugin } from "../plugins/fill-background.js";
 import { FlagsPlugin } from "../plugins/flags.js";
@@ -33,7 +33,6 @@ import { OverlaysPlugin } from "../plugins/overlays.js";
 import { VersionPlugin } from "../plugins/version.js";
 import type {
   BaseAssetOptions,
-  OptionsByPluginName,
   SupportedAssetTypeInput,
 } from "../types/asset.js";
 import type { ImageOptions } from "../types/image.js";
@@ -75,7 +74,7 @@ export const transformationPlugins = validatePlugins(
   RawTransformationsPlugin,
 
   AbrPlugin,
-  DefaultImage,
+  DefaultImagePlugin,
   EffectsPlugin,
   FillBackgroundPlugin,
   FlagsPlugin,
@@ -338,24 +337,18 @@ type validatePlugins<
   infer next extends TransformationPlugin,
   ...infer rest extends ReadonlyArray<TransformationPlugin>,
 ]
-  ? next["name"] extends keyof OptionsByPluginName
-    ? validatePlugins<
-        rest,
-        [
-          ...validated,
-          keyof opts & keyof OptionsByPluginName[next["name"]] extends never
-            ? // if the intersection is never, no options duplicate existing so the plugin is valid
-              next
-            : {
-                duplicatePropertiesMustBeRemoved: keyof opts &
-                  keyof OptionsByPluginName[next["name"]];
-              },
-        ],
-        opts & OptionsByPluginName[next["name"]]
-      >
-    : validatePlugins<
-        rest,
-        [...validated, `${next["name"]} must be added to OptionsByPluginName`],
-        opts
-      >
+  ? validatePlugins<
+      rest,
+      [
+        ...validated,
+        keyof opts & keyof next["inferOwnOptions"] extends never
+          ? // if the intersection is never, no options duplicate existing so the plugin is valid
+            next
+          : {
+              duplicatePropertiesMustBeRemoved: keyof opts &
+                keyof next["inferOwnOptions"];
+            },
+      ],
+      opts & next["inferOwnOptions"]
+    >
   : validated;

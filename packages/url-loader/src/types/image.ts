@@ -1,4 +1,4 @@
-import type { DefaultImage } from "../plugins/default-image.js";
+import type { DefaultImagePlugin } from "../plugins/default-image.js";
 import type { EnhancePlugin } from "../plugins/enhance.js";
 import type { ExtractPlugin } from "../plugins/extract.js";
 import type { FillBackgroundPlugin } from "../plugins/fill-background.js";
@@ -12,7 +12,7 @@ import type { AssetOptions } from "./asset.js";
 
 export interface ImageOptions
   extends AssetOptions,
-    DefaultImage.Options,
+    DefaultImagePlugin.Options,
     EnhancePlugin.Options,
     ExtractPlugin.Options,
     FillBackgroundPlugin.Options,

@@ -18,10 +18,12 @@ export interface PluginDefinition<
   assetType extends SupportedAssetType,
   when extends ApplyWhen,
   name extends string,
+  options extends object,
 > {
   name: name;
   supports: assetType;
   apply: PluginApplication<assetType, when>;
+  inferOwnOptions: options;
   applyWhen?: when | undefined;
   strict?: boolean;
 }
@@ -30,10 +32,12 @@ export interface TransformationPlugin<
   assetType extends SupportedAssetType = SupportedAssetType,
   when extends ApplyWhen = ApplyWhen,
   name extends string = string,
+  options extends object = object,
 > {
   name: name;
   supports: assetType;
   apply: PluginApplication<assetType, when>;
+  inferOwnOptions: options;
   applyWhen?: when | undefined;
   strict?: boolean;
 }
@@ -61,7 +65,8 @@ export const plugin = <
   asset extends SupportedAssetType,
   when extends ApplyWhen,
   name extends string,
+  options extends object,
 >(
-  def: PluginDefinition<asset, when, name>
-): TransformationPlugin<asset, when, name> =>
+  def: PluginDefinition<asset, when, name, options>
+): TransformationPlugin<asset, when, name, options> =>
   ({ strict: false, ...def }) as never;

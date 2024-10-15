@@ -27,6 +27,7 @@ export declare namespace FillBackgroundPlugin {
 export const FillBackgroundPlugin = plugin({
   name: "FillBackground",
   supports: "image",
+  inferOwnOptions: {} as FillBackgroundPlugin.Options,
   apply: (cldAsset, options) => {
     const { fillBackground } = options;
 
@@ -45,7 +46,7 @@ export const FillBackgroundPlugin = plugin({
     if (!aspectRatio) {
       if (process.env.NODE_ENV === "development") {
         console.warn(
-          `Could not determine aspect ratio based on available options to use fillBackground. Please specify width and height or an aspect ratio.`,
+          `Could not determine aspect ratio based on available options to use fillBackground. Please specify width and height or an aspect ratio.`
         );
       }
       return {};

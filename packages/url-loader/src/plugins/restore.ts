@@ -13,6 +13,7 @@ export declare namespace RestorePlugin {
 export const RestorePlugin = plugin({
   name: "Restore",
   supports: "image",
+  inferOwnOptions: {} as RestorePlugin.Options,
   apply: (cldAsset, options) => {
     const { restore = false } = options;
 

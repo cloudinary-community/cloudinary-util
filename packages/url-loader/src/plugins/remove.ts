@@ -23,6 +23,7 @@ export declare namespace RemovePlugin {
 export const RemovePlugin = plugin({
   name: "Remove",
   supports: "image",
+  inferOwnOptions: {} as RemovePlugin.Options,
   apply: (cldAsset, options) => {
     const { remove } = options;
 

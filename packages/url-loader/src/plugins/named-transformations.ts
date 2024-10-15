@@ -21,6 +21,7 @@ export const NamedTransformationsPlugin = plugin({
   name: "NamedTransformations",
   strict: true,
   supports: "all",
+  inferOwnOptions: {} as NamedTransformationsPlugin.Options,
   apply: (cldAsset, options) => {
     const { transformations, namedTransformations } = options;
 

@@ -27,6 +27,7 @@ export const ExtractPlugin = plugin({
   name: "Extract",
   supports: "image",
   applyWhen: "extract",
+  inferOwnOptions: {} as ExtractPlugin.Options,
   apply: (cldAsset, { extract }) => {
     const properties = [];
 

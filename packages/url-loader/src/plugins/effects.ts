@@ -20,6 +20,7 @@ export declare namespace EffectsPlugin {
 export const EffectsPlugin = plugin({
   name: "Effects",
   supports: "all",
+  inferOwnOptions: {} as EffectsPlugin.Options,
   apply: (cldAsset, options) => {
     // Handle any top-level effect props
 

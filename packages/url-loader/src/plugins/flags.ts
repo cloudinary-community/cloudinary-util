@@ -12,6 +12,7 @@ export const FlagsPlugin = plugin({
   name: "Flags",
   supports: "all",
   applyWhen: "flags",
+  inferOwnOptions: {} as FlagsPlugin.Options,
   apply: (cldAsset, { flags }) => {
     // First iteration of adding flags follows the same pattern
     // as the top level option from Cloudinary URL Gen SDK where

@@ -13,6 +13,7 @@ export declare namespace PreserveTransformationsPlugin {
 export const PreserveTransformationsPlugin = plugin({
   name: "PreserveTransformations",
   supports: "all",
+  inferOwnOptions: {} as PreserveTransformationsPlugin.Options,
   apply: (cldAsset, options) => {
     const { preserveTransformations = false } = options;
 
@@ -26,14 +27,14 @@ export const PreserveTransformationsPlugin = plugin({
           throw new Error("options.src was undefined");
         }
         const transformations = getTransformations(options.src).map((t) =>
-          t.join(","),
+          t.join(",")
         );
         transformations.flat().forEach((transformation) => {
           cldAsset.addTransformation(transformation);
         });
       } catch (e) {
         console.warn(
-          `Failed to preserve transformations: ${(e as Error).message}`,
+          `Failed to preserve transformations: ${(e as Error).message}`
         );
       }
     }

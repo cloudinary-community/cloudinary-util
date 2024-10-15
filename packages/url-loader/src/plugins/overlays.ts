@@ -72,6 +72,7 @@ export const DEFAULT_TEXT_OPTIONS = {
 export const OverlaysPlugin = plugin({
   name: "Overlays",
   supports: "all",
+  inferOwnOptions: {} as OverlaysPlugin.Options,
   apply: (cldAsset, options) => {
     const { text, overlays = [] } = options;
 
