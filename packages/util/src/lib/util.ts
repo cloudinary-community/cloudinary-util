@@ -46,13 +46,9 @@ export function sortByKey(
       keyB = keyB.toLowerCase();
     }
 
-    if (keyA < keyB) {
-      return -1;
-    }
+    if (keyA < keyB) return -1;
 
-    if (keyA > keyB) {
-      return 1;
-    }
+    if (keyA > keyB) return 1;
 
     return 0;
   }
