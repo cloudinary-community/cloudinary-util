@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v4.0.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.4.0...@cloudinary-util/util-v4.0.0) (2024-10-15)
+
+
+### Features
+
+* Change to Force Deploy ([#216](https://github.com/cloudinary-community/cloudinary-util/issues/216)) ([78e44a0](https://github.com/cloudinary-community/cloudinary-util/commit/78e44a043da447394280bdc9065910d0194517b8))
+
 # [@cloudinary-util/util-v3.4.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.3.2...@cloudinary-util/util-v3.4.0) (2024-10-15)
 
 
