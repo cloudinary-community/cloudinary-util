@@ -1,3 +1,15 @@
+# [@cloudinary-util/util-v4.0.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.3.2...@cloudinary-util/util-v4.0.0-beta.1) (2024-10-08)
+
+
+### Features
+
+* Log X-Cld-Error header in dev mode ([#211](https://github.com/cloudinary-community/cloudinary-util/issues/211)) ([2a5251b](https://github.com/cloudinary-community/cloudinary-util/commit/2a5251b83a44e22d11d4abf9def3bbd975a25f8c))
+
+
+### BREAKING CHANGES
+
+* pollForProcessingImage now returns an object instead of a boolean
+
 # [@cloudinary-util/util-v3.3.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.3.1...@cloudinary-util/util-v3.3.2) (2024-08-28)
 
 
