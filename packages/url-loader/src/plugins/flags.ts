@@ -1,6 +1,6 @@
-import { isArray } from "@cloudinary-util/util";
 import type { FlagsDefinition } from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
+import { isArray } from "../lib/utils.js";
 
 export declare namespace FlagsPlugin {
   export interface Options {

@@ -1,10 +1,10 @@
-import { isArray } from "@cloudinary-util/util";
 import type {
   ExtractMode,
   ListablePrompts,
   Multiple,
 } from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
+import { isArray } from "../lib/utils.js";
 
 export declare namespace ExtractPlugin {
   export interface Options {

@@ -1,10 +1,10 @@
-import { isArray } from "@cloudinary-util/util";
 import {
   effects as qualifiersEffects,
   type QualifierOptions,
 } from "../constants/qualifiers.js";
 import { plugin } from "../lib/plugin.js";
 import { constructTransformation } from "../lib/transformations.js";
+import { isArray } from "../lib/utils.js";
 
 export declare namespace EffectsPlugin {
   export interface NestableOptions extends QualifierOptions {}

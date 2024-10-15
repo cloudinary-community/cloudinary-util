@@ -1,4 +1,4 @@
-import { isArray, normalizeNumberParameter } from "@cloudinary-util/util";
+import { normalizeNumberParameter } from "@cloudinary-util/util";
 import type {
   AspectRatio,
   CropMode,
@@ -10,6 +10,7 @@ import type {
   Zoom,
 } from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
+import { isArray } from "../lib/utils.js";
 import type { PluginResults } from "../types/plugins.js";
 
 const cropsAspectRatio = ["auto", "crop", "fill", "lfill", "fill_pad", "thumb"];

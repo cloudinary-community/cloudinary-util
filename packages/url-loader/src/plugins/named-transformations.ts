@@ -1,5 +1,5 @@
-import { isArray } from "@cloudinary-util/util";
 import { plugin } from "../lib/plugin.js";
+import { isArray } from "../lib/utils.js";
 
 export declare namespace NamedTransformationsPlugin {
   export interface Options {
@@ -26,7 +26,7 @@ export const NamedTransformationsPlugin = plugin({
 
     if (transformations && process.env.NODE_ENVIRONMENT === "development") {
       console.warn(
-        "The transformations prop is deprecated. Please use namedTransformations instead.",
+        "The transformations prop is deprecated. Please use namedTransformations instead."
       );
     }
 

@@ -1,4 +1,4 @@
-import type { StringifiablePrimative } from "@cloudinary-util/util";
+import type { StringifiablePrimative } from "../lib/utils.js";
 
 /**
  *  @description Mode to use when cropping an asset.

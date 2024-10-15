@@ -3,11 +3,12 @@ import type {
   CloudinaryVideoPlayerOptions,
   CloudinaryVideoPlayerOptionsLogo,
 } from "@cloudinary-util/types";
-import { isArray, parseUrl } from "@cloudinary-util/util";
+import { parseUrl } from "@cloudinary-util/util";
 import {
   constructCloudinaryUrl,
   type ConstructUrlProps,
 } from "./cloudinary.js";
+import { isArray } from "./utils.js";
 
 /**
  * getVideoPlayerOptions

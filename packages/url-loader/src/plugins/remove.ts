@@ -1,7 +1,7 @@
-import { isArray } from "@cloudinary-util/util";
 import type { ListablePrompts } from "../constants/parameters.js";
 import { plugin } from "../lib/plugin.js";
 import { promptArrayToString } from "../lib/transformations.js";
+import { isArray } from "../lib/utils.js";
 
 export declare namespace RemovePlugin {
   export interface Options {

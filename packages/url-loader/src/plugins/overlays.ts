@@ -1,10 +1,4 @@
-import {
-  encodeBase64,
-  entriesOf,
-  isArray,
-  objectHasKey,
-  sortByKey,
-} from "@cloudinary-util/util";
+import { encodeBase64, objectHasKey, sortByKey } from "@cloudinary-util/util";
 import type {
   CropMode,
   Height,
@@ -20,6 +14,7 @@ import {
 } from "../constants/qualifiers.js";
 import { plugin } from "../lib/plugin.js";
 import { constructTransformation } from "../lib/transformations.js";
+import { entriesOf, isArray } from "../lib/utils.js";
 import type { QualifierConfig } from "../types/qualifiers.js";
 
 export declare namespace OverlaysPlugin {

@@ -1,5 +1,5 @@
-import { isArray } from "@cloudinary-util/util";
 import { plugin } from "../lib/plugin.js";
+import { isArray } from "../lib/utils.js";
 
 export declare namespace RawTransformationsPlugin {
   export interface Options {

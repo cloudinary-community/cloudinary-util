@@ -1,11 +1,5 @@
 import type { CloudinaryAssetConfiguration } from "@cloudinary-util/types";
-import {
-  entriesOf,
-  objectHasKey,
-  parseUrl,
-  throwError,
-  type ParseUrl,
-} from "@cloudinary-util/util";
+import { objectHasKey, parseUrl, type ParseUrl } from "@cloudinary-util/util";
 import {
   Cloudinary,
   type CloudinaryImage,
@@ -42,6 +36,7 @@ import type { ImageOptions } from "../types/image.js";
 import type { PluginOptions, PluginResults } from "../types/plugins.js";
 import type { VideoOptions } from "../types/video.js";
 import type { OptionsFor, TransformationPlugin } from "./plugin.js";
+import { entriesOf, throwError } from "./utils.js";
 
 export const transformationPlugins = [
   // Some features *must* be the first transformation applied
@@ -137,7 +132,7 @@ export function constructCloudinaryUrl<
 
   if (typeof options?.src !== "string") {
     throw Error(
-      `Failed to construct Cloudinary URL: Missing source (src) in options.`,
+      `Failed to construct Cloudinary URL: Missing source (src) in options.`
     );
   }
 
@@ -203,7 +198,7 @@ export function constructCloudinaryUrl<
 
       if (normalizedAssetType !== supports && supports !== "all") {
         console.warn(
-          `${name} does not support assetType ${normalizedAssetType}`,
+          `${name} does not support assetType ${normalizedAssetType}`
         );
         return;
       }
@@ -218,7 +213,7 @@ export function constructCloudinaryUrl<
       const pluginOptions = results?.options ?? {};
 
       Object.assign(pluginEffects, pluginOptions);
-    },
+    }
   );
 
   // We want to perform any resizing at the end of the end of the transformation
@@ -295,7 +290,7 @@ interface SearchAssetRawTransformationsOptions {
 export function searchAssetRawTransformations(
   query: string,
   asset: CloudinaryImage | CloudinaryVideo,
-  options?: SearchAssetRawTransformationsOptions,
+  options?: SearchAssetRawTransformationsOptions
 ) {
   if (typeof asset.transformation === "undefined") return;
 
@@ -309,7 +304,7 @@ export function searchAssetRawTransformations(
         .toString()
         .split("/")
         .flatMap((seg) => seg.split(","));
-    },
+    }
   );
 
   const matches = transformations.filter((transformation) => {

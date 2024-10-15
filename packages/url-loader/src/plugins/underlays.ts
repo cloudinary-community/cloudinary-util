@@ -1,4 +1,4 @@
-import { entriesOf, isArray, objectHasKey } from "@cloudinary-util/util";
+import { objectHasKey } from "@cloudinary-util/util";
 import type {
   CropMode,
   Height,
@@ -11,6 +11,7 @@ import {
   primary as qualifiersPrimary,
 } from "../constants/qualifiers.js";
 import { plugin } from "../lib/plugin.js";
+import { entriesOf, isArray } from "../lib/utils.js";
 
 export declare namespace UnderlaysPlugin {
   export interface Options {
