@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v3.4.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.3.2...@cloudinary-util/util-v3.4.0) (2024-10-15)
+
+
+### Features
+
+* Util v4 ([#213](https://github.com/cloudinary-community/cloudinary-util/issues/213)) ([75fef30](https://github.com/cloudinary-community/cloudinary-util/commit/75fef30393a678f435acf8bbc4814e8da4a0bd40))
+
 # [@cloudinary-util/util-v4.0.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.3.2...@cloudinary-util/util-v4.0.0-beta.1) (2024-10-08)
 
 
