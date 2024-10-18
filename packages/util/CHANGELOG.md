@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v5.0.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v4.0.0...@cloudinary-util/util-v5.0.0-beta.1) (2024-10-18)
+
+
+### Features
+
+* migrate Zod to pure TS w/ JSDoc, improve type safety and simplify parsing ([#217](https://github.com/cloudinary-community/cloudinary-util/issues/217)) ([f605f26](https://github.com/cloudinary-community/cloudinary-util/commit/f605f26f9de1d111c26d65dd3b8955491b357481))
+
 # [@cloudinary-util/util-v4.0.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.4.0...@cloudinary-util/util-v4.0.0) (2024-10-15)
 
 
