@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v2.0.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.11...@cloudinary-util/types-v2.0.0-beta.1) (2024-10-18)
+
+
+### Features
+
+* migrate Zod to pure TS w/ JSDoc, improve type safety and simplify parsing ([#217](https://github.com/cloudinary-community/cloudinary-util/issues/217)) ([f605f26](https://github.com/cloudinary-community/cloudinary-util/commit/f605f26f9de1d111c26d65dd3b8955491b357481))
+
 # [@cloudinary-util/types-v1.5.11](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.10...@cloudinary-util/types-v1.5.11) (2024-10-07)
 
 ### Bug Fixes
