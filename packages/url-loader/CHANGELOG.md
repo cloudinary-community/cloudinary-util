@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v6.0.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.5...@cloudinary-util/url-loader-v6.0.0-beta.1) (2024-10-18)
+
+
+### Features
+
+* migrate Zod to pure TS w/ JSDoc, improve type safety and simplify parsing ([#217](https://github.com/cloudinary-community/cloudinary-util/issues/217)) ([f605f26](https://github.com/cloudinary-community/cloudinary-util/commit/f605f26f9de1d111c26d65dd3b8955491b357481))
+
 # [@cloudinary-util/url-loader-v5.10.5](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.4...@cloudinary-util/url-loader-v5.10.5) (2024-10-07)
 
 ### Bug Fixes
