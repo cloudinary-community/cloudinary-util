@@ -26,52 +26,45 @@
 
 # [@cloudinary-util/util-v3.3.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.3.1...@cloudinary-util/util-v3.3.2) (2024-08-28)
 
-
 ### Bug Fixes
 
-* update pollForProcessingImage style ([#189](https://github.com/cloudinary-community/cloudinary-util/issues/189)) ([72826a0](https://github.com/cloudinary-community/cloudinary-util/commit/72826a01c5c485f27dc0244f89e2b1ffbb8e3f14))
+- update pollForProcessingImage style ([#189](https://github.com/cloudinary-community/cloudinary-util/issues/189)) ([72826a0](https://github.com/cloudinary-community/cloudinary-util/commit/72826a01c5c485f27dc0244f89e2b1ffbb8e3f14))
 
 # [@cloudinary-util/util-v3.3.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.3.0...@cloudinary-util/util-v3.3.1) (2024-08-28)
 
-
 ### Bug Fixes
 
-* add delay to pollForProcessingImage ([#188](https://github.com/cloudinary-community/cloudinary-util/issues/188)) ([f720c0f](https://github.com/cloudinary-community/cloudinary-util/commit/f720c0ffaaf5267fc83ec90954f2650dcd5ee88f))
+- add delay to pollForProcessingImage ([#188](https://github.com/cloudinary-community/cloudinary-util/issues/188)) ([f720c0f](https://github.com/cloudinary-community/cloudinary-util/commit/f720c0ffaaf5267fc83ec90954f2650dcd5ee88f))
 
 # [@cloudinary-util/util-v3.3.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.2.0...@cloudinary-util/util-v3.3.0) (2024-08-28)
 
-
 ### Features
 
-* add pollForProcessingImage ([#187](https://github.com/cloudinary-community/cloudinary-util/issues/187)) ([8b7a1c7](https://github.com/cloudinary-community/cloudinary-util/commit/8b7a1c7b0a0bae9b32c8fbd8ac53960caf340c94))
+- add pollForProcessingImage ([#187](https://github.com/cloudinary-community/cloudinary-util/issues/187)) ([8b7a1c7](https://github.com/cloudinary-community/cloudinary-util/commit/8b7a1c7b0a0bae9b32c8fbd8ac53960caf340c94))
 
 # [@cloudinary-util/util-v3.2.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.1.0...@cloudinary-util/util-v3.2.0) (2024-08-07)
 
-
 ### Features
 
-* url-loader@5.6.0 ([#166](https://github.com/cloudinary-community/cloudinary-util/issues/166)) ([26736af](https://github.com/cloudinary-community/cloudinary-util/commit/26736afe7c9e32bad971beb273c71a9519c36944)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
+- url-loader@5.6.0 ([#166](https://github.com/cloudinary-community/cloudinary-util/issues/166)) ([26736af](https://github.com/cloudinary-community/cloudinary-util/commit/26736afe7c9e32bad971beb273c71a9519c36944)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
 
 # [@cloudinary-util/util-v3.2.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.1.0...@cloudinary-util/util-v3.2.0-beta.1) (2024-08-02)
 
-
 ### Features
 
-* getUploadWidgetOptions, generateSignatureCallback, generateUploadWidgetResultCallback ([#165](https://github.com/cloudinary-community/cloudinary-util/issues/165)) ([4e3adc4](https://github.com/cloudinary-community/cloudinary-util/commit/4e3adc4317022ceb8031cda5372b5419ba8bafe7)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
+- getUploadWidgetOptions, generateSignatureCallback, generateUploadWidgetResultCallback ([#165](https://github.com/cloudinary-community/cloudinary-util/issues/165)) ([4e3adc4](https://github.com/cloudinary-community/cloudinary-util/commit/4e3adc4317022ceb8031cda5372b5419ba8bafe7)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
 
 # [@cloudinary-util/util-v3.2.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.1.0...@cloudinary-util/util-v3.2.0-beta.1) (2024-08-02)
 
-
 ### Features
 
-* getUploadWidgetOptions, generateSignatureCallback, generateUploadWidgetResultCallback ([#165](https://github.com/cloudinary-community/cloudinary-util/issues/165)) ([4e3adc4](https://github.com/cloudinary-community/cloudinary-util/commit/4e3adc4317022ceb8031cda5372b5419ba8bafe7)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
+- getUploadWidgetOptions, generateSignatureCallback, generateUploadWidgetResultCallback ([#165](https://github.com/cloudinary-community/cloudinary-util/issues/165)) ([4e3adc4](https://github.com/cloudinary-community/cloudinary-util/commit/4e3adc4317022ceb8031cda5372b5419ba8bafe7)), closes [#164](https://github.com/cloudinary-community/cloudinary-util/issues/164)
 
 # [@cloudinary-util/util-v3.1.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.0.2...@cloudinary-util/util-v3.1.0-beta.1) (2024-07-09)
 
-
 ### Features
 
-* Improve plugin types, modernize monorepo structure ([#161](https://github.com/cloudinary-community/cloudinary-util/issues/161)) ([8ad6066](https://github.com/cloudinary-community/cloudinary-util/commit/8ad60661d4b3c78c08e9dd1939171a689eeb7b08))
+- Improve plugin types, modernize monorepo structure ([#161](https://github.com/cloudinary-community/cloudinary-util/issues/161)) ([8ad6066](https://github.com/cloudinary-community/cloudinary-util/commit/8ad60661d4b3c78c08e9dd1939171a689eeb7b08))
 
 # [@cloudinary-util/util-v3.0.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v3.0.1...@cloudinary-util/util-v3.0.2) (2024-05-24)
 

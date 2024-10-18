@@ -1,22 +1,20 @@
-import { z } from "zod";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
-export const versionProps = {
-  version: z
-    .union([z.number(), z.string()])
-    .describe(
-      JSON.stringify({
-        text: "Custom version number to apply to asset URL.",
-        url: "https://cloudinary.com/documentation/advanced_url_delivery_options#asset_versions",
-      })
-    )
-    .optional(),
-};
+export declare namespace VersionPlugin {
+  export interface Options {
+    /**
+     * @description Custom version number to apply to asset URL.
+     * @url https://cloudinary.com/documentation/advanced_url_delivery_options#asset_versions
+     */
+    version?: number | string;
+  }
+}
 
-export const versionPlugin = {
-  props: versionProps,
-  assetTypes: ["image", "images", "video", "videos"],
-  plugin: ({ cldAsset, options }) => {
+export const VersionPlugin = plugin({
+  name: "Version",
+  supports: "all",
+  inferOwnOptions: {} as VersionPlugin.Options,
+  apply: (cldAsset, options) => {
     const { version } = options;
 
     if (typeof version === "string" || typeof version === "number") {
@@ -27,4 +25,4 @@ export const versionPlugin = {
 
     return {};
   },
-} satisfies TransformationPlugin;
+});

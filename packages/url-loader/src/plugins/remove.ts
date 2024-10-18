@@ -1,38 +1,30 @@
-import { z } from "zod";
+import type { ListablePrompts } from "../constants/parameters.js";
+import { plugin } from "../lib/plugin.js";
 import { promptArrayToString } from "../lib/transformations.js";
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { isArray } from "../lib/utils.js";
 
-const imageOptionsRemovePromptSchema = z.union([
-  z.string(),
-  z.array(z.string()),
-]);
+export declare namespace RemovePlugin {
+  export interface Options {
+    /**
+     * @description Applies zooming and/or panning to an image, resulting in a video or animated image.
+     * @url https://cloudinary.com/documentation/transformation_reference#e_zoompan
+     */
+    remove?: ListablePrompts | NestedOptions;
+  }
 
-const imageOptionsRemoveSchema = z.object({
-  prompt: imageOptionsRemovePromptSchema.optional(),
-  region: z
-    .union([z.array(z.number()), z.array(z.array(z.number()))])
-    .optional(),
-  multiple: z.boolean().optional(),
-  removeShadow: z.boolean().optional(),
-});
+  export interface NestedOptions {
+    prompt?: ListablePrompts;
+    region?: number[] | number[][];
+    multiple?: boolean;
+    removeShadow?: boolean;
+  }
+}
 
-export const removeProps = {
-  remove: z
-    .union([imageOptionsRemovePromptSchema, imageOptionsRemoveSchema])
-    .describe(
-      JSON.stringify({
-        text: "Applies zooming and/or panning to an image, resulting in a video or animated image.",
-        url: "https://cloudinary.com/documentation/transformation_reference#e_zoompan",
-      })
-    )
-    .optional(),
-};
-
-export const removePlugin = {
-  props: removeProps,
-  assetTypes: ["image", "images"],
-  plugin: ({ cldAsset, options }) => {
+export const RemovePlugin = plugin({
+  name: "Remove",
+  supports: "image",
+  inferOwnOptions: {} as RemovePlugin.Options,
+  apply: (cldAsset, options) => {
     const { remove } = options;
 
     const removeOptions: Record<string, string | undefined> = {
@@ -44,12 +36,12 @@ export const removePlugin = {
 
     if (typeof remove === "string") {
       removeOptions.prompt = remove;
-    } else if (Array.isArray(remove)) {
+    } else if (isArray(remove)) {
       removeOptions.prompt = promptArrayToString(remove);
     } else if (typeof remove === "object") {
       const hasPrompt =
-        typeof remove.prompt === "string" || Array.isArray(remove.prompt);
-      const hasRegion = Array.isArray(remove.region);
+        typeof remove.prompt === "string" || isArray(remove.prompt);
+      const hasRegion = isArray(remove.region);
 
       if (hasPrompt && hasRegion) {
         throw new Error(
@@ -61,13 +53,13 @@ export const removePlugin = {
 
       if (typeof remove.prompt === "string") {
         removeOptions.prompt = remove.prompt;
-      } else if (Array.isArray(remove.prompt)) {
+      } else if (isArray(remove.prompt)) {
         removeOptions.prompt = promptArrayToString(remove.prompt);
       }
 
       // Region can be an array of numbers, or an array with 1+ arrays of numbers
 
-      if (Array.isArray(remove.region)) {
+      if (isArray(remove.region)) {
         removeOptions.region = regionArrayToString(remove.region);
       }
 
@@ -91,7 +83,7 @@ export const removePlugin = {
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});
 
 /**
  * regionArrayToString
@@ -109,7 +101,7 @@ function regionArrayToString(
 
   const regionString = regionArray
     .map((region, index) => {
-      if (Array.isArray(region)) {
+      if (isArray(region)) {
         return regionArrayToString(region);
       }
 

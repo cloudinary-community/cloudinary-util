@@ -1,33 +1,31 @@
-import { z } from "zod";
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
-export const sanitizeProps = {
-  sanitize: z
-    .boolean()
-    .describe(
-      JSON.stringify({
-        text: "Runs a sanitizer on SVG images.",
-        url: "https://cloudinary.com/documentation/transformation_reference#fl_sanitize",
-      })
-    )
-    .optional(),
-};
+export declare namespace SanitizePlugin {
+  export interface Options {
+    /**
+     * @description Runs a sanitizer on SVG images.
+     * @url https://cloudinary.com/documentation/transformation_reference#fl_sanitize
+     */
+    sanitize?: boolean;
+  }
+}
 
-export const sanitizePlugin = {
-  props: sanitizeProps,
-  assetTypes: ["image", "images"],
-  plugin: ({ cldAsset, options }) => {
+export const SanitizePlugin = plugin({
+  name: "Sanitize",
+  supports: "image",
+  inferOwnOptions: {} as SanitizePlugin.Options,
+  apply: (cldAsset, options) => {
     const { sanitize = true } = options;
 
     const shouldApplySanitizer: boolean =
       sanitize &&
-      (options.format === "svg" || cldAsset.publicID.endsWith(".svg"));
+      (options.format === "svg" ||
+        (cldAsset as {} as { publicID: string }).publicID.endsWith(".svg"));
 
     if (shouldApplySanitizer) {
-      cldAsset.effect("fl_sanitize");
+      cldAsset.addTransformation("fl_sanitize");
     }
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});

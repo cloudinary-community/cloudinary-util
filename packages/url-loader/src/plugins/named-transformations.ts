@@ -1,38 +1,28 @@
-import { z } from "zod";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
+import { isArray } from "../lib/utils.js";
 
-const NamedTransformationSchema = z.string();
-type NamedTransformation = z.infer<typeof NamedTransformationSchema>;
+export declare namespace NamedTransformationsPlugin {
+  export interface Options {
+    /**
+     * @description Named transformations to apply to asset.
+     * @url https://cloudinary.com/documentation/image_transformations#named_transformations
+     */
+    namedTransformations?: string | ReadonlyArray<string>;
+    /**
+     * @deprecated use {@link `namedTransformations`} instead
+     * @description: Deprecated: use namedTransformations instead
+     * @url https://cloudinary.com/documentation/image_transformations#named_transformations
+     */
+    transformations?: string | ReadonlyArray<string>;
+  }
+}
 
-export const namedTransformationsProps = {
-  namedTransformations: z
-    .union([NamedTransformationSchema, z.array(NamedTransformationSchema)])
-    .describe(
-      JSON.stringify({
-        text: "Named transformations to apply to asset.",
-        url: "https://cloudinary.com/documentation/image_transformations#named_transformations",
-      })
-    )
-    .optional(),
-  /**
-   * @deprecated use {@link `namedTransformations`} instead
-   */
-  transformations: z
-    .union([NamedTransformationSchema, z.array(NamedTransformationSchema)])
-    .describe(
-      JSON.stringify({
-        text: "Deprecated: use namedTransformations instead",
-        url: "https://cloudinary.com/documentation/image_transformations#named_transformations",
-      })
-    )
-    .optional(),
-};
-
-export const namedTransformationsPlugin = {
-  props: namedTransformationsProps,
+export const NamedTransformationsPlugin = plugin({
+  name: "NamedTransformations",
   strict: true,
-  assetTypes: ["image", "images", "video", "videos"],
-  plugin: ({ cldAsset, options }) => {
+  supports: "all",
+  inferOwnOptions: {} as NamedTransformationsPlugin.Options,
+  apply: (cldAsset, options) => {
     const { transformations, namedTransformations } = options;
 
     if (transformations && process.env.NODE_ENVIRONMENT === "development") {
@@ -43,14 +33,14 @@ export const namedTransformationsPlugin = {
 
     let _namedTransformations = namedTransformations || transformations || [];
 
-    if (!Array.isArray(_namedTransformations)) {
+    if (!isArray(_namedTransformations)) {
       _namedTransformations = [_namedTransformations];
     }
 
-    _namedTransformations.forEach((transformation: NamedTransformation) => {
+    _namedTransformations.forEach((transformation: string) => {
       cldAsset.addTransformation(`t_${transformation}`);
     });
 
     return {};
   },
-} satisfies TransformationPlugin;
+});
