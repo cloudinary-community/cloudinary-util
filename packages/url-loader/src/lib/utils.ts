@@ -1,8 +1,14 @@
+/** Safer alternative to Array.isArray that...
+ * - doesn't narrow to any[]
+ * - works with readonly arrays
+ */
 export const isArray: (data: unknown) => data is ReadonlyArray<unknown> =
   Array.isArray;
 
-// extracts entries mimicking Object.entries, accounting for whether the
-// object is an array
+/**
+ * extracts entries mimicking Object.entries, accounting for whether the
+ * object is an array
+ */
 export type entryOf<o> = {
   [k in keyof o]-?: [k, o[k] & ({} | null)];
 }[o extends ReadonlyArray<unknown> ? keyof o & number : keyof o] &
