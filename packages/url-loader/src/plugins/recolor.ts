@@ -1,36 +1,33 @@
-import { z } from "zod";
+import type { ListablePrompts } from "../constants/parameters.js";
+import { plugin } from "../lib/plugin.js";
 import { promptArrayToString } from "../lib/transformations.js";
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { isArray } from "../lib/utils.js";
 
-const imageOptionsRecolorPromptSchema = z.union([
-  z.string(),
-  z.array(z.string()),
-]);
+export declare namespace RecolorPlugin {
+  export interface Options {
+    /**
+     * @description Uses generative AI to recolor parts of your image, maintaining the relative shading.
+     * @url https://cloudinary.com/documentation/transformation_reference#e_gen_recolor
+     */
+    recolor?:
+      | string
+      | ReadonlyArray<string>
+      | readonly [ReadonlyArray<string>, ...Array<string>]
+      | NestedOptions;
+  }
 
-const imageOptionsRecolorSchema = z.object({
-  prompt: imageOptionsRecolorPromptSchema.optional(),
-  to: z.string().optional(),
-  multiple: z.boolean().optional(),
-});
+  export interface NestedOptions {
+    prompt?: ListablePrompts;
+    to?: string;
+    multiple?: boolean;
+  }
+}
 
-export const recolorProps = {
-  recolor: z
-    .union([imageOptionsRecolorPromptSchema, imageOptionsRecolorSchema])
-    .describe(
-      JSON.stringify({
-        text: "Uses generative AI to recolor parts of your image, maintaining the relative shading.",
-        url: "https://cloudinary.com/documentation/transformation_reference#e_gen_recolor",
-      })
-    )
-    .optional(),
-};
-
-export const recolorPlugin = {
-  props: recolorProps,
-  assetTypes: ["image", "images"],
-  plugin: (settings) => {
-    const { cldAsset, options } = settings;
+export const RecolorPlugin = plugin({
+  name: "Recolor",
+  supports: "image",
+  inferOwnOptions: {} as RecolorPlugin.Options,
+  apply: (cldAsset, options) => {
     const { recolor } = options;
 
     const recolorOptions: Record<string, string | undefined> = {
@@ -39,8 +36,8 @@ export const recolorPlugin = {
       multiple: undefined,
     };
 
-    if (Array.isArray(recolor)) {
-      if (Array.isArray(recolor[0])) {
+    if (isArray(recolor)) {
+      if (isArray(recolor[0])) {
         recolorOptions.prompt = promptArrayToString(recolor[0]);
       } else {
         recolorOptions.prompt = recolor[0];
@@ -54,7 +51,7 @@ export const recolorPlugin = {
 
       if (typeof recolor.prompt === "string") {
         recolorOptions.prompt = recolor.prompt;
-      } else if (Array.isArray(recolor.prompt)) {
+      } else if (isArray(recolor.prompt)) {
         recolorOptions.prompt = promptArrayToString(recolor.prompt);
       }
 
@@ -78,4 +75,4 @@ export const recolorPlugin = {
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});

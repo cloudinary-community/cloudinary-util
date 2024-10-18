@@ -38,5 +38,6 @@ module.exports = defineConfig({
     "@typescript-eslint/ban-types": "off",
     "@typescript-eslint/no-explicit-any": "off",
     "@typescript-eslint/no-non-null-assertion": "off",
+    "@typescript-eslint/no-namespace": ["warn", { allowDeclarations: true }],
   },
 });

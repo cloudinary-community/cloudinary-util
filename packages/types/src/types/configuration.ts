@@ -23,14 +23,14 @@ export interface CloudinaryAssetConfigurationUrl {
   useRootPath?: boolean;
   forceVersion?: boolean;
   queryParams?: Record<string, string | number | boolean> | string;
-};
+}
 
 export interface CloudinaryAssetConfigurationCloud {
   cloudName?: string;
   apiKey?: string;
   apiSecret?: string;
   authToken?: CloudinaryAssetConfigurationAuthToken;
-};
+}
 
 export interface CloudinaryAssetConfiguration {
   cloud?: CloudinaryAssetConfigurationCloud;

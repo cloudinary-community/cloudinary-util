@@ -1,4 +1,4 @@
-import type { QualiferConverters } from "../types/qualifiers.js";
+import type { QualifierConverters } from "../types/qualifiers.js";
 
 /**
  * constructTransformation
@@ -6,11 +6,11 @@ import type { QualiferConverters } from "../types/qualifiers.js";
  * @param {object} settings: Configuration including prefix, qualifier, and value
  */
 
-interface ConstructTransformationSettings {
+export interface ConstructTransformationSettings {
   prefix?: string;
   qualifier?: string | boolean;
   value?: string | number | boolean;
-  converters?: Array<QualiferConverters>;
+  converters?: ReadonlyArray<QualifierConverters>;
 }
 
 export function constructTransformation({
@@ -52,16 +52,6 @@ export function constructTransformation({
  * promptArrayToString
  */
 
-export function promptArrayToString(promptArray: Array<string>) {
+export function promptArrayToString(promptArray: ReadonlyArray<string>) {
   return `(${promptArray.join(";")})`;
-}
-
-/**
- * normalizeNumberParameter
- * @TODO: move into util
- */
-
-export function normalizeNumberParameter(param: number | string | undefined) {
-  if (typeof param !== "string") return param;
-  return parseInt(param);
 }

@@ -1,31 +1,27 @@
-import { z } from "zod";
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
+import { isArray } from "../lib/utils.js";
 
-export const replaceProps = {
-  replace: z
-    .union([
-      z.array(z.string()),
-      z.array(z.boolean()),
-      z.object({
-        to: z.string(),
-        from: z.string(),
-        preserveGeometry: z.boolean().optional(),
-      }),
-    ])
-    .describe(
-      JSON.stringify({
-        text: "Uses generative AI to replace parts of your image with something else.",
-        url: "https://cloudinary.com/documentation/transformation_reference#e_gen_replace",
-      })
-    )
-    .optional(),
-};
+export declare namespace ReplacePlugin {
+  export interface Options {
+    /**
+     * @description Uses generative AI to replace parts of your image with something else.
+     * @url https://cloudinary.com/documentation/transformation_reference#e_gen_replace
+     */
+    replace?: NestedOptions | ReadonlyArray<string> | ReadonlyArray<boolean>;
+  }
 
-export const replacePlugin = {
-  props: replaceProps,
-  assetTypes: ["image", "images"],
-  plugin: ({ cldAsset, options }) => {
+  export interface NestedOptions {
+    from: string;
+    to: string;
+    preserveGeometry?: boolean;
+  }
+}
+
+export const ReplacePlugin = plugin({
+  name: "Replace",
+  supports: "image",
+  inferOwnOptions: {} as ReplacePlugin.Options,
+  apply: (cldAsset, options) => {
     const { replace = null } = options;
 
     if (replace) {
@@ -33,7 +29,7 @@ export const replacePlugin = {
         to: string,
         preserveGeometry: boolean = false;
 
-      if (Array.isArray(replace)) {
+      if (isArray(replace)) {
         from = replace[0] as string;
         to = replace[1] as string;
         preserveGeometry = (replace[2] as boolean) || false;
@@ -50,9 +46,9 @@ export const replacePlugin = {
         properties.push(`preserve-geometry_${preserveGeometry}`);
       }
 
-      cldAsset.effect(properties.join(";"));
+      cldAsset.addTransformation(properties.join(";"));
     }
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});
