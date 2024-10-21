@@ -45,7 +45,33 @@ export const assetOptionsSchema = z.object({
     )
     .optional(),
   format: z
-    .string()
+    .enum([
+      "auto",
+      "gif",
+      "png",
+      "jpg",
+      "bmp",
+      "ico",
+      "pdf",
+      "tiff",
+      "eps",
+      "jpc",
+      "jp2",
+      "psd",
+      "webp",
+      "zip",
+      "svg",
+      "webm",
+      "wdp",
+      "hpx",
+      "djvu",
+      "ai",
+      "flif",
+      "bpg",
+      "miff",
+      "tga",
+      "heic",
+    ])
     .default("auto")
     .describe(
       JSON.stringify({
