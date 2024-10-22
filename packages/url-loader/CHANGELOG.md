@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v5.10.6](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.5...@cloudinary-util/url-loader-v5.10.6) (2024-10-22)
+
+
+### Bug Fixes
+
+* Add enum for format parameter ([#220](https://github.com/cloudinary-community/cloudinary-util/issues/220)) ([0ecd331](https://github.com/cloudinary-community/cloudinary-util/commit/0ecd331e1bfe9244bedc82fc8d61e228bdc00d4c)), closes [#142](https://github.com/cloudinary-community/cloudinary-util/issues/142)
+
 # [@cloudinary-util/url-loader-v5.10.5](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.4...@cloudinary-util/url-loader-v5.10.5) (2024-10-07)
 
 
