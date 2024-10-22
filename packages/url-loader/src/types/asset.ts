@@ -45,7 +45,36 @@ export const assetOptionsSchema = z.object({
     )
     .optional(),
   format: z
-    .string()
+    .enum([
+      "auto",
+      "auto:image",
+      "auto:animated",
+      "gif",
+      "png",
+      "jpg",
+      "bmp",
+      "ico",
+      "pdf",
+      "tiff",
+      "eps",
+      "jpc",
+      "jp2",
+      "psd",
+      "webp",
+      "zip",
+      "svg",
+      "webm",
+      "wdp",
+      "hpx",
+      "djvu",
+      "ai",
+      "flif",
+      "bpg",
+      "miff",
+      "tga",
+      "heic",
+      "default" // library specific feature to turn off automatic optimization
+    ])
     .default("auto")
     .describe(
       JSON.stringify({
