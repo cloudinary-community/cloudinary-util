@@ -47,6 +47,8 @@ export const assetOptionsSchema = z.object({
   format: z
     .enum([
       "auto",
+      "auto:image",
+      "auto:animated",
       "gif",
       "png",
       "jpg",
@@ -71,6 +73,7 @@ export const assetOptionsSchema = z.object({
       "miff",
       "tga",
       "heic",
+      "default" // library specific feature to turn off automatic optimization
     ])
     .default("auto")
     .describe(
