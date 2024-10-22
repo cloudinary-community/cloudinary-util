@@ -13,6 +13,8 @@ import type { UnderlaysPlugin } from "../plugins/underlays.js";
 import type { VersionPlugin } from "../plugins/version.js";
 import type { ZoompanPlugin } from "../plugins/zoompan.js";
 
+import type { Format } from '../constants/parameters.js';
+
 export type SupportedAssetTypeInput = SupportedAssetType | "videos" | "images";
 
 export interface BaseAssetOptions<
@@ -41,7 +43,7 @@ export interface BaseAssetOptions<
    * @description Converts (if necessary) and delivers an asset in the specified format.
    * @url https://cloudinary.com/documentation/transformation_reference#f_format
    */
-  format?: string;
+  format?: Format;
   /**
    * @description Height of the given asset.
    */

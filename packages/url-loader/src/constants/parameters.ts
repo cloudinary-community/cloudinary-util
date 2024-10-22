@@ -107,7 +107,36 @@ export type FlagRecord = Partial<Record<Flag, StringifiablePrimative>>;
  * @url https://cloudinary.com/documentation/transformation_reference#f_format
  * @qualifier f
  */
-export type Format = string;
+export type Format =
+  | "auto"
+  | "auto:image"
+  | "auto:animated"
+  | "gif"
+  | "png"
+  | "jpg"
+  | "bmp"
+  | "ico"
+  | "pdf"
+  | "tiff"
+  | "eps"
+  | "jpc"
+  | "jp2"
+  | "psd"
+  | "webp"
+  | "zip"
+  | "svg"
+  | "webm"
+  | "wdp"
+  | "hpx"
+  | "djvu"
+  | "ai"
+  | "flif"
+  | "bpg"
+  | "miff"
+  | "tga"
+  | "heic"
+  | "default" // library specific feature to turn off automatic optimization
+  | (string & {});
 
 /**
  *  @description Determines which part of an asset to focus on. Note: Default of auto is applied for supported crop modes only.
