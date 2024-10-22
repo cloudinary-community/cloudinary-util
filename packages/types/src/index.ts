@@ -37,6 +37,8 @@ export type {
   CloudinaryVideoPlayerTextTracksTrackOptionsTheme,
 } from "./types/cloudinary-video-player.js";
 
+export type { CloudinaryProductGallery } from "./types/cloudinary-product-gallery.js";
+
 export type {
   CloudinaryAssetConfiguration,
   CloudinaryAssetConfigurationAuthToken,
