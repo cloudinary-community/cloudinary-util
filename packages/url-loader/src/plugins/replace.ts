@@ -21,6 +21,9 @@ export const ReplacePlugin = plugin({
   name: "Replace",
   supports: "image",
   inferOwnOptions: {} as ReplacePlugin.Options,
+  props: {
+    replace: true,
+  },
   apply: (cldAsset, options) => {
     const { replace = null } = options;
 

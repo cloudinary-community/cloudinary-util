@@ -14,6 +14,9 @@ export const VersionPlugin = plugin({
   name: "Version",
   supports: "all",
   inferOwnOptions: {} as VersionPlugin.Options,
+  props: {
+    version: true,
+  },
   apply: (cldAsset, options) => {
     const { version } = options;
 

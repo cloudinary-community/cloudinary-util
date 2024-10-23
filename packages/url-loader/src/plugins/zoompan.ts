@@ -21,6 +21,9 @@ export const ZoompanPlugin = plugin({
   name: "Zoompan",
   supports: "image",
   inferOwnOptions: {} as ZoompanPlugin.Options,
+  props: {
+    zoompan: true,
+  },
   apply: (cldAsset, options) => {
     const { zoompan = false } = options;
 

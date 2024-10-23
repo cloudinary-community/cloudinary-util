@@ -1,6 +1,8 @@
 // URL Construction & Plugins
 
 export {
+  cloudinaryPluginKeys,
+  cloudinaryPluginProps,
   constructCloudinaryUrl,
   transformationPlugins,
   type AnalyticsOptions,

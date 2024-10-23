@@ -14,6 +14,9 @@ export const SanitizePlugin = plugin({
   name: "Sanitize",
   supports: "image",
   inferOwnOptions: {} as SanitizePlugin.Options,
+  props: {
+    sanitize: true,
+  },
   apply: (cldAsset, options) => {
     const { sanitize = true } = options;
 

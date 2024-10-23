@@ -14,6 +14,9 @@ export const EnhancePlugin = plugin({
   name: "Enhance",
   supports: "image",
   inferOwnOptions: {} as EnhancePlugin.Options,
+  props: {
+    enhance: true,
+  },
   apply: (cldAsset, options) => {
     if (options.enhance) {
       cldAsset.addTransformation("e_enhance");

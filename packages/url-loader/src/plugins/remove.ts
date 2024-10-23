@@ -24,6 +24,9 @@ export const RemovePlugin = plugin({
   name: "Remove",
   supports: "image",
   inferOwnOptions: {} as RemovePlugin.Options,
+  props: {
+    remove: true,
+  },
   apply: (cldAsset, options) => {
     const { remove } = options;
 

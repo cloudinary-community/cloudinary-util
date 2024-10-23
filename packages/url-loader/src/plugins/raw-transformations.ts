@@ -15,6 +15,9 @@ export const RawTransformationsPlugin = plugin({
   name: "RawTransformations",
   supports: "all",
   inferOwnOptions: {} as RawTransformationsPlugin.Options,
+  props: {
+    rawTransformations: true,
+  },
   apply: (cldAsset, options) => {
     let { rawTransformations = [] } = options;
 

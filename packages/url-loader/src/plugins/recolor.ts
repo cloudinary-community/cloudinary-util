@@ -27,6 +27,9 @@ export const RecolorPlugin = plugin({
   name: "Recolor",
   supports: "image",
   inferOwnOptions: {} as RecolorPlugin.Options,
+  props: {
+    recolor: true,
+  },
   apply: (cldAsset, options) => {
     const { recolor } = options;
 

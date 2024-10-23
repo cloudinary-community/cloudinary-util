@@ -19,6 +19,9 @@ export const ReplaceBackgroundPlugin = plugin({
   name: "ReplaceBackground",
   supports: "image",
   inferOwnOptions: {} as ReplaceBackgroundPlugin.Options,
+  props: {
+    replaceBackground: true,
+  },
   apply: (cldAsset, options) => {
     const { replaceBackground } = options;
 

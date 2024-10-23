@@ -22,6 +22,10 @@ export const NamedTransformationsPlugin = plugin({
   strict: true,
   supports: "all",
   inferOwnOptions: {} as NamedTransformationsPlugin.Options,
+  props: {
+    namedTransformations: true,
+    transformations: true,
+  },
   apply: (cldAsset, options) => {
     const { transformations, namedTransformations } = options;
 
