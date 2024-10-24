@@ -14,6 +14,9 @@ export const SeoPlugin = plugin({
   name: "Seo",
   supports: "all",
   inferOwnOptions: {} as SeoPlugin.Options,
+  props: {
+    seoSuffix: true,
+  },
   apply: (cldAsset, options) => {
     const { seoSuffix } = options;
 

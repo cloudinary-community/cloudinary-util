@@ -4,7 +4,9 @@ import type { PluginResults } from "../types/plugins.js";
 import type { VideoOptions } from "../types/video.js";
 import type { CldAsset } from "./cloudinary.js";
 
-interface AllOptions extends AssetOptions, ImageOptions, VideoOptions {}
+export interface AllOptions extends AssetOptions, ImageOptions, VideoOptions {}
+
+export type CloudinaryKey = keyof AllOptions & {};
 
 export type SupportedAssetType = "image" | "video" | "all";
 
@@ -24,6 +26,7 @@ export interface PluginDefinition<
   supports: assetType;
   apply: PluginApplication<assetType, when>;
   inferOwnOptions: options;
+  props: Record<keyof options, true>;
   applyWhen?: when | undefined;
   strict?: boolean;
 }
@@ -38,6 +41,7 @@ export interface TransformationPlugin<
   supports: assetType;
   apply: PluginApplication<assetType, when>;
   inferOwnOptions: options;
+  props: Record<keyof options, true>;
   applyWhen?: when | undefined;
   strict?: boolean;
 }

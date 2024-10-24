@@ -14,6 +14,9 @@ export const RestorePlugin = plugin({
   name: "Restore",
   supports: "image",
   inferOwnOptions: {} as RestorePlugin.Options,
+  props: {
+    restore: true,
+  },
   apply: (cldAsset, options) => {
     const { restore = false } = options;
 

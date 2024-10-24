@@ -46,6 +46,10 @@ export const UnderlaysPlugin = plugin({
   name: "Underlays",
   supports: "all",
   inferOwnOptions: {} as UnderlaysPlugin.Options,
+  props: {
+    underlay: true,
+    underlays: true,
+  },
   apply: (cldAsset, options) => {
     const { underlay, underlays = [] } = options;
 

@@ -14,6 +14,9 @@ export const RemoveBackgroundPlugin = plugin({
   name: "RemoveBackground",
   supports: "image",
   inferOwnOptions: {} as RemoveBackgroundPlugin.Options,
+  props: {
+    removeBackground: true,
+  },
   apply: (cldAsset, options) => {
     if (options.removeBackground) {
       cldAsset.addTransformation("e_background_removal");

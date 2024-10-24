@@ -44,6 +44,12 @@ export const CroppingPlugin = plugin({
   name: "Cropping",
   supports: "all",
   inferOwnOptions: {} as CroppingPlugin.Options,
+  props: {
+    aspectRatio: true,
+    crop: true,
+    gravity: true,
+    zoom: true,
+  },
   // crop is applied even if the crop key is undefined
   apply: (asset, opts) => {
     let crops: Array<CroppingPlugin.NestedOptions> = [];

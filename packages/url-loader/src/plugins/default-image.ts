@@ -15,6 +15,7 @@ export const DefaultImagePlugin = plugin({
   name: "DefaultImage",
   supports: "image",
   inferOwnOptions: {} as DefaultImagePlugin.Options,
+  props: { defaultImage: true },
   apply: (asset, opts) => {
     const { defaultImage } = opts;
 

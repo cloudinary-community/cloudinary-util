@@ -14,6 +14,9 @@ export const AbrPlugin = plugin({
   name: "Abr",
   supports: "video",
   inferOwnOptions: {} as AbrPlugin.Options,
+  props: {
+    streamingProfile: true,
+  },
   apply: (asset, opts) => {
     if (typeof opts.streamingProfile === "string") {
       asset.addTransformation(`sp_${opts.streamingProfile}`);

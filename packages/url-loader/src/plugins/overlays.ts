@@ -73,6 +73,10 @@ export const OverlaysPlugin = plugin({
   name: "Overlays",
   supports: "all",
   inferOwnOptions: {} as OverlaysPlugin.Options,
+  props: {
+    overlays: true,
+    text: true,
+  },
   apply: (cldAsset, options) => {
     const { text, overlays = [] } = options;
 

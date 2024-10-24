@@ -38,14 +38,25 @@ import type {
 import type { ImageOptions } from "../types/image.js";
 import type { PluginOptions, PluginResults } from "../types/plugins.js";
 import type { VideoOptions } from "../types/video.js";
-import type { OptionsFor, TransformationPlugin } from "./plugin.js";
+import type {
+  CloudinaryKey,
+  OptionsFor,
+  TransformationPlugin,
+} from "./plugin.js";
 import { entriesOf, throwError } from "./utils.js";
+
+export const cloudinaryPluginProps = {} as Record<CloudinaryKey, true>;
 
 const validatePlugins = <const plugins extends readonly TransformationPlugin[]>(
   ...plugins: plugins extends validatePlugins<plugins>
     ? plugins
     : validatePlugins<plugins>
-) => plugins;
+) => {
+  plugins.forEach((plugin) => {
+    Object.assign(cloudinaryPluginProps, plugin.props);
+  });
+  return plugins;
+};
 
 export const transformationPlugins = validatePlugins(
   // Some features *must* be the first transformation applied
@@ -86,6 +97,11 @@ export const transformationPlugins = validatePlugins(
   VersionPlugin,
   ZoompanPlugin
 );
+
+// important this comes after `validatePlugins` is called so we've collected the props
+export const cloudinaryPluginKeys: readonly CloudinaryKey[] = Object.keys(
+  cloudinaryPluginProps
+) as never;
 
 export interface AnalyticsOptions extends IAnalyticsOptions {}
 

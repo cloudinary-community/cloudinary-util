@@ -14,6 +14,9 @@ export const PreserveTransformationsPlugin = plugin({
   name: "PreserveTransformations",
   supports: "all",
   inferOwnOptions: {} as PreserveTransformationsPlugin.Options,
+  props: {
+    preserveTransformations: true,
+  },
   apply: (cldAsset, options) => {
     const { preserveTransformations = false } = options;
 
