@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v6.0.0-beta.3](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0-beta.2...@cloudinary-util/url-loader-v6.0.0-beta.3) (2024-10-24)
+
+
+### Features
+
+* enumerate plugin props ([#224](https://github.com/cloudinary-community/cloudinary-util/issues/224)) ([731d545](https://github.com/cloudinary-community/cloudinary-util/commit/731d54511741f9bb56fc6b1d6e978a8f21d88082))
+
 # [@cloudinary-util/url-loader-v6.0.0-beta.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0-beta.1...@cloudinary-util/url-loader-v6.0.0-beta.2) (2024-10-22)
 
 
