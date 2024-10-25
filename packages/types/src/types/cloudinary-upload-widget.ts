@@ -1,4 +1,4 @@
-import type { CloudinaryResource } from './resources.js';
+import type { CloudinaryResource } from "./resources.js";
 
 // Sourced from: https://cloudinary.com/documentation/upload_widget_reference
 
