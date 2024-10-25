@@ -14,6 +14,7 @@ export const AbrPlugin = plugin({
   name: "Abr",
   supports: "video",
   inferOwnOptions: {} as AbrPlugin.Options,
+  applyWhen: 'streamingProfile',
   props: {
     streamingProfile: true,
   },
