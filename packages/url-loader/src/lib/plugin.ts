@@ -18,59 +18,89 @@ export type AlwaysApply = () => true;
 
 export interface PluginDefinition<
   assetType extends SupportedAssetType,
-  when extends ApplyWhen,
   name extends string,
   options extends object,
+  alwaysApply extends boolean,
 > {
   name: name;
   supports: assetType;
-  apply: PluginApplication<assetType, when>;
+  apply: PluginApplicationDefinition<assetType, options, alwaysApply>;
   inferOwnOptions: options;
   props: Record<keyof options, true>;
-  applyWhen?: when | undefined;
+  alwaysApply?: alwaysApply;
   strict?: boolean;
 }
 
 export interface TransformationPlugin<
   assetType extends SupportedAssetType = SupportedAssetType,
-  when extends ApplyWhen = ApplyWhen,
   name extends string = string,
-  options extends object = object,
+  opts extends object = object,
+  alwaysApply extends boolean = boolean,
 > {
   name: name;
   supports: assetType;
-  apply: PluginApplication<assetType, when>;
-  inferOwnOptions: options;
-  props: Record<keyof options, true>;
-  applyWhen?: when | undefined;
+  apply: PluginApplication<assetType, opts, alwaysApply>;
+  inferOwnOptions: opts;
+  props: Record<keyof opts, true>;
+  alwaysApply: alwaysApply;
   strict?: boolean;
 }
 
-export type OptionsFor<
-  assetType extends SupportedAssetTypeInput,
-  when extends ApplyWhen = AlwaysApply,
-  options = assetType extends "all"
+export type OwnOptionsParam<
+  opts extends object,
+  alwaysApply extends boolean,
+> = opts &
+  // if there's only one owned key, we know it must be present if
+  // apply is being invoked, so require it so we don't have to recheck
+  // in the implementation unless alwaysApply is true
+  ([alwaysApply] extends [true]
+    ? {}
+    : { [k in singleKeyOf<opts>]: Exclude<opts[k], undefined> });
+
+export type CtxParam<assetType extends SupportedAssetTypeInput> =
+  assetType extends "all"
     ? AllOptions
     : assetType extends "video" | "videos"
       ? VideoOptions
-      : ImageOptions,
-> = [when] extends [keyof options]
-  ? // if the plugin applies based on a single key being defined, we know it will be
-    // present in the options passed to apply
-    options & { [k in when]: {} }
-  : options;
+      : ImageOptions;
+
+// extract the key if there is exactly one, otherwise never
+type singleKeyOf<opts> = {
+  [k in keyof opts]: keyof opts extends k ? k : never;
+}[keyof opts];
+
+export type PluginApplicationDefinition<
+  assetType extends SupportedAssetType,
+  opts extends object,
+  alwaysApply extends boolean,
+> = (
+  cldAsset: CldAsset,
+  /** Options owned by this plugin */
+  opts: OwnOptionsParam<opts, alwaysApply>,
+  ctx: CtxParam<assetType>,
+) => PluginResults;
 
 export type PluginApplication<
   assetType extends SupportedAssetType,
-  when extends ApplyWhen = AlwaysApply,
-> = (cldAsset: CldAsset, options: OptionsFor<assetType, when>) => PluginResults;
+  opts extends object,
+  alwaysApply extends boolean,
+> = (
+  cldAsset: CldAsset,
+  // externally, we want the wider assetType options as well
+  opts: OwnOptionsParam<opts, alwaysApply> & CtxParam<assetType>,
+) => PluginResults;
 
 export const plugin = <
   asset extends SupportedAssetType,
-  when extends ApplyWhen,
   name extends string,
-  options extends object,
+  opts extends object,
+  alwaysApply extends boolean,
 >(
-  def: PluginDefinition<asset, when, name, options>
-): TransformationPlugin<asset, when, name, options> =>
-  ({ strict: false, ...def }) as never;
+  def: PluginDefinition<asset, name, opts, alwaysApply>,
+): TransformationPlugin<asset, name, opts, alwaysApply> =>
+  ({
+    strict: false,
+    alwaysApply: false,
+    ...def,
+    apply: (cldAsset, ctx) => def.apply(cldAsset, ctx as never, ctx as never),
+  }) satisfies TransformationPlugin as never;

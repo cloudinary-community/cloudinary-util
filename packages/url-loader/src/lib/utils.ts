@@ -33,7 +33,7 @@ export const entriesOf: <o extends object>(o: o) => entryOf<o>[] =
  */
 export const throwError: (
   message: string,
-  ctor?: new (message: string) => Error
+  ctor?: new (message: string) => Error,
 ) => never = (message, ctor = Error) => {
   throw new ctor(message);
 };

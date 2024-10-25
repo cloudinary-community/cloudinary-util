@@ -13,7 +13,7 @@ import type { UnderlaysPlugin } from "../plugins/underlays.js";
 import type { VersionPlugin } from "../plugins/version.js";
 import type { ZoompanPlugin } from "../plugins/zoompan.js";
 
-import type { Format } from '../constants/parameters.js';
+import type { Format } from "../constants/parameters.js";
 
 export type SupportedAssetTypeInput = SupportedAssetType | "videos" | "images";
 

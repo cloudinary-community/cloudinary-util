@@ -1,36 +1,20 @@
-# [@cloudinary-util/url-loader-v6.0.0-beta.4](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0-beta.3...@cloudinary-util/url-loader-v6.0.0-beta.4) (2024-10-25)
-
-
-### Bug Fixes
-
-* adding applyWhen to streaming profile to prevent abr plugin from running ([ef7e57a](https://github.com/cloudinary-community/cloudinary-util/commit/ef7e57adc03afb0e08ebf2bb0053d34c12054523))
-* adding string and number back to replaceBackground ([672009a](https://github.com/cloudinary-community/cloudinary-util/commit/672009afb7797c540c0a6fdc31115f0c245ed8b2))
-
-# [@cloudinary-util/url-loader-v6.0.0-beta.3](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0-beta.2...@cloudinary-util/url-loader-v6.0.0-beta.3) (2024-10-24)
-
-
-### Features
-
-* enumerate plugin props ([#224](https://github.com/cloudinary-community/cloudinary-util/issues/224)) ([731d545](https://github.com/cloudinary-community/cloudinary-util/commit/731d54511741f9bb56fc6b1d6e978a8f21d88082))
-
 # [@cloudinary-util/url-loader-v6.0.0-beta.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0-beta.1...@cloudinary-util/url-loader-v6.0.0-beta.2) (2024-10-22)
 
-
 ### Bug Fixes
 
-* Add enum for format parameter ([#220](https://github.com/cloudinary-community/cloudinary-util/issues/220)) ([0ecd331](https://github.com/cloudinary-community/cloudinary-util/commit/0ecd331e1bfe9244bedc82fc8d61e228bdc00d4c)), closes [#142](https://github.com/cloudinary-community/cloudinary-util/issues/142)
+- Add enum for format parameter ([#220](https://github.com/cloudinary-community/cloudinary-util/issues/220)) ([0ecd331](https://github.com/cloudinary-community/cloudinary-util/commit/0ecd331e1bfe9244bedc82fc8d61e228bdc00d4c)), closes [#142](https://github.com/cloudinary-community/cloudinary-util/issues/142)
 
 # [@cloudinary-util/url-loader-v6.0.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.5...@cloudinary-util/url-loader-v6.0.0-beta.1) (2024-10-18)
 
 ### Features
 
-* migrate Zod to pure TS w/ JSDoc, improve type safety and simplify parsing ([#217](https://github.com/cloudinary-community/cloudinary-util/issues/217)) ([f605f26](https://github.com/cloudinary-community/cloudinary-util/commit/f605f26f9de1d111c26d65dd3b8955491b357481))
+- migrate Zod to pure TS w/ JSDoc, improve type safety and simplify parsing ([#217](https://github.com/cloudinary-community/cloudinary-util/issues/217)) ([f605f26](https://github.com/cloudinary-community/cloudinary-util/commit/f605f26f9de1d111c26d65dd3b8955491b357481))
 
 # [@cloudinary-util/url-loader-v5.10.6](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.5...@cloudinary-util/url-loader-v5.10.6) (2024-10-22)
 
 ### Bug Fixes
 
-* Add enum for format parameter ([#220](https://github.com/cloudinary-community/cloudinary-util/issues/220)) ([0ecd331](https://github.com/cloudinary-community/cloudinary-util/commit/0ecd331e1bfe9244bedc82fc8d61e228bdc00d4c)), closes [#142](https://github.com/cloudinary-community/cloudinary-util/issues/142)
+- Add enum for format parameter ([#220](https://github.com/cloudinary-community/cloudinary-util/issues/220)) ([0ecd331](https://github.com/cloudinary-community/cloudinary-util/commit/0ecd331e1bfe9244bedc82fc8d61e228bdc00d4c)), closes [#142](https://github.com/cloudinary-community/cloudinary-util/issues/142)
 
 # [@cloudinary-util/url-loader-v5.10.5](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.4...@cloudinary-util/url-loader-v5.10.5) (2024-10-07)
 

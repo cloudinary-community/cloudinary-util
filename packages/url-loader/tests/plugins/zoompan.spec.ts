@@ -26,18 +26,6 @@ describe("Plugins", () => {
       expect(cldImage.toURL()).toContain(`e_zoompan`);
     });
 
-    it("should not zoom pan", () => {
-      const cldImage = cld.image(TEST_PUBLIC_ID);
-
-      const options = {
-        src: TEST_PUBLIC_ID,
-      };
-
-      ZoompanPlugin.apply(cldImage, options);
-
-      expect(cldImage.toURL()).not.toContain(`e_zoompan`);
-    });
-
     it("should add loop effect ", () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 

@@ -31,16 +31,14 @@ export const FillBackgroundPlugin = plugin({
   props: {
     fillBackground: true,
   },
-  apply: (cldAsset, options) => {
-    const { fillBackground } = options;
+  apply: (cldAsset, opts, ctx) => {
+    const { fillBackground } = opts;
 
-    if (typeof fillBackground === "undefined") return {};
-
-    const width = normalizeNumberParameter(options.width);
-    const height = normalizeNumberParameter(options.height);
+    const width = normalizeNumberParameter(ctx.width);
+    const height = normalizeNumberParameter(ctx.height);
     const hasDefinedDimensions =
       typeof height === "number" && typeof width === "number";
-    let aspectRatio = options.aspectRatio;
+    let aspectRatio = ctx.aspectRatio;
 
     if (!aspectRatio && hasDefinedDimensions) {
       aspectRatio = `${width}:${height}`;
@@ -49,7 +47,7 @@ export const FillBackgroundPlugin = plugin({
     if (!aspectRatio) {
       if (process.env.NODE_ENV === "development") {
         console.warn(
-          `Could not determine aspect ratio based on available options to use fillBackground. Please specify width and height or an aspect ratio.`
+          `Could not determine aspect ratio based on available options to use fillBackground. Please specify width and height or an aspect ratio.`,
         );
       }
       return {};

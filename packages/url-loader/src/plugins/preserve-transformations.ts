@@ -17,8 +17,8 @@ export const PreserveTransformationsPlugin = plugin({
   props: {
     preserveTransformations: true,
   },
-  apply: (cldAsset, options) => {
-    const { preserveTransformations = false } = options;
+  apply: (cldAsset, opts, ctx) => {
+    const { preserveTransformations = false } = opts;
 
     // Try to preserve the original transformations from the Cloudinary URL passed in
     // to the function. This only works if the URL has a version number on it and otherwise
@@ -26,18 +26,18 @@ export const PreserveTransformationsPlugin = plugin({
 
     if (preserveTransformations) {
       try {
-        if (options.src === undefined) {
+        if (ctx.src === undefined) {
           throw new Error("options.src was undefined");
         }
-        const transformations = getTransformations(options.src).map((t) =>
-          t.join(",")
+        const transformations = getTransformations(ctx.src).map((t) =>
+          t.join(","),
         );
         transformations.flat().forEach((transformation) => {
           cldAsset.addTransformation(transformation);
         });
       } catch (e) {
         console.warn(
-          `Failed to preserve transformations: ${(e as Error).message}`
+          `Failed to preserve transformations: ${(e as Error).message}`,
         );
       }
     }

@@ -25,6 +25,8 @@ export declare namespace CroppingPlugin {
     crop?: CropMode | NestedOptions | ReadonlyArray<NestedOptions>;
     gravity?: Gravity;
     zoom?: Zoom;
+    height?: Height;
+    width?: Width;
   }
 
   export interface NestedOptions {
@@ -49,9 +51,11 @@ export const CroppingPlugin = plugin({
     crop: true,
     gravity: true,
     zoom: true,
+    height: true,
+    width: true,
   },
   // crop is applied even if the crop key is undefined
-  apply: (asset, opts) => {
+  apply: (asset, opts, ctx) => {
     let crops: Array<CroppingPlugin.NestedOptions> = [];
 
     // Normalize the data that we're working with for simpler processing
@@ -64,10 +68,10 @@ export const CroppingPlugin = plugin({
 
       crops.push({
         aspectRatio: opts.aspectRatio,
-        height: opts.height,
+        height: ctx.height,
         gravity: opts.gravity,
         type: opts.crop || DEFAULT_CROP,
-        width: opts.width,
+        width: ctx.width,
         zoom: opts.zoom,
       });
     } else if (typeof opts.crop === "object" && !isArray(opts.crop)) {
@@ -83,8 +87,8 @@ export const CroppingPlugin = plugin({
     if (crops.length === 1 && crops[0].source === true) {
       crops.push({
         aspectRatio: opts.aspectRatio,
-        width: opts.width,
-        height: opts.height,
+        width: ctx.width,
+        height: ctx.height,
         gravity: opts.gravity,
         type: DEFAULT_CROP,
         zoom: opts.zoom,
@@ -107,13 +111,13 @@ export const CroppingPlugin = plugin({
         typeof cropDimensions.width === "undefined" &&
         typeof crop.aspectRatio === "undefined"
       ) {
-        cropDimensions.width = opts.width;
+        cropDimensions.width = ctx.width;
 
         // We likely don't want to infer one dimension and not the other
         // so only infer the height if we're already inferring the width
 
         if (typeof cropDimensions.height === "undefined") {
-          cropDimensions.height = opts.height;
+          cropDimensions.height = ctx.height;
         }
       }
 
@@ -242,8 +246,8 @@ function collectTransformations(collectOptions: CroppingPlugin.NestedOptions) {
     if (gravity === "auto" && !cropsGravityAuto.includes(crop)) {
       console.warn(
         `Auto gravity can only be used with crop modes: ${cropsGravityAuto.join(
-          ", "
-        )}. Not applying gravity.`
+          ", ",
+        )}. Not applying gravity.`,
       );
     } else {
       transformations.push(`g_${gravity}`);
@@ -256,8 +260,8 @@ function collectTransformations(collectOptions: CroppingPlugin.NestedOptions) {
     if (zoom === "auto" && !cropsWithZoom.includes(crop)) {
       console.warn(
         `Zoom can only be used with crop modes: ${cropsWithZoom.join(
-          ", "
-        )}. Not applying zoom.`
+          ", ",
+        )}. Not applying zoom.`,
       );
     } else {
       transformations.push(`z_${zoom}`);

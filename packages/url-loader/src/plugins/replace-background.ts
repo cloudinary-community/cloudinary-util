@@ -6,7 +6,7 @@ export declare namespace ReplaceBackgroundPlugin {
      * @description Replaces the background of an image with an AI-generated background.
      * @url https://cloudinary.com/documentation/transformation_reference#e_gen_background_replace
      */
-    replaceBackground?: NestedOptions | string | number;
+    replaceBackground?: NestedOptions | string | boolean;
   }
 
   export interface NestedOptions {
@@ -22,11 +22,10 @@ export const ReplaceBackgroundPlugin = plugin({
   props: {
     replaceBackground: true,
   },
-  apply: (cldAsset, options) => {
-    const { replaceBackground } = options;
+  apply: (cldAsset, opts) => {
+    const { replaceBackground } = opts;
 
-    if (!replaceBackground || typeof replaceBackground === "undefined")
-      return {};
+    if (!replaceBackground) return {};
 
     const properties = [];
 

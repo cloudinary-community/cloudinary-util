@@ -1,16 +1,14 @@
 # [@cloudinary-util/types-v2.0.0-beta.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v2.0.0-beta.1...@cloudinary-util/types-v2.0.0-beta.2) (2024-10-22)
 
-
 ### Bug Fixes
 
-* Add TypeScript Types for Cloudinary Product Gallery Widget ([#218](https://github.com/cloudinary-community/cloudinary-util/issues/218)) ([05cd33e](https://github.com/cloudinary-community/cloudinary-util/commit/05cd33e3948d486ac87600b798e0006789e2d914)), closes [#199](https://github.com/cloudinary-community/cloudinary-util/issues/199)
+- Add TypeScript Types for Cloudinary Product Gallery Widget ([#218](https://github.com/cloudinary-community/cloudinary-util/issues/218)) ([05cd33e](https://github.com/cloudinary-community/cloudinary-util/commit/05cd33e3948d486ac87600b798e0006789e2d914)), closes [#199](https://github.com/cloudinary-community/cloudinary-util/issues/199)
 
 # [@cloudinary-util/types-v2.0.0-beta.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.11...@cloudinary-util/types-v2.0.0-beta.1) (2024-10-18)
 
-
 ### Features
 
-* migrate Zod to pure TS w/ JSDoc, improve type safety and simplify parsing ([#217](https://github.com/cloudinary-community/cloudinary-util/issues/217)) ([f605f26](https://github.com/cloudinary-community/cloudinary-util/commit/f605f26f9de1d111c26d65dd3b8955491b357481))
+- migrate Zod to pure TS w/ JSDoc, improve type safety and simplify parsing ([#217](https://github.com/cloudinary-community/cloudinary-util/issues/217)) ([f605f26](https://github.com/cloudinary-community/cloudinary-util/commit/f605f26f9de1d111c26d65dd3b8955491b357481))
 
 # [@cloudinary-util/types-v1.5.11](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.10...@cloudinary-util/types-v1.5.11) (2024-10-07)
 

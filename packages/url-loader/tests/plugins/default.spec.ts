@@ -32,7 +32,7 @@ describe("Default Image plugin", () => {
     };
     DefaultImagePlugin.apply(cldImage, options);
     expect(cldImage.toURL()).toContain(
-      `d_${options.defaultImage}/${TEST_PUBLIC_ID}`
+      `d_${options.defaultImage}/${TEST_PUBLIC_ID}`,
     );
   });
   it("should warn if no format", () => {
@@ -45,10 +45,10 @@ describe("Default Image plugin", () => {
     };
     DefaultImagePlugin.apply(cldImage, options);
     expect((console.warn as any).mock.calls[0][0]).toContain(
-      "The defaultImage prop may be missing"
+      "The defaultImage prop may be missing",
     );
     expect(cldImage.toURL()).toContain(
-      `d_${options.defaultImage}/${TEST_PUBLIC_ID}`
+      `d_${options.defaultImage}/${TEST_PUBLIC_ID}`,
     );
   });
 });

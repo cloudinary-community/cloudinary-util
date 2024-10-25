@@ -40,7 +40,7 @@ import type { PluginOptions, PluginResults } from "../types/plugins.js";
 import type { VideoOptions } from "../types/video.js";
 import type {
   CloudinaryKey,
-  OptionsFor,
+  CtxParam,
   TransformationPlugin,
 } from "./plugin.js";
 import { entriesOf, throwError } from "./utils.js";
@@ -95,12 +95,12 @@ export const transformationPlugins = validatePlugins(
   SeoPlugin,
   UnderlaysPlugin,
   VersionPlugin,
-  ZoompanPlugin
+  ZoompanPlugin,
 );
 
 // important this comes after `validatePlugins` is called so we've collected the props
 export const cloudinaryPluginKeys: readonly CloudinaryKey[] = Object.keys(
-  cloudinaryPluginProps
+  cloudinaryPluginProps,
 ) as never;
 
 export interface AnalyticsOptions extends IAnalyticsOptions {}
@@ -133,7 +133,7 @@ export interface ConstructUrlProps<
    */
   config?: ConfigOptions;
   // prioritize inferring assetType so available options can be derived from it
-  options: { assetType?: assetType } & OptionsFor<assetType>;
+  options: { assetType?: assetType } & CtxParam<assetType>;
 }
 
 export type CldAsset = CloudinaryImage | CloudinaryVideo;
@@ -157,7 +157,7 @@ export function constructCloudinaryUrl<
 
   if (typeof options?.src !== "string") {
     throw Error(
-      `Failed to construct Cloudinary URL: Missing source (src) in options.`
+      `Failed to construct Cloudinary URL: Missing source (src) in options.`,
     );
   }
 
@@ -212,18 +212,16 @@ export function constructCloudinaryUrl<
   const pluginEffects: PluginOptions = {};
 
   transformationPlugins.forEach(
-    ({ name, apply, strict, applyWhen, supports }: TransformationPlugin) => {
-      const shouldApply =
-        applyWhen === undefined ||
-        (typeof applyWhen === "string"
-          ? options[applyWhen as never] !== undefined
-          : applyWhen(options));
+    ({ name, apply, strict, supports, props }: TransformationPlugin) => {
+      const shouldApply = Object.keys(props).some(
+        (key) => options[key as never] !== undefined,
+      );
 
       if (!shouldApply) return;
 
       if (normalizedAssetType !== supports && supports !== "all") {
         console.warn(
-          `${name} does not support assetType ${normalizedAssetType}`
+          `${name} does not support assetType ${normalizedAssetType}`,
         );
         return;
       }
@@ -233,12 +231,15 @@ export function constructCloudinaryUrl<
         return;
       }
 
+      // we're actually passing options for both opts and ctx, but
+      // the second param is typed to only include the options
+      // declared by the plugin's `inferOwnOptions`
       const results: PluginResults = apply(cldAsset, options);
 
       const pluginOptions = results?.options ?? {};
 
       Object.assign(pluginEffects, pluginOptions);
-    }
+    },
   );
 
   // We want to perform any resizing at the end of the end of the transformation
@@ -315,7 +316,7 @@ interface SearchAssetRawTransformationsOptions {
 export function searchAssetRawTransformations(
   query: string,
   asset: CloudinaryImage | CloudinaryVideo,
-  options?: SearchAssetRawTransformationsOptions
+  options?: SearchAssetRawTransformationsOptions,
 ) {
   if (typeof asset.transformation === "undefined") return;
 
@@ -329,7 +330,7 @@ export function searchAssetRawTransformations(
         .toString()
         .split("/")
         .flatMap((seg) => seg.split(","));
-    }
+    },
   );
 
   const matches = transformations.filter((transformation) => {

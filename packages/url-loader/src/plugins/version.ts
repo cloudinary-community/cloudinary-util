@@ -17,14 +17,12 @@ export const VersionPlugin = plugin({
   props: {
     version: true,
   },
-  apply: (cldAsset, options) => {
-    const { version } = options;
+  apply: (cldAsset, opts) => {
+    const { version } = opts;
 
-    if (typeof version === "string" || typeof version === "number") {
-      // Replace a `v` in the string just in case the caller
-      // passes it in
-      cldAsset.setVersion(`${version}`.replace("v", ""));
-    }
+    // Replace a `v` in the string just in case the caller
+    // passes it in
+    cldAsset.setVersion(`${version}`.replace("v", ""));
 
     return {};
   },

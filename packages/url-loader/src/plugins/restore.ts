@@ -17,8 +17,8 @@ export const RestorePlugin = plugin({
   props: {
     restore: true,
   },
-  apply: (cldAsset, options) => {
-    const { restore = false } = options;
+  apply: (cldAsset, opts) => {
+    const { restore } = opts;
 
     if (restore) {
       cldAsset.addTransformation("e_gen_restore");

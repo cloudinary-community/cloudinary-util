@@ -76,12 +76,12 @@ export const EffectsPlugin = plugin({
     vignette: true,
     effects: true,
   },
-  apply: (cldAsset, options) => {
+  apply: (cldAsset, opts) => {
     // Handle any top-level effect props
 
     const transformationStrings = constructTransformationString({
       effects: qualifiersEffects,
-      options,
+      options: opts,
     });
 
     transformationStrings.forEach((transformation) => {
@@ -93,8 +93,8 @@ export const EffectsPlugin = plugin({
     // If we're passing in an effects prop explicitly, treat it as an array of
     // effects that we need to process
 
-    if (isArray(options?.effects)) {
-      options?.effects.forEach((effectsSet) => {
+    if (isArray(opts?.effects)) {
+      opts?.effects.forEach((effectsSet) => {
         const transformationString = constructTransformationString({
           effects: qualifiersEffects,
           options: effectsSet,
@@ -123,7 +123,7 @@ export const EffectsPlugin = plugin({
             value: options?.[key],
             converters,
           });
-        }
+        },
       );
     }
 

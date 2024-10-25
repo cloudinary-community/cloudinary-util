@@ -50,8 +50,8 @@ export const UnderlaysPlugin = plugin({
     underlay: true,
     underlays: true,
   },
-  apply: (cldAsset, options) => {
-    const { underlay, underlays = [] } = options;
+  apply: (cldAsset, opts) => {
+    const { underlay, underlays = [] } = opts;
 
     const typeQualifier = "u";
 
@@ -96,7 +96,7 @@ export const UnderlaysPlugin = plugin({
 
       let layerTransformation = `${typeQualifier}_${publicId.replace(
         /\//g,
-        ":"
+        ":",
       )}`;
 
       // Begin organizing transformations based on what it is and the location
