@@ -6,7 +6,7 @@ export declare namespace ReplaceBackgroundPlugin {
      * @description Replaces the background of an image with an AI-generated background.
      * @url https://cloudinary.com/documentation/transformation_reference#e_gen_background_replace
      */
-    replaceBackground?: NestedOptions;
+    replaceBackground?: NestedOptions | string | number;
   }
 
   export interface NestedOptions {
