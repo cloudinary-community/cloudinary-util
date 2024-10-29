@@ -95,12 +95,12 @@ export const transformationPlugins = validatePlugins(
   SeoPlugin,
   UnderlaysPlugin,
   VersionPlugin,
-  ZoompanPlugin,
+  ZoompanPlugin
 );
 
 // important this comes after `validatePlugins` is called so we've collected the props
 export const cloudinaryPluginKeys: readonly CloudinaryKey[] = Object.keys(
-  cloudinaryPluginProps,
+  cloudinaryPluginProps
 ) as never;
 
 export interface AnalyticsOptions extends IAnalyticsOptions {}
@@ -157,7 +157,7 @@ export function constructCloudinaryUrl<
 
   if (typeof options?.src !== "string") {
     throw Error(
-      `Failed to construct Cloudinary URL: Missing source (src) in options.`,
+      `Failed to construct Cloudinary URL: Missing source (src) in options.`
     );
   }
 
@@ -214,14 +214,14 @@ export function constructCloudinaryUrl<
   transformationPlugins.forEach(
     ({ name, apply, strict, supports, props }: TransformationPlugin) => {
       const shouldApply = Object.keys(props).some(
-        (key) => options[key as never] !== undefined,
+        (key) => options[key as never] !== undefined
       );
 
       if (!shouldApply) return;
 
       if (normalizedAssetType !== supports && supports !== "all") {
         console.warn(
-          `${name} does not support assetType ${normalizedAssetType}`,
+          `${name} does not support assetType ${normalizedAssetType}`
         );
         return;
       }
@@ -239,7 +239,7 @@ export function constructCloudinaryUrl<
       const pluginOptions = results?.options ?? {};
 
       Object.assign(pluginEffects, pluginOptions);
-    },
+    }
   );
 
   // We want to perform any resizing at the end of the end of the transformation
@@ -316,7 +316,7 @@ interface SearchAssetRawTransformationsOptions {
 export function searchAssetRawTransformations(
   query: string,
   asset: CloudinaryImage | CloudinaryVideo,
-  options?: SearchAssetRawTransformationsOptions,
+  options?: SearchAssetRawTransformationsOptions
 ) {
   if (typeof asset.transformation === "undefined") return;
 
@@ -330,7 +330,7 @@ export function searchAssetRawTransformations(
         .toString()
         .split("/")
         .flatMap((seg) => seg.split(","));
-    },
+    }
   );
 
   const matches = transformations.filter((transformation) => {
