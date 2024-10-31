@@ -1,3 +1,22 @@
+# [@cloudinary-util/url-loader-v6.0.0-beta.5](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0-beta.4...@cloudinary-util/url-loader-v6.0.0-beta.5) (2024-10-31)
+
+### Bug Fixes
+
+- make plugins and cloudinaryPluginProps tree-shakeable ([#227](https://github.com/cloudinary-community/cloudinary-util/issues/227)) ([163cb2f](https://github.com/cloudinary-community/cloudinary-util/commit/163cb2fdd05c7a3444cfb22edade79891f25ffd3))
+
+# [@cloudinary-util/url-loader-v6.0.0-beta.4](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0-beta.3...@cloudinary-util/url-loader-v6.0.0-beta.4) (2024-10-25)
+
+### Bug Fixes
+
+- adding applyWhen to streaming profile to prevent abr plugin from running ([ef7e57a](https://github.com/cloudinary-community/cloudinary-util/commit/ef7e57adc03afb0e08ebf2bb0053d34c12054523))
+- adding string and number back to replaceBackground ([672009a](https://github.com/cloudinary-community/cloudinary-util/commit/672009afb7797c540c0a6fdc31115f0c245ed8b2))
+
+# [@cloudinary-util/url-loader-v6.0.0-beta.3](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0-beta.2...@cloudinary-util/url-loader-v6.0.0-beta.3) (2024-10-24)
+
+### Features
+
+- enumerate plugin props ([#224](https://github.com/cloudinary-community/cloudinary-util/issues/224)) ([731d545](https://github.com/cloudinary-community/cloudinary-util/commit/731d54511741f9bb56fc6b1d6e978a8f21d88082))
+
 # [@cloudinary-util/url-loader-v6.0.0-beta.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0-beta.1...@cloudinary-util/url-loader-v6.0.0-beta.2) (2024-10-22)
 
 ### Bug Fixes

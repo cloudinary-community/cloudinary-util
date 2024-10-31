@@ -45,20 +45,7 @@ import type {
 } from "./plugin.js";
 import { entriesOf, throwError } from "./utils.js";
 
-export const cloudinaryPluginProps = {} as Record<CloudinaryKey, true>;
-
-const validatePlugins = <const plugins extends readonly TransformationPlugin[]>(
-  ...plugins: plugins extends validatePlugins<plugins>
-    ? plugins
-    : validatePlugins<plugins>
-) => {
-  plugins.forEach((plugin) => {
-    Object.assign(cloudinaryPluginProps, plugin.props);
-  });
-  return plugins;
-};
-
-export const transformationPlugins = validatePlugins(
+export const transformationPlugins = [
   // Some features *must* be the first transformation applied
   // thus their plugins *must* come first in the chain
 
@@ -96,10 +83,25 @@ export const transformationPlugins = validatePlugins(
   UnderlaysPlugin,
   VersionPlugin,
   ZoompanPlugin
-);
+] as const;
 
-// important this comes after `validatePlugins` is called so we've collected the props
-export const cloudinaryPluginKeys: readonly CloudinaryKey[] = Object.keys(
+const getCloudinaryPluginProps = <const plugins extends readonly TransformationPlugin[]>(
+  plugins: plugins extends validatePlugins<plugins>
+    ? plugins
+    : validatePlugins<plugins>
+): Record<CloudinaryKey, true> => {
+  const cloudinaryPluginProps = {} as Record<CloudinaryKey, true>;
+
+  plugins.forEach((plugin) => {
+    Object.assign(cloudinaryPluginProps, plugin.props);
+  });
+
+  return cloudinaryPluginProps;
+};
+
+export const cloudinaryPluginProps = /* #__PURE__ */ getCloudinaryPluginProps(transformationPlugins);
+
+export const cloudinaryPluginKeys: readonly CloudinaryKey[] = /* #__PURE__ */ Object.keys(
   cloudinaryPluginProps
 ) as never;
 
@@ -356,7 +358,7 @@ type validatePlugins<
 ]
   ? validatePlugins<
       rest,
-      [
+      readonly [
         ...validated,
         keyof opts & keyof next["inferOwnOptions"] extends never
           ? // if the intersection is never, no options duplicate existing so the plugin is valid
