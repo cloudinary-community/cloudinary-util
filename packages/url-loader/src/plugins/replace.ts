@@ -17,7 +17,7 @@ export declare namespace ReplacePlugin {
   }
 }
 
-export const ReplacePlugin = plugin({
+export const ReplacePlugin = /* #__PURE__ */ plugin({
   name: "Replace",
   supports: "image",
   inferOwnOptions: {} as ReplacePlugin.Options,

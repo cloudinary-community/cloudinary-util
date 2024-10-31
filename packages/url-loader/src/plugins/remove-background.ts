@@ -10,7 +10,7 @@ export declare namespace RemoveBackgroundPlugin {
   }
 }
 
-export const RemoveBackgroundPlugin = plugin({
+export const RemoveBackgroundPlugin = /* #__PURE__ */ plugin({
   name: "RemoveBackground",
   supports: "image",
   inferOwnOptions: {} as RemoveBackgroundPlugin.Options,

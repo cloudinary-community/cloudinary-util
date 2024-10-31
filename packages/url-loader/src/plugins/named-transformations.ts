@@ -17,7 +17,7 @@ export declare namespace NamedTransformationsPlugin {
   }
 }
 
-export const NamedTransformationsPlugin = plugin({
+export const NamedTransformationsPlugin = /* #__PURE__ */ plugin({
   name: "NamedTransformations",
   strict: true,
   supports: "all",

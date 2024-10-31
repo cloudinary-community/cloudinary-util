@@ -23,7 +23,7 @@ export declare namespace RecolorPlugin {
   }
 }
 
-export const RecolorPlugin = plugin({
+export const RecolorPlugin = /* #__PURE__ */ plugin({
   name: "Recolor",
   supports: "image",
   inferOwnOptions: {} as RecolorPlugin.Options,

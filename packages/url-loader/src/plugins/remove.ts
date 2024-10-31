@@ -20,7 +20,7 @@ export declare namespace RemovePlugin {
   }
 }
 
-export const RemovePlugin = plugin({
+export const RemovePlugin = /* #__PURE__ */ plugin({
   name: "Remove",
   supports: "image",
   inferOwnOptions: {} as RemovePlugin.Options,
