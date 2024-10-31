@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v6.0.0-beta.5](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0-beta.4...@cloudinary-util/url-loader-v6.0.0-beta.5) (2024-10-31)
+
+
+### Bug Fixes
+
+* make plugins and cloudinaryPluginProps tree-shakeable ([#227](https://github.com/cloudinary-community/cloudinary-util/issues/227)) ([163cb2f](https://github.com/cloudinary-community/cloudinary-util/commit/163cb2fdd05c7a3444cfb22edade79891f25ffd3))
+
 # [@cloudinary-util/url-loader-v6.0.0-beta.4](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0-beta.3...@cloudinary-util/url-loader-v6.0.0-beta.4) (2024-10-25)
 
 
