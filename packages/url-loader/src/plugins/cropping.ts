@@ -25,6 +25,14 @@ export declare namespace CroppingPlugin {
     crop?: CropMode | NestedOptions | ReadonlyArray<NestedOptions>;
     gravity?: Gravity;
     zoom?: Zoom;
+    /**
+     * @description Height of the given asset.
+     */
+    height?: string | number;
+    /**
+     * @description Width of the given asset.
+     */
+    width?: string | number;
   }
 
   export interface NestedOptions {
@@ -49,6 +57,8 @@ export const CroppingPlugin = plugin({
     crop: true,
     gravity: true,
     zoom: true,
+    height: true,
+    width: true,
   },
   // crop is applied even if the crop key is undefined
   apply: (asset, opts) => {

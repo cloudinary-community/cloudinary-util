@@ -17,8 +17,8 @@ export const EnhancePlugin = plugin({
   props: {
     enhance: true,
   },
-  apply: (cldAsset, options) => {
-    if (options.enhance) {
+  apply: (cldAsset, opts) => {
+    if (opts.enhance) {
       cldAsset.addTransformation("e_enhance");
     }
 

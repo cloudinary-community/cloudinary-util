@@ -18,8 +18,8 @@ export const RawTransformationsPlugin = plugin({
   props: {
     rawTransformations: true,
   },
-  apply: (cldAsset, options) => {
-    let { rawTransformations = [] } = options;
+  apply: (cldAsset, opts) => {
+    let { rawTransformations = [] } = opts;
 
     if (!isArray(rawTransformations)) {
       rawTransformations = [rawTransformations];

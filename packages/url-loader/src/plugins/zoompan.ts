@@ -24,8 +24,8 @@ export const ZoompanPlugin = plugin({
   props: {
     zoompan: true,
   },
-  apply: (cldAsset, options) => {
-    const { zoompan = false } = options;
+  apply: (cldAsset, opts) => {
+    const { zoompan = false } = opts;
 
     const overrides: PluginOptions = {
       format: undefined,

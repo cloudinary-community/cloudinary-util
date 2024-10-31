@@ -25,17 +25,5 @@ describe("Plugins", () => {
 
       expect(cldImage.toURL()).toContain(`e_background_removal`);
     });
-
-    it("should not remove the background", () => {
-      const cldImage = cld.image(TEST_PUBLIC_ID);
-
-      const options = {
-        src: TEST_PUBLIC_ID,
-      };
-
-      RemoveBackgroundPlugin.apply(cldImage, options);
-
-      expect(cldImage.toURL()).not.toContain(`e_background_removal`);
-    });
   });
 });

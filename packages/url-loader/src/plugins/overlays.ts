@@ -77,8 +77,8 @@ export const OverlaysPlugin = plugin({
     overlays: true,
     text: true,
   },
-  apply: (cldAsset, options) => {
-    const { text, overlays = [] } = options;
+  apply: (cldAsset, opts) => {
+    const { text, overlays = [] } = opts;
 
     const type = "overlay";
     const typeQualifier = "l";
@@ -130,7 +130,7 @@ export const OverlaysPlugin = plugin({
       } else if (hasPublicId) {
         layerTransformation = `${typeQualifier}_${publicId.replace(
           /\//g,
-          ":"
+          ":",
         )}`;
       } else if (hasUrl) {
         layerTransformation = `${typeQualifier}_fetch:${encodeBase64(url)}`;
@@ -271,7 +271,7 @@ export const OverlaysPlugin = plugin({
                 value,
                 order: qualifiersText[key].order || 99,
               };
-            }
+            },
           );
 
           const sortedTextOptions = sortByKey(textOptions, "order");
@@ -314,13 +314,13 @@ export const OverlaysPlugin = plugin({
           )?.forEach((character: string) => {
             layerText = layerText?.replace(
               character,
-              specialCharacters[character]
+              specialCharacters[character],
             );
           });
         }
 
         layerTransformation = `${layerTransformation}:${textTransformations.join(
-          "_"
+          "_",
         )}:${layerText}`;
       }
 

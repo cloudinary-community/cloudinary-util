@@ -75,17 +75,5 @@ describe("Plugins", () => {
         `e_gen_replace:from_apple;to_candy%20bar;preserve-geometry_true`,
       );
     });
-
-    it("should not attempt generative replace", () => {
-      const cldImage = cld.image(TEST_PUBLIC_ID);
-
-      const options = {
-        src: TEST_PUBLIC_ID,
-      };
-
-      ReplacePlugin.apply(cldImage, options);
-
-      expect(cldImage.toURL()).not.toContain(`e_gen_replace`);
-    });
   });
 });

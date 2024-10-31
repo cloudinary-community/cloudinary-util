@@ -13,7 +13,7 @@ import type { UnderlaysPlugin } from "../plugins/underlays.js";
 import type { VersionPlugin } from "../plugins/version.js";
 import type { ZoompanPlugin } from "../plugins/zoompan.js";
 
-import type { Format } from '../constants/parameters.js';
+import type { Format } from "../constants/parameters.js";
 
 export type SupportedAssetTypeInput = SupportedAssetType | "videos" | "images";
 
@@ -45,10 +45,6 @@ export interface BaseAssetOptions<
    */
   format?: Format;
   /**
-   * @description Height of the given asset.
-   */
-  height?: string | number;
-  /**
    * @description Quality of the delivered asset
    * @url https://cloudinary.com/documentation/transformation_reference#q_quality
    */
@@ -58,10 +54,6 @@ export interface BaseAssetOptions<
    * @url https://cloudinary.com/documentation/control_access_to_media#strict_transformations
    */
   strictTransformations?: boolean;
-  /**
-   * @description Width of the given asset.
-   */
-  width?: string | number;
 }
 
 export interface AssetOptions<

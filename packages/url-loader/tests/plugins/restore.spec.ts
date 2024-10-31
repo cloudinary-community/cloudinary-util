@@ -25,17 +25,5 @@ describe("Plugins", () => {
 
       expect(cldImage.toURL()).toContain(`e_gen_restore`);
     });
-
-    it("should not restore", () => {
-      const cldImage = cld.image(TEST_PUBLIC_ID);
-
-      const options = {
-        src: TEST_PUBLIC_ID,
-      };
-
-      RestorePlugin.apply(cldImage, options);
-
-      expect(cldImage.toURL()).not.toContain(`e_gen_restore`);
-    });
   });
 });

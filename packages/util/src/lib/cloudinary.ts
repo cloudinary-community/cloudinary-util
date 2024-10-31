@@ -181,7 +181,7 @@ export async function pollForProcessingImage(
       return {
         success: false,
         status: response.status,
-        error: response.headers.get('x-cld-error') || 'Unknown error',
+        error: response.headers.get("x-cld-error") || "Unknown error",
       };
     }
 
@@ -193,7 +193,7 @@ export async function pollForProcessingImage(
     return {
       success: false,
       status: 500,
-      error: (error as Error).message || 'Network error',
+      error: (error as Error).message || "Network error",
     };
   }
 }

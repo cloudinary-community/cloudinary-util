@@ -17,12 +17,13 @@ export const SanitizePlugin = plugin({
   props: {
     sanitize: true,
   },
-  apply: (cldAsset, options) => {
-    const { sanitize = true } = options;
+  alwaysApply: true,
+  apply: (cldAsset, opts, ctx) => {
+    const { sanitize = true } = opts;
 
     const shouldApplySanitizer: boolean =
       sanitize &&
-      (options.format === "svg" ||
+      (ctx.format === "svg" ||
         (cldAsset as {} as { publicID: string }).publicID.endsWith(".svg"));
 
     if (shouldApplySanitizer) {

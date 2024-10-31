@@ -26,12 +26,12 @@ export const NamedTransformationsPlugin = plugin({
     namedTransformations: true,
     transformations: true,
   },
-  apply: (cldAsset, options) => {
-    const { transformations, namedTransformations } = options;
+  apply: (cldAsset, opts) => {
+    const { transformations, namedTransformations } = opts;
 
     if (transformations && process.env.NODE_ENVIRONMENT === "development") {
       console.warn(
-        "The transformations prop is deprecated. Please use namedTransformations instead."
+        "The transformations prop is deprecated. Please use namedTransformations instead.",
       );
     }
 

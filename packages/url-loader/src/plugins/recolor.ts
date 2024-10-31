@@ -30,8 +30,8 @@ export const RecolorPlugin = plugin({
   props: {
     recolor: true,
   },
-  apply: (cldAsset, options) => {
-    const { recolor } = options;
+  apply: (cldAsset, opts) => {
+    const { recolor } = opts;
 
     const recolorOptions: Record<string, string | undefined> = {
       prompt: undefined,

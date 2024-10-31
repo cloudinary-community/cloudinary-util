@@ -11,7 +11,6 @@ export declare namespace FlagsPlugin {
 export const FlagsPlugin = plugin({
   name: "Flags",
   supports: "all",
-  applyWhen: "flags",
   inferOwnOptions: {} as FlagsPlugin.Options,
   props: {
     flags: true,

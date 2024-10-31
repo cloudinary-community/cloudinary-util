@@ -14,14 +14,13 @@ export const AbrPlugin = plugin({
   name: "Abr",
   supports: "video",
   inferOwnOptions: {} as AbrPlugin.Options,
-  applyWhen: 'streamingProfile',
   props: {
     streamingProfile: true,
   },
   apply: (asset, opts) => {
-    if (typeof opts.streamingProfile === "string") {
-      asset.addTransformation(`sp_${opts.streamingProfile}`);
-    }
+    if (typeof opts.streamingProfile !== "string") return {};
+
+    asset.addTransformation(`sp_${opts.streamingProfile}`);
 
     return {};
   },

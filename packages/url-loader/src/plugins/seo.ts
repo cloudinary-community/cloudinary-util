@@ -17,17 +17,15 @@ export const SeoPlugin = plugin({
   props: {
     seoSuffix: true,
   },
-  apply: (cldAsset, options) => {
-    const { seoSuffix } = options;
+  apply: (cldAsset, opts, ctx) => {
+    const { seoSuffix } = opts;
 
-    if (typeof seoSuffix === "string") {
-      if (options.deliveryType === "fetch") {
-        console.warn(
-          "SEO suffix is not supported with a delivery type of fetch"
-        );
-      } else {
-        cldAsset.setSuffix(seoSuffix);
-      }
+    if (typeof seoSuffix !== "string") return {};
+
+    if (ctx.deliveryType === "fetch") {
+      console.warn("SEO suffix is not supported with a delivery type of fetch");
+    } else {
+      cldAsset.setSuffix(seoSuffix);
     }
 
     return {};

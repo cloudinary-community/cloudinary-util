@@ -31,16 +31,16 @@ export const FillBackgroundPlugin = plugin({
   props: {
     fillBackground: true,
   },
-  apply: (cldAsset, options) => {
-    const { fillBackground } = options;
+  apply: (cldAsset, opts, ctx) => {
+    const { fillBackground } = opts;
 
     if (typeof fillBackground === "undefined") return {};
 
-    const width = normalizeNumberParameter(options.width);
-    const height = normalizeNumberParameter(options.height);
+    const width = normalizeNumberParameter(ctx.width);
+    const height = normalizeNumberParameter(ctx.height);
     const hasDefinedDimensions =
       typeof height === "number" && typeof width === "number";
-    let aspectRatio = options.aspectRatio;
+    let aspectRatio = ctx.aspectRatio;
 
     if (!aspectRatio && hasDefinedDimensions) {
       aspectRatio = `${width}:${height}`;

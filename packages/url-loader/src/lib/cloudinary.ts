@@ -40,7 +40,7 @@ import type { PluginOptions, PluginResults } from "../types/plugins.js";
 import type { VideoOptions } from "../types/video.js";
 import type {
   CloudinaryKey,
-  OptionsFor,
+  CtxParam,
   TransformationPlugin,
 } from "./plugin.js";
 import { entriesOf, throwError } from "./utils.js";
@@ -135,7 +135,7 @@ export interface ConstructUrlProps<
    */
   config?: ConfigOptions;
   // prioritize inferring assetType so available options can be derived from it
-  options: { assetType?: assetType } & OptionsFor<assetType>;
+  options: { assetType?: assetType } & CtxParam<assetType>;
 }
 
 export type CldAsset = CloudinaryImage | CloudinaryVideo;
@@ -214,12 +214,10 @@ export function constructCloudinaryUrl<
   const pluginEffects: PluginOptions = {};
 
   transformationPlugins.forEach(
-    ({ name, apply, strict, applyWhen, supports }: TransformationPlugin) => {
-      const shouldApply =
-        applyWhen === undefined ||
-        (typeof applyWhen === "string"
-          ? options[applyWhen as never] !== undefined
-          : applyWhen(options));
+    ({ name, apply, strict, supports, props }: TransformationPlugin) => {
+      const shouldApply = Object.keys(props).some(
+        (key) => options[key as never] !== undefined
+      );
 
       if (!shouldApply) return;
 
@@ -235,6 +233,9 @@ export function constructCloudinaryUrl<
         return;
       }
 
+      // we're actually passing options for both opts and ctx, but
+      // the second param is typed to only include the options
+      // declared by the plugin's `inferOwnOptions`
       const results: PluginResults = apply(cldAsset, options);
 
       const pluginOptions = results?.options ?? {};
