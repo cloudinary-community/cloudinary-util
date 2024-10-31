@@ -11,7 +11,7 @@ export declare namespace DefaultImagePlugin {
   }
 }
 
-export const DefaultImagePlugin = plugin({
+export const DefaultImagePlugin = /* #__PURE__ */ plugin({
   name: "DefaultImage",
   supports: "image",
   inferOwnOptions: {} as DefaultImagePlugin.Options,

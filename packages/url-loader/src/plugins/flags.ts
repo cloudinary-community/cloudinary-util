@@ -8,7 +8,7 @@ export declare namespace FlagsPlugin {
   }
 }
 
-export const FlagsPlugin = plugin({
+export const FlagsPlugin = /* #__PURE__ */ plugin({
   name: "Flags",
   supports: "all",
   inferOwnOptions: {} as FlagsPlugin.Options,

@@ -42,7 +42,7 @@ export declare namespace UnderlaysPlugin {
   }
 }
 
-export const UnderlaysPlugin = plugin({
+export const UnderlaysPlugin = /* #__PURE__ */ plugin({
   name: "Underlays",
   supports: "all",
   inferOwnOptions: {} as UnderlaysPlugin.Options,

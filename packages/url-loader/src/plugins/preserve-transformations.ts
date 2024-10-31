@@ -10,7 +10,7 @@ export declare namespace PreserveTransformationsPlugin {
   }
 }
 
-export const PreserveTransformationsPlugin = plugin({
+export const PreserveTransformationsPlugin = /* #__PURE__ */ plugin({
   name: "PreserveTransformations",
   supports: "all",
   inferOwnOptions: {} as PreserveTransformationsPlugin.Options,

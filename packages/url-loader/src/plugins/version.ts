@@ -10,7 +10,7 @@ export declare namespace VersionPlugin {
   }
 }
 
-export const VersionPlugin = plugin({
+export const VersionPlugin = /* #__PURE__ */ plugin({
   name: "Version",
   supports: "all",
   inferOwnOptions: {} as VersionPlugin.Options,

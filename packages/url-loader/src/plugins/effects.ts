@@ -17,7 +17,7 @@ export declare namespace EffectsPlugin {
   }
 }
 
-export const EffectsPlugin = plugin({
+export const EffectsPlugin = /* #__PURE__ */ plugin({
   name: "Effects",
   supports: "all",
   inferOwnOptions: {} as EffectsPlugin.Options,

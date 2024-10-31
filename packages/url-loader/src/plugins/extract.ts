@@ -23,7 +23,7 @@ export declare namespace ExtractPlugin {
   }
 }
 
-export const ExtractPlugin = plugin({
+export const ExtractPlugin = /* #__PURE__ */ plugin({
   name: "Extract",
   supports: "image",
   inferOwnOptions: {} as ExtractPlugin.Options,

@@ -69,7 +69,7 @@ export const DEFAULT_TEXT_OPTIONS = {
   fontWeight: "bold",
 };
 
-export const OverlaysPlugin = plugin({
+export const OverlaysPlugin = /* #__PURE__ */ plugin({
   name: "Overlays",
   supports: "all",
   inferOwnOptions: {} as OverlaysPlugin.Options,

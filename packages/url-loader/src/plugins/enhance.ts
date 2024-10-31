@@ -10,7 +10,7 @@ export declare namespace EnhancePlugin {
   }
 }
 
-export const EnhancePlugin = plugin({
+export const EnhancePlugin = /* #__PURE__ */ plugin({
   name: "Enhance",
   supports: "image",
   inferOwnOptions: {} as EnhancePlugin.Options,

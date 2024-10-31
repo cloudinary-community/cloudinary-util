@@ -10,7 +10,7 @@ export declare namespace RestorePlugin {
   }
 }
 
-export const RestorePlugin = plugin({
+export const RestorePlugin = /* #__PURE__ */ plugin({
   name: "Restore",
   supports: "image",
   inferOwnOptions: {} as RestorePlugin.Options,

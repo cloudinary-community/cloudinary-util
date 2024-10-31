@@ -17,7 +17,7 @@ export declare namespace ZoompanPlugin {
   }
 }
 
-export const ZoompanPlugin = plugin({
+export const ZoompanPlugin = /* #__PURE__ */ plugin({
   name: "Zoompan",
   supports: "image",
   inferOwnOptions: {} as ZoompanPlugin.Options,

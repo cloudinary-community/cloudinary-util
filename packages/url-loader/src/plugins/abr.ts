@@ -10,7 +10,7 @@ export declare namespace AbrPlugin {
   }
 }
 
-export const AbrPlugin = plugin({
+export const AbrPlugin = /* #__PURE__ */ plugin({
   name: "Abr",
   supports: "video",
   inferOwnOptions: {} as AbrPlugin.Options,

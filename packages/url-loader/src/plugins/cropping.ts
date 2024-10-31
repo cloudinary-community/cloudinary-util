@@ -48,7 +48,7 @@ export declare namespace CroppingPlugin {
   }
 }
 
-export const CroppingPlugin = plugin({
+export const CroppingPlugin = /* #__PURE__ */ plugin({
   name: "Cropping",
   supports: "all",
   inferOwnOptions: {} as CroppingPlugin.Options,

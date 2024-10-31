@@ -10,7 +10,7 @@ export declare namespace SeoPlugin {
   }
 }
 
-export const SeoPlugin = plugin({
+export const SeoPlugin = /* #__PURE__ */ plugin({
   name: "Seo",
   supports: "all",
   inferOwnOptions: {} as SeoPlugin.Options,

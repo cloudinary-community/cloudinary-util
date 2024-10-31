@@ -15,7 +15,7 @@ export declare namespace ReplaceBackgroundPlugin {
   }
 }
 
-export const ReplaceBackgroundPlugin = plugin({
+export const ReplaceBackgroundPlugin = /* #__PURE__ */ plugin({
   name: "ReplaceBackground",
   supports: "image",
   inferOwnOptions: {} as ReplaceBackgroundPlugin.Options,

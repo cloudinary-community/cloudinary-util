@@ -24,7 +24,7 @@ export declare namespace FillBackgroundPlugin {
   }
 }
 
-export const FillBackgroundPlugin = plugin({
+export const FillBackgroundPlugin = /* #__PURE__ */ plugin({
   name: "FillBackground",
   supports: "image",
   inferOwnOptions: {} as FillBackgroundPlugin.Options,

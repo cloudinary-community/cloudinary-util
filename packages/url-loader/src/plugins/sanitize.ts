@@ -10,7 +10,7 @@ export declare namespace SanitizePlugin {
   }
 }
 
-export const SanitizePlugin = plugin({
+export const SanitizePlugin = /* #__PURE__ */ plugin({
   name: "Sanitize",
   supports: "image",
   inferOwnOptions: {} as SanitizePlugin.Options,

@@ -11,7 +11,7 @@ export declare namespace RawTransformationsPlugin {
   }
 }
 
-export const RawTransformationsPlugin = plugin({
+export const RawTransformationsPlugin = /* #__PURE__ */ plugin({
   name: "RawTransformations",
   supports: "all",
   inferOwnOptions: {} as RawTransformationsPlugin.Options,
