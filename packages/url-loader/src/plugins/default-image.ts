@@ -19,9 +19,11 @@ export const DefaultImagePlugin = plugin({
   apply: (asset, opts) => {
     const { defaultImage } = opts;
 
+    if (typeof defaultImage !== "string") return {};
+
     if (!getFormat(defaultImage)) {
       console.warn(
-        `The defaultImage prop may be missing a format and must include it along with the public ID. (Ex: myimage.jpg)`,
+        `The defaultImage prop may be missing a format and must include it along with the public ID. (Ex: myimage.jpg)`
       );
     }
     const defaultImageId = defaultImage.replace(/\//g, ":");

@@ -20,6 +20,8 @@ export const VersionPlugin = plugin({
   apply: (cldAsset, opts) => {
     const { version } = opts;
 
+    if (typeof version !== "string" && typeof version !== "number") return {};
+
     // Replace a `v` in the string just in case the caller
     // passes it in
     cldAsset.setVersion(`${version}`.replace("v", ""));

@@ -34,6 +34,8 @@ export const FillBackgroundPlugin = plugin({
   apply: (cldAsset, opts, ctx) => {
     const { fillBackground } = opts;
 
+    if (typeof fillBackground === "undefined") return {};
+
     const width = normalizeNumberParameter(ctx.width);
     const height = normalizeNumberParameter(ctx.height);
     const hasDefinedDimensions =
@@ -47,7 +49,7 @@ export const FillBackgroundPlugin = plugin({
     if (!aspectRatio) {
       if (process.env.NODE_ENV === "development") {
         console.warn(
-          `Could not determine aspect ratio based on available options to use fillBackground. Please specify width and height or an aspect ratio.`,
+          `Could not determine aspect ratio based on available options to use fillBackground. Please specify width and height or an aspect ratio.`
         );
       }
       return {};

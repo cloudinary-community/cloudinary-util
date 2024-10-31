@@ -61,7 +61,7 @@ export const CroppingPlugin = plugin({
     width: true,
   },
   // crop is applied even if the crop key is undefined
-  apply: (asset, opts, ctx) => {
+  apply: (asset, opts) => {
     let crops: Array<CroppingPlugin.NestedOptions> = [];
 
     // Normalize the data that we're working with for simpler processing
@@ -74,10 +74,10 @@ export const CroppingPlugin = plugin({
 
       crops.push({
         aspectRatio: opts.aspectRatio,
-        height: ctx.height,
+        height: opts.height,
         gravity: opts.gravity,
         type: opts.crop || DEFAULT_CROP,
-        width: ctx.width,
+        width: opts.width,
         zoom: opts.zoom,
       });
     } else if (typeof opts.crop === "object" && !isArray(opts.crop)) {
@@ -93,8 +93,8 @@ export const CroppingPlugin = plugin({
     if (crops.length === 1 && crops[0].source === true) {
       crops.push({
         aspectRatio: opts.aspectRatio,
-        width: ctx.width,
-        height: ctx.height,
+        width: opts.width,
+        height: opts.height,
         gravity: opts.gravity,
         type: DEFAULT_CROP,
         zoom: opts.zoom,
@@ -117,13 +117,13 @@ export const CroppingPlugin = plugin({
         typeof cropDimensions.width === "undefined" &&
         typeof crop.aspectRatio === "undefined"
       ) {
-        cropDimensions.width = ctx.width;
+        cropDimensions.width = opts.width;
 
         // We likely don't want to infer one dimension and not the other
         // so only infer the height if we're already inferring the width
 
         if (typeof cropDimensions.height === "undefined") {
-          cropDimensions.height = ctx.height;
+          cropDimensions.height = opts.height;
         }
       }
 

@@ -27,6 +27,8 @@ export const ReplacePlugin = plugin({
   apply: (cldAsset, opts) => {
     const { replace } = opts;
 
+    if (!replace) return {};
+
     let from: string,
       to: string,
       preserveGeometry: boolean = false;

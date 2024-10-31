@@ -18,6 +18,8 @@ export const AbrPlugin = plugin({
     streamingProfile: true,
   },
   apply: (asset, opts) => {
+    if (typeof opts.streamingProfile !== "string") return {};
+
     asset.addTransformation(`sp_${opts.streamingProfile}`);
 
     return {};
