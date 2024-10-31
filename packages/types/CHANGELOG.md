@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v2.0.0-beta.3](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v2.0.0-beta.2...@cloudinary-util/types-v2.0.0-beta.3) (2024-10-31)
+
+
+### Bug Fixes
+
+* remove applyWhen in favor of explicit props overlap check with alwaysApply exception ([#228](https://github.com/cloudinary-community/cloudinary-util/issues/228)) ([90d07c2](https://github.com/cloudinary-community/cloudinary-util/commit/90d07c2a302a628e6c6e0352d479608131d45d65))
+
 # [@cloudinary-util/types-v2.0.0-beta.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v2.0.0-beta.1...@cloudinary-util/types-v2.0.0-beta.2) (2024-10-22)
 
 ### Bug Fixes
