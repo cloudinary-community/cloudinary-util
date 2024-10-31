@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v6.0.0-beta.6](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0-beta.5...@cloudinary-util/url-loader-v6.0.0-beta.6) (2024-10-31)
+
+
+### Bug Fixes
+
+* remove applyWhen in favor of explicit props overlap check with alwaysApply exception ([#228](https://github.com/cloudinary-community/cloudinary-util/issues/228)) ([90d07c2](https://github.com/cloudinary-community/cloudinary-util/commit/90d07c2a302a628e6c6e0352d479608131d45d65))
+
 # [@cloudinary-util/url-loader-v6.0.0-beta.5](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0-beta.4...@cloudinary-util/url-loader-v6.0.0-beta.5) (2024-10-31)
 
 ### Bug Fixes
