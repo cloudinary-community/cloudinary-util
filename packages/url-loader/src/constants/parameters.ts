@@ -1,309 +1,238 @@
-import { z } from "zod";
+import type { StringifiablePrimative } from "../lib/utils.js";
 
-/** enum */
+/**
+ *  @description Mode to use when cropping an asset.
+ *  @url https://cloudinary.com/documentation/transformation_reference#c_crop_resize
+ */
+export type CropMode =
+  | "auto"
+  | "crop"
+  | "fill"
+  | "fill_pad"
+  | "fit"
+  | "imagga_crop"
+  | "imagga_scale"
+  | "lfill"
+  | "limit"
+  | "lpad"
+  | "mfit"
+  | "mpad"
+  | "pad"
+  | "scale"
+  | "thumb";
 
-export const cropModesEnum = z.enum([
-  "auto",
-  "crop",
-  "fill",
-  "fill_pad",
-  "fit",
-  "imagga_crop",
-  "imagga_scale",
-  "lfill",
-  "limit",
-  "lpad",
-  "mfit",
-  "mpad",
-  "pad",
-  "scale",
-  "thumb",
-]);
+/**
+ *  @description Whether to keep the content of the extracted area, or to replace it with a mask.
+ *  @url https://cloudinary.com/documentation/transformation_reference#e_extract
+ */
+export type ExtractMode = "content" | "mask";
 
-export const extractModesEnum = z.enum([
-  "content",
-  "mask",
-]);
-
-export const flagsEnum = z.enum([
-  "animated",
-  "any_format",
-  "apng",
-  "attachment",
-  "awebp",
-  "clip",
-  "clip_evenodd",
-  "cutter",
-  "force_icc",
-  "force_strip",
-  "getinfo",
-  "group4",
-  "hlsv3",
-  "ignore_aspect_ratio",
-  "ignore_mask_channels",
-  "immutable_cache",
-  "keep_attribution",
-  "keep_dar",
-  "keep_iptc",
-  "layer_apply",
-  "lossy",
-  "mono",
-  "no_overflow",
-  "no_stream",
-  "png8_fl_png24_fl_png32",
-  "preserve_transparency",
-  "progressive",
-  "rasterize",
-  "region_relative",
-  "relative",
-  "replace_image",
-  "sanitize",
-  "splice",
-  "streaming_attachment",
-  "strip_profile",
-  "text_disallow_overflow",
-  "text_no_trim",
-  "tiff8_lzw",
-  "tiled",
-  "truncate_ts",
-  "waveform",
-]);
-
-/** Angle - a */
-
-export const angle = {
-  qualifier: "a",
-  schema: z.union([z.string(), z.number()]).describe(
-    JSON.stringify({
-      text: "Rotates or flips an asset by the specified number of degrees or automatically according to its orientation or available metadata.",
-      url: "https://cloudinary.com/documentation/transformation_reference#a_angle",
-    }),
-  ),
-};
+/**
+ *  @description Rotates or flips an asset by the specified number of degrees or automatically according to its orientation or available metadata.
+ *  @url https://cloudinary.com/documentation/transformation_reference#a_angle
+ */
+export type Angle = string | number;
 
 /** Aspect Ratio */
 
-export const aspectRatioModesEnum = z.enum([
-  "vflip",
-  "hflip",
-  "ignore",
-  "auto_right",
-  "auto_left",
-]);
+export type AspectRatioMode =
+  | "vflip"
+  | "hflip"
+  | "ignore"
+  | "auto_right"
+  | "auto_left";
 
-const aspectRatioSchema = z.union([
-  z.number(),
-  aspectRatioModesEnum,
-  z.intersection(z.string(), z.object({})) // Quirk to allow enum + string
-]);
+/**
+ *  @description Crops or resizes the asset to a new aspect ratio.
+ *  @url https://cloudinary.com/documentation/transformation_reference#ar_aspect_ratio
+ */
+export type AspectRatio = AspectRatioMode | number | (string & {});
 
-export const aspectRatio = {
-  qualifier: "ar",
-  schema: aspectRatioSchema.describe(
-    JSON.stringify({
-      text: "Crops or resizes the asset to a new aspect ratio.",
-      url: "https://cloudinary.com/documentation/transformation_reference#ar_aspect_ratio",
-    }),
-  ),
-};
+export type Flag =
+  | "animated"
+  | "any_format"
+  | "apng"
+  | "attachment"
+  | "awebp"
+  | "clip"
+  | "clip_evenodd"
+  | "cutter"
+  | "force_icc"
+  | "force_strip"
+  | "getinfo"
+  | "group4"
+  | "hlsv3"
+  | "ignore_aspect_ratio"
+  | "ignore_mask_channels"
+  | "immutable_cache"
+  | "keep_attribution"
+  | "keep_dar"
+  | "keep_iptc"
+  | "layer_apply"
+  | "lossy"
+  | "mono"
+  | "no_overflow"
+  | "no_stream"
+  | "png8_fl_png24_fl_png32"
+  | "preserve_transparency"
+  | "progressive"
+  | "rasterize"
+  | "region_relative"
+  | "relative"
+  | "replace_image"
+  | "sanitize"
+  | "splice"
+  | "streaming_attachment"
+  | "strip_profile"
+  | "text_disallow_overflow"
+  | "text_no_trim"
+  | "tiff8_lzw"
+  | "tiled"
+  | "truncate_ts"
+  | "waveform";
 
-/** Crop */
+/**
+ *  @description Alters the regular behavior of another transformation or the overall delivery behavior.
+ *  @url https://cloudinary.com/documentation/transformation_reference#fl_flag
+ *  @qualifier fl
+ */
+export type FlagsDefinition = ListableFlags | FlagRecord;
 
-const cropSchema = cropModesEnum;
+export type ListableFlags = Flag | ReadonlyArray<Flag>;
 
-export const crop = {
-  qualifier: "c",
-  schema: cropSchema.describe(
-    JSON.stringify({
-      text: "Mode to use when cropping an asset.",
-      url: "https://cloudinary.com/documentation/transformation_reference#c_crop_resize",
-    }),
-  ),
-};
+export type FlagRecord = Partial<Record<Flag, StringifiablePrimative>>;
 
-/** extractMode */
+/**
+ * @description Converts (if necessary) and delivers an asset in the specified format regardless of the file extension used in the delivery URL.
+ * @url https://cloudinary.com/documentation/transformation_reference#f_format
+ * @qualifier f
+ */
+export type Format =
+  | "auto"
+  | "auto:image"
+  | "auto:animated"
+  | "gif"
+  | "png"
+  | "jpg"
+  | "bmp"
+  | "ico"
+  | "pdf"
+  | "tiff"
+  | "eps"
+  | "jpc"
+  | "jp2"
+  | "psd"
+  | "webp"
+  | "zip"
+  | "svg"
+  | "webm"
+  | "wdp"
+  | "hpx"
+  | "djvu"
+  | "ai"
+  | "flif"
+  | "bpg"
+  | "miff"
+  | "tga"
+  | "heic"
+  | "default" // library specific feature to turn off automatic optimization
+  | (string & {});
 
-const extractModeSchema = extractModesEnum;
+/**
+ *  @description Determines which part of an asset to focus on. Note: Default of auto is applied for supported crop modes only.
+ *  @url https://cloudinary.com/documentation/transformation_reference#g_gravity
+ */
+export type Gravity =
+  | "auto"
+  | "auto_content_aware"
+  | "center"
+  | "custom"
+  | "east"
+  | "face"
+  | "face_center"
+  | "multi_face"
+  | "north"
+  | "north_east"
+  | "north_west"
+  | "south"
+  | "south_east"
+  | "south_west"
+  | "west"
+  | "xy_center"
+  | "face:center"
+  | "face:auto"
+  | "faces"
+  | "faces:center"
+  | "faces:auto"
+  | "body"
+  | "body:face"
+  | "adv_face"
+  | "adv_faces"
+  | "adv_eyes"
+  | "custom:face"
+  | "custom:faces"
+  | "custom:adv_face"
+  | "custom:adv_faces"
+  | "auto:adv_face"
+  | "auto:adv_faces"
+  | "auto:adv_eyes"
+  | "auto:body"
+  | "auto:face"
+  | "auto:faces"
+  | "auto:custom_no_override"
+  | "auto:none"
+  | "liquid"
+  | "ocr_text"
+  | (string & {});
 
-export const extractMode = {
-  schema: extractModeSchema
-    .default('content')
-    .describe(JSON.stringify({
-      text: "Whether to keep the content of the extracted area, or to replace it with a mask.",
-      url: "https://cloudinary.com/documentation/transformation_reference#e_extract",
-    }),
-  ),
-};
+/**
+ *  @description A qualifier that determines the height of a transformed asset or an overlay.
+ *  @url https://cloudinary.com/documentation/transformation_reference#h_height
+ */
+export type Height = number | string;
 
-/** Flags */
+/**
+ *  @description Should generative AI features detect multiple instances.
+ */
+export type Multiple = boolean;
 
-export const flags = {
-  qualifier: "fl",
-  schema: z.union([flagsEnum, z.array(flagsEnum)]).describe(
-    JSON.stringify({
-      text: "Alters the regular behavior of another transformation or the overall delivery behavior.",
-      url: "https://cloudinary.com/documentation/transformation_reference#fl_flag",
-    }),
-  ),
-};
+/**
+ *  @description Natural language descriptions used for generative AI capabilities.
+ */
+export type ListablePrompts = string | ReadonlyArray<string>;
 
-/** Format */
+/**
+ *  @description A qualifier that sets the desired width of an asset using a specified value, or automatically based on the available width.
+ *  @url https://cloudinary.com/documentation/transformation_reference#w_width
+ */
+export type Width = number | string;
 
-export const format = {
-  qualifier: "f",
-  // @TODO: enum
-  schema: z.string().describe(
-    JSON.stringify({
-      text: "Converts (if necessary) and delivers an asset in the specified format regardless of the file extension used in the delivery URL.",
-      url: "https://cloudinary.com/documentation/transformation_reference#f_format",
-    }),
-  ),
-};
+/**
+ *  @description Adjusts the starting location or offset of the x axis.
+ *  @url https://cloudinary.com/documentation/transformation_reference#x_y_coordinates
+ */
+export type X = number | string;
 
-/** Gravity */
-
-export type Gravity = z.infer<typeof gravitySchema>;
-
-const gravitySchema = z.union([
-  z.enum([
-    "auto",
-    "auto_content_aware",
-    "center",
-    "custom",
-    "east",
-    "face",
-    "face_center",
-    "multi_face",
-    "north",
-    "north_east",
-    "north_west",
-    "south",
-    "south_east",
-    "south_west",
-    "west",
-    "xy_center",
-    "face:center",
-    "face:auto",
-    "faces",
-    "faces:center",
-    "faces:auto",
-    "body",
-    "body:face",
-    "adv_face",
-    "adv_faces",
-    "adv_eyes",
-    "custom:face",
-    "custom:faces",
-    "custom:adv_face",
-    "custom:adv_faces",
-    "auto:adv_face",
-    "auto:adv_faces",
-    "auto:adv_eyes",
-    "auto:body",
-    "auto:face",
-    "auto:faces",
-    "auto:custom_no_override",
-    "auto:none",
-    "liquid",
-    "ocr_text"
-  ]),
-  // Quirk to allow enum + string
-  z.intersection(z.string(), z.object({}))
-]);
-
-export const gravity = {
-  qualifier: "g",
-  schema: gravitySchema.describe(
-    JSON.stringify({
-      text: "Determines which part of an asset to focus on. Note: Default of auto is applied for supported crop modes only.",
-      url: "https://cloudinary.com/documentation/transformation_reference#g_gravity",
-    }),
-  ),
-};
-
-/** Height */
-
-const heightSchema = z.union([z.number(), z.string()]);
-
-export const height = {
-  qualifier: "h",
-  schema: heightSchema.describe(
-    JSON.stringify({
-      text: "A qualifier that determines the height of a transformed asset or an overlay.",
-      url: "https://cloudinary.com/documentation/transformation_reference#h_height",
-    }),
-  ),
-};
-
-/** Multiple */
-
-const multipleSchema = z.boolean();
-
-export const multiple = {
-  schema: multipleSchema.describe(
-    JSON.stringify({
-      text: "Should generative AI features detect multiple instances.",
-    }),
-  ),
-};
-
-/** Prompt */
-
-export const prompt = {
-  schema: z.string().describe(
-    JSON.stringify({
-      text: "Natural language descriptions used for generative AI capabilities.",
-    }),
-  ),
-};
-
-/** Width */
-
-const widthSchema = z.union([z.number(), z.string()]);
-
-export const width = {
-  qualifier: "w",
-  schema: widthSchema.describe(
-    JSON.stringify({
-      text: "A qualifier that sets the desired width of an asset using a specified value, or automatically based on the available width.",
-      url: "https://cloudinary.com/documentation/transformation_reference#w_width",
-    }),
-  ),
-};
-
-/** X */
-
-export const x = {
-  qualifier: "x",
-  schema: z.union([z.string(), z.number()]).describe(
-    JSON.stringify({
-      text: "Adjusts the starting location or offset of the x axis.",
-      url: "https://cloudinary.com/documentation/transformation_reference#x_y_coordinates",
-    }),
-  ),
-};
-
-/** Y */
-
-export const y = {
-  qualifier: "y",
-  schema: z.union([z.string(), z.number()]).describe(
-    JSON.stringify({
-      text: "Adjusts the starting location or offset of the y axis.",
-      url: "https://cloudinary.com/documentation/transformation_reference#x_y_coordinates",
-    }),
-  ),
-};
+/**
+ *  @description Adjusts the starting location or offset of the y axis.
+ *  @url https://cloudinary.com/documentation/transformation_reference#x_y_coordinates
+ */
+export type Y = number | string;
 
 /** Zoom */
 
-const zoomSchema = z.string();
+/**
+ * @description Controls how close to crop to the detected coordinates when using face-detection, custom-coordinate, or object-specific gravity.
+ * @url https://cloudinary.com/documentation/transformation_reference#z_zoom
+ */
+export type Zoom = number | string;
 
-export const zoom = {
-  schema: zoomSchema.describe(
-    JSON.stringify({
-      text: "Controls how close to crop to the detected coordinates when using face-detection, custom-coordinate, or object-specific gravity.",
-      url: "https://cloudinary.com/documentation/transformation_reference#z_zoom",
-    }),
-  ),
-};
+// this was originally called PositionOptions but it conflicts with a
+// DOM type, leading to confusing results if e.g. the import is deleted,
+// the type falls back to the global
+export interface PositionalOptions {
+  angle?: Angle;
+  gravity?: Gravity;
+  x?: X;
+  y?: Y;
+}

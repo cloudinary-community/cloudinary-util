@@ -1,7 +1,17 @@
-import { z } from "zod";
-import * as parameters from "../constants/parameters.js";
-import { normalizeNumberParameter } from "../lib/transformations.js";
-import type { PluginResults, TransformationPlugin } from "../types/plugins.js";
+import { normalizeNumberParameter } from "@cloudinary-util/util";
+import type {
+  AspectRatio,
+  CropMode,
+  Gravity,
+  Height,
+  Width,
+  X,
+  Y,
+  Zoom,
+} from "../constants/parameters.js";
+import { plugin } from "../lib/plugin.js";
+import { isArray } from "../lib/utils.js";
+import type { PluginResults } from "../types/plugins.js";
 
 const cropsAspectRatio = ["auto", "crop", "fill", "lfill", "fill_pad", "thumb"];
 const cropsGravityAuto = ["auto", "crop", "fill", "lfill", "fill_pad", "thumb"];
@@ -9,68 +19,71 @@ const cropsWithZoom = ["crop", "thumb"];
 
 const DEFAULT_CROP = "limit";
 
-const cropOptionsSchema = z.object({
-  aspectRatio: parameters.aspectRatio.schema.optional(),
-  type: parameters.crop.schema,
-  gravity: parameters.gravity.schema.optional(),
-  height: parameters.height.schema.optional(),
-  width: parameters.width.schema.optional(),
-  x: parameters.x.schema.optional(),
-  y: parameters.y.schema.optional(),
-  zoom: parameters.zoom.schema.optional(),
-  source: z.boolean().optional(),
-});
+export declare namespace CroppingPlugin {
+  export interface Options {
+    aspectRatio?: AspectRatio;
+    crop?: CropMode | NestedOptions | ReadonlyArray<NestedOptions>;
+    gravity?: Gravity;
+    zoom?: Zoom;
+    /**
+     * @description Height of the given asset.
+     */
+    height?: string | number;
+    /**
+     * @description Width of the given asset.
+     */
+    width?: string | number;
+  }
 
-type CropOptions = z.infer<typeof cropOptionsSchema>;
+  export interface NestedOptions {
+    type: CropMode;
+    aspectRatio?: AspectRatio;
+    gravity?: Gravity;
+    height?: Height;
+    width?: Width;
+    x?: X;
+    y?: Y;
+    zoom?: Zoom;
+    source?: boolean;
+  }
+}
 
-export const croppingProps = {
-  aspectRatio: parameters.aspectRatio.schema.optional(),
-  crop: z
-    .union([
-      parameters.crop.schema,
-      cropOptionsSchema,
-      z.array(cropOptionsSchema),
-    ])
-    .default(DEFAULT_CROP)
-    .optional(),
-  gravity: parameters.gravity.schema.optional(),
-  zoom: parameters.zoom.schema.optional(),
-};
-
-export const croppingPlugin = {
-  props: croppingProps,
-  assetTypes: ["image", "images", "video", "videos"],
-  plugin: (settings) => {
-    const { cldAsset, options } = settings;
-
-    let crops: Array<CropOptions> = [];
+export const CroppingPlugin = /* #__PURE__ */ plugin({
+  name: "Cropping",
+  supports: "all",
+  inferOwnOptions: {} as CroppingPlugin.Options,
+  props: {
+    aspectRatio: true,
+    crop: true,
+    gravity: true,
+    zoom: true,
+    height: true,
+    width: true,
+  },
+  // crop is applied even if the crop key is undefined
+  apply: (asset, opts) => {
+    let crops: Array<CroppingPlugin.NestedOptions> = [];
 
     // Normalize the data that we're working with for simpler processing
 
-    if (
-      typeof options.crop === "string" ||
-      typeof options.crop === "undefined"
-    ) {
+    if (typeof opts.crop === "string" || typeof opts.crop === "undefined") {
       // If we have a type of string or we don't explicitly
       // have a crop set (default is limit) we're using the
       // default pattern of resizing/cropping after all
       // of the transformations
 
       crops.push({
-        aspectRatio: options.aspectRatio,
-        height: options.height,
-        gravity: options.gravity,
-        type: options.crop || DEFAULT_CROP,
-        width: options.width,
-        zoom: options.zoom,
+        aspectRatio: opts.aspectRatio,
+        height: opts.height,
+        gravity: opts.gravity,
+        type: opts.crop || DEFAULT_CROP,
+        width: opts.width,
+        zoom: opts.zoom,
       });
-    } else if (
-      typeof options.crop === "object" &&
-      !Array.isArray(options.crop)
-    ) {
-      crops.push(options.crop);
-    } else if (Array.isArray(options.crop)) {
-      crops = options.crop;
+    } else if (typeof opts.crop === "object" && !isArray(opts.crop)) {
+      crops.push(opts.crop);
+    } else if (isArray(opts.crop)) {
+      crops = [...opts.crop];
     }
 
     // We always need a post-transformation to resize the image, whether that uses the
@@ -79,12 +92,12 @@ export const croppingPlugin = {
 
     if (crops.length === 1 && crops[0].source === true) {
       crops.push({
-        aspectRatio: options.aspectRatio,
-        width: options.width,
-        height: options.height,
-        gravity: options.gravity,
+        aspectRatio: opts.aspectRatio,
+        width: opts.width,
+        height: opts.height,
+        gravity: opts.gravity,
         type: DEFAULT_CROP,
-        zoom: options.zoom,
+        zoom: opts.zoom,
       });
     }
 
@@ -104,13 +117,13 @@ export const croppingPlugin = {
         typeof cropDimensions.width === "undefined" &&
         typeof crop.aspectRatio === "undefined"
       ) {
-        cropDimensions.width = options.width;
+        cropDimensions.width = opts.width;
 
         // We likely don't want to infer one dimension and not the other
         // so only infer the height if we're already inferring the width
 
         if (typeof cropDimensions.height === "undefined") {
-          cropDimensions.height = options.height;
+          cropDimensions.height = opts.height;
         }
       }
 
@@ -142,7 +155,7 @@ export const croppingPlugin = {
 
     sourceTransformations.forEach((transformation) => {
       if (transformation.length > 0) {
-        cldAsset.addTransformation(transformation.join(","));
+        asset.addTransformation(transformation.join(","));
       }
     });
 
@@ -160,14 +173,14 @@ export const croppingPlugin = {
 
     return results;
   },
-} satisfies TransformationPlugin;
+});
 
 /**
  * CollectTransformations
  * @description Given the avialable crop options, returns an array of transformation strings
  */
 
-function collectTransformations(collectOptions: CropOptions) {
+function collectTransformations(collectOptions: CroppingPlugin.NestedOptions) {
   // Default the crop to "limit" to avoid upscaling
   // This avoid further distorting the image since the browser will resize in that case.
   // If caller wants actual resize, can explicitly pass in "scale".
@@ -183,14 +196,17 @@ function collectTransformations(collectOptions: CropOptions) {
 
   const hasDefinedDimensions = height || width;
   const hasValidAspectRatio = aspectRatio && cropsAspectRatio.includes(crop);
-  const hasXCoordinate = typeof x === 'number' || typeof x === 'string';
-  const hasYCoordinate = typeof y === 'number' || typeof y === 'string';
+  const hasXCoordinate = typeof x === "number" || typeof x === "string";
+  const hasYCoordinate = typeof y === "number" || typeof y === "string";
   const hasDefinedCoordinates = hasXCoordinate || hasYCoordinate;
 
   // Only apply a crop if we're defining some type of dimension attribute
   // where the crop would make sense
 
-  if (crop && (hasDefinedDimensions || hasValidAspectRatio || hasDefinedCoordinates)) {
+  if (
+    crop &&
+    (hasDefinedDimensions || hasValidAspectRatio || hasDefinedCoordinates)
+  ) {
     transformations.push(`c_${crop}`);
   }
 
@@ -212,11 +228,11 @@ function collectTransformations(collectOptions: CropOptions) {
     transformations.push(`h_${height}`);
   }
 
-  if ( hasXCoordinate ) {
+  if (hasXCoordinate) {
     transformations.push(`x_${x}`);
   }
 
-  if ( hasYCoordinate ) {
+  if (hasYCoordinate) {
     transformations.push(`y_${y}`);
   }
 
@@ -225,7 +241,7 @@ function collectTransformations(collectOptions: CropOptions) {
   // If the user is providing x or y coordinates, we also don't want
   // to default to auto, as that will skew the intuitive results
 
-  if (!gravity && cropsGravityAuto.includes(crop) && !hasDefinedCoordinates ) {
+  if (!gravity && cropsGravityAuto.includes(crop) && !hasDefinedCoordinates) {
     gravity = "auto";
   }
 

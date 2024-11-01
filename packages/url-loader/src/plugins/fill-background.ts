@@ -1,44 +1,46 @@
-import { z } from "zod";
-import { crop, gravity } from "../constants/parameters.js";
-import { normalizeNumberParameter } from "../lib/transformations.js";
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { normalizeNumberParameter } from "@cloudinary-util/util";
+import type {
+  CropMode,
+  Gravity,
+  ListablePrompts,
+} from "../constants/parameters.js";
+import { plugin } from "../lib/plugin.js";
 
 const defaultCrop = "pad";
 
-export const fillBackgroundProps = {
-  fillBackground: z
-    .union([
-      z.boolean(),
-      z.object({
-        crop: crop.schema.optional(),
-        gravity: gravity.schema.optional(),
-        prompt: z.string().optional(),
-      }),
-    ])
-    .describe(
-      JSON.stringify({
-        text: "Uses Generative Fill to extended padded image with AI",
-        url: "https://cloudinary.com/documentation/transformation_reference#b_gen_fill",
-      })
-    )
-    .optional(),
-};
+export declare namespace FillBackgroundPlugin {
+  export interface Options {
+    /**
+     * @description Uses Generative Fill to extended padded image with AI
+     * @url https://cloudinary.com/documentation/transformation_reference#b_gen_fill
+     */
+    fillBackground?: boolean | NestedOptions;
+  }
 
-export const fillBackgroundPlugin = {
-  props: fillBackgroundProps,
-  assetTypes: ["image", "images"],
-  plugin: (settings) => {
-    const { cldAsset, options } = settings;
-    const { fillBackground } = options;
+  export interface NestedOptions {
+    crop?: CropMode;
+    gravity?: Gravity;
+    prompt?: ListablePrompts;
+  }
+}
+
+export const FillBackgroundPlugin = /* #__PURE__ */ plugin({
+  name: "FillBackground",
+  supports: "image",
+  inferOwnOptions: {} as FillBackgroundPlugin.Options,
+  props: {
+    fillBackground: true,
+  },
+  apply: (cldAsset, opts, ctx) => {
+    const { fillBackground } = opts;
 
     if (typeof fillBackground === "undefined") return {};
 
-    const width = normalizeNumberParameter(options.width);
-    const height = normalizeNumberParameter(options.height);
+    const width = normalizeNumberParameter(ctx.width);
+    const height = normalizeNumberParameter(ctx.height);
     const hasDefinedDimensions =
       typeof height === "number" && typeof width === "number";
-    let aspectRatio = options.aspectRatio;
+    let aspectRatio = ctx.aspectRatio;
 
     if (!aspectRatio && hasDefinedDimensions) {
       aspectRatio = `${width}:${height}`;
@@ -81,4 +83,4 @@ export const fillBackgroundPlugin = {
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});

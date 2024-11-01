@@ -59,7 +59,7 @@ export const SchemaTable = ({ schema, schemaKey }) => {
       };
 
       return property;
-    }
+    },
   );
 
   const sortedProperties = sortByKey(formattedProperties, "name");

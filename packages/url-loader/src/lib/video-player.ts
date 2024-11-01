@@ -1,14 +1,14 @@
 import type {
+  CloudinaryAssetConfiguration,
   CloudinaryVideoPlayerOptions,
   CloudinaryVideoPlayerOptionsLogo,
 } from "@cloudinary-util/types";
 import { parseUrl } from "@cloudinary-util/util";
-
-import type { ConfigOptions } from "../types/config.js";
 import {
   constructCloudinaryUrl,
   type ConstructUrlProps,
 } from "./cloudinary.js";
+import { isArray } from "./utils.js";
 
 /**
  * getVideoPlayerOptions
@@ -25,7 +25,7 @@ export type GetVideoPlayerOptions = Omit<
   | "logoOnclickUrl"
 > & {
   logo?: boolean | GetVideoPlayerOptionsLogo;
-  poster?: string | ConstructUrlProps["options"];
+  poster?: string | Partial<ConstructUrlProps["options"]>;
   src: string;
   quality?: string | number;
 };
@@ -38,7 +38,7 @@ export interface GetVideoPlayerOptionsLogo {
 
 export function getVideoPlayerOptions(
   options: GetVideoPlayerOptions,
-  config: ConfigOptions
+  config: CloudinaryAssetConfiguration,
 ) {
   const {
     autoplay,
@@ -63,7 +63,7 @@ export function getVideoPlayerOptions(
 
   if (!cloudName) {
     throw new Error(
-      "A Cloudinary Cloud name is required, please make sure your environment variable is set and configured in your environment."
+      "A Cloudinary Cloud name is required, please make sure your environment variable is set and configured in your environment.",
     );
   }
 
@@ -85,15 +85,9 @@ export function getVideoPlayerOptions(
 
   if (!publicId) {
     throw new Error(
-      "Video Player requires a src, please make sure to configure your src as a public ID or Cloudinary URL."
+      "Video Player requires a src, please make sure to configure your src as a public ID or Cloudinary URL.",
     );
   }
-
-  // Normalize player transformations as an array
-
-  const playerTransformations = Array.isArray(transformation)
-    ? transformation
-    : [transformation];
 
   // We want to apply a quality transformation which defaults
   // to auto, but we want it to be in the beginning of the
@@ -101,9 +95,11 @@ export function getVideoPlayerOptions(
   // has already passed some in, giving them the opportunity
   // to override if desired
 
-  playerTransformations.unshift({
-    quality,
-  });
+  const playerTransformations = [
+    { quality },
+    // Normalize player transformations as an array
+    ...(isArray(transformation) ? transformation : [transformation]),
+  ];
 
   // Provide an object configuration option for player logos
 
@@ -163,7 +159,11 @@ export function getVideoPlayerOptions(
     ...otherCldVidPlayerOptions,
   };
 
-  if ( playerOptions.width && playerOptions.height && !playerOptions.aspectRatio ) {
+  if (
+    playerOptions.width &&
+    playerOptions.height &&
+    !playerOptions.aspectRatio
+  ) {
     playerOptions.aspectRatio = `${playerOptions.width}:${playerOptions.height}`;
   }
 
@@ -184,10 +184,10 @@ export function getVideoPlayerOptions(
       playerOptions.posterOptions = {
         publicId: constructCloudinaryUrl({
           options: {
-            ...poster,
             src: publicId,
             assetType: "video",
             format: "auto:image",
+            ...poster,
           },
           config,
         }),
@@ -195,7 +195,10 @@ export function getVideoPlayerOptions(
     } else {
       playerOptions.posterOptions = {
         publicId: constructCloudinaryUrl({
-          options: poster,
+          options: {
+            src: publicId,
+            ...poster,
+          },
           config,
         }),
       };

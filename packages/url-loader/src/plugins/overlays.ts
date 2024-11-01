@@ -1,15 +1,10 @@
 import { encodeBase64, objectHasKey, sortByKey } from "@cloudinary-util/util";
-import { z } from "zod";
-import {
-  angle,
-  crop,
-  flags,
-  flagsEnum,
-  gravity,
-  height,
-  width,
-  x,
-  y,
+import type {
+  CropMode,
+  Height,
+  ListableFlags,
+  PositionalOptions,
+  Width,
 } from "../constants/parameters.js";
 import {
   effects as qualifiersEffects,
@@ -17,46 +12,55 @@ import {
   primary as qualifiersPrimary,
   text as qualifiersText,
 } from "../constants/qualifiers.js";
+import { plugin } from "../lib/plugin.js";
 import { constructTransformation } from "../lib/transformations.js";
-import type { TransformationPlugin } from "../types/plugins.js";
-import type { Qualifier } from "../types/qualifiers.js";
+import { entriesOf, isArray } from "../lib/utils.js";
+import type { QualifierConfig } from "../types/qualifiers.js";
 
-const overlayTextSchema = z.object({
-  alignment: z.string().optional(),
-  antialias: z.string().optional(),
-  border: z.string().optional(),
-  color: z.string().optional(),
-  fontFamily: z.string().optional(),
-  fontSize: z.number().optional(),
-  fontStyle: z.union([z.string(), z.number()]).optional(),
-  fontWeight: z.string().optional(),
-  hinting: z.union([z.string(), z.number()]).optional(),
-  letterSpacing: z.union([z.string(), z.number()]).optional(),
-  lineSpacing: z.union([z.string(), z.number()]).optional(),
-  stroke: z.string().optional(),
-  text: z.string(), // Required if using object format
-});
+export declare namespace OverlaysPlugin {
+  export interface Options {
+    /**
+     * @description Image or text layers that are applied on top of the base image.
+     * @url https://cloudinary.com/documentation/transformation_reference#l_layer
+     */
+    overlays?: ReadonlyArray<NestedOptions>;
+    /**
+     * @description Text to be overlaid on asset.
+     * @url https://cloudinary.com/documentation/image_transformations#transformation_url_structure
+     */
+    text?: string | TextOptions;
+  }
 
-const overlayPositionSchema = z.object({
-  angle: angle.schema.optional(),
-  gravity: gravity.schema.optional(),
-  x: x.schema.optional(),
-  y: y.schema.optional(),
-});
+  export interface NestedOptions {
+    appliedEffects?: object[];
+    appliedFlags?: ListableFlags;
+    effects?: object[];
+    crop?: CropMode;
+    flags?: ListableFlags;
+    height?: Height;
+    position?: PositionalOptions;
+    publicId?: string;
+    text?: string | TextOptions;
+    url?: string;
+    width?: Width;
+  }
 
-const overlaySchema = z.object({
-  appliedEffects: z.array(z.object({})).optional(),
-  appliedFlags: flags.schema.optional(),
-  effects: z.array(z.object({})).optional(),
-  crop: crop.schema.optional(),
-  flags: flags.schema.optional(),
-  height: height.schema.optional(),
-  position: overlayPositionSchema.optional(),
-  publicId: z.string().optional(),
-  text: z.union([z.string(), overlayTextSchema]).optional(),
-  url: z.string().optional(),
-  width: width.schema.optional(),
-});
+  export interface TextOptions {
+    text: string;
+    alignment?: string;
+    antialias?: string;
+    border?: string;
+    color?: string;
+    fontFamily?: string;
+    fontSize?: number;
+    fontStyle?: string | number;
+    fontWeight?: string;
+    hinting?: string | number;
+    letterSpacing?: string | number;
+    lineSpacing?: string | number;
+    stroke?: boolean;
+  }
+}
 
 export const DEFAULT_TEXT_OPTIONS = {
   color: "black",
@@ -65,45 +69,21 @@ export const DEFAULT_TEXT_OPTIONS = {
   fontWeight: "bold",
 };
 
-export const overlaysProps = {
-  overlay: overlaySchema
-    .describe(
-      JSON.stringify({
-        text: "Image or text layer that is applied on top of the base image.",
-        url: "https://cloudinary.com/documentation/transformation_reference#l_layer",
-      })
-    )
-    .optional(),
-  overlays: z
-    .array(overlaySchema)
-    .describe(
-      JSON.stringify({
-        text: "Image or text layers that are applied on top of the base image.",
-        url: "https://cloudinary.com/documentation/transformation_reference#l_layer",
-      })
-    )
-    .optional(),
-  text: z
-    .string()
-    .describe(
-      JSON.stringify({
-        text: "Text to be overlaid on asset.",
-        url: "https://cloudinary.com/documentation/image_transformations#transformation_url_structure",
-      })
-    )
-    .optional(),
-};
-
-export const overlaysPlugin = {
-  props: overlaysProps,
-  assetTypes: ["image", "images", "video", "videos"],
-  plugin: ({ cldAsset, options }) => {
-    const { text, overlays = [] } = options;
+export const OverlaysPlugin = /* #__PURE__ */ plugin({
+  name: "Overlays",
+  supports: "all",
+  inferOwnOptions: {} as OverlaysPlugin.Options,
+  props: {
+    overlays: true,
+    text: true,
+  },
+  apply: (cldAsset, opts) => {
+    const { text, overlays = [] } = opts;
 
     const type = "overlay";
     const typeQualifier = "l";
 
-    if (Array.isArray(overlays)) {
+    if (isArray(overlays)) {
       overlays.forEach(applyOverlay);
     }
 
@@ -119,12 +99,6 @@ export const overlaysPlugin = {
       });
     }
 
-    /**
-     * applyOverlay
-     */
-
-    type ApplyOverlaySettings = z.infer<typeof overlaySchema>;
-
     function applyOverlay({
       publicId,
       url,
@@ -135,7 +109,7 @@ export const overlaysPlugin = {
       flags: layerFlags = [],
       appliedFlags = [],
       ...options
-    }: ApplyOverlaySettings) {
+    }: OverlaysPlugin.NestedOptions) {
       const hasPublicId = typeof publicId === "string";
       const hasUrl = typeof url === "string";
       const hasText = typeof text === "object" || typeof text === "string";
@@ -156,7 +130,7 @@ export const overlaysPlugin = {
       } else if (hasPublicId) {
         layerTransformation = `${typeQualifier}_${publicId.replace(
           /\//g,
-          ":"
+          ":",
         )}`;
       } else if (hasUrl) {
         layerTransformation = `${typeQualifier}_fetch:${encodeBase64(url)}`;
@@ -168,12 +142,12 @@ export const overlaysPlugin = {
       const primary: Array<string> = [];
       const applied: Array<string> = [];
 
-      // Gemeral options
+      // General options
 
       (Object.keys(options) as Array<keyof typeof options>).forEach((key) => {
         if (!objectHasKey(qualifiersPrimary, key)) return;
 
-        const { qualifier, converters } = qualifiersPrimary[key];
+        const { qualifier, converters } = qualifiersPrimary[key]!;
 
         const transformation = constructTransformation({
           qualifier,
@@ -251,20 +225,9 @@ export const overlaysPlugin = {
       // Add flags to the primary layer transformation segment
       // @TODO: accept flag value
 
-      const activeLayerFlags = Array.isArray(layerFlags)
-        ? layerFlags
-        : [layerFlags];
+      const activeLayerFlags = isArray(layerFlags) ? layerFlags : [layerFlags];
 
       activeLayerFlags.forEach((flag) => {
-        const { success } = flagsEnum.safeParse(flag);
-
-        if (!success) {
-          if (process.env.NODE_ENV === "development") {
-            console.warn(`Invalid flag ${flag}, not applying.`);
-          }
-          return;
-        }
-
         primary.push(`fl_${flag}`);
       });
 
@@ -272,20 +235,11 @@ export const overlaysPlugin = {
       // Add flags to the fl_layer_apply transformation segment
       // @TODO: accept flag value
 
-      const activeAppliedFlags = Array.isArray(appliedFlags)
+      const activeAppliedFlags = isArray(appliedFlags)
         ? appliedFlags
         : [appliedFlags];
 
       activeAppliedFlags.forEach((flag) => {
-        const { success } = flagsEnum.safeParse(flag);
-
-        if (!success) {
-          if (process.env.NODE_ENV === "development") {
-            console.warn(`Invalid flag ${flag}, not applying.`);
-          }
-          return;
-        }
-
         applied.push(`fl_${flag}`);
       });
 
@@ -302,23 +256,23 @@ export const overlaysPlugin = {
         const textTransformations: Array<string> = [];
 
         if (typeof text === "object") {
-          interface TextOption extends Qualifier {
+          interface TextOption extends QualifierConfig {
             key: string;
             value: any;
             order: number;
           }
 
-          const textOptions: Array<TextOption> = Object.keys(text)
-            .filter((key) => objectHasKey(qualifiersText, key))
-            .map((key) => {
-              const value = text && objectHasKey(text, key) && text[key];
+          const textOptions: Array<TextOption> = entriesOf(text).flatMap(
+            ([key, value]) => {
+              if (!qualifiersText[key]) return [];
               return {
                 ...qualifiersText[key],
                 key,
                 value,
                 order: qualifiersText[key].order || 99,
               };
-            });
+            },
+          );
 
           const sortedTextOptions = sortByKey(textOptions, "order");
 
@@ -360,31 +314,27 @@ export const overlaysPlugin = {
           )?.forEach((character: string) => {
             layerText = layerText?.replace(
               character,
-              specialCharacters[character]
+              specialCharacters[character],
             );
           });
         }
 
         layerTransformation = `${layerTransformation}:${textTransformations.join(
-          "_"
+          "_",
         )}:${layerText}`;
       }
 
       // Positioning
 
       if (hasPosition) {
-        Object.keys(position).forEach((key) => {
-          if (
-            !objectHasKey(qualifiersPosition, key) ||
-            !objectHasKey(position, key)
-          )
-            return;
+        Object.entries(position).forEach(([key, value]) => {
+          if (!objectHasKey(qualifiersPosition, key)) return;
 
           const { qualifier, converters } = qualifiersPosition[key];
 
           const transformation = constructTransformation({
             qualifier,
-            value: position[key],
+            value,
             converters,
           });
 
@@ -415,4 +365,4 @@ export const overlaysPlugin = {
 
     return {};
   },
-} satisfies TransformationPlugin;
+});

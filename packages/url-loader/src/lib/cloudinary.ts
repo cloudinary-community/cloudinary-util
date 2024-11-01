@@ -1,130 +1,150 @@
+import type { CloudinaryAssetConfiguration } from "@cloudinary-util/types";
 import { objectHasKey, parseUrl, type ParseUrl } from "@cloudinary-util/util";
 import {
   Cloudinary,
   type CloudinaryImage,
   type CloudinaryVideo,
 } from "@cloudinary/url-gen";
-import { z } from "zod";
+import type { IAnalyticsOptions } from "@cloudinary/url-gen/sdkAnalytics/interfaces/IAnalyticsOptions";
 
-import { abrPlugin } from "../plugins/abr.js";
-import { croppingPlugin } from "../plugins/cropping.js";
-import { defaultImagePlugin } from "../plugins/default-image.js";
-import { effectsPlugin } from "../plugins/effects.js";
-import { enhancePlugin } from "../plugins/enhance.js";
-import { extractPlugin } from "../plugins/extract.js";
-import { fillBackgroundPlugin } from "../plugins/fill-background.js";
-import { flagsPlugin } from "../plugins/flags.js";
-import { namedTransformationsPlugin } from "../plugins/named-transformations.js";
-import { overlaysPlugin } from "../plugins/overlays.js";
-import { preserveTransformationsPlugin } from "../plugins/preserve-transformations.js";
-import { rawTransformationsPlugin } from "../plugins/raw-transformations.js";
-import { recolorPlugin } from "../plugins/recolor.js";
-import { removeBackgroundPlugin } from "../plugins/remove-background.js";
-import { removePlugin } from "../plugins/remove.js";
-import { replaceBackgroundPlugin } from "../plugins/replace-background.js";
-import { replacePlugin } from "../plugins/replace.js";
-import { restorePlugin } from "../plugins/restore.js";
-import { sanitizePlugin } from "../plugins/sanitize.js";
-import { seoPlugin } from "../plugins/seo.js";
-import { underlaysPlugin } from "../plugins/underlays.js";
-import { zoompanPlugin } from "../plugins/zoompan.js";
+import { AbrPlugin } from "../plugins/abr.js";
+import { DefaultImagePlugin } from "../plugins/default-image.js";
+import { EffectsPlugin } from "../plugins/effects.js";
+import { FillBackgroundPlugin } from "../plugins/fill-background.js";
+import { FlagsPlugin } from "../plugins/flags.js";
+import { PreserveTransformationsPlugin } from "../plugins/preserve-transformations.js";
+import { RawTransformationsPlugin } from "../plugins/raw-transformations.js";
+import { RecolorPlugin } from "../plugins/recolor.js";
+import { RemoveBackgroundPlugin } from "../plugins/remove-background.js";
+import { RemovePlugin } from "../plugins/remove.js";
+import { ReplaceBackgroundPlugin } from "../plugins/replace-background.js";
+import { ReplacePlugin } from "../plugins/replace.js";
+import { RestorePlugin } from "../plugins/restore.js";
+import { SanitizePlugin } from "../plugins/sanitize.js";
+import { SeoPlugin } from "../plugins/seo.js";
+import { UnderlaysPlugin } from "../plugins/underlays.js";
+import { ZoompanPlugin } from "../plugins/zoompan.js";
 
-import { analyticsOptionsSchema } from "../types/analytics.js";
-import { configOptionsSchema } from "../types/config.js";
-import { imageOptionsSchema } from "../types/image.js";
-import { videoOptionsSchema } from "../types/video.js";
-
-import { versionPlugin } from "../plugins/version.js";
+import { CroppingPlugin } from "../plugins/cropping.js";
+import { EnhancePlugin } from "../plugins/enhance.js";
+import { ExtractPlugin } from "../plugins/extract.js";
+import { NamedTransformationsPlugin } from "../plugins/named-transformations.js";
+import { OverlaysPlugin } from "../plugins/overlays.js";
+import { VersionPlugin } from "../plugins/version.js";
 import type {
-  AssetType,
-  PluginOptions,
-  PluginResults,
+  BaseAssetOptions,
+  SupportedAssetTypeInput,
+} from "../types/asset.js";
+import type { ImageOptions } from "../types/image.js";
+import type { PluginOptions, PluginResults } from "../types/plugins.js";
+import type { VideoOptions } from "../types/video.js";
+import type {
+  CloudinaryKey,
+  CtxParam,
   TransformationPlugin,
-} from "../types/plugins.js";
+} from "./plugin.js";
+import { entriesOf, throwError } from "./utils.js";
 
 export const transformationPlugins = [
   // Some features *must* be the first transformation applied
   // thus their plugins *must* come first in the chain
 
-  enhancePlugin,
-  extractPlugin,
-  recolorPlugin,
-  removeBackgroundPlugin,
-  removePlugin,
-  replacePlugin,
-  replaceBackgroundPlugin,
-  restorePlugin,
+  EnhancePlugin,
+  ExtractPlugin,
+  RecolorPlugin,
+  RemoveBackgroundPlugin,
+  RemovePlugin,
+  ReplacePlugin,
+  ReplaceBackgroundPlugin,
+  RestorePlugin,
 
   // Cropping needs to be before any other general transformations
   // as it provides the option of 2-step resizing where someone
   // can resize the "base" canvas as well as the final resize
   // mechanism commonly used for responsive resizing
-  croppingPlugin,
+  CroppingPlugin,
 
   // Raw transformations should always come before
   // other arguments to avoid conflicting with
   // added options via the component
 
-  preserveTransformationsPlugin,
-  rawTransformationsPlugin,
+  PreserveTransformationsPlugin,
+  RawTransformationsPlugin,
 
-  abrPlugin,
-  defaultImagePlugin,
-  effectsPlugin,
-  fillBackgroundPlugin,
-  flagsPlugin,
-  overlaysPlugin,
-  sanitizePlugin,
-  namedTransformationsPlugin,
-  seoPlugin,
-  underlaysPlugin,
-  versionPlugin,
-  zoompanPlugin,
-];
+  AbrPlugin,
+  DefaultImagePlugin,
+  EffectsPlugin,
+  FillBackgroundPlugin,
+  FlagsPlugin,
+  OverlaysPlugin,
+  SanitizePlugin,
+  NamedTransformationsPlugin,
+  SeoPlugin,
+  UnderlaysPlugin,
+  VersionPlugin,
+  ZoompanPlugin
+] as const;
 
-const constructUrlOptionsSchema = z
-  .union([imageOptionsSchema, videoOptionsSchema])
-  .describe(
-    JSON.stringify({
-      text: "Asset options (Image or Video) that define delivery URL including public ID and transformations.",
-      path: "/url-loader/assetoptions",
-    }),
-  );
+const getCloudinaryPluginProps = <const plugins extends readonly TransformationPlugin[]>(
+  plugins: plugins extends validatePlugins<plugins>
+    ? plugins
+    : validatePlugins<plugins>
+): Record<CloudinaryKey, true> => {
+  const cloudinaryPluginProps = {} as Record<CloudinaryKey, true>;
+
+  plugins.forEach((plugin) => {
+    Object.assign(cloudinaryPluginProps, plugin.props);
+  });
+
+  return cloudinaryPluginProps;
+};
+
+export const cloudinaryPluginProps = /* #__PURE__ */ getCloudinaryPluginProps(transformationPlugins);
+
+export const cloudinaryPluginKeys: readonly CloudinaryKey[] = /* #__PURE__ */ Object.keys(
+  cloudinaryPluginProps
+) as never;
+
+export interface AnalyticsOptions extends IAnalyticsOptions {}
+
+export interface ConfigOptions extends CloudinaryAssetConfiguration {}
+
+/**
+ * @description Asset options (Image or Video) that define delivery URL including public ID and transformations.
+ * @path /url-loader/assetoptions
+ */
+export type OptionsInput = ImageOptions | VideoOptions;
 
 /**
  * constructCloudinaryUrl
  * @description Builds a full Cloudinary URL using transformation plugins specified by options
  */
 
-export const constructUrlPropsSchema = z.object({
-  analytics: z
-    .union([analyticsOptionsSchema, z.boolean()])
-    .describe(
-      JSON.stringify({
-        text: "Tech, dependency, and feature identifiers for tracking SDK usage related to Cloudinary.",
-        path: "/url-loader/analyticsoptions",
-      }),
-    )
-    .optional(),
-  config: configOptionsSchema
-    .describe(
-      JSON.stringify({
-        text: "Configuration parameters for environment and Cloudinary account.",
-        url: "https://cloudinary.com/documentation/cloudinary_sdks#configuration_parameters",
-        path: "/url-loader/analyticsoptions",
-      }),
-    )
-    .optional(),
-  options: constructUrlOptionsSchema,
-});
+export interface ConstructUrlProps<
+  assetType extends SupportedAssetTypeInput = SupportedAssetTypeInput,
+> {
+  /**
+   * @description Tech, dependency, and feature identifiers for tracking SDK usage related to Cloudinary.
+   * @path /url-loader/analyticsoptions
+   */
+  analytics?: AnalyticsOptions | boolean;
+  /**
+   * @description Configuration parameters for environment and Cloudinary account.
+   * @url https://cloudinary.com/documentation/cloudinary_sdks#configuration_parameters
+   * @path /url-loader/analyticsoptions
+   */
+  config?: ConfigOptions;
+  // prioritize inferring assetType so available options can be derived from it
+  options: { assetType?: assetType } & CtxParam<assetType>;
+}
 
-export type ConstructUrlProps = z.infer<typeof constructUrlPropsSchema>;
+export type CldAsset = CloudinaryImage | CloudinaryVideo;
 
-export function constructCloudinaryUrl({
-  options,
-  config = {},
-  analytics,
-}: ConstructUrlProps): string {
+export function constructCloudinaryUrl<
+  // only suggest options applicable to the current
+  // assetType (defaulting to image)
+  assetType extends SupportedAssetTypeInput = "image",
+>({ options, config = {}, analytics }: ConstructUrlProps<assetType>): string {
   // If someone is explicitly passing in undefined for analytics via the analytics option,
   // ensure that the URL Gen SDK option is being passed in as false as well
 
@@ -139,26 +159,13 @@ export function constructCloudinaryUrl({
 
   if (typeof options?.src !== "string") {
     throw Error(
-      `Failed to construct Cloudinary URL: Missing source (src) in options.`,
+      `Failed to construct Cloudinary URL: Missing source (src) in options.`
     );
   }
 
   if (!options?.assetType) {
-    options.assetType = "image";
+    options.assetType = "image" as never;
   }
-
-  const propsCheck: Array<string> = [];
-
-  transformationPlugins.forEach(({ props }) => {
-    const pluginProps = Object.keys(props);
-
-    pluginProps.forEach((prop) => {
-      if (propsCheck.includes(prop)) {
-        throw new Error(`Option ${prop} already exists!`);
-      }
-      propsCheck.push(prop);
-    });
-  });
 
   const parsedOptions = {} as Pick<ParseUrl, "seoSuffix" | "version">;
 
@@ -186,74 +193,55 @@ export function constructCloudinaryUrl({
   // Take all the parsed URL parts and apply them to the options configuration
   // if there isn't an existing override
 
-  (Object.keys(parsedOptions) as Array<keyof typeof parsedOptions>).forEach(
-    (key) => {
-      if (objectHasKey(options, key)) return;
-      options[key] = parsedOptions[key];
-    },
-  );
+  entriesOf(parsedOptions).forEach(([key, value]) => {
+    if (objectHasKey(options, key)) return;
+    options[key] = value as never;
+  });
 
   options.version ??= 1;
 
   // Begin creating a new Cloudinary image instance and configure
 
-  let cldAsset: any = undefined;
+  const normalizedAssetType =
+    options.assetType === "image" || options.assetType === "images"
+      ? "image"
+      : options.assetType === "video" || options.assetType === "videos"
+        ? "video"
+        : throwError(`${options.assetType} is not a valid assetType`);
 
-  if (["image", "images"].includes(options.assetType)) {
-    cldAsset = cld.image(publicId);
-  } else if (["video", "videos"].includes(options.assetType)) {
-    cldAsset = cld.video(publicId);
-  }
-
-  if (typeof cldAsset === "undefined") {
-    throw new Error("Invalid asset type.");
-  }
+  const cldAsset = cld[normalizedAssetType](publicId);
 
   const pluginEffects: PluginOptions = {};
 
   transformationPlugins.forEach(
-    ({ plugin, assetTypes, props, strict }: TransformationPlugin) => {
-      const supportedAssetType =
-        options?.assetType !== undefined &&
-        assetTypes.includes(options.assetType as AssetType);
-      const pluginProps = Object.keys(props);
-      const optionsKeys = Object.keys(options);
-      const attemptedUse =
-        pluginProps
-          .map((prop) => optionsKeys.includes(prop))
-          .filter((isUsed) => !!isUsed).length > 0;
+    ({ name, apply, strict, supports, props }: TransformationPlugin) => {
+      const shouldApply = Object.keys(props).some(
+        (key) => options[key as never] !== undefined
+      );
 
-      if (!supportedAssetType) {
-        if (attemptedUse) {
-          console.warn(
-            `One of the following props [${pluginProps.join(
-              ", ",
-            )}] was used with an unsupported asset type [${options?.assetType}]`,
-          );
-        }
+      if (!shouldApply) return;
+
+      if (normalizedAssetType !== supports && supports !== "all") {
+        console.warn(
+          `${name} does not support assetType ${normalizedAssetType}`
+        );
         return;
       }
 
       if (options.strictTransformations && !strict) {
-        if (attemptedUse) {
-          console.warn(
-            `One of the following props [${pluginProps.join(
-              ", ",
-            )}] was used that is not supported with Strict Transformations.`,
-          );
-        }
+        console.warn(`${name} does not support Strict Transformations.`);
         return;
       }
 
-      const results: PluginResults = plugin({
-        cldAsset,
-        options,
-      });
+      // we're actually passing options for both opts and ctx, but
+      // the second param is typed to only include the options
+      // declared by the plugin's `inferOwnOptions`
+      const results: PluginResults = apply(cldAsset, options);
 
-      const { options: pluginOptions } = results || { options: undefined };
+      const pluginOptions = results?.options ?? {};
 
       Object.assign(pluginEffects, pluginOptions);
-    },
+    }
   );
 
   // We want to perform any resizing at the end of the end of the transformation
@@ -314,7 +302,7 @@ export function constructCloudinaryUrl({
   }
 
   return cldAsset.toURL({
-    trackedAnalytics: analytics,
+    trackedAnalytics: typeof analytics === "object" ? analytics : undefined,
   });
 }
 
@@ -330,7 +318,7 @@ interface SearchAssetRawTransformationsOptions {
 export function searchAssetRawTransformations(
   query: string,
   asset: CloudinaryImage | CloudinaryVideo,
-  options?: SearchAssetRawTransformationsOptions,
+  options?: SearchAssetRawTransformationsOptions
 ) {
   if (typeof asset.transformation === "undefined") return;
 
@@ -344,7 +332,7 @@ export function searchAssetRawTransformations(
         .toString()
         .split("/")
         .flatMap((seg) => seg.split(","));
-    },
+    }
   );
 
   const matches = transformations.filter((transformation) => {
@@ -357,3 +345,29 @@ export function searchAssetRawTransformations(
 
   return matches.length > 0;
 }
+
+type validatePlugins<
+  remaining extends ReadonlyArray<TransformationPlugin>,
+  validated extends ReadonlyArray<unknown> = [],
+  // initialize opts to the BaseAssetOptions so that if any of those keys are duplicated,
+  // we'll know right away
+  opts = BaseAssetOptions,
+> = remaining extends readonly [
+  infer next extends TransformationPlugin,
+  ...infer rest extends ReadonlyArray<TransformationPlugin>,
+]
+  ? validatePlugins<
+      rest,
+      readonly [
+        ...validated,
+        keyof opts & keyof next["inferOwnOptions"] extends never
+          ? // if the intersection is never, no options duplicate existing so the plugin is valid
+            next
+          : {
+              duplicatePropertiesMustBeRemoved: keyof opts &
+                keyof next["inferOwnOptions"];
+            },
+      ],
+      opts & next["inferOwnOptions"]
+    >
+  : validated;

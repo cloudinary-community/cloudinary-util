@@ -1,9 +1,7 @@
 import { Cloudinary } from "@cloudinary/url-gen";
-import { describe, expect, it } from 'vitest';
+import { describe, expect, it } from "vitest";
 
-import { removePlugin } from "../../src/plugins/remove";
-
-const { plugin } = removePlugin;
+import { RemovePlugin } from "../../src/plugins/remove.js";
 
 const cld = new Cloudinary({
   cloud: {
@@ -19,13 +17,11 @@ describe("Plugins", () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
-        remove: 'apple'
+        src: TEST_PUBLIC_ID,
+        remove: "apple",
       };
 
-      plugin({
-        cldAsset: cldImage,
-        options,
-      });
+      RemovePlugin.apply(cldImage, options);
 
       expect(cldImage.toURL()).toContain(`e_gen_remove:prompt_apple`);
     });
@@ -34,49 +30,47 @@ describe("Plugins", () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
-        remove: ['apple', 'banana', 'orange']
+        src: TEST_PUBLIC_ID,
+        remove: ["apple", "banana", "orange"],
       };
 
-      plugin({
-        cldAsset: cldImage,
-        options,
-      });
+      RemovePlugin.apply(cldImage, options);
 
-      expect(cldImage.toURL()).toContain(`e_gen_remove:prompt_(apple;banana;orange)`);
+      expect(cldImage.toURL()).toContain(
+        `e_gen_remove:prompt_(apple;banana;orange)`,
+      );
     });
-    
+
     it("should remove an object with object configuration", () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
+        src: TEST_PUBLIC_ID,
         remove: {
-          prompt: ['apple', 'banana'],
+          prompt: ["apple", "banana"],
           multiple: true,
-          removeShadow: true
-        }
+          removeShadow: true,
+        },
       };
 
-      plugin({
-        cldAsset: cldImage,
-        options,
-      });
+      RemovePlugin.apply(cldImage, options);
 
-      expect(cldImage.toURL()).toContain(`e_gen_remove:prompt_(apple;banana);multiple_true;remove-shadow_true`);
+      expect(cldImage.toURL()).toContain(
+        `e_gen_remove:prompt_(apple;banana);multiple_true;remove-shadow_true`,
+      );
     });
 
     it("should remove an object with region", () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
+        src: TEST_PUBLIC_ID,
         remove: {
-          region: [300, 200, 1900, 3500]
-        }
+          region: [300, 200, 1900, 3500],
+        },
       };
 
-      plugin({
-        cldAsset: cldImage,
-        options,
-      });
+      RemovePlugin.apply(cldImage, options);
 
       expect(cldImage.toURL()).toContain(`region_(x_300;y_200;w_1900;h_3500)`);
     });
@@ -85,40 +79,39 @@ describe("Plugins", () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
+        src: TEST_PUBLIC_ID,
         remove: {
           region: [
             [300, 200, 1900, 3500],
-            [123, 321, 750, 500]
-          ]
-        }
+            [123, 321, 750, 500],
+          ],
+        },
       };
 
-      plugin({
-        cldAsset: cldImage,
-        options,
-      });
+      RemovePlugin.apply(cldImage, options);
 
-      expect(cldImage.toURL()).toContain(`region_((x_300;y_200;w_1900;h_3500);(x_123;y_321;w_750;h_500))`);
+      expect(cldImage.toURL()).toContain(
+        `region_((x_300;y_200;w_1900;h_3500);(x_123;y_321;w_750;h_500))`,
+      );
     });
 
     it("should not allow both a prompt and a region", () => {
       const cldImage = cld.image(TEST_PUBLIC_ID);
 
       const options = {
+        src: TEST_PUBLIC_ID,
         remove: {
-          prompt: 'apple',
+          prompt: "apple",
           region: [
             [300, 200, 1900, 3500],
-            [123, 321, 750, 500]
-          ]
-        }
+            [123, 321, 750, 500],
+          ],
+        },
       };
 
-      expect(() => plugin({
-        cldAsset: cldImage,
-        options,
-      })).toThrow('Invalid remove options: you can not have both a prompt and a region. More info: https://cloudinary.com/documentation/transformation_reference#e_gen_remove')
+      expect(() => RemovePlugin.apply(cldImage, options)).toThrow(
+        "Invalid remove options: you can not have both a prompt and a region. More info: https://cloudinary.com/documentation/transformation_reference#e_gen_remove",
+      );
     });
-
   });
 });

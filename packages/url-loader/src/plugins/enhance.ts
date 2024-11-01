@@ -1,30 +1,27 @@
-import { z } from "zod";
-import type { ImageOptions } from "../types/image.js";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
 
-export const enhanceProps = {
-  enhance: z
-    .boolean()
-    .describe(
-      JSON.stringify({
-        text: "Uses AI to analyze an image and make adjustments to enhance the appeal of the image.",
-        url: "https://cloudinary.com/documentation/transformation_reference#e_enhance",
-      }),
-    )
-    .optional(),
-};
+export declare namespace EnhancePlugin {
+  export interface Options {
+    /**
+     * @description Uses AI to analyze an image and make adjustments to enhance the appeal of the image.
+     * @url https://cloudinary.com/documentation/transformation_reference#e_enhance
+     */
+    enhance?: boolean;
+  }
+}
 
-export const enhancePlugin = {
-  props: enhanceProps,
-  assetTypes: ["image", "images"],
-  plugin: (settings) => {
-    const { cldAsset, options } = settings;
-    const { enhance = false } = options;
-
-    if (enhance) {
-      cldAsset.effect("e_enhance");
+export const EnhancePlugin = /* #__PURE__ */ plugin({
+  name: "Enhance",
+  supports: "image",
+  inferOwnOptions: {} as EnhancePlugin.Options,
+  props: {
+    enhance: true,
+  },
+  apply: (cldAsset, opts) => {
+    if (opts.enhance) {
+      cldAsset.addTransformation("e_enhance");
     }
 
     return {};
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});

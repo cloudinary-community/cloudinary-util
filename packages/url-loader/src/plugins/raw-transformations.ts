@@ -1,35 +1,34 @@
-import { z } from "zod";
-import type { TransformationPlugin } from "../types/plugins.js";
+import { plugin } from "../lib/plugin.js";
+import { isArray } from "../lib/utils.js";
 
-const RawTransformationSchema = z.string();
-type RawTransformation = z.infer<typeof RawTransformationSchema>;
+export declare namespace RawTransformationsPlugin {
+  export interface Options {
+    /**
+     * @description Array of transformation parameters using the Cloudinary URL API to apply to an asset.
+     * @url https://cloudinary.com/documentation/transformation_reference
+     */
+    rawTransformations?: string | ReadonlyArray<string>;
+  }
+}
 
-export const rawTransformationsProps = {
-  rawTransformations: z
-    .union([RawTransformationSchema, z.array(RawTransformationSchema)])
-    .describe(
-      JSON.stringify({
-        text: "Array of transformation parameters using the Cloudinary URL API to apply to an asset.",
-        url: "https://cloudinary.com/documentation/transformation_reference",
-      })
-    )
-    .optional(),
-};
+export const RawTransformationsPlugin = /* #__PURE__ */ plugin({
+  name: "RawTransformations",
+  supports: "all",
+  inferOwnOptions: {} as RawTransformationsPlugin.Options,
+  props: {
+    rawTransformations: true,
+  },
+  apply: (cldAsset, opts) => {
+    let { rawTransformations = [] } = opts;
 
-export const rawTransformationsPlugin = {
-  props: rawTransformationsProps,
-  assetTypes: ["image", "images", "video", "videos"],
-  plugin: ({ cldAsset, options }) => {
-    let { rawTransformations = [] } = options;
-
-    if (!Array.isArray(rawTransformations)) {
+    if (!isArray(rawTransformations)) {
       rawTransformations = [rawTransformations];
     }
 
-    rawTransformations.forEach((transformation: RawTransformation) => {
+    rawTransformations.forEach((transformation) => {
       cldAsset.addTransformation(transformation);
     });
 
     return {};
   },
-} satisfies TransformationPlugin;
+});

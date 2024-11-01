@@ -1,53 +1,27 @@
-import { z } from "zod";
-import {
-  aspectRatio,
-  crop,
-  format,
-  gravity,
-  height,
-  width,
-  x,
-  y,
-  zoom,
+import type {
+  AspectRatio,
+  CropMode,
+  Format,
+  Gravity,
+  Height,
+  Width,
+  X,
+  Y,
+  Zoom,
 } from "../constants/parameters.js";
-import type { AssetOptions } from "./asset.js";
-import type { ImageOptions } from "./image.js";
-import type { VideoOptions } from "./video.js";
 
-type AllOptions = AssetOptions | ImageOptions | VideoOptions;
-
-export interface PluginSettings<Options extends AllOptions = AllOptions> {
-  cldAsset: any;
-  options: Options;
+export interface PluginOptions {
+  aspectRatio?: AspectRatio;
+  crop?: CropMode;
+  gravity?: Gravity;
+  height?: Height;
+  format?: Format;
+  resize?: string;
+  x?: X;
+  y?: Y;
+  width?: Width;
+  zoom?: Zoom;
 }
-
-export type PluginFunction<Options extends AllOptions = AllOptions> = (
-  settings: PluginSettings<Options>
-) => PluginResults;
-
-export type AssetType = "image" | "images" | "video" | "videos";
-
-export interface TransformationPlugin<Options extends AllOptions = AllOptions> {
-  assetTypes: Array<AssetType>;
-  plugin: PluginFunction<Options>;
-  strict?: boolean;
-  props: object;
-}
-
-export const pluginOptionsSchema = z.object({
-  aspectRatio: aspectRatio.schema.optional(),
-  crop: crop.schema.optional(),
-  gravity: gravity.schema.optional(),
-  height: height.schema.optional(),
-  format: format.schema.optional(),
-  resize: z.string().optional(),
-  x: x.schema.optional(),
-  y: y.schema.optional(),
-  width: width.schema.optional(),
-  zoom: zoom.schema.optional(),
-});
-
-export type PluginOptions = z.infer<typeof pluginOptionsSchema>;
 
 export interface PluginResults {
   options?: PluginOptions;

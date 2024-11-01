@@ -306,9 +306,8 @@ export interface CloudinaryVideoPlayer {
   videojs: {
     cloudinary: {
       dispose: () => void;
-    }
-  }
-
+    };
+  };
 }
 
 export interface CloudinaryVideoPlayerOptionsLogo {
@@ -366,8 +365,10 @@ export interface CloudinaryVideoPlayerTextTracksTrack {
 
 export interface CloudinaryVideoPlayerTextTracks {
   captions?: CloudinaryVideoPlayerTextTracksTrack;
-  options?: CloudinaryVideoPlayerTextTracksTrackOptions
-  subtitles?: CloudinaryVideoPlayerTextTracksTrack | Array<CloudinaryVideoPlayerTextTracksTrack>;
+  options?: CloudinaryVideoPlayerTextTracksTrackOptions;
+  subtitles?:
+    | CloudinaryVideoPlayerTextTracksTrack
+    | Array<CloudinaryVideoPlayerTextTracksTrack>;
 }
 
 export interface CloudinaryVideoPlayerOptions
@@ -442,7 +443,9 @@ export interface CloudinaryVideoPlayerOptions
   };
   analytics?: boolean;
   allowUsageReport?: boolean;
-  cloudinaryAnalytics?: boolean | CloudinaryVideoPlayerOptionsCloudinaryAnalytics;
+  cloudinaryAnalytics?:
+    | boolean
+    | CloudinaryVideoPlayerOptionsCloudinaryAnalytics;
 
   // ------------ Delivery ------------
   cloud_name?: string;

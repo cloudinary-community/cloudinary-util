@@ -1,45 +1,44 @@
-import { z } from "zod";
-import { effects as qualifiersEffects } from "../constants/qualifiers.js";
-import type { ImageOptions } from "../types/image.js";
-import type { PluginOptions, TransformationPlugin } from "../types/plugins.js";
+import type { QualifierOptions } from "../constants/qualifiers.js";
+import { plugin } from "../lib/plugin.js";
+import type { PluginOptions } from "../types/plugins.js";
 
-export const zoompanProps = {
-  zoompan: z
-    .union([
-      z.string(),
-      z.boolean(),
-      z.object({
-        loop: qualifiersEffects.loop.schema.optional(),
-        options: z.string(),
-      }),
-    ])
-    .describe(
-      JSON.stringify({
-        text: "Applies zooming and/or panning to an image, resulting in a video or animated image.",
-        url: "https://cloudinary.com/documentation/transformation_reference#e_zoompan",
-      }),
-    )
-    .optional(),
-};
+export declare namespace ZoompanPlugin {
+  export interface Options {
+    /**
+     * @description Applies zooming and/or panning to an image, resulting in a video or animated image.
+     * @url https://cloudinary.com/documentation/transformation_reference#e_zoompan
+     */
+    zoompan?: string | boolean | NestedOptions;
+  }
 
-export const zoompanPlugin = {
-  props: zoompanProps,
-  assetTypes: ["image", "images"],
-  plugin: ({ cldAsset, options }) => {
-    const { zoompan = false } = options;
+  export interface NestedOptions {
+    loop?: QualifierOptions["loop"];
+    options: string;
+  }
+}
+
+export const ZoompanPlugin = /* #__PURE__ */ plugin({
+  name: "Zoompan",
+  supports: "image",
+  inferOwnOptions: {} as ZoompanPlugin.Options,
+  props: {
+    zoompan: true,
+  },
+  apply: (cldAsset, opts) => {
+    const { zoompan = false } = opts;
 
     const overrides: PluginOptions = {
       format: undefined,
     };
 
     if (zoompan === true) {
-      cldAsset.effect("e_zoompan");
+      cldAsset.addTransformation("e_zoompan");
     } else if (typeof zoompan === "string") {
       if (zoompan === "loop") {
-        cldAsset.effect("e_zoompan");
-        cldAsset.effect("e_loop");
+        cldAsset.addTransformation("e_zoompan");
+        cldAsset.addTransformation("e_loop");
       } else {
-        cldAsset.effect(`e_zoompan:${zoompan}`);
+        cldAsset.addTransformation(`e_zoompan:${zoompan}`);
       }
     } else if (typeof zoompan === "object") {
       let zoompanEffect = "e_zoompan";
@@ -48,7 +47,7 @@ export const zoompanPlugin = {
         zoompanEffect = `${zoompanEffect}:${zoompan.options}`;
       }
 
-      cldAsset.effect(zoompanEffect);
+      cldAsset.addTransformation(zoompanEffect);
 
       let loopEffect;
 
@@ -62,7 +61,7 @@ export const zoompanPlugin = {
       }
 
       if (loopEffect) {
-        cldAsset.effect(loopEffect);
+        cldAsset.addTransformation(loopEffect);
       }
     }
 
@@ -74,4 +73,4 @@ export const zoompanPlugin = {
       options: overrides,
     };
   },
-} satisfies TransformationPlugin<ImageOptions>;
+});
