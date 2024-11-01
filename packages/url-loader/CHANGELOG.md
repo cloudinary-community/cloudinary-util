@@ -1,3 +1,13 @@
+# [@cloudinary-util/url-loader-v6.0.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.11.0...@cloudinary-util/url-loader-v6.0.0) (2024-11-01)
+
+
+* Force Major 6.0.0 (#230) ([9f341f1](https://github.com/cloudinary-community/cloudinary-util/commit/9f341f1e49118efddc455fe8e66c710beb1a82e6)), closes [#230](https://github.com/cloudinary-community/cloudinary-util/issues/230)
+
+
+### BREAKING CHANGES
+
+* 6.0.0
+
 # [@cloudinary-util/url-loader-v5.11.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.10.6...@cloudinary-util/url-loader-v5.11.0) (2024-11-01)
 
 
