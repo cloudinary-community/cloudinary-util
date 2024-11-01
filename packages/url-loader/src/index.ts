@@ -7,7 +7,7 @@ export {
   transformationPlugins,
   type AnalyticsOptions,
   type ConfigOptions,
-  type ConstructUrlProps,
+  type ConstructUrlProps
 } from "./lib/cloudinary.js";
 
 // Upload Widget
@@ -19,12 +19,14 @@ export {
   type CloudinaryUploadWidgetErrorCallback,
   type CloudinaryUploadWidgetResultCallback,
   type GenerateUploadWidgetResultCallback,
-  type GetUploadWidgetOptions,
+  type GetUploadWidgetOptions
 } from "./lib/upload-widget.js";
+
+// Upload Helpers
 
 export {
   generateSignatureCallback,
-  type GenerateSignatureCallback,
+  type GenerateSignatureCallback
 } from "./lib/upload.js";
 
 // Video Player
@@ -32,7 +34,7 @@ export {
 export {
   getVideoPlayerOptions,
   type GetVideoPlayerOptions,
-  type GetVideoPlayerOptionsLogo,
+  type GetVideoPlayerOptionsLogo
 } from "./lib/video-player.js";
 
 // Transformation definitions
@@ -41,7 +43,7 @@ export {
   effects,
   position as position,
   primary as primary,
-  text,
+  text
 } from "./constants/qualifiers.js";
 
 // General Types
@@ -51,6 +53,7 @@ export type { ImageOptions } from "./types/image.js";
 export type { PluginOptions, PluginResults } from "./types/plugins.js";
 export type {
   QualifierConfig as Qualifier,
-  QualifierConverters,
+  QualifierConverters
 } from "./types/qualifiers.js";
 export type { VideoOptions } from "./types/video.js";
+
