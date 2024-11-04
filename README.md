@@ -1,6 +1,6 @@
 <picture>
 <!-- ALL-CONTRIBUTORS-BADGE:START - Do not remove or modify this section -->
-[![All Contributors](https://img.shields.io/badge/all_contributors-13-orange.svg?style=flat-square)](#contributors-)
+[![All Contributors](https://img.shields.io/badge/all_contributors-14-orange.svg?style=flat-square)](#contributors-)
 <!-- ALL-CONTRIBUTORS-BADGE:END -->
   <source media="(prefers-color-scheme: dark)" srcset="https://user-images.githubusercontent.com/62209650/196528621-b68e9e10-7e55-4c7d-9177-904cadbb4296.png" align="center" height=50>
   <source media="(prefers-color-scheme: light)" srcset="https://user-images.githubusercontent.com/62209650/196528761-a815025a-271a-4d8e-ac7e-cea833728bf9.png" align="center" height=50>
@@ -87,6 +87,7 @@ Thanks goes to these wonderful people ([emoji key](https://allcontributors.org/d
       <td align="center" valign="top" width="14.28%"><a href="https://noorasfatima.netlify.app/"><img src="https://avatars.githubusercontent.com/u/30138146?v=4?s=100" width="100px;" alt="NOORAS FATIMA ANSARI"/><br /><sub><b>NOORAS FATIMA ANSARI</b></sub></a><br /><a href="https://github.com/cloudinary-community/cloudinary-util/commits?author=nooras" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://github.com/ayan-joshi"><img src="https://avatars.githubusercontent.com/u/96243602?v=4?s=100" width="100px;" alt="Ayan Joshi"/><br /><sub><b>Ayan Joshi</b></sub></a><br /><a href="https://github.com/cloudinary-community/cloudinary-util/commits?author=ayan-joshi" title="Code">💻</a></td>
       <td align="center" valign="top" width="14.28%"><a href="https://www.mrinank.me"><img src="https://avatars.githubusercontent.com/u/77621953?v=4?s=100" width="100px;" alt="Mrinank Bhowmick"/><br /><sub><b>Mrinank Bhowmick</b></sub></a><br /><a href="https://github.com/cloudinary-community/cloudinary-util/commits?author=Mrinank-Bhowmick" title="Code">💻</a></td>
+      <td align="center" valign="top" width="14.28%"><a href="https://github.com/saai-syvendra"><img src="https://avatars.githubusercontent.com/u/157691467?v=4?s=100" width="100px;" alt="Saai Syvendra"/><br /><sub><b>Saai Syvendra</b></sub></a><br /><a href="https://github.com/cloudinary-community/cloudinary-util/commits?author=saai-syvendra" title="Code">💻</a></td>
     </tr>
   </tbody>
 </table>
