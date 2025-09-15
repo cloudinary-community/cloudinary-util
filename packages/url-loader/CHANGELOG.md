@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v6.1.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0...@cloudinary-util/url-loader-v6.1.0) (2025-09-15)
+
+
+### Features
+
+* add seed parameter for b_gen_fill ([c5f1e72](https://github.com/cloudinary-community/cloudinary-util/commit/c5f1e725c1c9bd17a6b585a61256eb1c375f00b4))
+
 # [@cloudinary-util/url-loader-v6.0.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v5.11.0...@cloudinary-util/url-loader-v6.0.0) (2024-11-01)
 
 
