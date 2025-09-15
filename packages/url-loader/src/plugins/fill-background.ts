@@ -21,6 +21,7 @@ export declare namespace FillBackgroundPlugin {
     crop?: CropMode;
     gravity?: Gravity;
     prompt?: ListablePrompts;
+    seed?: number;
   }
 }
 
@@ -64,15 +65,25 @@ export const FillBackgroundPlugin = /* #__PURE__ */ plugin({
 
       cldAsset.addTransformation(properties.join(","));
     } else if (typeof fillBackground === "object") {
-      const { crop = defaultCrop, gravity, prompt } = fillBackground;
+      const { crop = defaultCrop, gravity, prompt, seed } = fillBackground;
 
-      const properties = [`ar_${aspectRatio}`, `c_${crop}`];
+      const bGenFillProperties = [];
 
       if (typeof prompt === "string") {
-        properties.unshift(`b_gen_fill:${prompt}`);
-      } else {
-        properties.unshift(`b_gen_fill`);
+        bGenFillProperties.push(`prompt_${prompt}`);
       }
+
+      if (typeof seed === "number") {
+        bGenFillProperties.push(`seed_${seed}`);
+      }
+
+      const bGenFill = ( 
+        bGenFillProperties.length > 0 
+        ? `b_gen_fill:${bGenFillProperties.join(';')}`
+        : "b_gen_fill"
+      );
+
+      const properties = [ bGenFill, `ar_${aspectRatio}`, `c_${crop}`];
 
       if (typeof gravity === "string") {
         properties.push(`g_${gravity}`);
