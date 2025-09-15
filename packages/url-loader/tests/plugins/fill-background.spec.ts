@@ -41,13 +41,54 @@ describe("Plugins", () => {
           gravity: "east",
           prompt: "pink and purple flowers",
           crop: "mpad",
+          seed: 3
         },
       } as const;
 
       FillBackgroundPlugin.apply(cldImage, options);
 
       expect(cldImage.toURL()).toContain(
-        `b_gen_fill:${encodeURIComponent(options.fillBackground.prompt)},ar_${options.width}:${options.height},c_${options.fillBackground.crop},g_${options.fillBackground.gravity}/${TEST_PUBLIC_ID}`,
+        `b_gen_fill:prompt_${encodeURIComponent(options.fillBackground.prompt)};seed_3,ar_${options.width}:${options.height},c_${options.fillBackground.crop},g_${options.fillBackground.gravity}/${TEST_PUBLIC_ID}`,
+      );
+    });
+
+    it("should generate with just a seed but no prompt", () => {
+      const cldImage = cld.image(TEST_PUBLIC_ID);
+
+      const options = {
+        src: TEST_PUBLIC_ID,
+        width: 800,
+        height: 600,
+        fillBackground: {
+          crop: 'pad',
+          seed: 3
+        },
+      } as const;
+
+      FillBackgroundPlugin.apply(cldImage, options);
+
+      expect(cldImage.toURL()).toContain(
+        `b_gen_fill:seed_3,ar_${options.width}:${options.height},c_${options.fillBackground.crop}/${TEST_PUBLIC_ID}`,
+      );
+    });
+
+    it("should generate with just a prompt but no seed", () => {
+      const cldImage = cld.image(TEST_PUBLIC_ID);
+
+      const options = {
+        src: TEST_PUBLIC_ID,
+        width: 800,
+        height: 600,
+        fillBackground: {
+          crop: 'pad',
+          prompt: 'a herd of llamas'
+        },
+      } as const;
+
+      FillBackgroundPlugin.apply(cldImage, options);
+
+      expect(cldImage.toURL()).toContain(
+        `b_gen_fill:prompt_${encodeURIComponent(options.fillBackground.prompt)},ar_${options.width}:${options.height},c_${options.fillBackground.crop}/${TEST_PUBLIC_ID}`,
       );
     });
 
