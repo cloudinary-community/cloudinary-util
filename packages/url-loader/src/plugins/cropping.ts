@@ -13,8 +13,8 @@ import { plugin } from "../lib/plugin.js";
 import { isArray } from "../lib/utils.js";
 import type { PluginResults } from "../types/plugins.js";
 
-const cropsAspectRatio = ["auto", "crop", "fill", "lfill", "fill_pad", "thumb"];
-const cropsGravityAuto = ["auto", "crop", "fill", "lfill", "fill_pad", "thumb"];
+const cropsAspectRatio = ["auto", "auto_pad", "crop", "fill", "lfill", "fill_pad", "thumb"];
+const cropsGravityAuto = ["auto", "auto_pad", "crop", "fill", "lfill", "fill_pad", "thumb"];
 const cropsWithZoom = ["crop", "thumb"];
 
 const DEFAULT_CROP = "limit";
