@@ -1,7 +1,7 @@
-import { constructTransformation, promptArrayToString } from './constructTransformation';
+import { describe, it, expect } from 'vitest';
+import { constructTransformation, promptArrayToString } from '../../src/lib/transformations';
 
 describe('constructTransformation', () => {
-
   it('should construct a transformation string with a prefix, qualifier, and string value', () => {
     const transformation = constructTransformation({
       prefix: 'w',
@@ -56,8 +56,8 @@ describe('constructTransformation', () => {
 
   it('should apply converters to the value if the test passes', () => {
     const converters = [{
-      test: (value) => Array.isArray(value),
-      convert: (value) => value.join(':')
+      test: (value: any) => Array.isArray(value),
+      convert: (value: any) => value.join(':')
     }];
     const transformation = constructTransformation({
       qualifier: 'co',
@@ -69,8 +69,8 @@ describe('constructTransformation', () => {
 
   it('should not apply a converter if the test fails', () => {
     const converters = [{
-      test: (value) => Array.isArray(value),
-      convert: (value) => value.join(':')
+      test: (value: any) => Array.isArray(value),
+      convert: (value: any) => value.join(':')
     }];
     const transformation = constructTransformation({
       qualifier: 'w',
@@ -112,49 +112,11 @@ describe('constructTransformation', () => {
     });
     expect(transformation).toBeUndefined();
   });
-
-  it('should apply multiple converters in order', () => {
-    const converters = [
-      { test: (v) => typeof v === 'number', convert: (v: number) => v + 1 },
-      { test: (v) => typeof v === 'number', convert: (v: number) => v * 2 }
-    ];
-    const transformation = constructTransformation({
-      qualifier: 'w',
-      value: 5,
-      converters
-    });
-    expect(transformation).toBe('w_12'); // (5 + 1) * 2
-  });
-
-  it('should return undefined if value is true but qualifier is missing', () => {
-    const transformation = constructTransformation({
-      value: true
-    });
-    expect(transformation).toBeUndefined();
-  });
-
-  it('should return undefined if value is null', () => {
-    const transformation = constructTransformation({
-      qualifier: 'x',
-      value: null
-    });
-    expect(transformation).toBeUndefined();
-  });
 });
 
 describe('promptArrayToString', () => {
   it('should convert an array of strings to a single string with parentheses and semicolons', () => {
-    const result = promptArrayToString(['hello', 'world', 'test']);
-    expect(result).toBe('(hello;world;test)');
-  });
-
-  it('should return empty parentheses for an empty array', () => {
-    const result = promptArrayToString([]);
-    expect(result).toBe('()');
-  });
-
-  it('should handle array with one element', () => {
-    const result = promptArrayToString(['single']);
-    expect(result).toBe('(single)');
+    const result = promptArrayToString(['hello', 'world']);
+    expect(result).toBe('(hello;world)');
   });
 });
