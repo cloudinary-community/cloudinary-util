@@ -104,5 +104,27 @@ describe("Plugins", () => {
 
       expect(cldImage.toURL()).toContain(`image/upload/${TEST_PUBLIC_ID}`);
     });
+
+    it("should add c_limit transformation before b_gen_fill to handle images larger than 25MP", () => {
+      const cldImage = cld.image(TEST_PUBLIC_ID);
+
+      const options = {
+        src: TEST_PUBLIC_ID,
+        width: 800,
+        height: 600,
+        fillBackground: {
+          gravity: "east",
+          prompt: "pink and purple flowers",
+          crop: "mpad",
+          seed: 3
+        },
+      } as const;
+
+      FillBackgroundPlugin.apply(cldImage, options);
+
+      expect(cldImage.toURL()).toContain(
+        `c_limit,w_5000,h_5000/b_gen_fill:prompt_${encodeURIComponent(options.fillBackground.prompt)};seed_3`
+      );
+    });
   });
 });
