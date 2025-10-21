@@ -411,4 +411,60 @@ describe("Cropping plugin", () => {
       `image/upload/c_${options.crop.type},w_${options.width},h_${options.height},x_${options.crop.x},y_${options.crop.y}`,
     );
   });
+
+  it("should apply auto_pad crop mode with explicit gravity auto", () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      src: TEST_PUBLIC_ID,
+      width: 960,
+      aspectRatio: "16:9",
+      crop: "auto_pad",
+      gravity: "auto",
+    } as const;
+    const result = CroppingPlugin.apply(cldImage, options);
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
+    expect(result.options?.resize).toBe(
+      `c_auto_pad,ar_16:9,w_960,g_auto`,
+    );
+  });
+
+  it("should apply auto_pad crop mode with auto gravity by default", () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      src: TEST_PUBLIC_ID,
+      width: 960,
+      aspectRatio: "16:9",
+      crop: "auto_pad",
+    } as const;
+    const result = CroppingPlugin.apply(cldImage, options);
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
+    expect(result.options?.resize).toBe(
+      `c_auto_pad,ar_16:9,w_960,g_auto`,
+    );
+  });
+
+  it("should apply auto_pad crop mode with width and height", () => {
+    const cldImage = cld.image(TEST_PUBLIC_ID);
+    const options = {
+      src: TEST_PUBLIC_ID,
+      width: 960,
+      height: 540,
+      crop: "auto_pad",
+      gravity: "auto",
+    } as const;
+    const result = CroppingPlugin.apply(cldImage, options);
+
+    if (result.options?.resize === undefined)
+      throw new Error(`Expected result.options.resize to not be undefined`);
+
+    expect(result.options?.resize).toBe(
+      `c_auto_pad,w_960,h_540,g_auto`,
+    );
+  });
 });

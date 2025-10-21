@@ -6,6 +6,7 @@ import type { StringifiablePrimative } from "../lib/utils.js";
  */
 export type CropMode =
   | "auto"
+  | "auto_pad"
   | "crop"
   | "fill"
   | "fill_pad"
