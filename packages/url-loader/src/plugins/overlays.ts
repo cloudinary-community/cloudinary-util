@@ -312,7 +312,7 @@ export const OverlaysPlugin = /* #__PURE__ */ plugin({
               keyof typeof specialCharacters
             >
           )?.forEach((character: string) => {
-            layerText = layerText?.replace(
+            layerText = layerText?.replaceAll(
               character,
               specialCharacters[character],
             );

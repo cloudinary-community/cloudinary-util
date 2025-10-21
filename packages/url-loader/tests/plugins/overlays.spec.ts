@@ -418,8 +418,8 @@ describe("Plugins", () => {
 
       const color = "white";
       const fontFamily = "Source Sans Pro";
-      const text = "Ne xt/Cloud.in,ary";
-      const expectedText = "Ne%20xt%252FCloud%252Ein%252Cary";
+      const text = "Ne xt/Cloud.in,,ary";
+      const expectedText = "Ne%20xt%252FCloud%252Ein%252C%252Cary";
 
       const options = {
         src: TEST_PUBLIC_ID,
