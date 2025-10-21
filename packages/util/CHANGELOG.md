@@ -1,3 +1,10 @@
+# [@cloudinary-util/util-v4.2.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v4.1.0...@cloudinary-util/util-v4.2.0) (2025-10-21)
+
+
+### Features
+
+* force release ([a78d313](https://github.com/cloudinary-community/cloudinary-util/commit/a78d31375550b4f3237a14ecb54a4883353ae36a))
+
 # [@cloudinary-util/util-v4.1.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/util-v4.0.0...@cloudinary-util/util-v4.1.0) (2024-11-01)
 
 
