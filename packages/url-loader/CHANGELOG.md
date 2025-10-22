@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v6.2.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.1.0...@cloudinary-util/url-loader-v6.2.0) (2025-10-22)
+
+
+### Features
+
+* force release ([efad00c](https://github.com/cloudinary-community/cloudinary-util/commit/efad00c8d19a9ec3ddc4711048ed7788c077dff2))
+
 # [@cloudinary-util/url-loader-v6.1.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.0.0...@cloudinary-util/url-loader-v6.1.0) (2025-09-15)
 
 
