@@ -57,6 +57,9 @@ export const FillBackgroundPlugin = /* #__PURE__ */ plugin({
     }
 
     if (fillBackground === true) {
+      // Add c_limit transformation to handle images larger than 25MP
+      cldAsset.addTransformation("c_limit,w_5000,h_5000");
+
       const properties = [
         "b_gen_fill",
         `ar_${aspectRatio}`,
@@ -66,6 +69,9 @@ export const FillBackgroundPlugin = /* #__PURE__ */ plugin({
       cldAsset.addTransformation(properties.join(","));
     } else if (typeof fillBackground === "object") {
       const { crop = defaultCrop, gravity, prompt, seed } = fillBackground;
+
+      // Add c_limit transformation to handle images larger than 25MP
+      cldAsset.addTransformation("c_limit,w_5000,h_5000");
 
       const bGenFillProperties = [];
 
