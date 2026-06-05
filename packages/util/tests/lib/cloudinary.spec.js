@@ -336,6 +336,54 @@ describe('Cloudinary', () => {
     });
   });
 
+  describe('parseUrl memoization', () => {
+    // parseUrl memoizes by `src`. `decodeURIComponent` is a global called once per
+    // successful parse (on the public ID), so spying on it is a clean way to observe
+    // whether a given call actually ran the parse pipeline or was served from cache.
+
+    it('parses a given src only once and serves repeated calls from cache', () => {
+      const src = `https://res.cloudinary.com/test-cloud/image/upload/c_limit,w_960/v1234/memoize-once`;
+      const decodeSpy = vi.spyOn(globalThis, 'decodeURIComponent');
+
+      const first = parseUrl(src); // cache miss -> runs the parse
+      const callsAfterMiss = decodeSpy.mock.calls.length;
+      expect(callsAfterMiss).toBeGreaterThan(0);
+
+      const second = parseUrl(src); // cache hit -> must not re-run the parse
+      expect(decodeSpy).toHaveBeenCalledTimes(callsAfterMiss);
+
+      // The cached result still matches a fresh parse of the same URL.
+      expect(second).toEqual(first);
+    });
+
+    it('returns deeply-independent copies so callers cannot mutate cached state', () => {
+      const src = `https://res.cloudinary.com/test-cloud/video/upload/f_auto,q_auto/c_limit,w_960/v1234/nested/folder/turtle.mp4?_i=AA&_a=BB`;
+
+      const first = parseUrl(src);
+      const second = parseUrl(src);
+
+      expect(second).toEqual(first);
+      // Nested values must be fresh per call, not shared with the cache entry.
+      expect(second.transformations).not.toBe(first.transformations);
+      expect(second.queryParams).not.toBe(first.queryParams);
+
+      // Mutating a returned copy must not leak into the cache / later calls.
+      first.transformations.push('x_injected');
+      first.queryParams.injected = true;
+
+      const third = parseUrl(src);
+      expect(third.transformations).not.toContain('x_injected');
+      expect(third.queryParams).not.toHaveProperty('injected');
+    });
+
+    it('does not cache failures - invalid src throws on every call', () => {
+      const src = `https://res.cloudinary.com/test-cloud/image/upload/c_limit,w_960/memoize-no-version`;
+      expect(() => parseUrl(src)).toThrow('Invalid src: Does not include version');
+      // A second call must throw the same error (the failure was not memoized).
+      expect(() => parseUrl(src)).toThrow('Invalid src: Does not include version');
+    });
+  });
+
   describe('getPublicId', () => {
     it('should throw an error on a Cloudinary URL without a version', () => {
       const publicId = 'turtle';

@@ -9,7 +9,7 @@ const CLOUDINARY_DEFAULT_HOST = "res.cloudinary.com";
 
 /**
  * parseUrl
- * @description
+ * @description Parses a Cloudinary URL into its component parts.
  */
 
 export interface ParseUrl {
@@ -26,7 +26,59 @@ export interface ParseUrl {
   version?: number;
 }
 
+// Bound the cache so a long-lived process can't grow it without limit; evict LRU once full.
+const PARSE_URL_CACHE_LIMIT = 5000;
+const parseUrlCache = new Map<string, ParseUrl>();
+
+// Deep-copy the nested `transformations`/`queryParams` so a caller mutating the returned
+// object can't poison the shared cache entry. Every other field is a primitive.
+function copyParts(parts: ParseUrl): ParseUrl {
+  return {
+    ...parts,
+    transformations: Array.isArray(parts.transformations)
+      ? [...parts.transformations]
+      : parts.transformations,
+    queryParams:
+      parts.queryParams && typeof parts.queryParams === "object"
+        ? { ...parts.queryParams }
+        : parts.queryParams,
+  };
+}
+
+/**
+ * Memoizes {@link parseUrlUncached} by `src`. Parsing runs a large regex and the same
+ * `src` is commonly parsed many times (e.g. once per `srcset` width, every render), so a
+ * bounded LRU collapses repeats to one parse per distinct URL. Each call returns a fresh
+ * copy, and invalid input throws as before (failures are never cached).
+ */
 export function parseUrl(src: string): ParseUrl | undefined {
+  // Non-string inputs hit the uncached throw path; don't cache them.
+  if (typeof src !== "string") return parseUrlUncached(src);
+
+  const cached = parseUrlCache.get(src);
+  if (cached !== undefined) {
+    // LRU bump: re-insert so this entry becomes most-recently-used.
+    parseUrlCache.delete(src);
+    parseUrlCache.set(src, cached);
+    return copyParts(cached);
+  }
+
+  // Let throws (invalid src) propagate without caching, so error behavior is identical
+  // to an uncached parse.
+  const result = parseUrlUncached(src);
+
+  // `parseUrlUncached` is typed `| undefined`; guard so we never cache/copy a non-object.
+  if (result === undefined) return undefined;
+
+  parseUrlCache.set(src, result);
+  if (parseUrlCache.size > PARSE_URL_CACHE_LIMIT) {
+    // Map iterates in insertion order, so the first key is the least-recently-used.
+    parseUrlCache.delete(parseUrlCache.keys().next().value as string);
+  }
+  return copyParts(result);
+}
+
+function parseUrlUncached(src: string): ParseUrl | undefined {
   if (typeof src !== "string") {
     throw new Error(`Failed to parse URL - Invalid src: Is not a string`);
   }
