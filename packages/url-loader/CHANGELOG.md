@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v6.3.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.2.0...@cloudinary-util/url-loader-v6.3.0) (2026-08-10)
+
+
+### Features
+
+* adopt trusted publishers ([f77c738](https://github.com/cloudinary-community/cloudinary-util/commit/f77c738286b0b3d1d29371127db1cf23213561f5))
+
 # [@cloudinary-util/url-loader-v6.2.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.1.0...@cloudinary-util/url-loader-v6.2.0) (2025-10-22)
 
 
