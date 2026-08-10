@@ -1,3 +1,10 @@
+# [@cloudinary-util/types-v1.7.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.6.0...@cloudinary-util/types-v1.7.0) (2026-08-10)
+
+
+### Features
+
+* adopt trusted publishers ([f77c738](https://github.com/cloudinary-community/cloudinary-util/commit/f77c738286b0b3d1d29371127db1cf23213561f5))
+
 # [@cloudinary-util/types-v1.6.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/types-v1.5.11...@cloudinary-util/types-v1.6.0) (2024-11-01)
 
 
