@@ -28,8 +28,8 @@
     "test:watch": "vitest"
   },
   "dependencies": {
-    "@cloudinary-util/types": "workspace:*",
-    "@cloudinary-util/util": "workspace:*",
+    "@cloudinary-util/types": "^1.7.0",
+    "@cloudinary-util/util": "^4.3.0",
     "@cloudinary/url-gen": "1.15.0"
   },
   "devDependencies": {

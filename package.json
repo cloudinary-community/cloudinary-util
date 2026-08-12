@@ -6,6 +6,7 @@
     "lint": "eslint --max-warnings=0 . && turbo run lint",
     "lint:attw": "turbo run lint:attw",
     "lint:publint": "turbo run lint:publint",
+    "lint:manifests": "node scripts/check-manifests.mjs",
     "clean": "turbo run clean && rm -rf node_modules",
     "format": "prettier --write \"**/*.{ts,tsx,md}\"",
     "release": "turbo run build --filter=docs^... && turbo run semantic-release --concurrency=1",

@@ -86,10 +86,10 @@ importers:
   packages/url-loader:
     dependencies:
       '@cloudinary-util/types':
-        specifier: workspace:*
+        specifier: ^1.7.0
         version: link:../types
       '@cloudinary-util/util':
-        specifier: workspace:*
+        specifier: ^4.3.0
         version: link:../util
       '@cloudinary/url-gen':
         specifier: 1.15.0
