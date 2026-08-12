@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v6.3.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.3.0...@cloudinary-util/url-loader-v6.3.1) (2026-08-12)
+
+
+### Bug Fixes
+
+* npm publish doesn't understand `workspace:*` ([947f19c](https://github.com/cloudinary-community/cloudinary-util/commit/947f19c916253e9122a11948393ae615d89e73af))
+
 # [@cloudinary-util/url-loader-v6.3.0](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.2.0...@cloudinary-util/url-loader-v6.3.0) (2026-08-10)
 
 
