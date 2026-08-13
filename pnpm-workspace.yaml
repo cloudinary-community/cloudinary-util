@@ -1,3 +1,27 @@
 packages:
   # - "docs"
   - "packages/*"
+
+# pnpm 10 reads its settings from here rather than .npmrc, which keeps
+# pnpm-only keys out of a file that `npm publish` also parses (npm warns on
+# every key it doesn't recognise, and threatens to start erroring on them).
+
+autoInstallPeers: true
+
+# Only consulted by `pnpm publish`, which this repo no longer uses - releases go
+# out through @semantic-release/npm. Kept to preserve existing behaviour; safe to
+# drop.
+gitChecks: false
+
+# Cross-package deps here are declared as plain semver ranges rather than
+# `workspace:*`, so that published manifests are correct no matter which tool
+# does the publishing. These keep pnpm linking the local packages during
+# development instead of resolving those ranges against the registry.
+# Both matter under pnpm 10, where linkWorkspacePackages now defaults to false.
+linkWorkspacePackages: true
+preferWorkspacePackages: true
+
+# pnpm 10 no longer runs dependency lifecycle scripts unless they are allowlisted.
+onlyBuiltDependencies:
+  - esbuild
+  - turbo
