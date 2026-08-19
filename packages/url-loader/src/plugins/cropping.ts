@@ -221,10 +221,10 @@ function collectTransformations(collectOptions: CroppingPlugin.NestedOptions) {
     transformations.push(`w_${width}`);
   }
 
-  // Some crop types don't need a height and will resize based
-  // on the aspect ratio
+  // Skip explicit height when using aspect ratio (which determines height automatically)
+  // Otherwise, include explicit height when provided
 
-  if (!["limit"].includes(crop) && typeof height === "number") {
+  if (typeof height === "number" && !hasValidAspectRatio) {
     transformations.push(`h_${height}`);
   }
 

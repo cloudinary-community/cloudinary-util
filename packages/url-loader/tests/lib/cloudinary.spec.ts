@@ -30,7 +30,7 @@ describe("Cloudinary", () => {
         },
       });
       expect(url).toContain(
-        `https://res.cloudinary.com/${cloudName}/image/upload/c_limit,w_100/f_auto/q_auto/v1/turtle`,
+        `https://res.cloudinary.com/${cloudName}/image/upload/c_limit,w_100,h_100/f_auto/q_auto/v1/turtle`,
       );
     });
 
@@ -51,7 +51,7 @@ describe("Cloudinary", () => {
         },
       });
       expect(url).toContain(
-        `https://res.cloudinary.com/${cloudName}/${assetType}/upload/c_limit,w_100/f_auto/q_auto/v1/turtle`,
+        `https://res.cloudinary.com/${cloudName}/${assetType}/upload/c_limit,w_100,h_100/f_auto/q_auto/v1/turtle`,
       );
     });
 
@@ -77,7 +77,7 @@ describe("Cloudinary", () => {
           },
         });
         expect(url).toContain(
-          `https://res.cloudinary.com/${cloudName}/image/upload/c_limit,w_100/f_${format}/q_${quality}/v1/turtle`,
+          `https://res.cloudinary.com/${cloudName}/image/upload/c_limit,w_100,h_100/f_${format}/q_${quality}/v1/turtle`,
         );
       });
 
@@ -86,7 +86,7 @@ describe("Cloudinary", () => {
         const deliveryType = "upload";
         const publicId = "myimage";
 
-        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/v1234/${publicId}?_a=`;
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100,h_100/v1234/${publicId}?_a=`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -112,7 +112,7 @@ describe("Cloudinary", () => {
         const publicId = "myimage";
         const dpr = "2.0";
 
-        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr}/f_auto/q_auto/v1/${publicId}?_a=`;
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100,h_100/dpr_${dpr}/f_auto/q_auto/v1/${publicId}?_a=`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -137,7 +137,7 @@ describe("Cloudinary", () => {
         const publicId = "myimage";
         const dpr = 2;
 
-        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr.toFixed(1)}/f_auto/q_auto/v1/${publicId}?_a=`;
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100,h_100/dpr_${dpr.toFixed(1)}/f_auto/q_auto/v1/${publicId}?_a=`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -161,7 +161,7 @@ describe("Cloudinary", () => {
         const publicId = "myimage";
         const dpr = "auto";
 
-        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/dpr_${dpr}/f_auto/q_auto/v1/${publicId}?_a=`;
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100,h_100/dpr_${dpr}/f_auto/q_auto/v1/${publicId}?_a=`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -260,7 +260,7 @@ describe("Cloudinary", () => {
           },
         });
         expect(url).toContain(
-          `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/f_auto/q_auto/v1/${src}`,
+          `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100,h_100/f_auto/q_auto/v1/${src}`,
         );
       });
 
@@ -269,7 +269,7 @@ describe("Cloudinary", () => {
         const deliveryType = "fetch";
         const publicId = "myimage";
 
-        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/f_auto/q_auto/v1234/${publicId}?_a=`;
+        const src = `https://res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100,h_100/f_auto/q_auto/v1234/${publicId}?_a=`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -293,7 +293,7 @@ describe("Cloudinary", () => {
         const deliveryType = "fetch";
         const publicId = "myimage";
 
-        const src = `res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100/f_auto/q_auto/v1234/${publicId}?_a=`;
+        const src = `res.cloudinary.com/${cloudName}/image/${deliveryType}/c_limit,w_100,h_100/f_auto/q_auto/v1234/${publicId}?_a=`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -366,7 +366,7 @@ describe("Cloudinary", () => {
         const publicId = "myimage";
         const seoSuffix = "test-image";
 
-        const src = `https://res.cloudinary.com/${cloudName}/images/c_limit,w_100/f_auto/q_auto/v1234/${publicId}/${seoSuffix}?_a=`;
+        const src = `https://res.cloudinary.com/${cloudName}/images/c_limit,w_100,h_100/f_auto/q_auto/v1234/${publicId}/${seoSuffix}?_a=`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -392,7 +392,7 @@ describe("Cloudinary", () => {
         const width = 1234;
         const height = 1234;
 
-        const src = `https://res.cloudinary.com/${cloudName}/${assetType}/c_limit,w_${width}/f_auto/q_auto/v1234/${publicId}?_a=`;
+        const src = `https://res.cloudinary.com/${cloudName}/${assetType}/c_limit,w_${width},h_${height}/f_auto/q_auto/v1234/${publicId}?_a=`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -419,8 +419,8 @@ describe("Cloudinary", () => {
         const width = 1234;
         const height = 1234;
 
-        const src = `https://res.cloudinary.com/${cloudName}/${assetType}/c_limit,w_${width}/f_auto/q_auto/v1234/${publicId}/${seoSuffix}${format}?_i=A`;
-        const exepectedSrc = `https://res.cloudinary.com/${cloudName}/image/fetch/c_limit,w_${width}/f_auto/q_auto/v1234/${publicId}?_a=`;
+        const src = `https://res.cloudinary.com/${cloudName}/${assetType}/c_limit,w_${width},h_${height}/f_auto/q_auto/v1234/${publicId}/${seoSuffix}${format}?_i=A`;
+        const exepectedSrc = `https://res.cloudinary.com/${cloudName}/image/fetch/c_limit,w_${width},h_${height}/f_auto/q_auto/v1234/${publicId}?_a=`;
 
         const url = constructCloudinaryUrl({
           options: {
@@ -446,7 +446,7 @@ describe("Cloudinary", () => {
         const originalSeoSuffix = "my-image";
         const seoSuffix = "test-image";
 
-        const src = `https://res.cloudinary.com/${cloudName}/${assetType}/c_limit,w_100/f_auto/q_auto/v1234/${publicId}/${originalSeoSuffix}?_a=`;
+        const src = `https://res.cloudinary.com/${cloudName}/${assetType}/c_limit,w_100,h_100/f_auto/q_auto/v1234/${publicId}/${originalSeoSuffix}?_a=`;
 
         const url = constructCloudinaryUrl({
           options: {
