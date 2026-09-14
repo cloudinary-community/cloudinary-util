@@ -159,13 +159,16 @@ export function getVideoPlayerOptions(
     ...otherCldVidPlayerOptions,
   };
 
-  if (
-    playerOptions.width &&
-    playerOptions.height &&
-    !playerOptions.aspectRatio
-  ) {
-    playerOptions.aspectRatio = `${playerOptions.width}:${playerOptions.height}`;
-  }
+  // This is not necessary, and breaks posters in v4
+  // feel free to uncomment after https://github.com/cloudinary/cloudinary-video-player/issues/1087 is fixed, though.
+  //
+  // if (
+  //   playerOptions.width &&
+  //   playerOptions.height &&
+  //   !playerOptions.aspectRatio
+  // ) {
+  //   playerOptions.aspectRatio = `${playerOptions.width}:${playerOptions.height}`;
+  // }
 
   if (typeof poster === "string") {
     // If poster is a string, assume it's either a public ID

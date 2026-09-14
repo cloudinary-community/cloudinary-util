@@ -19,7 +19,6 @@ describe("video-player", () => {
         };
 
         const expectedOptions = {
-          aspectRatio: "1620:1080",
           autoplay: false,
           autoplayMode: undefined,
           cloud_name: "testcloud",
