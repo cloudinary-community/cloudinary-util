@@ -1,3 +1,10 @@
+# [@cloudinary-util/url-loader-v6.3.2](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.3.1...@cloudinary-util/url-loader-v6.3.2) (2026-09-14)
+
+
+### Bug Fixes
+
+* remove aspect ratio from videoPlayer options ([c595c99](https://github.com/cloudinary-community/cloudinary-util/commit/c595c99ed0f877865623ba183ed9f32f96c2a728))
+
 # [@cloudinary-util/url-loader-v6.3.1](https://github.com/cloudinary-community/cloudinary-util/compare/@cloudinary-util/url-loader-v6.3.0...@cloudinary-util/url-loader-v6.3.1) (2026-08-12)
 
 
